@@ -25,8 +25,8 @@ npm install // in the root folder of the project to install node_packages
 ng serve --open // it will run the application on the default broswer
 ```
 
-For Api
-Visual Studio 2017 
+For Api <br />
+Visual Studio 2017  <br />
 [Core 2](https://www.microsoft.com/net/download/core)
 
 ```
