@@ -673,11 +673,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj",
-      "projectName": "Models",
-      "projectPath": "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj",
+      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\Testing\\Testing.csproj",
+      "projectName": "Testing",
+      "projectPath": "D:\\git\\DebtManagment\\D.MG\\Testing\\Testing.csproj",
       "packagesPath": "C:\\Users\\Nperperidis\\.nuget\\packages\\",
-      "outputPath": "D:\\git\\DebtManagment\\D.MG\\Models\\obj\\",
+      "outputPath": "D:\\git\\DebtManagment\\D.MG\\Testing\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -708,7 +708,6 @@
       "netcoreapp2.0": {
         "dependencies": {
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "2.0.0",
             "autoReferenced": true

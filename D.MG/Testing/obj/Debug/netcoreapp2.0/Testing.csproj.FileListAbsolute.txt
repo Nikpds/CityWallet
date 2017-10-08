@@ -1,0 +1,13 @@
+D:\git\DebtManagment\D.MG\Testing\bin\Debug\netcoreapp2.0\Testing.deps.json
+D:\git\DebtManagment\D.MG\Testing\bin\Debug\netcoreapp2.0\Testing.runtimeconfig.json
+D:\git\DebtManagment\D.MG\Testing\bin\Debug\netcoreapp2.0\Testing.runtimeconfig.dev.json
+D:\git\DebtManagment\D.MG\Testing\bin\Debug\netcoreapp2.0\Testing.dll
+D:\git\DebtManagment\D.MG\Testing\bin\Debug\netcoreapp2.0\Testing.pdb
+D:\git\DebtManagment\D.MG\Testing\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.dll
+D:\git\DebtManagment\D.MG\Testing\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.xml
+D:\git\DebtManagment\D.MG\Testing\obj\Debug\netcoreapp2.0\Testing.csprojResolveAssemblyReference.cache
+D:\git\DebtManagment\D.MG\Testing\obj\Debug\netcoreapp2.0\Testing.csproj.CoreCompileInputs.cache
+D:\git\DebtManagment\D.MG\Testing\obj\Debug\netcoreapp2.0\Testing.AssemblyInfoInputs.cache
+D:\git\DebtManagment\D.MG\Testing\obj\Debug\netcoreapp2.0\Testing.AssemblyInfo.cs
+D:\git\DebtManagment\D.MG\Testing\obj\Debug\netcoreapp2.0\Testing.dll
+D:\git\DebtManagment\D.MG\Testing\obj\Debug\netcoreapp2.0\Testing.pdb

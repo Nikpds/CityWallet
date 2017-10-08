@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Web.Api.Controllers
 {
@@ -33,6 +34,13 @@ namespace Web.Api.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
+        }
+
+        [HttpGet("jwt/{id}")]
+        [Authorize]
+        public string GetJWT(int id)
+        {
+            return "visit by jwt auth";
         }
 
         // DELETE api/values/5

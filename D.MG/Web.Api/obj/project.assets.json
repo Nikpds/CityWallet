@@ -12542,11 +12542,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nperperidis\\source\\repos\\D.MG\\Web.Api\\Web.Api.csproj",
+      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\Web.Api\\Web.Api.csproj",
       "projectName": "Web.Api",
-      "projectPath": "C:\\Users\\Nperperidis\\source\\repos\\D.MG\\Web.Api\\Web.Api.csproj",
+      "projectPath": "D:\\git\\DebtManagment\\D.MG\\Web.Api\\Web.Api.csproj",
       "packagesPath": "C:\\Users\\Nperperidis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Nperperidis\\source\\repos\\D.MG\\Web.Api\\obj\\",
+      "outputPath": "D:\\git\\DebtManagment\\D.MG\\Web.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
