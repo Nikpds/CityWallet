@@ -2,6 +2,7 @@
 # 2017-10-08
 
 1. Check (nickliako)
+2. Check (marilenak)
 
 ## Getting Started
 
