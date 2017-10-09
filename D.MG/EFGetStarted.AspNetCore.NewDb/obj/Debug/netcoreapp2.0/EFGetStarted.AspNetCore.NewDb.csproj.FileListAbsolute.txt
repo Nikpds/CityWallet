@@ -1,0 +1,11 @@
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\bin\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.deps.json
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\bin\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.runtimeconfig.json
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\bin\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.runtimeconfig.dev.json
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\bin\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.dll
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\obj\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.csprojResolveAssemblyReference.cache
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\obj\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.csproj.CoreCompileInputs.cache
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\obj\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.AssemblyInfoInputs.cache
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\obj\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.AssemblyInfo.cs
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\bin\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.pdb
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\obj\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.dll
+C:\git\DebtManagment\D.MG\EFGetStarted.AspNetCore.NewDb\obj\Debug\netcoreapp2.0\EFGetStarted.AspNetCore.NewDb.pdb
