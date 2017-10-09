@@ -12,7 +12,6 @@
 This is a project for coding School from qualco_4 development team. It is a debt managment application
 for the citizen.
 
-
 ### Prerequisites
 
 For Web<br />
