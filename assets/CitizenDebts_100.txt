@@ -1,0 +1,102 @@
+VAT;FIRST_NAME;LAST_NAME;ADDRESS;COUNTY;BILL_ID;DESCRIPTION;AMOUNT;DATE_DUE
+8622640063;Callie;Sloan;Route 27 476;San Marino;9e6d0676-ffc6-4d2e-a2b1-042bfd1f7ffb;Electricity;72,53;20170819
+2083428088;Nyasia;Rivera;Pleasant Street 819;Westlake Village;cff79cc2-ff81-4920-972c-e914686b68bc;Water;28,66;20171029
+2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;063a6bfd-0bde-4744-8d0e-3dc27dd7bee6;Tennis;72,22;20171010
+5869967888;Jaden;Baxter;Harrison Street 818;Montebello;26d1f209-b35d-4a58-9d0d-63681ad7797c;Tennis;89,95;20170920
+3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;e1f956ea-07ac-43b7-8b23-c5ceeac148eb;Police;32,14;20170915
+2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;0e6cd095-ca51-4bbf-b0e3-c02f34d18147;Library;77,64;20170909
+5869967888;Jaden;Baxter;Harrison Street 818;Montebello;26d6906d-a720-4c3f-ab0e-a9da1805eb50;Dancing;24,4;20171011
+7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;b3b0c50a-e9e7-4ada-b625-842edfc95b1e;Soccer;85,32;20171025
+1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;76bba170-265b-451d-83b1-86a8bfc0681d;Ambulance;28,9;20170912
+9556392109;Lilyana;Kim;8th Avenue 299;Downey;e8c18ce1-d03c-4b1a-956e-a84c00f4e7f2;Sewer;25,34;20170808
+2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;ef4c5a5f-7fce-4383-8699-07c0939add9b;Fire Dept;89,85;20170710
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;651c2378-472e-402f-98f2-6e5dabb5b6d1;Tennis;54,04;20171015
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;1ebc2992-3085-4559-8286-fc12bbaa019b;Preschool;50,95;20170909
+1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;dfed2441-59c1-417b-b533-dace13583a61;School;41,18;20170811
+9375651543;Edwin;Hall;3rd Street West 438;Cudahy;cbd626b9-2bc9-4c89-a3ea-c882e0e57ab6;Preschool;12,27;20171003
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;3c9da8ae-a9d4-4ab3-aea2-7715800bfad8;Electricity;72,08;20171007
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;901b98f4-5d15-4efb-9565-0195ba58af11;Fire Dept;21,77;20170726
+2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;ed9ab150-dcea-4a73-86b9-82bdd28da5c6;Library;17,27;20171019
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;30967cfa-8aea-44c0-adb0-43be453aeedb;Piano;11,5;20170816
+3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;b0295535-cc37-4971-970a-874279177d71;Television;44,07;20170716
+7778958095;Nick;Cowan;Hickory Lane 264;South El Monte;bacb49c8-691e-42f4-8fd9-a5c10e11eb95;Electricity;78,8;20170813
+2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;d155d8e7-9c0c-4b80-a180-64281115f9f7;Piano;66,53;20170823
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;56d2767e-771e-4d31-8b03-f1054a019d07;Gas;59,62;20170812
+5420497490;Shania;Haas;Linden Street 831;South Gate;59b40924-7cc4-488d-9e29-32e6846ede8b;Television;13,24;20170926
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;a7d2540e-4537-47f6-ba9b-784ce8bcf911;Police;41,02;20170813
+0202615703;Autumn;Herman;Water Street 428;Burbank;e0dd8536-8635-4728-9168-14b76db8b3c9;Library;31,7;20171101
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;46f51312-2c7b-4a01-b89d-1e2d6f94549e;Preschool;12,01;20170729
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;7e147af6-6ea9-4885-8f46-b8d152dbd4d0;Gas;70,1;20170816
+5869967888;Jaden;Baxter;Harrison Street 818;Montebello;5622c935-94c4-4c11-97e7-865972fdd225;Ambulance;17,02;20170823
+3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;09edf0ac-7ca3-44f9-9f40-dc7c6caa6206;Judo;87,99;20171012
+7778958095;Nick;Cowan;Hickory Lane 264;South El Monte;045af51f-aebb-414f-9a8e-6f05e3ba6597;Gym;76,1;20170731
+2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;7d276490-2fea-4d90-a60d-1cacc1243712;Tree Planting;71,66;20170806
+9375651543;Edwin;Hall;3rd Street West 438;Cudahy;1685bef9-47e2-44b4-82e3-1a72d6a350cc;Gym;36,07;20170717
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;7125b6c1-0997-4c9f-b638-8f8c40c38e41;Parking;15,2;20170719
+7778958095;Nick;Cowan;Hickory Lane 264;South El Monte;72194000-783f-4724-8d36-f556f6b0ffa2;Police;77,2;20170815
+0202615703;Autumn;Herman;Water Street 428;Burbank;bde55d62-9100-42c5-a721-d209940314b3;Dancing;30,98;20171018
+5767922646;Lindsay;Mcdaniel;6th Avenue 434;Glendale;5d4d5546-9614-41c4-8f7e-7111bfad5a88;Police;41,16;20171001
+7211354364;Frida;Clayton;7th Street 649;Rosemead;133b505a-1021-4129-b8aa-92986c654d57;Piano;65,52;20170916
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;9de14ef2-cab5-45af-996c-1065056ee3ef;Guitar;32,79;20171027
+2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;a71cdcbc-df94-44cf-933a-8bda95262fac;Soccer;58,72;20170919
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;b3f95937-706e-4cf3-836f-5cc8a3f28ea6;School;51,8;20170725
+2083428088;Nyasia;Rivera;Pleasant Street 819;Westlake Village;24c34677-6774-43de-9b7f-95fa520b0be6;Soccer;80,11;20170921
+7211354364;Frida;Clayton;7th Street 649;Rosemead;6267cdd7-c577-4a62-bd56-95f77e2b2f54;Soccer;86,59;20170831
+7211354364;Frida;Clayton;7th Street 649;Rosemead;1228eb74-7faf-4d03-ac54-106a6f621ea8;Pool;44,19;20170912
+1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;fe8fa6bf-72c4-4700-88b7-cba2683ee798;Tennis;88,46;20170815
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;09f9b316-6ff6-4a22-a0d5-b91debf8d48c;Television;16,12;20171102
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;831ab376-6e65-445a-aeea-9e48ad5f445f;Parking;19,32;20170902
+2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;ee93c376-5619-4727-a4c0-fa238a340cf5;Electricity;51,71;20170813
+9375651543;Edwin;Hall;3rd Street West 438;Cudahy;64779037-6ada-4e81-8d03-31ba884480a5;Police;33,75;20170925
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;08280a55-f030-4d7c-b47a-3d392d326e9b;Electricity;47,71;20171018
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;b22318f4-9ab1-4269-96d5-31ef7cc62ca8;Guitar;56,86;20170920
+7211354364;Frida;Clayton;7th Street 649;Rosemead;807e1394-553f-4b26-a8e7-e526e9101c7f;Television;85,61;20171021
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;b4f09f4c-01d3-456c-ac9f-953625ea6b5a;Police;76,29;20170708
+7778958095;Nick;Cowan;Hickory Lane 264;South El Monte;5f71d734-cb57-4261-acb1-037ddee13c31;Pool;58,87;20170714
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;8ae8f1ec-ee36-4bb9-9e6e-54bd67bdf7c8;Piano;74,52;20171002
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;6885f3d6-3a87-4e7e-ab0d-c2fa2a4cd8e4;Pool;81,17;20170925
+0202615703;Autumn;Herman;Water Street 428;Burbank;54bc4457-bdc5-4141-b600-bc25595f043c;Police;55,13;20170707
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;dd7380fe-bb11-4cb5-bd89-a173572242e3;Library;49,63;20170805
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;d7000b02-366c-450a-b132-031bd5d92117;Water;61,43;20170717
+2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;a78fb95d-742f-4a68-b17f-cdcb62873056;Sewer;47,58;20170817
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;c25c0507-ab9f-4c7d-a661-1d28aeb5b90c;Gas;47,75;20171020
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;c9ab2198-941d-4cec-8259-afb4d1aaf7b3;Sewer;83,73;20170820
+3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;cbec0f15-df1c-4e0f-bf15-b99559f8ba04;Soccer;51,73;20170712
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;de9399d3-e96b-46b8-b00a-93fe9253f7a0;Dancing;42,89;20170805
+7211354364;Frida;Clayton;7th Street 649;Rosemead;a9e72424-53a5-4bbb-8808-fa3a58c04140;Fire Dept;64,33;20170810
+7211354364;Frida;Clayton;7th Street 649;Rosemead;40b923c1-f258-44e1-a072-e68cd374d1be;Garbage Collection;61,52;20171026
+5420497490;Shania;Haas;Linden Street 831;South Gate;2c9a9486-02ed-462c-8654-bf3ebc04cbe6;Guitar;36,2;20170909
+5869967888;Jaden;Baxter;Harrison Street 818;Montebello;c53775f4-9e81-4273-a770-44e0dd8adf92;Pool;86,05;20170915
+3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;85ae498b-caa4-4c87-8b2f-1be28fff7aab;Singing;23,21;20171028
+7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;20296635-d54b-4052-b86e-cd410d359351;Sewer;64,23;20170717
+0202615703;Autumn;Herman;Water Street 428;Burbank;99f0ecd5-2715-4962-afee-e8a1f2ab4458;Food Inspection;22,65;20170719
+5869967888;Jaden;Baxter;Harrison Street 818;Montebello;372d9493-f6fe-4054-98ae-2de14198a158;Electricity;62,76;20170927
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;d4955f76-f58f-4b3b-bc25-21204c8f06ef;Library;84,05;20170719
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;389e8759-6085-4e4b-8466-6375fb5b98f7;Tennis;75,1;20170907
+8622640063;Callie;Sloan;Route 27 476;San Marino;cd741a85-0e39-44e9-8955-51d32ed2f79f;Gas;32,35;20170831
+1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;906c838a-db7b-4e28-a8ea-d9a11d76eb67;Sewer;31,48;20171025
+5767922646;Lindsay;Mcdaniel;6th Avenue 434;Glendale;f4a982ca-3918-4612-b20b-bd2589bcbe3c;Ambulance;56,33;20170826
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;d6a93bbb-6206-4959-b639-9b2099338e51;Guitar;14,02;20170928
+5869967888;Jaden;Baxter;Harrison Street 818;Montebello;a18b1447-3aea-490a-87ef-92fedd3b3f87;Gas;50,65;20170908
+8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;2d6d8509-829a-4131-b26e-74bd3de25119;Ballet;16,87;20170902
+2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;6d092378-ed79-43b5-86b6-cb1f4aa413de;Electricity;41,32;20170910
+2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;f4afa9a1-7275-488e-a6cb-a59e8e296d99;Fire Dept;79,48;20171007
+7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;64b50893-091c-42a5-b72b-5e1f42f00b51;Sewer;24,26;20170712
+1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;9c247ef3-efe6-4fa6-92fd-bde92ea92191;Pool;56,57;20170827
+2083428088;Nyasia;Rivera;Pleasant Street 819;Westlake Village;d0add99d-fc01-4432-9b7c-46a32d9814f7;Dancing;87,19;20170717
+3903766122;Bruce;Costa;Madison Avenue 490;Lomita;60cf53ad-ccad-4a26-80b3-48a450b95a38;School;48,51;20171015
+5869967888;Jaden;Baxter;Harrison Street 818;Montebello;1e8fea9b-a8ec-4c0f-b27d-a3ab148f556b;Guitar;72,85;20170915
+2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;23e59d7b-38da-4e4b-86f0-9e279897709a;Food Inspection;65,5;20170722
+5420497490;Shania;Haas;Linden Street 831;South Gate;b8336cfe-1f5e-4120-999f-6dd5a3e34b0f;Fire Dept;30,28;20170919
+1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;fd75b9ab-bbbf-4efe-ab25-28b8afaf37ce;Judo;51,76;20170929
+2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;055156f7-e003-4d07-80f7-756c4258d845;Ambulance;10,53;20171002
+5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;e1ef4cd0-8a9d-4918-8488-71d0b861f892;Singing;88,44;20170809
+3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;7bd28084-36b2-4228-b4a5-a636e0be0361;Judo;60;20170917
+7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;70ef64d7-425d-40dd-b083-bdd9f106551e;Parking;82,29;20171013
+5420497490;Shania;Haas;Linden Street 831;South Gate;05a4c913-1e7c-4cc3-87d5-711dc697ae75;Piano;63,32;20170818
+8622640063;Callie;Sloan;Route 27 476;San Marino;70f67cd1-9188-429b-9971-c9437ed57f72;Gym;14,64;20170923
+2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;72cbc788-de7e-4db0-a64c-1d062406a9e0;Parking;37,05;20171012
+7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;9b204fcc-a830-46ac-a984-97a14b18a6f0;Dancing;89,2;20170923
+2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;657b091f-e6a4-43f5-8965-940769ca2b5b;Food Inspection;64,99;20170913
+8622640063;Callie;Sloan;Route 27 476;San Marino;d81aa1f8-90fe-4267-9a72-7dc0dd0e7898;Pool;78,54;20170808
+8622640063;Callie;Sloan;Route 27 476;San Marino;1d665b2d-a44a-4071-823d-f45262dc846f;School;47,54;20170725

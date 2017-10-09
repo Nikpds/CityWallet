@@ -1,19 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using SqlContext.Repos;
 
 namespace Web.Api.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+
+        private UserRepository userRepo;
+
+        public ValuesController(UserRepository repo)
+        {
+            userRepo = repo;
+        }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            
             return new string[] { "value1", "value2" };
         }
 

@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using SqlContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace Web.Api
 {
@@ -23,6 +20,13 @@ namespace Web.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //IConfigurationRoot configuration = new ConfigurationBuilder()
+            //  .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            //  .AddJsonFile("appsettings.json")
+            //  .Build();
+            //Configuration.GetConnectionString("DefaultConnection")
+
+            services.AddDbContext<DataContext>(options => options.UseSqlServer("Server=DESKTOP-L9O20VR;Database=qualco4;Integrated Security=true;"));
             services.AddMvc();
         }
 

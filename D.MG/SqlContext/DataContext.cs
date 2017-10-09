@@ -6,19 +6,17 @@ namespace SqlContext
     public class DataContext : DbContext
     {
 
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-
-        }
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(k => k.Id);
-            });
+            base.OnModelCreating(modelBuilder);
+            new UserMap(modelBuilder.Entity<User>());
+            new PaymentMap(modelBuilder.Entity<Payment>());
+            new DebtMap(modelBuilder.Entity<Debt>());
+            new SettlementMap(modelBuilder.Entity<Settlement>());
         }
     }
 }

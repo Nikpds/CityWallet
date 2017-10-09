@@ -1,15 +1,18 @@
 ﻿using Models;
+using System.Collections.Generic;
 
 namespace SqlContext
 {
-    public interface IRepository<T> where T : EntityBase
+    public interface IRepository<T>
     {
-        T GetById(string id);
+        IEnumerable<T> GetAll();
 
-        void Create(T entity);
+        T Get(long id);
 
-        void Delete(T entity);
+        void Insert(T entity);
 
         void Update(T entity);
+
+        void Delete(T entity);
     }
 }
