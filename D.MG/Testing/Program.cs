@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using SqlContext;
+using Models;
 
 namespace Testing
 {
@@ -8,54 +11,20 @@ namespace Testing
     {
         static void Main(string[] args)
         {
-            using (var db = new BloggingContext())
+            var connection = @"Data Source=c:\qualco4.db;";
+            var builder = new DbContextOptionsBuilder<DataContext>();
+            builder.UseSqlite(connection);
+            using (var db = new DataContext(builder.Options))
             {
-                // Create and save a new Blog 
-                Console.Write("Enter a name for a new Blog: ");
-                var name = Console.ReadLine();
-
-                var blog = new Blog { Name = name };
-                db.Blogs.Add(blog);
+                db.Users.Add(new User { Name = "NIkos", Lastname = "perpe" });
                 db.SaveChanges();
-
-                //// Display all Blogs from the database 
-                //var query = from b in db.Blogs
-                //            select b;
-
-                //Console.WriteLine("All blogs in the database:");
-                //foreach (var item in query)
-                //{
-                //    Console.WriteLine(item.Name);
-                //}
-
-                Console.WriteLine("Press any key to exit...");
-                Console.ReadKey();
+                foreach (var user in db.Users)
+                {
+                    Console.WriteLine(user.Name);
+                }
             }
         }
 
-
-        public class BloggingContext : DbContext
-        {
-            public DbSet<Blog> Blogs { get; set; }
-            public DbSet<Post> Posts { get; set; }
-        }
-
-        public class Blog
-        {
-            public int BlogId { get; set; }
-            public string Name { get; set; }
-
-            public virtual List<Post> Posts { get; set; }
-        }
-
-        public class Post
-        {
-            public int PostId { get; set; }
-            public string Title { get; set; }
-            public string Content { get; set; }
-
-            public int BlogId { get; set; }
-            public virtual Blog Blog { get; set; }
-        }
     }
+
 }

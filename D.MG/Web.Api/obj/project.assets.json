@@ -4769,7 +4769,7 @@
       ]
     },
     "Microsoft.ApplicationInsights/2.4.0": {
-      "sha512": "4dX/zu3Psz9oM3ErU64xfOHuSxOwMxN6q5RabSkeYbX42Yn6dR/kDToqjs+txCRjrfHUxyYjfeJHu+MbCfvAsg==",
+      "sha512": "ezhcK+CvQBLnQiYWRGcReJoRr6mFuQFMUOb86rr+/O2DxEXWp/0wux9WGNGwD+OryuEf52thIhfHmQCuG1lCuA==",
       "type": "package",
       "path": "microsoft.applicationinsights/2.4.0",
       "files": [
@@ -4789,7 +4789,7 @@
       ]
     },
     "Microsoft.ApplicationInsights.AspNetCore/2.1.1": {
-      "sha512": "kiGmzl9Cav34dF7AHVMoJxdJJQEeLB8KZGNwX1LjImG9iem5hGk4DkHpW7/m9Nh3DrL8IKSL3mqQo+IPqWfMRQ==",
+      "sha512": "h1o4PeMRVwQUwlCRQ66mbttS+UnJxH3aL7QBqztkrl32hpkje/4phgyfu/bd1BjdIP+/gnSr3b7e/8oBOjmLqA==",
       "type": "package",
       "path": "microsoft.applicationinsights.aspnetcore/2.1.1",
       "files": [
@@ -4802,7 +4802,7 @@
       ]
     },
     "Microsoft.ApplicationInsights.DependencyCollector/2.4.1": {
-      "sha512": "RWxdX90MY6tNF8S5lwRvJcHiBMIWwVLCxd4TGIEl3X0yAKaolY2vs4zTCvyCIVkEAMs1aInTgWkYwOjzYvAHWw==",
+      "sha512": "eBrQASYPN5VvKOX2uJvd/kXbIzhsKWbuL19xFs4a29OmInZS0hwB1FJtVZW++vZNpb6LtTX8C4cxJc8VhqL3JA==",
       "type": "package",
       "path": "microsoft.applicationinsights.dependencycollector/2.4.1",
       "files": [
@@ -4938,7 +4938,7 @@
       ]
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/2.0.0": {
-      "sha512": "67ae/cGmfB5q61HfkwHD+gZvdpcsWA743wEZo2hAcgX/TQwo3U7nhtpnyLaSR8FfzOgPMpHUAp3O0sCFgkS90g==",
+      "sha512": "D8BTZlRn/c5ZNO27yW1Uvconqn+LZR+CYyJwhBgm7DSKhPz4C0BWji3UR48h2z0h/+0UB8Pu/tdSvC5yb6aevA==",
       "type": "package",
       "path": "microsoft.aspnetcore.authentication.jwtbearer/2.0.0",
       "files": [
@@ -5127,7 +5127,7 @@
       ]
     },
     "Microsoft.AspNetCore.Diagnostics/2.0.0": {
-      "sha512": "3+Iw82NqOIi5OXlNu9NHZEkQzOkqpCxCkgKogo5H2/5cU9GEE4cwM4BKfY9hq9jVJwWDPsRJOC+Ot0f9gEcQsg==",
+      "sha512": "me/8XLUufcYR8YT2MbFE82nKc89AbLurwwpD5MpMxUHFtUr1mEOffruzuJH8UkGPYBwhLnp9uvVvpyxyDnFMLA==",
       "type": "package",
       "path": "microsoft.aspnetcore.diagnostics/2.0.0",
       "files": [
@@ -5325,7 +5325,7 @@
       ]
     },
     "Microsoft.AspNetCore.Mvc/2.0.0": {
-      "sha512": "9KmSDGw3XXosv3+c7TX8An91ya+jtzbAuquHVp6t/qB1CA+MZI7r2d6n3dvUZUcKbrpmB8cfbvzbeEGv/QKp3Q==",
+      "sha512": "nnXkX9ZFowq7vwCcKlBj0ri9eWPL1Ds8rLgHdVbmo5hEKv002tYnqoNGfIHEKjW0e2UZtNwY3D2m9IaEH9t6CA==",
       "type": "package",
       "path": "microsoft.aspnetcore.mvc/2.0.0",
       "files": [
@@ -5631,7 +5631,7 @@
       ]
     },
     "Microsoft.AspNetCore.Server.IISIntegration/2.0.0": {
-      "sha512": "2ucubupqXkVxzOOsXVpc0YOm8SQuja467tXWk9ox5tDvbVCa5koI3XQxol1QF3hFOlVbpJIjZ/MMtCVoSohBqw==",
+      "sha512": "B3fAWizz5Jn56GfDFEkBFnDsbZrVm2xahDlE+50lMYDAg6iXT4/MMhyumGuJqkmnbaOV1CfoEK8QE7l44Tol0g==",
       "type": "package",
       "path": "microsoft.aspnetcore.server.iisintegration/2.0.0",
       "files": [
@@ -5642,7 +5642,7 @@
       ]
     },
     "Microsoft.AspNetCore.Server.Kestrel/2.0.0": {
-      "sha512": "cDbsUQXVOlOCt9cWKsE9Ge9dH5Dwl50TJzU6HdSZV0vgvL/AFEn5U610C0oQQdblWn/GTHqL2uCXY1gFyN0DUw==",
+      "sha512": "cO7uFrn6x84bYJYF1X0R1bP3G2PqBJznan0bwkGebIqdYOJhv1qc/irOaEJJEXbCXxieoWyGTpvbEf1CaD8oZA==",
       "type": "package",
       "path": "microsoft.aspnetcore.server.kestrel/2.0.0",
       "files": [
@@ -5708,7 +5708,7 @@
       ]
     },
     "Microsoft.AspNetCore.SpaServices/2.0.0": {
-      "sha512": "TPmDPSZrAeM3E6Mtu2BkFpMPEBJRoIkx9OkXMNEHgOG4EteCjFQRE0rivws4h9TUduc+7NdXp0ykpMJNnU6JfA==",
+      "sha512": "mIUBRHnaPsI/8hLvXlMCFyEcU4VK9MzWRv8G8vATxR5x01uJ8yyEKSlgxKy63Y+6FmdP8hC9BPTkH21AbkTOjQ==",
       "type": "package",
       "path": "microsoft.aspnetcore.spaservices/2.0.0",
       "files": [
@@ -5719,7 +5719,7 @@
       ]
     },
     "Microsoft.AspNetCore.StaticFiles/2.0.0": {
-      "sha512": "HBMJQ1WPdHO0thltwi7agvfis3c1Kd5HFQDgyy0nV3X4mJvhVGUnymT0+QQU+GGNK9FG/uEQNE3YDSrrBamP7w==",
+      "sha512": "e2pI6w5/pXcQRrDW7GThbxKqL2GnLMRa3m508e5Qv98kEdmSUeAnNKdBF973g68F5Wx78fLUJWHnoDPeSt2Nvg==",
       "type": "package",
       "path": "microsoft.aspnetcore.staticfiles/2.0.0",
       "files": [
@@ -6268,7 +6268,7 @@
       ]
     },
     "Microsoft.Extensions.Configuration.FileExtensions/2.0.0": {
-      "sha512": "ebFbu+vsz4rzeAICWavk9a0FutWVs7aNZap5k/IVxVhu2CnnhOp/H/gNtpzplrqjYDaNYdmv9a/DoUvH2ynVEQ==",
+      "sha512": "24QjHC2KHJvagYsI4K1PyzI5xiuPsZtRZVI8fxsW3CdS2oNRCCoIwn8p20jpyGfR5NKiRVEbpDzFPeOdjHXszA==",
       "type": "package",
       "path": "microsoft.extensions.configuration.fileextensions/2.0.0",
       "files": [
@@ -6290,7 +6290,7 @@
       ]
     },
     "Microsoft.Extensions.Configuration.Json/2.0.0": {
-      "sha512": "thPz4SckRGNqeLbdvJ619YxRFSkWuL1K5QqTMb3TVdEwjQj4O39yfUtjtI/XlWJiY7JKK4MUKAiQZVYc8ohKKg==",
+      "sha512": "rAE722HdeSsAls85ZBL7ykTlZUEvFBz6XXissebpRKu7g16BrIE+UWMRFLV3V/QE00IxTNajyLAKcHF2QiX3IQ==",
       "type": "package",
       "path": "microsoft.extensions.configuration.json/2.0.0",
       "files": [
@@ -6527,7 +6527,7 @@
       ]
     },
     "Microsoft.Extensions.Logging.Console/2.0.0": {
-      "sha512": "NBjNp899FW7byDsex2ch/CkwNd2GbuHQIXCbvUVqOzSbnIsYrxOaR//BY2h2apJhnqm10IPLGkcjXxUyfAcIKA==",
+      "sha512": "vSSw3IUuaNXVPg3001JnDHz1Vk7k7bWRkf+znoRMpbK3uDo6u/k01gnaNdLob4I8Eucu4Gh7jQbjcSZU/ICAaw==",
       "type": "package",
       "path": "microsoft.extensions.logging.console/2.0.0",
       "files": [
@@ -12533,7 +12533,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nperperidis\\.nuget\\packages\\": {},
+    "C:\\Users\\nick\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -12542,17 +12542,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\Web.Api\\Web.Api.csproj",
+      "projectUniqueName": "C:\\git\\DebtManagment\\D.MG\\Web.Api\\Web.Api.csproj",
       "projectName": "Web.Api",
-      "projectPath": "D:\\git\\DebtManagment\\D.MG\\Web.Api\\Web.Api.csproj",
-      "packagesPath": "C:\\Users\\Nperperidis\\.nuget\\packages\\",
-      "outputPath": "D:\\git\\DebtManagment\\D.MG\\Web.Api\\obj\\",
+      "projectPath": "C:\\git\\DebtManagment\\D.MG\\Web.Api\\Web.Api.csproj",
+      "packagesPath": "C:\\Users\\nick\\.nuget\\packages\\",
+      "outputPath": "C:\\git\\DebtManagment\\D.MG\\Web.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Nperperidis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nick\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
