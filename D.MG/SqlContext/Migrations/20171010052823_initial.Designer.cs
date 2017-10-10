@@ -10,7 +10,7 @@ using System;
 namespace SqlContext.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20171009163642_initial")]
+    [Migration("20171010052823_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

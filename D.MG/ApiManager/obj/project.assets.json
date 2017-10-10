@@ -680,7 +680,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nperperidis\\.nuget\\packages\\": {},
+    "C:\\Users\\nick\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -689,17 +689,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\ApiManager\\ApiManager.csproj",
+      "projectUniqueName": "C:\\git\\DebtManagment\\D.MG\\ApiManager\\ApiManager.csproj",
       "projectName": "ApiManager",
-      "projectPath": "D:\\git\\DebtManagment\\D.MG\\ApiManager\\ApiManager.csproj",
-      "packagesPath": "C:\\Users\\Nperperidis\\.nuget\\packages\\",
-      "outputPath": "D:\\git\\DebtManagment\\D.MG\\ApiManager\\obj\\",
+      "projectPath": "C:\\git\\DebtManagment\\D.MG\\ApiManager\\ApiManager.csproj",
+      "packagesPath": "C:\\Users\\nick\\.nuget\\packages\\",
+      "outputPath": "C:\\git\\DebtManagment\\D.MG\\ApiManager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Nperperidis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nick\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -712,8 +712,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj": {
-              "projectPath": "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj"
+            "C:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj": {
+              "projectPath": "C:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj"
             }
           }
         }

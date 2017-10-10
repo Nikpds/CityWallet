@@ -9,21 +9,19 @@ namespace SqlContext.Repos
     public class UserRepository : IRepository<User>
     {
         private DataContext _db;
-
-        private DbSet<User> userEntity;
+        
 
         public UserRepository(DataContext context)
         {
             _db = context;
-            userEntity = context.Set<User>();
         }
 
-        public void Delete(User entity)
+        public void Delete(string id)
         {
             throw new NotImplementedException();
         }
 
-        public User Get(long id)
+        public User Get(string id)
         {
             throw new NotImplementedException();
         }
@@ -35,7 +33,7 @@ namespace SqlContext.Repos
 
         public void Insert(User entity)
         {
-            throw new NotImplementedException();
+            _db.Add(entity);
         }
 
         public void Update(User entity)

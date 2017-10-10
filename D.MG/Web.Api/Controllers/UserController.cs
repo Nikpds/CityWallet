@@ -1,9 +1,6 @@
 ﻿using ApiManager;
 using Microsoft.AspNetCore.Mvc;
-using SqlContext.Repos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Models;
 using System.Threading.Tasks;
 
 namespace Web.Api.Controllers
@@ -11,18 +8,71 @@ namespace Web.Api.Controllers
     [Route("api/[controller]")]
     public class UserController: Controller
     {
-        private UserRepository userRepo;
+        
 
-        public UserController(UserRepository repo)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetbyId(string id)
         {
-            userRepo = repo;
+            try
+            {
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+        [HttpGet("")]
+        public async Task<IActionResult> GetAll ()
+        {
+            try
+            {
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
-        [HttpGet("")]
-        public string Get(int id)
+        [HttpDelete("")]
+        public async Task<IActionResult> Delete(string id)
         {
-            UserManager.InsertUsers();
-            return "value";
+            try
+            {
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("")]
+        public async Task<IActionResult> Delete(User user)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("users")]
+        public async Task<IActionResult> ImportUsers(User user)
+        {
+            try
+            {
+                UserManager.InsertUsers();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
 
     }

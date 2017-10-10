@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SqlContext;
 using Microsoft.EntityFrameworkCore;
+using Models;
+using SqlContext.Repos;
 
 namespace Web.Api
 {
@@ -26,7 +28,9 @@ namespace Web.Api
             //  .Build();
             //Configuration.GetConnectionString("DefaultConnection")
 
-            services.AddDbContext<DataContext>(options => options.UseSqlServer("Server=DESKTOP-L9O20VR;Database=qualco4;Integrated Security=true;"));
+            services.AddDbContext<DataContext>(options => options.UseSqlServer("Server=FreeNet-1;Database=qualco4;Integrated Security=true;"));
+            services.AddTransient<UnitOfWork>();
+            //services.AddDbContext<DataContext>(options => options.UseSqlServer("Server=tcp:qualco4codingschool.database.windows.net,1433;Initial Catalog=qualco4;Persist Security Info=False;User ID=scrummaster;Password=1qaz+1qaz;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
             services.AddMvc();
         }
 

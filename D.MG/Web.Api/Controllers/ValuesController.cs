@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using SqlContext.Repos;
+using SqlContext;
+using Models;
 
 namespace Web.Api.Controllers
 {
@@ -9,17 +11,21 @@ namespace Web.Api.Controllers
     public class ValuesController : Controller
     {
 
-        private UserRepository userRepo;
+        private UnitOfWork unitOfWork;
 
-        public ValuesController(UserRepository repo)
+        public ValuesController(UnitOfWork u)
         {
-            userRepo = repo;
+            unitOfWork = u;
         }
+      
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            
+            var user = new User { Name = "asdasd", Lastname = "sdadadsa" };
+            unitOfWork.UserRepository.Insert(user);
+            unitOfWork.Save();
+           
             return new string[] { "value1", "value2" };
         }
 
@@ -53,6 +59,20 @@ namespace Web.Api.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (this.unitOfWork != null)
+                {
+                    this.unitOfWork.Dispose();
+                    this.unitOfWork = null;
+                }
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
