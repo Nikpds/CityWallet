@@ -17,7 +17,10 @@ node_modules
 
 # Angular 2 node_modules folder
 node_modules
-assets
+
+#Not sure about this - we need some assets folders
+#assets
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
