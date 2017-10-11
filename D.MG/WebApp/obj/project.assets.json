@@ -5034,6 +5034,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
+          "AuthProvider": "1.0.0",
           "Models": "1.0.0"
         },
         "compile": {

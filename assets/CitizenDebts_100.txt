@@ -1,102 +1,74 @@
-VAT;FIRST_NAME;LAST_NAME;ADDRESS;COUNTY;BILL_ID;DESCRIPTION;AMOUNT;DATE_DUE
-8622640063;Callie;Sloan;Route 27 476;San Marino;9e6d0676-ffc6-4d2e-a2b1-042bfd1f7ffb;Electricity;72,53;20170819
-2083428088;Nyasia;Rivera;Pleasant Street 819;Westlake Village;cff79cc2-ff81-4920-972c-e914686b68bc;Water;28,66;20171029
-2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;063a6bfd-0bde-4744-8d0e-3dc27dd7bee6;Tennis;72,22;20171010
-5869967888;Jaden;Baxter;Harrison Street 818;Montebello;26d1f209-b35d-4a58-9d0d-63681ad7797c;Tennis;89,95;20170920
-3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;e1f956ea-07ac-43b7-8b23-c5ceeac148eb;Police;32,14;20170915
-2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;0e6cd095-ca51-4bbf-b0e3-c02f34d18147;Library;77,64;20170909
-5869967888;Jaden;Baxter;Harrison Street 818;Montebello;26d6906d-a720-4c3f-ab0e-a9da1805eb50;Dancing;24,4;20171011
-7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;b3b0c50a-e9e7-4ada-b625-842edfc95b1e;Soccer;85,32;20171025
-1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;76bba170-265b-451d-83b1-86a8bfc0681d;Ambulance;28,9;20170912
-9556392109;Lilyana;Kim;8th Avenue 299;Downey;e8c18ce1-d03c-4b1a-956e-a84c00f4e7f2;Sewer;25,34;20170808
-2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;ef4c5a5f-7fce-4383-8699-07c0939add9b;Fire Dept;89,85;20170710
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;651c2378-472e-402f-98f2-6e5dabb5b6d1;Tennis;54,04;20171015
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;1ebc2992-3085-4559-8286-fc12bbaa019b;Preschool;50,95;20170909
-1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;dfed2441-59c1-417b-b533-dace13583a61;School;41,18;20170811
-9375651543;Edwin;Hall;3rd Street West 438;Cudahy;cbd626b9-2bc9-4c89-a3ea-c882e0e57ab6;Preschool;12,27;20171003
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;3c9da8ae-a9d4-4ab3-aea2-7715800bfad8;Electricity;72,08;20171007
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;901b98f4-5d15-4efb-9565-0195ba58af11;Fire Dept;21,77;20170726
-2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;ed9ab150-dcea-4a73-86b9-82bdd28da5c6;Library;17,27;20171019
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;30967cfa-8aea-44c0-adb0-43be453aeedb;Piano;11,5;20170816
-3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;b0295535-cc37-4971-970a-874279177d71;Television;44,07;20170716
-7778958095;Nick;Cowan;Hickory Lane 264;South El Monte;bacb49c8-691e-42f4-8fd9-a5c10e11eb95;Electricity;78,8;20170813
-2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;d155d8e7-9c0c-4b80-a180-64281115f9f7;Piano;66,53;20170823
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;56d2767e-771e-4d31-8b03-f1054a019d07;Gas;59,62;20170812
-5420497490;Shania;Haas;Linden Street 831;South Gate;59b40924-7cc4-488d-9e29-32e6846ede8b;Television;13,24;20170926
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;a7d2540e-4537-47f6-ba9b-784ce8bcf911;Police;41,02;20170813
-0202615703;Autumn;Herman;Water Street 428;Burbank;e0dd8536-8635-4728-9168-14b76db8b3c9;Library;31,7;20171101
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;46f51312-2c7b-4a01-b89d-1e2d6f94549e;Preschool;12,01;20170729
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;7e147af6-6ea9-4885-8f46-b8d152dbd4d0;Gas;70,1;20170816
-5869967888;Jaden;Baxter;Harrison Street 818;Montebello;5622c935-94c4-4c11-97e7-865972fdd225;Ambulance;17,02;20170823
-3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;09edf0ac-7ca3-44f9-9f40-dc7c6caa6206;Judo;87,99;20171012
-7778958095;Nick;Cowan;Hickory Lane 264;South El Monte;045af51f-aebb-414f-9a8e-6f05e3ba6597;Gym;76,1;20170731
-2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;7d276490-2fea-4d90-a60d-1cacc1243712;Tree Planting;71,66;20170806
-9375651543;Edwin;Hall;3rd Street West 438;Cudahy;1685bef9-47e2-44b4-82e3-1a72d6a350cc;Gym;36,07;20170717
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;7125b6c1-0997-4c9f-b638-8f8c40c38e41;Parking;15,2;20170719
-7778958095;Nick;Cowan;Hickory Lane 264;South El Monte;72194000-783f-4724-8d36-f556f6b0ffa2;Police;77,2;20170815
-0202615703;Autumn;Herman;Water Street 428;Burbank;bde55d62-9100-42c5-a721-d209940314b3;Dancing;30,98;20171018
-5767922646;Lindsay;Mcdaniel;6th Avenue 434;Glendale;5d4d5546-9614-41c4-8f7e-7111bfad5a88;Police;41,16;20171001
-7211354364;Frida;Clayton;7th Street 649;Rosemead;133b505a-1021-4129-b8aa-92986c654d57;Piano;65,52;20170916
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;9de14ef2-cab5-45af-996c-1065056ee3ef;Guitar;32,79;20171027
-2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;a71cdcbc-df94-44cf-933a-8bda95262fac;Soccer;58,72;20170919
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;b3f95937-706e-4cf3-836f-5cc8a3f28ea6;School;51,8;20170725
-2083428088;Nyasia;Rivera;Pleasant Street 819;Westlake Village;24c34677-6774-43de-9b7f-95fa520b0be6;Soccer;80,11;20170921
-7211354364;Frida;Clayton;7th Street 649;Rosemead;6267cdd7-c577-4a62-bd56-95f77e2b2f54;Soccer;86,59;20170831
-7211354364;Frida;Clayton;7th Street 649;Rosemead;1228eb74-7faf-4d03-ac54-106a6f621ea8;Pool;44,19;20170912
-1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;fe8fa6bf-72c4-4700-88b7-cba2683ee798;Tennis;88,46;20170815
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;09f9b316-6ff6-4a22-a0d5-b91debf8d48c;Television;16,12;20171102
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;831ab376-6e65-445a-aeea-9e48ad5f445f;Parking;19,32;20170902
-2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;ee93c376-5619-4727-a4c0-fa238a340cf5;Electricity;51,71;20170813
-9375651543;Edwin;Hall;3rd Street West 438;Cudahy;64779037-6ada-4e81-8d03-31ba884480a5;Police;33,75;20170925
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;08280a55-f030-4d7c-b47a-3d392d326e9b;Electricity;47,71;20171018
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;b22318f4-9ab1-4269-96d5-31ef7cc62ca8;Guitar;56,86;20170920
-7211354364;Frida;Clayton;7th Street 649;Rosemead;807e1394-553f-4b26-a8e7-e526e9101c7f;Television;85,61;20171021
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;b4f09f4c-01d3-456c-ac9f-953625ea6b5a;Police;76,29;20170708
-7778958095;Nick;Cowan;Hickory Lane 264;South El Monte;5f71d734-cb57-4261-acb1-037ddee13c31;Pool;58,87;20170714
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;8ae8f1ec-ee36-4bb9-9e6e-54bd67bdf7c8;Piano;74,52;20171002
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;6885f3d6-3a87-4e7e-ab0d-c2fa2a4cd8e4;Pool;81,17;20170925
-0202615703;Autumn;Herman;Water Street 428;Burbank;54bc4457-bdc5-4141-b600-bc25595f043c;Police;55,13;20170707
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;dd7380fe-bb11-4cb5-bd89-a173572242e3;Library;49,63;20170805
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;d7000b02-366c-450a-b132-031bd5d92117;Water;61,43;20170717
-2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;a78fb95d-742f-4a68-b17f-cdcb62873056;Sewer;47,58;20170817
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;c25c0507-ab9f-4c7d-a661-1d28aeb5b90c;Gas;47,75;20171020
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;c9ab2198-941d-4cec-8259-afb4d1aaf7b3;Sewer;83,73;20170820
-3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;cbec0f15-df1c-4e0f-bf15-b99559f8ba04;Soccer;51,73;20170712
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;de9399d3-e96b-46b8-b00a-93fe9253f7a0;Dancing;42,89;20170805
-7211354364;Frida;Clayton;7th Street 649;Rosemead;a9e72424-53a5-4bbb-8808-fa3a58c04140;Fire Dept;64,33;20170810
-7211354364;Frida;Clayton;7th Street 649;Rosemead;40b923c1-f258-44e1-a072-e68cd374d1be;Garbage Collection;61,52;20171026
-5420497490;Shania;Haas;Linden Street 831;South Gate;2c9a9486-02ed-462c-8654-bf3ebc04cbe6;Guitar;36,2;20170909
-5869967888;Jaden;Baxter;Harrison Street 818;Montebello;c53775f4-9e81-4273-a770-44e0dd8adf92;Pool;86,05;20170915
-3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;85ae498b-caa4-4c87-8b2f-1be28fff7aab;Singing;23,21;20171028
-7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;20296635-d54b-4052-b86e-cd410d359351;Sewer;64,23;20170717
-0202615703;Autumn;Herman;Water Street 428;Burbank;99f0ecd5-2715-4962-afee-e8a1f2ab4458;Food Inspection;22,65;20170719
-5869967888;Jaden;Baxter;Harrison Street 818;Montebello;372d9493-f6fe-4054-98ae-2de14198a158;Electricity;62,76;20170927
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;d4955f76-f58f-4b3b-bc25-21204c8f06ef;Library;84,05;20170719
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;389e8759-6085-4e4b-8466-6375fb5b98f7;Tennis;75,1;20170907
-8622640063;Callie;Sloan;Route 27 476;San Marino;cd741a85-0e39-44e9-8955-51d32ed2f79f;Gas;32,35;20170831
-1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;906c838a-db7b-4e28-a8ea-d9a11d76eb67;Sewer;31,48;20171025
-5767922646;Lindsay;Mcdaniel;6th Avenue 434;Glendale;f4a982ca-3918-4612-b20b-bd2589bcbe3c;Ambulance;56,33;20170826
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;d6a93bbb-6206-4959-b639-9b2099338e51;Guitar;14,02;20170928
-5869967888;Jaden;Baxter;Harrison Street 818;Montebello;a18b1447-3aea-490a-87ef-92fedd3b3f87;Gas;50,65;20170908
-8868157802;Kathy;Cantu;Aspen Drive 752;Hermosa Beach;2d6d8509-829a-4131-b26e-74bd3de25119;Ballet;16,87;20170902
-2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;6d092378-ed79-43b5-86b6-cb1f4aa413de;Electricity;41,32;20170910
-2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;f4afa9a1-7275-488e-a6cb-a59e8e296d99;Fire Dept;79,48;20171007
-7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;64b50893-091c-42a5-b72b-5e1f42f00b51;Sewer;24,26;20170712
-1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;9c247ef3-efe6-4fa6-92fd-bde92ea92191;Pool;56,57;20170827
-2083428088;Nyasia;Rivera;Pleasant Street 819;Westlake Village;d0add99d-fc01-4432-9b7c-46a32d9814f7;Dancing;87,19;20170717
-3903766122;Bruce;Costa;Madison Avenue 490;Lomita;60cf53ad-ccad-4a26-80b3-48a450b95a38;School;48,51;20171015
-5869967888;Jaden;Baxter;Harrison Street 818;Montebello;1e8fea9b-a8ec-4c0f-b27d-a3ab148f556b;Guitar;72,85;20170915
-2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;23e59d7b-38da-4e4b-86f0-9e279897709a;Food Inspection;65,5;20170722
-5420497490;Shania;Haas;Linden Street 831;South Gate;b8336cfe-1f5e-4120-999f-6dd5a3e34b0f;Fire Dept;30,28;20170919
-1401136429;Cameron;Haley;Schoolhouse Lane 734;Temple City;fd75b9ab-bbbf-4efe-ab25-28b8afaf37ce;Judo;51,76;20170929
-2113208664;Anahi;Greene;Pennsylvania Avenue 727;Vernon;055156f7-e003-4d07-80f7-756c4258d845;Ambulance;10,53;20171002
-5178011215;Rhett;Vaughan;Mulberry Lane 785;Maywood;e1ef4cd0-8a9d-4918-8488-71d0b861f892;Singing;88,44;20170809
-3341014987;Caitlin;Black;Circle Drive 195;Diamond Bar;7bd28084-36b2-4228-b4a5-a636e0be0361;Judo;60;20170917
-7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;70ef64d7-425d-40dd-b083-bdd9f106551e;Parking;82,29;20171013
-5420497490;Shania;Haas;Linden Street 831;South Gate;05a4c913-1e7c-4cc3-87d5-711dc697ae75;Piano;63,32;20170818
-8622640063;Callie;Sloan;Route 27 476;San Marino;70f67cd1-9188-429b-9971-c9437ed57f72;Gym;14,64;20170923
-2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;72cbc788-de7e-4db0-a64c-1d062406a9e0;Parking;37,05;20171012
-7977765932;Bryce;Shea;6th Street North 382;Hawaiian Gardens;9b204fcc-a830-46ac-a984-97a14b18a6f0;Dancing;89,2;20170923
-2017815952;Kasey;Padilla;Laurel Street 18;Arcadia;657b091f-e6a4-43f5-8965-940769ca2b5b;Food Inspection;64,99;20170913
-8622640063;Callie;Sloan;Route 27 476;San Marino;d81aa1f8-90fe-4267-9a72-7dc0dd0e7898;Pool;78,54;20170808
-8622640063;Callie;Sloan;Route 27 476;San Marino;1d665b2d-a44a-4071-823d-f45262dc846f;School;47,54;20170725
+﻿VAT;FIRST_NAME;LAST_NAME;EMAIL;PHONE;ADDRESS;COUNTY;BILL_ID;DESCRIPTION;AMOUNT;DATE_DUE
+4231571696;Brenton;Avila;Brenton_Avila@gmail.com;858220765;Bay Street 468;Pico Rivera;2bc41f59-d42e-4be5-a89c-81ba8c09bc50;Guitar;62,15;20170723
+9893021746;Madisyn;Dickson;Madisyn_Dickson@yahoo.com;858799341;Woodland Drive 550;Los Angeles;5f52f8dc-adad-41d7-bdc2-b9bcf7dc9619;Gas;11,3;20171006
+6144151499;Amber;Kline;Amber_Kline@msn.com;858777016;Willow Street 417;El Monte;6a666611-6396-4d86-a44b-ad50086e1beb;Food Inspection;23,53;20171107
+4481793108;Elsie;Hull;Elsie_Hull@gmail.com;858172845;Spruce Street 191;West Hollywood;b58cc83c-e58c-49aa-b369-e53b4d77b8e3;Singing;55,73;20171015
+0079544829;Chaim;Pope;Chaim_Pope@gmail.com;858309941;College Street 889;Santa Fe Springs;436c9760-2614-4457-83da-e712b1b12e96;Water;73,88;20171029
+8678597718;Yandel;Underwood;Yandel_Underwood@hotmail.com;858808471;Cedar Court 257;Compton;744e21f3-687f-4f18-ab05-25952e23511b;Ballet;49,23;20170719
+9310603155;Haylee;Rivers;Haylee_Rivers@yahoo.com;858210898;Overlook Circle 332;Long Beach;91f7aac0-a0a2-407d-bf24-8b0461339bde;Television;82,92;20170731
+1670459132;Ryker;Blackburn;Ryker_Blackburn@hol.com;858954762;Grant Avenue 682;Monterey Park;0634c562-93f0-4ac7-9872-f6ada5b60e2b;Dancing;36,53;20170913
+4107952613;Amelie;Morales;Amelie_Morales@yahoo.com;858426652;Route 17 468;La Habra Heights;ad34c0b0-bbe6-4509-87f7-c7d440f61147;Singing;41,11;20171019
+7653639152;Lance;Levy;Lance_Levy@gmail.com;858202612;Hudson Street 155;Agoura Hills;3fdeb936-8ba8-4678-917d-e6362d27c255;Food Inspection;19,37;20171010
+0075369137;Cadence;Munoz;Cadence_Munoz@hol.com;858983155;Valley Drive 150;Inglewood;af3ac911-0cab-4bc1-bef1-3e26f50ed8a8;Food Inspection;43,31;20170712
+7618154700;Zechariah;Padilla;Zechariah_Padilla@yahoo.com;858146014;Maiden Lane 577;Rosemead;6728d772-4866-4ec6-a137-7dacca1bdb84;School;39,89;20171023
+4144003020;Payton;Mullins;Payton_Mullins@hotmail.com;858980813;Washington Avenue 642;Alhambra;b7016a30-c286-4296-b734-6a713564d10f;Tennis;19,54;20170726
+3239990898;Marissa;Jordan;Marissa_Jordan@hol.com;858918531;Cross Street 112;Torrance;d0839bd3-d23f-4c7f-9de0-19b8de5fd296;Pool;22,9;20171002
+2694564104;Phoebe;Li;Phoebe_Li@gmail.com;858463295;9th Street West 352;El Segundo;2fa98380-9771-4cd4-800a-b5209eb4c122;Tree Planting;81,18;20170722
+4880521648;Luca;Oliver;Luca_Oliver@hotmail.com;858900761;Virginia Avenue 88;Pomona;5b812a42-a244-4045-87a2-e9554bc6b75b;Sewer;46,75;20171020
+5786703324;Evangeline;Walls;Evangeline_Walls@msn.com;858935380;5th Avenue 773;Sierra Madre;7f7761d7-1a29-4c43-81d7-e979b951cd8b;Fire Dept;60,36;20170731
+9529529032;Amirah;Pitts;Amirah_Pitts@hotmail.com;858761843;Green Street 424;Rosemead;668e2668-f19f-46b2-89bc-68442c99c0a0;Water;53,7;20170713
+4841854923;Donte;Bond;Donte_Bond@gmail.com;858506921;Elm Avenue 488;Baldwin Park;946a40c7-c634-4980-b5d8-ef004d9e614b;Tennis;46,01;20170906
+7369074443;Darren;Cooley;Darren_Cooley@msn.com;858148565;Forest Drive 833;South El Monte;484f8aac-4300-4df6-a415-1dc8621a3da1;Singing;44,73;20170929
+1809303942;Cierra;Green;Cierra_Green@msn.com;858269576;Arch Street 591;Lakewood;0a304623-2286-4b6f-82e3-5c554e0ad7a2;Ballet;55,78;20170821
+5024000869;Van;Reeves;Van_Reeves@yahoo.com;858504006;Atlantic Avenue ;Santa Monica;564a0233-2e3a-40fa-a19f-8ca2a52faa3e;Electricity;89,77;20170927
+4103318571;Yahir;Aguirre;Yahir_Aguirre@gmail.com;858580869;10th Street 598;Covina;ba4f8b63-d012-438f-9f9c-7151d8732988;Fire Dept;19,6;20171027
+9912252970;Valeria;Drake;Valeria_Drake@hol.com;858532679;Ridge Road 578;Santa Fe Springs;066f7576-31bb-44bc-b74c-68c9dc231174;Soccer;26,52;20171018
+6581507342;Giancarlo;Lin;Giancarlo_Lin@msn.com;858527215;Victoria Court 664;Monterey Park;84973a49-33a8-4bac-b6c7-5128caa7f489;Judo;18,43;20170914
+5264157115;Ashlee;Holder;Ashlee_Holder@hol.com;858834124;Heather Court 321;Cerritos;2860ba3a-273d-4d9e-9b31-23fc07612d7a;Gas;88,14;20170730
+4790077924;Darion;Ryan;Darion_Ryan@msn.com;858071101;Depot Street 239;San Fernando;7b64fdf9-d39e-4f8b-a6e4-1b965542b23e;Garbage Collection;59,12;20171028
+5149658031;Callie;Townsend;Callie_Townsend@yahoo.com;858879513;Elm Avenue 504;Lynwood;25ae4c6d-a676-4b85-a8ed-0c91c71ce969;Electricity;51,44;20171029
+5853847365;Jakob;Rush;Jakob_Rush@hotmail.com;858142295;Bridle Lane 293;Pico Rivera;01822f21-37e2-4b33-abcd-42d872ba4cb7;Garbage Collection;72,58;20170712
+9684774014;Kareem;Riley;Kareem_Riley@yahoo.com;858686699;Devon Court 910;Rancho Palos Verdes;af2c6213-f252-4543-8e5c-86b2b1bbde36;Electricity;55,67;20170809
+1129694600;Ryleigh;Greer;Ryleigh_Greer@hol.com;858075855;Canterbury Road 806;Lawndale;b08e816e-9e95-40ef-8d4a-89705056d363;Parking;49,74;20170917
+6328632578;Van;Adkins;Van_Adkins@gmail.com;858036960;Route 6 951;Covina;9d486faf-75b4-47c3-8017-18967e60cdf7;Gas;50,97;20170720
+3877583604;Liam;Barnes;Liam_Barnes@hol.com;858648831;Charles Street 505;Malibu;5dd0c809-e60a-4885-865e-18eb7c56413d;Library;75,95;20170915
+9598478334;Collin;Gallegos;Collin_Gallegos@yahoo.com;858714573;Madison Avenue 170;La Habra Heights;c0c97b98-76ad-4dcc-b95b-45e078ea7486;Television;75,73;20170803
+6567694561;Kadin;Hunt;Kadin_Hunt@hol.com;858630047;Fieldstone Drive 859;El Segundo;42c0e216-aef0-422a-a949-2a974980ef38;Judo;46,43;20170929
+4540676262;Immanuel;Bentley;Immanuel_Bentley@gmail.com;858349451;4th Street North 52;La Mirada;ab5cc76c-c092-4e93-b97e-7a24af982cbd;Piano;37,98;20171104
+7252974755;Finley;Riddle;Finley_Riddle@yahoo.com;858070959;Chestnut Avenue 956;Rolling Hills;9f420f01-ec96-4f1d-b09d-0b7052ac3a2f;School;49,73;20170810
+3268479007;Jazmine;Horne;Jazmine_Horne@gmail.com;858464807;Catherine Street 587;El Segundo;dba4b8c1-ccc0-484e-b53c-b45f3d49f76f;Dancing;27,22;20171020
+4879213471;Kennedy;Bridges;Kennedy_Bridges@hol.com;858517108;Hartford Road 924;Norwalk;a604ab01-9d6a-45dd-9b9c-1cb347c4e183;Sewer;19,89;20171022
+3958382571;Harley;Yates;Harley_Yates@yahoo.com;858401083;William Street 933;Hawthorne;88b275ea-30f4-42d0-974b-38cd9484e056;Piano;39,06;20170925
+3475548994;Easton;Barber;Easton_Barber@hotmail.com;858125929;Colonial Avenue 435;Beverly Hills;440377c7-d862-4199-b449-c78e47af1dcc;Piano;53,39;20170924
+9284031777;Houston;Mathis;Houston_Mathis@hotmail.com;858388440;Laurel Street 510;Hermosa Beach;39379460-0834-472b-a409-b87515244c1a;Television;58,89;20171010
+1849992462;Collin;Huerta;Collin_Huerta@hotmail.com;858843015;Aspen Court 969;Calabasas;f4acd96b-80f9-4167-ad87-85280463d0a7;Electricity;13,24;20170901
+7000280901;Braeden;Jacobson;Braeden_Jacobson@hotmail.com;858742980;Tanglewood Drive 761;Bradbury;df0999ac-f8c9-4194-9f43-3f977d2287d2;Sewer;17,01;20170719
+0625488758;Shamar;Zhang;Shamar_Zhang@msn.com;858219761;Route 100 669;Irwindale;e13b39ad-fe30-4b07-8bba-1c211dd5db87;Ballet;30,27;20170725
+9072946393;Kaleigh;Newton;Kaleigh_Newton@yahoo.com;858132167;Central Avenue 507;Lawndale;1c0fac40-d3ef-4b52-92d3-8223c93c4214;Sewer;11,52;20171010
+4375516429;Maddox;Lowe;Maddox_Lowe@gmail.com;858198896;Ridge Street 72;Covina;c6042ee5-d339-4c2f-a052-d68b4b6b71c6;Judo;45,42;20171021
+8634296408;Diya;Harrell;Diya_Harrell@gmail.com;858427248;Orchard Avenue 320;Agoura Hills;0409855f-7db4-4986-9adb-780422210177;Gym;34,32;20170822
+4666631438;Makena;Olson;Makena_Olson@yahoo.com;858375636;Route 100 899;Walnut;c3c04e11-d17e-4bc5-9537-c0ddad64829f;Sewer;74,6;20170715
+2956711283;Bailey;Cochran;Bailey_Cochran@msn.com;858098110;Center Street 826;Alhambra;b29d990d-1df3-4166-b703-9c0aea4b4705;Piano;84,15;20170920
+5691753875;Barbara;Townsend;Barbara_Townsend@yahoo.com;858085945;Church Road 467;Palmdale;ebc10914-5a35-4453-abb8-c1cca85a3c49;Sewer;55,31;20170821
+9056701776;Skyler;Kane;Skyler_Kane@msn.com;858156157;Atlantic Avenue 238;Vernon;80ce9644-ade7-48c0-ba55-4c0adcd43331;Sewer;35,4;20170914
+6094158499;Dennis;Henson;Dennis_Henson@msn.com;858505374;Highland Drive 266;Cerritos;c298fa2d-7e36-4183-a439-529be8f4d415;Piano;52,1;20170908
+7404006085;Gianna;Abbott;Gianna_Abbott@msn.com;858215602;Hartford Road 625;Malibu;8b981661-5744-4fab-aafb-375cf4e36c8f;Ballet;89,01;20170907
+2374537960;Sarah;Cortez;Sarah_Cortez@hotmail.com;858791076;Locust Street 560;Lawndale;c400ca57-209e-46e2-8ca6-9003fa926e61;Gas;88,96;20170802
+7722931805;Payton;Spence;Payton_Spence@hotmail.com;858457318;2nd Avenue 94;Hidden Hills;e5c7cd27-8dba-47c3-9b86-15881fcd9521;Guitar;62,65;20170713
+2483407306;Miriam;Wise;Miriam_Wise@hotmail.com;858602424;Deerfield Drive 317;Baldwin Park;fd3ee006-9065-442e-985c-9b7549e35ed3;Electricity;89,21;20171024
+0817848751;Kamren;Harper;Kamren_Harper@yahoo.com;858435537;Hillcrest Avenue 458;Inglewood;865876b4-7f0f-4220-9d53-ed0b908f6470;Television;44,91;20171010
+1160227284;Marquise;Mitchell;Marquise_Mitchell@hotmail.com;858394647;York Street 659;Sierra Madre;a176bb3e-ca3e-4fb0-a63b-f19c2d6307c8;Preschool;11,49;20171002
+7194904907;Emerson;Mcintosh;Emerson_Mcintosh@gmail.com;858207738;Spruce Street 802;Beverly Hills;75ef6152-526d-4276-ae25-0ab2764e8c3b;Water;14,61;20171029
+0165506014;Jocelynn;Hughes;Jocelynn_Hughes@yahoo.com;858825855;South Street 282;Palos Verdes Estates;9f2e337d-8d3d-411f-be83-dfde9244644b;Garbage Collection;38,25;20170819
+3886291083;Bryce;Hill;Bryce_Hill@hol.com;858560259;York Road 418;Baldwin Park;b766415e-9117-470e-bddb-1af659fbe15f;Preschool;35,09;20170806
+7737380460;Bentley;Jordan;Bentley_Jordan@hol.com;858915644;Pin Oak Drive 97;Culver City;867d4029-27bf-492e-a97e-1786926c4e34;Tree Planting;49,62;20171108
+7587706552;Nasir;Hatfield;Nasir_Hatfield@hol.com;858274959;Briarwood Court 919;Hawaiian Gardens;b2022d84-9bf2-4697-a328-b40779c8e5e5;Singing;44,01;20171030
+9778672470;Jamir;Schmitt;Jamir_Schmitt@gmail.com;858437441;Homestead Drive 767;Long Beach;6ac3bd4b-f869-4fd1-aa41-b2b0f7fdbd58;Guitar;88,34;20170902
+8588305953;Kennedy;Dennis;Kennedy_Dennis@msn.com;858538517;Columbia Street 204;Irwindale;83d447f4-70eb-4aeb-ba13-de5fad0b1aa5;Sewer;74,59;20171106
+0606587394;Finn;Baker;Finn_Baker@msn.com;858754607;Maple Lane 167;Rolling Hills Estates;0826582a-9f5d-4dba-96ba-007f22c1254d;School;66,45;20171010
+3669176010;Rachael;Mills;Rachael_Mills@hol.com;858317618;8th Street West 324;Santa Clarita;9f98b665-de99-4ae8-ab9a-b5ebb01a2669;Gym;54,11;20170813
+6325692998;Tori;Forbes;Tori_Forbes@hotmail.com;858942608;Essex Court 310;Lancaster;6b73c567-ab08-4148-864a-70c4418f56c4;Tree Planting;65,92;20170726
+0985941910;Avery;Brennan;Avery_Brennan@hol.com;858023668;Hickory Street 657;Glendale;b026dbf5-d167-4a6d-8540-411388de5444;School;31,45;20171103
+0509961615;Max;Copeland;Max_Copeland@msn.com;858205430;George Street 376;Diamond Bar;8405c83c-e3b8-4299-931d-8bfdc2893fe2;Library;81,14;20171101
+9278316809;Salma;Lane;Salma_Lane@yahoo.com;858826829;Lincoln Avenue 510;Agoura Hills;626433fa-4469-4313-86e7-5b2ab4101c39;School;85,42;20170713
+

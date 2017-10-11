@@ -19,12 +19,40 @@ namespace SqlContext.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Models.Address", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("PostalCode");
+
+                    b.Property<string>("Street");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Address");
+                });
+
             modelBuilder.Entity("Models.Debt", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<double>("Amount");
+
+                    b.Property<string>("BillId");
+
+                    b.Property<DateTime>("DateDue");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Vat");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Vat");
 
                     b.ToTable("Debt");
                 });
@@ -54,11 +82,15 @@ namespace SqlContext.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address");
+                    b.Property<string>("AddressId");
 
-                    b.Property<string>("County");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasAnnotation("unique", true);
 
                     b.Property<string>("Lastname");
+
+                    b.Property<string>("Mobile");
 
                     b.Property<string>("Name");
 
@@ -68,7 +100,23 @@ namespace SqlContext.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddressId");
+
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Models.Debt", b =>
+                {
+                    b.HasOne("Models.User")
+                        .WithMany("Debts")
+                        .HasForeignKey("Vat");
+                });
+
+            modelBuilder.Entity("Models.User", b =>
+                {
+                    b.HasOne("Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
                 });
 #pragma warning restore 612, 618
         }

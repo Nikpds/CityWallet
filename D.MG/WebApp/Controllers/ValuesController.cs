@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using SqlContext.Repos;
 using SqlContext;
-using Models;
 
 namespace WebApp.Controllers
 {

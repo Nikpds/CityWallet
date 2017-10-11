@@ -1,9 +1,9 @@
 D:\git\DebtManagment\D.MG\AuthProvider\bin\Debug\netcoreapp2.0\AuthProvider.deps.json
 D:\git\DebtManagment\D.MG\AuthProvider\bin\Debug\netcoreapp2.0\AuthProvider.dll
+D:\git\DebtManagment\D.MG\AuthProvider\bin\Debug\netcoreapp2.0\AuthProvider.pdb
 D:\git\DebtManagment\D.MG\AuthProvider\obj\Debug\netcoreapp2.0\AuthProvider.csprojResolveAssemblyReference.cache
 D:\git\DebtManagment\D.MG\AuthProvider\obj\Debug\netcoreapp2.0\AuthProvider.csproj.CoreCompileInputs.cache
 D:\git\DebtManagment\D.MG\AuthProvider\obj\Debug\netcoreapp2.0\AuthProvider.AssemblyInfoInputs.cache
 D:\git\DebtManagment\D.MG\AuthProvider\obj\Debug\netcoreapp2.0\AuthProvider.AssemblyInfo.cs
-D:\git\DebtManagment\D.MG\AuthProvider\bin\Debug\netcoreapp2.0\AuthProvider.pdb
 D:\git\DebtManagment\D.MG\AuthProvider\obj\Debug\netcoreapp2.0\AuthProvider.dll
 D:\git\DebtManagment\D.MG\AuthProvider\obj\Debug\netcoreapp2.0\AuthProvider.pdb

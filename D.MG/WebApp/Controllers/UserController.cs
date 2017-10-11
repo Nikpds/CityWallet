@@ -23,16 +23,16 @@ namespace WebApp.Controllers
         {
             try
             {
-                var user = new User
-                {
-                    Address = null,
-                    County = null,
-                    Lastname = "perpe",
-                    Name = "nikos",
-                    Vat = "66040",
-                    Password = "1234"
-                };
-                var result = await db.UserRepository.Insert(user);
+                //var user = new User
+                //{
+                //    Address = null,
+                //    County = null,
+                //    Lastname = "perpe",
+                //    Name = "nikos",
+                //    Vat = "66040",
+                //    Password = "1234"
+                //};
+                var result = await db.UserRepository.Insert(entity);
 
                 db.Save();
 
@@ -96,15 +96,19 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("users")]
-        public async Task<IActionResult> ImportUsers(User user)
+        public async Task<IActionResult> ImportUsers()
         {
             try
             {
-                var users = UserManager.InsertUsers();
+                var result = UserManager.InsertUsers();
 
-                var completed = db.UserRepository.InsertMany(users);
-
-                //db.Save();
+                var completed = db.UserRepository.InsertMany(result.Item1);
+                if (completed)
+                {
+                    db.DebtRepository.InsertMany(result.Item2);
+                }
+               
+                db.Save();
 
                 return Ok();
             }

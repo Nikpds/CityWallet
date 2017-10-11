@@ -14,8 +14,10 @@ C:\git\DebtManagment\D.MG\ApiManager\obj\Debug\netcoreapp2.0\ApiManager.pdb
 D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\ApiManager.deps.json
 D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\ApiManager.dll
 D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\ApiManager.pdb
+D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\AuthProvider.dll
 D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\Models.dll
 D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.dll
+D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\AuthProvider.pdb
 D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\Models.pdb
 D:\git\DebtManagment\D.MG\ApiManager\bin\Debug\netcoreapp2.0\Microsoft.EntityFrameworkCore.xml
 D:\git\DebtManagment\D.MG\ApiManager\obj\Debug\netcoreapp2.0\ApiManager.csprojResolveAssemblyReference.cache

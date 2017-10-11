@@ -36,4 +36,8 @@ export class AppComponent implements OnInit {
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
+
+  logout(){
+    this.auth.logOut();
+  }
 }
