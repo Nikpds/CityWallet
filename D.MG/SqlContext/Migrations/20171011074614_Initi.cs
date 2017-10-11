@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SqlContext.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initi : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,7 @@ namespace SqlContext.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -55,7 +55,7 @@ namespace SqlContext.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
         }
 
@@ -71,7 +71,7 @@ namespace SqlContext.Migrations
                 name: "Settlement");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
         }
     }
 }

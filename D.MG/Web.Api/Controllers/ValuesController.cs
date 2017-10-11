@@ -17,15 +17,13 @@ namespace Web.Api.Controllers
         {
             unitOfWork = u;
         }
-      
+
         // GET api/values
+        [Authorize]
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            var user = new User { Name = "asdasd", Lastname = "sdadadsa" };
-            unitOfWork.UserRepository.Insert(user);
-            unitOfWork.Save();
-           
+          
             return new string[] { "value1", "value2" };
         }
 

@@ -7,7 +7,6 @@ namespace SqlContext
 {
     public class UnitOfWork : IDisposable
     {
-
         private DataContext context;
 
         private UserRepository userRepository;

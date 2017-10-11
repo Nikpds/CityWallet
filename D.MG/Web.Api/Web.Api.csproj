@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApiManager\ApiManager.csproj" />
+    <ProjectReference Include="..\AuthProvider\AuthProvider.csproj" />
     <ProjectReference Include="..\SqlContext\SqlContext.csproj" />
   </ItemGroup>
 

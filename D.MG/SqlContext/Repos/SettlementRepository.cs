@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SqlContext.Repos
 {
@@ -9,36 +10,51 @@ namespace SqlContext.Repos
     {
         private DataContext _db;
 
+
         public SettlementRepository(DataContext context)
         {
             _db = context;
         }
 
-        public void Delete(Settlement entity)
+        public async Task<bool> Delete(string id)
         {
-            throw new NotImplementedException();
+            var entity = await _db.FindAsync<Settlement>(id);
+            _db.Remove(entity);
+            return true;
         }
 
-        public Settlement Get(string id)
+        public async Task<Settlement> GetById(string id)
         {
-            throw new NotImplementedException();
+            var entity = await _db.FindAsync<Settlement>(id);
+            return entity;
         }
 
-        public IEnumerable<Settlement> GetAll()
+        public async Task<Settlement> Insert(Settlement entity)
         {
-            throw new NotImplementedException();
+            var result = await _db.AddAsync(entity);
+
+            return result.Entity;
         }
 
-        public void Insert(Settlement entity)
+        public bool InsertMany(List<Settlement> entities)
         {
-            throw new NotImplementedException();
+            _db.AddRange(entities);
+
+            return true;
         }
 
-        public void Update(Settlement entity)
+        public async Task<IEnumerable<Settlement>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await _db.FindAsync<List<Settlement>>();
+
+            return result;
         }
 
-       
+        public async Task<Settlement> Update(Settlement entity)
+        {
+            var result = _db.Update(entity);
+
+            return result.Entity;
+        }
     }
 }

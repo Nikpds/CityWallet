@@ -10,8 +10,8 @@ using System;
 namespace SqlContext.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20171010052823_initial")]
-    partial class initial
+    [Migration("20171011074614_Initi")]
+    partial class Initi
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,7 @@ namespace SqlContext.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

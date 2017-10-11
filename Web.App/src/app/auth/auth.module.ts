@@ -1,24 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { Http, RequestOptions } from '@angular/http';
 
-import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
-const routes: Routes = [
-  { path: "login", component: LoginComponent }
-];
-
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig(), http, options);
+}
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
   ],
   declarations: [
-    LoginComponent
   ],
   providers: [
-    AuthService
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    },
+    AuthService,
+    AuthGuard
   ]
+
 })
 export class AuthModule { }

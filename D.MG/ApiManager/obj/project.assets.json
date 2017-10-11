@@ -685,12 +685,15 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "d:\\git\\DebtManagment\\D.MG\\ApiManager\\ApiManager.csproj",
+      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\ApiManager\\ApiManager.csproj",
       "projectName": "ApiManager",
-      "projectPath": "d:\\git\\DebtManagment\\D.MG\\ApiManager\\ApiManager.csproj",
+      "projectPath": "D:\\git\\DebtManagment\\D.MG\\ApiManager\\ApiManager.csproj",
       "packagesPath": "C:\\Users\\Nperperidis\\.nuget\\packages\\",
-      "outputPath": "d:\\git\\DebtManagment\\D.MG\\ApiManager\\obj\\",
+      "outputPath": "D:\\git\\DebtManagment\\D.MG\\ApiManager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -709,8 +712,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "d:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj": {
-              "projectPath": "d:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj"
+            "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj": {
+              "projectPath": "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj"
             }
           }
         }

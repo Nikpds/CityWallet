@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
-import { NotifyService} from './notify.service';
+import { NotifyService } from './notify.service';
 
 @NgModule({
   imports: [
     CommonModule,
-  
+    SnotifyModule.forRoot()
   ],
   declarations: [
 
   ],
-  providers:[
-   
+  providers: [
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService,
     NotifyService
   ]
 })

@@ -1,3 +1,34 @@
-<p>
-  login works!
-</p>
+<div class="bck-image">
+  <div class="bck-color">
+    <div class="columns is-marginless is-multiline">
+      <div class="column  is-4 is-offset-7">
+        <article class="vcenter message is-primary">
+          <div class="message-header">
+            <div class="title is-white is-3 has-text-centered">Σύνδεση</div>
+          </div>
+          <div class="message-body">
+            <div class="field">
+              <label class="label">Όνομα Χρήστη</label>
+              <div class="control">
+                <input class="input" [(ngModel)]="username" type="text" placeholder="username">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Κωδικός</label>
+              <div class="control">
+                <input class="input" (keyup.enter)="login()" [(ngModel)]="password" type="password" placeholder="password">
+              </div>
+            </div>
+            <div class="field is-clearfix">
+              <p class="control">
+                <button class="button is-pulled-right is-primary">
+                  Login
+                </button>
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

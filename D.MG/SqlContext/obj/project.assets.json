@@ -13137,12 +13137,15 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "d:\\git\\DebtManagment\\D.MG\\SqlContext\\SqlContext.csproj",
+      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\SqlContext\\SqlContext.csproj",
       "projectName": "SqlContext",
-      "projectPath": "d:\\git\\DebtManagment\\D.MG\\SqlContext\\SqlContext.csproj",
+      "projectPath": "D:\\git\\DebtManagment\\D.MG\\SqlContext\\SqlContext.csproj",
       "packagesPath": "C:\\Users\\Nperperidis\\.nuget\\packages\\",
-      "outputPath": "d:\\git\\DebtManagment\\D.MG\\SqlContext\\obj\\",
+      "outputPath": "D:\\git\\DebtManagment\\D.MG\\SqlContext\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13161,8 +13164,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "d:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj": {
-              "projectPath": "d:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj"
+            "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj": {
+              "projectPath": "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj"
             }
           }
         }
@@ -13176,6 +13179,14 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Tools": {
+            "target": "Package",
+            "version": "2.0.0"
+          },
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "target": "Package",
+            "version": "2.0.0"
+          },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
@@ -13183,14 +13194,6 @@
             "autoReferenced": true
           },
           "Microsoft.AspNetCore.All": {
-            "target": "Package",
-            "version": "2.0.0"
-          },
-          "Microsoft.EntityFrameworkCore.Tools": {
-            "target": "Package",
-            "version": "2.0.0"
-          },
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "2.0.0"
           }

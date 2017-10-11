@@ -2,43 +2,67 @@
 using Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SqlContext.Repos
 {
     public class UserRepository : IRepository<User>
     {
         private DataContext _db;
-        
+
 
         public UserRepository(DataContext context)
         {
             _db = context;
         }
 
-        public void Delete(string id)
+        public async Task<User> GetByUsername(string username)
         {
-            throw new NotImplementedException();
+            var entity = await _db.Set<User>().FirstOrDefaultAsync(x => x.Vat == username);
+            return entity;
         }
 
-        public User Get(string id)
+        public async Task<bool> Delete(string id)
         {
-            throw new NotImplementedException();
+            var entity = await _db.FindAsync<User>(id);
+            _db.Remove(entity);
+            return true;
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<User> GetById(string id)
         {
-            throw new NotImplementedException();
+            var entity = await _db.FindAsync<User>(id);
+            return entity;
         }
 
-        public void Insert(User entity)
+        public async Task<User> Insert(User entity)
         {
-            _db.Add(entity);
+            var user = await _db.AddAsync(entity);
+
+            return user.Entity;
         }
 
-        public void Update(User entity)
+        public bool InsertMany(List<User> entities)
         {
-            throw new NotImplementedException();
+            _db.AddRange(entities);
+
+            return true;
         }
+
+        public async Task<IEnumerable<User>> GetAll()
+        {
+            var users = await _db.FindAsync<List<User>>();
+
+            return users;
+        }
+
+        public async Task<User> Update(User entity)
+        {
+            var user = _db.Update(entity);
+
+            return user.Entity;
+        }
+
     }
 }

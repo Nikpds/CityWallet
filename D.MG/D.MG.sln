@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "Testing\Testing.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlContext", "SqlContext\SqlContext.csproj", "{7B3D1B89-8019-4D82-B4E4-1C37887B40D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiManager", "ApiManager\ApiManager.csproj", "{13D5637A-CE55-49D5-A239-540E10CB5683}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiManager", "ApiManager\ApiManager.csproj", "{13D5637A-CE55-49D5-A239-540E10CB5683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthProvider", "AuthProvider\AuthProvider.csproj", "{D81D2CBA-329D-43F7-AAAD-9A9882EB09EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,10 @@ Global
 		{13D5637A-CE55-49D5-A239-540E10CB5683}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13D5637A-CE55-49D5-A239-540E10CB5683}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13D5637A-CE55-49D5-A239-540E10CB5683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D81D2CBA-329D-43F7-AAAD-9A9882EB09EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D81D2CBA-329D-43F7-AAAD-9A9882EB09EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D81D2CBA-329D-43F7-AAAD-9A9882EB09EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D81D2CBA-329D-43F7-AAAD-9A9882EB09EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

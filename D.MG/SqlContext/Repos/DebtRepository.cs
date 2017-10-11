@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SqlContext.Repos
 {
@@ -9,35 +10,51 @@ namespace SqlContext.Repos
     {
         private DataContext _db;
 
+
         public DebtRepository(DataContext context)
         {
             _db = context;
         }
 
-        public void Delete(string id)
+        public async Task<bool> Delete(string id)
         {
-            var entity = _db.Find<Debt>(id);
+            var entity = await _db.FindAsync<Debt>(id);
             _db.Remove(entity);
+            return true;
         }
 
-        public Debt Get(string id)
+        public async Task<Debt> GetById(string id)
         {
-            return _db.Find<Debt>(id);
+            var entity = await _db.FindAsync<Debt>(id);
+            return entity;
         }
 
-        public async IEnumerable<Debt> GetAll()
+        public async Task<Debt> Insert(Debt entity)
         {
-            return await _db.FindAsync<Debt>();
+            var result = await _db.AddAsync(entity);
+
+            return result.Entity;
         }
 
-        public void Insert(Debt entity)
+        public bool InsertMany(List<Debt> entities)
         {
-            throw new NotImplementedException();
+            _db.AddRange(entities);
+
+            return true;
         }
 
-        public void Update(Debt entity)
+        public async Task<IEnumerable<Debt>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await _db.FindAsync<List<Debt>>();
+
+            return result;
+        }
+
+        public async Task<Debt> Update(Debt entity)
+        {
+            var result = _db.Update(entity);
+
+            return result.Entity;
         }
     }
 }

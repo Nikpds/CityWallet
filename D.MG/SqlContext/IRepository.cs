@@ -1,18 +1,19 @@
 ﻿using Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SqlContext
 {
     public interface IRepository<T>
     {
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
 
-        T Get(string id);
+        Task<T> GetById(string id);
 
-        void Insert(T entity);
+        Task<T> Insert(T entity);
 
-        void Update(T entity);
+        Task<T> Update(T entity);
 
-        void Delete(string id);
+        Task<bool> Delete(string id);
     }
 }

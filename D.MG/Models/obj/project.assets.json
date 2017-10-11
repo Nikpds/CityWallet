@@ -669,12 +669,15 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "d:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj",
+      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj",
       "projectName": "Models",
-      "projectPath": "d:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj",
+      "projectPath": "D:\\git\\DebtManagment\\D.MG\\Models\\Models.csproj",
       "packagesPath": "C:\\Users\\Nperperidis\\.nuget\\packages\\",
-      "outputPath": "d:\\git\\DebtManagment\\D.MG\\Models\\obj\\",
+      "outputPath": "D:\\git\\DebtManagment\\D.MG\\Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

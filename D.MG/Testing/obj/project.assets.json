@@ -13158,12 +13158,15 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "d:\\git\\DebtManagment\\D.MG\\Testing\\Testing.csproj",
+      "projectUniqueName": "D:\\git\\DebtManagment\\D.MG\\Testing\\Testing.csproj",
       "projectName": "Testing",
-      "projectPath": "d:\\git\\DebtManagment\\D.MG\\Testing\\Testing.csproj",
+      "projectPath": "D:\\git\\DebtManagment\\D.MG\\Testing\\Testing.csproj",
       "packagesPath": "C:\\Users\\Nperperidis\\.nuget\\packages\\",
-      "outputPath": "d:\\git\\DebtManagment\\D.MG\\Testing\\obj\\",
+      "outputPath": "D:\\git\\DebtManagment\\D.MG\\Testing\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13182,8 +13185,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "d:\\git\\DebtManagment\\D.MG\\SqlContext\\SqlContext.csproj": {
-              "projectPath": "d:\\git\\DebtManagment\\D.MG\\SqlContext\\SqlContext.csproj"
+            "D:\\git\\DebtManagment\\D.MG\\SqlContext\\SqlContext.csproj": {
+              "projectPath": "D:\\git\\DebtManagment\\D.MG\\SqlContext\\SqlContext.csproj"
             }
           }
         }
@@ -13197,6 +13200,10 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Tools": {
+            "target": "Package",
+            "version": "2.0.0"
+          },
           "Microsoft.NETCore.App": {
             "target": "Package",
             "version": "2.0.0",
@@ -13207,10 +13214,6 @@
             "version": "2.0.0"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
-            "target": "Package",
-            "version": "2.0.0"
-          },
-          "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
             "version": "2.0.0"
           }

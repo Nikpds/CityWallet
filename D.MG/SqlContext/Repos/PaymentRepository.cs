@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SqlContext.Repos
 {
@@ -14,29 +15,45 @@ namespace SqlContext.Repos
             _db = context;
         }
 
-        public void Delete(Payment entity)
+        public async Task<bool> Delete(string id)
         {
-            throw new NotImplementedException();
+            var entity = await _db.FindAsync<Payment>(id);
+            _db.Remove(entity);
+            return true;
         }
 
-        public Payment Get(string id)
+        public async Task<Payment> GetById(string id)
         {
-            throw new NotImplementedException();
+            var entity = await _db.FindAsync<Payment>(id);
+            return entity;
         }
 
-        public IEnumerable<Payment> GetAll()
+        public async Task<Payment> Insert(Payment entity)
         {
-            throw new NotImplementedException();
+            var result = await _db.AddAsync(entity);
+
+            return result.Entity;
         }
 
-        public void Insert(Payment entity)
+        public bool InsertMany(List<Payment> entities)
         {
-            throw new NotImplementedException();
+            _db.AddRange(entities);
+
+            return true;
         }
 
-        public void Update(Payment entity)
+        public async Task<IEnumerable<Payment>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await _db.FindAsync<List<Payment>>();
+
+            return result;
+        }
+
+        public async Task<Payment> Update(Payment entity)
+        {
+            var result = _db.Update(entity);
+
+            return result.Entity;
         }
     }
 }
