@@ -9,60 +9,68 @@ namespace SqlContext.Repos
 {
     public class UserRepository : IRepository<User>
     {
-        private DataContext _db;
-
+        private DbSet<User> dbSet;
 
         public UserRepository(DataContext context)
         {
-            _db = context;
+            dbSet = context.Set<User>();
         }
 
         public async Task<User> GetByUsername(string username)
         {
-            var entity = await _db.Set<User>().FirstOrDefaultAsync(x => x.Vat == username);
+            var entity = await dbSet.FirstOrDefaultAsync(x => x.Vat == username);
+
             return entity;
         }
 
         public async Task<bool> Delete(string id)
         {
-            var entity = await _db.FindAsync<User>(id);
-            _db.Remove(entity);
+            var entity = await dbSet.FindAsync(id);
+
+            dbSet.Remove(entity);
+
             return true;
         }
 
         public async Task<User> GetById(string id)
         {
-            var entity = await _db.FindAsync<User>(id);
+            var entity = await dbSet.FindAsync(id);
+
             return entity;
         }
 
         public async Task<User> Insert(User entity)
         {
-            var user = await _db.AddAsync(entity);
+            var user = await dbSet.AddAsync(entity);
 
             return user.Entity;
         }
 
         public bool InsertMany(List<User> entities)
         {
-            _db.AddRange(entities);
+            dbSet.AddRange(entities);
 
             return true;
         }
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            var users = await _db.FindAsync<List<User>>();
+            var users = await dbSet.ToListAsync();
 
             return users;
         }
 
-        public async Task<User> Update(User entity)
+        public User Update(User entity)
         {
-            var user = _db.Update(entity);
+            var user = dbSet.Update(entity);
 
             return user.Entity;
         }
 
+        public Task<IEnumerable<User>> GetAll(string id)
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 }

@@ -47,12 +47,12 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("all")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("debts/{userId}")]
+        public async Task<IActionResult> GetAll(string userId)
         {
             try
             {
-                var debts = db.DebtRepository.GetAll("005fd3fa-6e3a-4420-a178-e972b90a6c61");
+                var debts = await db.DebtRepository.GetAll(userId);
 
                 return Ok(debts);
             }

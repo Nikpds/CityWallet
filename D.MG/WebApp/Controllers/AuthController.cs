@@ -35,13 +35,14 @@ namespace WebApp.Controllers
             if (ModelState.IsValid)
             {
                 var dbUser = await _db.UserRepository.GetByUsername(model.Username);
-                
+
                 if (dbUser != null && PasswordHasher.VerifyHashedPassword(dbUser.Password, model.Password))
                 {
                     var claims = new List<Claim>();
 
                     claims.Add(new Claim("Id", dbUser.Id));
                     claims.Add(new Claim("Name", dbUser.Name));
+                    claims.Add(new Claim("LastName", dbUser.Lastname));
 
                     var key = _key;
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -52,7 +53,7 @@ namespace WebApp.Controllers
                       expires: DateTime.Now.AddDays(30),
                       signingCredentials: creds);
 
-                    return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+                    return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token), dbUser });
 
                 }
 

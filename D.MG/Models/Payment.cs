@@ -4,7 +4,7 @@ namespace Models
 {
     public class Payment : EntityBase
     {
-
+        
     }
 
     public class PaymentMap

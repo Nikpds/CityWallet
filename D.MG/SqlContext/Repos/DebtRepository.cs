@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,56 +9,55 @@ namespace SqlContext.Repos
 {
     public class DebtRepository : IRepository<Debt>
     {
-        private DataContext _db;
-
+        private DbSet<Debt> dbSet;
 
         public DebtRepository(DataContext context)
         {
-            _db = context;
-        }
-
-        public DebtRepository()
-        {
+            dbSet = context.Set<Debt>();
         }
 
         public async Task<bool> Delete(string id)
         {
-            var entity = await _db.FindAsync<Debt>(id);
-            _db.Remove(entity);
+            var entity = await dbSet.FindAsync(id);
+
+            dbSet.Remove(entity);
+
             return true;
         }
 
         public async Task<Debt> GetById(string id)
         {
-            var entity = await _db.FindAsync<Debt>(id);
+            var entity = await dbSet.FindAsync(id);
+
             return entity;
         }
 
         public async Task<Debt> Insert(Debt entity)
         {
-            var result = await _db.AddAsync(entity);
+            var result = await dbSet.AddAsync(entity);
 
             return result.Entity;
         }
         
-
-        public IEnumerable<Debt> GetAll(string userId)
+        public async Task<IEnumerable<Debt>> GetAll(string userId)
         {
-            var result = _db.Debt.Where(x => x.UserId == userId).ToList();
+            var result = await dbSet.Where(x=>x.UserId==userId).ToListAsync();
 
             return result;
         }
 
-        public async Task<Debt> Update(Debt entity)
+        public Debt Update(Debt entity)
         {
-            var result = _db.Update(entity);
+            var result = dbSet.Update(entity);
 
             return result.Entity;
         }
 
-        public Task<IEnumerable<Debt>> GetAll()
+        public async Task<IEnumerable<Debt>> GetAll()
         {
-            throw new NotImplementedException();
+            var result =await dbSet.ToListAsync();
+
+            return result;
         }
     }
 }

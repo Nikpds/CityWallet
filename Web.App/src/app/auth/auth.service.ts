@@ -43,7 +43,7 @@ export class AuthService {
     this.user = new User();
     this.user.id = tokeninfo.Id;
     this.user.name = tokeninfo.Name;
-    console.log(this.user);
+    this.user.lastname = tokeninfo.Lastname;
   }
 
   get authenticated() {
@@ -58,7 +58,10 @@ export class AuthService {
 
     return this.http.post(this.authUrl, body, options)
       .map((response: Response) => {
-        const token = response.json() && response.json().token;
+        console.log(response);
+        const token = response.json().token;
+        const user = response.json().dbUser
+        console.log(user);
         if (token) {
           localStorage.setItem('token', token);
           this.initUserData();

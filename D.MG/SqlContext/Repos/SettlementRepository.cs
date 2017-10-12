@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,53 +9,56 @@ namespace SqlContext.Repos
 {
    public class SettlementRepository:IRepository<Settlement>
     {
-        private DataContext _db;
-
-
+        private DbSet<Settlement> dbSet;
+        
         public SettlementRepository(DataContext context)
         {
-            _db = context;
+            dbSet = context.Set<Settlement>();
         }
 
         public async Task<bool> Delete(string id)
         {
-            var entity = await _db.FindAsync<Settlement>(id);
-            _db.Remove(entity);
+            var entity = await dbSet.FindAsync(id);
+
+            dbSet.Remove(entity);
+
             return true;
         }
 
         public async Task<Settlement> GetById(string id)
         {
-            var entity = await _db.FindAsync<Settlement>(id);
+            var entity = await dbSet.FindAsync(id);
+
             return entity;
         }
 
         public async Task<Settlement> Insert(Settlement entity)
         {
-            var result = await _db.AddAsync(entity);
+            var result = await dbSet.AddAsync(entity);
 
             return result.Entity;
         }
-
-        public bool InsertMany(List<Settlement> entities)
-        {
-            _db.AddRange(entities);
-
-            return true;
-        }
-
+        
         public async Task<IEnumerable<Settlement>> GetAll()
         {
-            var result = await _db.FindAsync<List<Settlement>>();
+            var result = await dbSet.ToListAsync();
 
             return result;
         }
 
-        public async Task<Settlement> Update(Settlement entity)
+        public Settlement Update(Settlement entity)
         {
-            var result = _db.Update(entity);
+            var result = dbSet.Update(entity);
 
             return result.Entity;
+        }
+
+        public async Task<IEnumerable<Settlement>> GetAll(string id)
+        {
+            //var result = await dbSet.Where(x => x.UserId == userId).ToListAsync();
+            var result = await dbSet.ToListAsync();
+
+            return result;
         }
     }
 }
