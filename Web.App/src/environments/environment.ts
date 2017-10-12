@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:50186/api/',
-  auth: 'http://localhost:50186/auth/'
+  api: 'http://localhost:59456/api/',
+  auth: 'http://localhost:59456/auth/'
 };

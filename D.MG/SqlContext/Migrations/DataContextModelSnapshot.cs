@@ -48,11 +48,12 @@ namespace SqlContext.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Vat");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Vat");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Debt");
                 });
@@ -107,9 +108,10 @@ namespace SqlContext.Migrations
 
             modelBuilder.Entity("Models.Debt", b =>
                 {
-                    b.HasOne("Models.User")
+                    b.HasOne("Models.User", "User")
                         .WithMany("Debts")
-                        .HasForeignKey("Vat");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Models.User", b =>

@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/auth.guard';
+import { DebtModule } from './debt/debt.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +28,7 @@ const routes: Route[] = [
   ],
   imports: [
     BrowserModule,
+    DebtModule,
     FormsModule,
     BrowserAnimationsModule,
     CoreModule,

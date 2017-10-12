@@ -8,15 +8,13 @@ namespace ApiManager
 {
     public class UserManager
     {
-        public static Tuple<List<User>, List<Debt>> InsertUsers()
+        public static List<User> InsertUsers()
         {
             var users = new List<User>();
-            var distinctUsers = new List<User>();
-            var debts = new List<Debt>();
             string[] headers;
             string[] fields;
             int counter = 0;
-            FileStream fileStream = new FileStream(@"D:\git\DebtManagment\assets\CitizenDebts_100.txt", FileMode.Open);
+            FileStream fileStream = new FileStream(@"C:\git\DebtManagment\assets\CitizenDebts_1M_3.txt", FileMode.Open);
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 var firstline = reader.ReadLine();
@@ -29,10 +27,18 @@ namespace ApiManager
                         counter++;
                         User user = new User();
                         Debt debt = new Debt();
+                        user.Password = AuthProvider.PasswordHasher.HashPassword("123456");
                         string line = reader.ReadLine();
                         fields = line.Split(";");
+
+                        if (fields.Length != headers.Length) { break; }
+
                         for (int i = 0; i < headers.Length; i++)
                         {
+                            if (counter == 72)
+                            {
+                                var temp = fields;
+                            }
                             switch (headers[i])
                             {
                                 case "FIRST_NAME":
@@ -42,14 +48,13 @@ namespace ApiManager
                                     user.Lastname = string.IsNullOrEmpty(fields[i]) ? string.Empty : fields[i].ToString();
                                     break;
                                 case "ADDRESS":
-                                    //user.Address.Street = string.IsNullOrEmpty(fields[i]) ? string.Empty : fields[i].ToString();
+                                    user.Address.Street = string.IsNullOrEmpty(fields[i]) ? string.Empty : fields[i].ToString();
                                     break;
                                 case "VAT":
                                     user.Vat = string.IsNullOrEmpty(fields[i]) ? string.Empty : fields[i].ToString();
-                                    debt.Vat = string.IsNullOrEmpty(fields[i]) ? string.Empty : fields[i].ToString();
                                     break;
                                 case "COUNTY":
-                                    //user.Address.Country = string.IsNullOrEmpty(fields[i]) ? string.Empty : fields[i].ToString();
+                                    user.Address.Country = string.IsNullOrEmpty(fields[i]) ? string.Empty : fields[i].ToString();
                                     break;
                                 case "EMAIL":
                                     user.Email = string.IsNullOrEmpty(fields[i]) ? string.Empty : fields[i].ToString();
@@ -70,14 +75,22 @@ namespace ApiManager
                                     debt.DateDue = string.IsNullOrEmpty(fields[i]) ? DateTime.Now : DateTime.Now;
                                     break;
                             }
-                            //user.Password = AuthProvider.PasswordHasher.HashPassword("123456");
-                            user.Password = "123456";
-                        }
-                        debts.Add(debt);
-                        users.Add(user);
-                    }
-                    distinctUsers = users.GroupBy(e => e.Vat).Select(group => group.First()).ToList();
 
+                        }
+                        var userIndex = users.FindIndex(x => x.Vat == user.Vat);
+                        Console.WriteLine(counter);
+                        if(userIndex != -1)
+                        {
+                            users[userIndex].Debts.Add(debt);
+                        }
+                        else
+                        {
+                            user.Debts.Add(debt);
+                            users.Add(user);
+                        }
+                        
+                    }
+                   
                 }
                 catch (Exception ex)
                 {
@@ -86,7 +99,7 @@ namespace ApiManager
                 }
             }
 
-            return new Tuple<List<User>, List<Debt>>(distinctUsers, debts);
+            return users;
         }
     }
 }

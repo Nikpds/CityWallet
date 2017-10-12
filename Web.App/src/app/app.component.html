@@ -1,6 +1,6 @@
-<nav class="navbar is-dark" *ngIf="user">
+<nav class="navbar is-dark field" *ngIf="user">
   <div class="navbar-brand">
-    <a class="navbar-item" href="http://www.peristeri.gr/">
+    <a class="navbar-item" [routerLink]="['/home']">
       Δημος Περιστερίου
     </a>
     <div class="navbar-burger burger" data-target="navMenuTransparentExample">
@@ -10,12 +10,16 @@
     </div>
   </div>
   <div class="navbar-end">
+
     <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-item">
+            {{user.name}}
+          </a>
       <a class="navbar-link  is-active">
         Menu
       </a>
       <div class="navbar-dropdown is-right is-boxed">
-        <a class="navbar-item ">
+        <a class="navbar-item " [routerLink]="['/debts']">
           Πληρωμές
         </a>
         <a class="navbar-item">

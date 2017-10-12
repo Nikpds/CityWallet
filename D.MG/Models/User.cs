@@ -9,7 +9,9 @@ namespace Models
         public User()
         {
             Debts = new HashSet<Debt>();
+            Address = new Address();
         }
+
         public string Name { get; set; }
         public string Lastname { get; set; }
         public string Vat { get; set; }
@@ -18,7 +20,7 @@ namespace Models
         public string Email { get; set; }
         public Address Address { get; set; }
 
-        public  IEnumerable<Debt> Debts { get; set; }
+        public virtual ICollection<Debt> Debts { get; set; }
     }
 
     public class UserMap
@@ -32,7 +34,7 @@ namespace Models
             entityBuilder.Property(t => t.Email)
                         .IsRequired()
                         .HasAnnotation("unique", true);
-            entityBuilder.HasMany(x => x.Debts).WithOne().HasForeignKey(x=>x.Vat);
+            entityBuilder.HasMany(x => x.Debts).WithOne(w=>w.User).IsRequired().HasForeignKey(h=>h.UserId);
             entityBuilder.HasOne(x => x.Address);
         }
     }

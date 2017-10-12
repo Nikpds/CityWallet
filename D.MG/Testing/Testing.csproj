@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiManager\ApiManager.csproj" />
     <ProjectReference Include="..\SqlContext\SqlContext.csproj" />
   </ItemGroup>
 

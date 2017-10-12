@@ -1,7 +1,7 @@
-﻿using ApiManager;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
+using System;
 using System.Threading.Tasks;
 
 namespace WebApp.Controllers
@@ -18,27 +18,18 @@ namespace WebApp.Controllers
             db = u;
         }
 
-        [HttpPost("")]
+        [HttpGet("new")]
         public async Task<IActionResult> GetbyId(User entity)
         {
             try
             {
-                //var user = new User
-                //{
-                //    Address = null,
-                //    County = null,
-                //    Lastname = "perpe",
-                //    Name = "nikos",
-                //    Vat = "66040",
-                //    Password = "1234"
-                //};
                 var result = await db.UserRepository.Insert(entity);
 
                 db.Save();
 
                 return Ok(result);
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
@@ -55,7 +46,7 @@ namespace WebApp.Controllers
 
                 return Ok(user);
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
@@ -72,7 +63,7 @@ namespace WebApp.Controllers
 
                 return Ok(users);
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
@@ -89,30 +80,7 @@ namespace WebApp.Controllers
 
                 return Ok();
             }
-            catch
-            {
-                return BadRequest();
-            }
-        }
-
-        [HttpGet("users")]
-        public async Task<IActionResult> ImportUsers()
-        {
-            try
-            {
-                var result = UserManager.InsertUsers();
-
-                var completed = db.UserRepository.InsertMany(result.Item1);
-                if (completed)
-                {
-                    db.DebtRepository.InsertMany(result.Item2);
-                }
-               
-                db.Save();
-
-                return Ok();
-            }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }

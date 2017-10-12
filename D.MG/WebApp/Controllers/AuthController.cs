@@ -19,11 +19,13 @@ namespace WebApp.Controllers
     {
         private UnitOfWork _db;
         private readonly IConfiguration _config;
+        private readonly SymmetricSecurityKey _key;
 
-        public AuthController(UnitOfWork db, IConfiguration config)
+        public AuthController(UnitOfWork db, IConfiguration config, IAuthenticationProvider auth)
         {
             _db = db;
             _config = config;
+            _key = auth.sigingKey;
         }
 
         [HttpPost]
@@ -32,15 +34,15 @@ namespace WebApp.Controllers
             if (ModelState.IsValid)
             {
                 var dbUser = await _db.UserRepository.GetByUsername(model.Username);
-                //dbUser != null && PasswordHasher.VerifyHashedPassword(dbUser.Password, model.Password)
-                if (true)
+                
+                if (dbUser != null && PasswordHasher.VerifyHashedPassword(dbUser.Password, model.Password))
                 {
                     var claims = new List<Claim>();
 
                     claims.Add(new Claim("Id", dbUser.Id));
                     claims.Add(new Claim("Name", dbUser.Name));
 
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
+                    var key = _key;
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                     var token = new JwtSecurityToken(_config["Tokens:Issuer"],

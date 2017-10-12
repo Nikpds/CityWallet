@@ -71,4 +71,3 @@
 0985941910;Avery;Brennan;Avery_Brennan@hol.com;858023668;Hickory Street 657;Glendale;b026dbf5-d167-4a6d-8540-411388de5444;School;31,45;20171103
 0509961615;Max;Copeland;Max_Copeland@msn.com;858205430;George Street 376;Diamond Bar;8405c83c-e3b8-4299-931d-8bfdc2893fe2;Library;81,14;20171101
 9278316809;Salma;Lane;Salma_Lane@yahoo.com;858826829;Lincoln Avenue 510;Agoura Hills;626433fa-4469-4313-86e7-5b2ab4101c39;School;85,42;20170713
-
