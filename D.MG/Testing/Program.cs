@@ -16,7 +16,7 @@ namespace Testing
         {
             var builder = new DbContextOptionsBuilder<DataContext>();
 
-            builder.UseSqlServer("Server=FREENET-1;Database=qualco4;Integrated Security=true;");
+            builder.UseSqlServer("Server=DESKTOP-L9O20VR;Database=qualco4;Integrated Security=true;");
 
             var _db = new UnitOfWork(new DataContext(builder.Options));
             var users = UserManager.InsertUsers();

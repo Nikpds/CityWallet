@@ -14,7 +14,7 @@ namespace ApiManager
             string[] headers;
             string[] fields;
             int counter = 0;
-            FileStream fileStream = new FileStream(@"C:\git\DebtManagment\assets\CitizenDebts_1M_3.txt", FileMode.Open);
+            FileStream fileStream = new FileStream(@"D:\git\DebtManagment\assets\CitizenDebts_1M_3.txt", FileMode.Open);
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 var firstline = reader.ReadLine();

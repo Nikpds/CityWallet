@@ -13,7 +13,7 @@ namespace SqlContext
         {
             var builder = new DbContextOptionsBuilder<DataContext>();
             IConfigurationRoot configuration = new ConfigurationBuilder()
-              .SetBasePath(@"C:\git\DebtManagment\D.MG\WebApp\")
+              .SetBasePath(@"D:\git\DebtManagment\D.MG\WebApp")
               .AddJsonFile("appsettings.json")
               .Build();
 

@@ -16,6 +16,10 @@ namespace SqlContext.Repos
             _db = context;
         }
 
+        public DebtRepository()
+        {
+        }
+
         public async Task<bool> Delete(string id)
         {
             var entity = await _db.FindAsync<Debt>(id);
@@ -35,17 +39,11 @@ namespace SqlContext.Repos
 
             return result.Entity;
         }
+        
 
-        public bool InsertMany(List<Debt> entities)
+        public IEnumerable<Debt> GetAll(string userId)
         {
-            _db.AddRange(entities);
-
-            return true;
-        }
-
-        public async Task<IEnumerable<Debt>> GetAll()
-        {
-            var result = await _db.FindAsync<List<Debt>>();
+            var result = _db.Debt.Where(x => x.UserId == userId).ToList();
 
             return result;
         }
@@ -55,6 +53,11 @@ namespace SqlContext.Repos
             var result = _db.Update(entity);
 
             return result.Entity;
+        }
+
+        public Task<IEnumerable<Debt>> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

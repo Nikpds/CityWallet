@@ -19,7 +19,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet("new")]
-        public async Task<IActionResult> GetbyId(User entity)
+        public async Task<IActionResult> Insert(User entity)
         {
             try
             {
@@ -42,8 +42,6 @@ namespace WebApp.Controllers
             {
                 var user = await db.UserRepository.GetById(id);
 
-                db.Save();
-
                 return Ok(user);
             }
             catch (Exception ex)
@@ -52,14 +50,12 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpGet("")]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
             try
             {
                 var users = await db.UserRepository.GetAll();
-
-                db.Save();
 
                 return Ok(users);
             }

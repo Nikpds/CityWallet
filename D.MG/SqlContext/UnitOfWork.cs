@@ -1,4 +1,5 @@
-﻿using SqlContext.Repos;
+﻿using Microsoft.EntityFrameworkCore;
+using SqlContext.Repos;
 using System;
 using System.Collections.Generic;
 using System.Text;

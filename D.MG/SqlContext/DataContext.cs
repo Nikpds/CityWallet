@@ -7,7 +7,10 @@ namespace SqlContext
     {
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-       
+
+        public DbSet<User> User { get; set; }
+        public DbSet<Debt> Debt { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

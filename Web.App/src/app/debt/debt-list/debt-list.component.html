@@ -1,3 +1,24 @@
-<p>
-  debt-list works!
-</p>
+<div class="columns is-multiline">
+  <div class="column is-7">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ΑΑ</th>
+          <th>Υπηρεσία</th>
+          <th>Ποσό</th>
+          <th>Λήξη</th>
+          <th>Ενέργεις</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of debts;let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{d.description}}</td>
+          <td>{{d.amount}}</td>
+          <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

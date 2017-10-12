@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
+using System;
 using System.Threading.Tasks;
 
 namespace WebApp.Controllers
 {
+    [Route("api/[controller]")]
     public class DebtController : Controller
     {
         private UnitOfWork db;
@@ -15,7 +17,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> GetbyId(Debt entity)
+        public async Task<IActionResult> Insert(Debt entity)
         {
             try
             {
@@ -25,7 +27,7 @@ namespace WebApp.Controllers
 
                 return Ok(result);
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
@@ -38,27 +40,23 @@ namespace WebApp.Controllers
             {
                 var debt = await db.DebtRepository.GetById(id);
 
-                db.Save();
-
                 return Ok(debt);
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
         }
-        [HttpGet("")]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
             try
             {
-                var debts = await db.DebtRepository.GetAll();
-
-                db.Save();
+                var debts = db.DebtRepository.GetAll("005fd3fa-6e3a-4420-a178-e972b90a6c61");
 
                 return Ok(debts);
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
@@ -75,24 +73,11 @@ namespace WebApp.Controllers
 
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
         }
 
-
-        [HttpGet("debts")]
-        public async Task<IActionResult> ImportUsers()
-        {
-            try
-            {
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
     }
 }
