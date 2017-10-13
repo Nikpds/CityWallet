@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/auth.guard';
 import { DebtModule } from './debt/debt.module';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -35,10 +36,12 @@ const routes: Route[] = [
     SharedModule,
     HttpModule,
     AuthModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    SnotifyModule
   ],
   providers: [
-
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService
 
   ],
   bootstrap: [AppComponent]

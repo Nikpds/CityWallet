@@ -1,27 +1,23 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 import { environment } from '../../environments/environment';
-
-import { Debt, User } from '../appModel';
+import { User } from '../appModel';
 
 import { AuthService } from '../auth/auth.service';
 
 @Injectable()
-export class DebtService implements OnInit {
-  private debtUrl = environment.api + 'debt';
-
+export class UserService {
+  private userUrl = environment.api + 'user';
   constructor(
     private auth: AuthService
   ) { }
 
-  ngOnInit() {
 
-  }
-
-  getDebts(id: string): Observable<Array<Debt>> {
-    return this.auth.get(this.debtUrl + "/debts/" + id)
+  getUser(id: string): Observable<User> {
+    return this.auth.get(this.userUrl + "/" + id)
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
+
 }

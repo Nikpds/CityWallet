@@ -42,7 +42,10 @@ namespace WebApp.Controllers
 
                     claims.Add(new Claim("Id", dbUser.Id));
                     claims.Add(new Claim("Name", dbUser.Name));
-                    claims.Add(new Claim("LastName", dbUser.Lastname));
+                    claims.Add(new Claim("Lastname", dbUser.Lastname));
+
+                    // Additional functionality for application admin if we make one
+                    //claims.Add(new Claim("Role", dbUser.Role));
 
                     var key = _key;
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -53,7 +56,7 @@ namespace WebApp.Controllers
                       expires: DateTime.Now.AddDays(30),
                       signingCredentials: creds);
 
-                    return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token), dbUser });
+                    return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
 
                 }
 

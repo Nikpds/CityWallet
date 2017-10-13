@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { User } from './appModel';
 
-import { SnotifyService } from 'ng-snotify';
 import { AuthService } from './auth/auth.service';
 @Component({
   selector: 'app-root',
@@ -15,29 +14,20 @@ export class AppComponent implements OnInit {
   user: User;
 
   constructor(
-    private snotifyService: SnotifyService,
+
     private auth: AuthService
   ) { }
 
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
-      .subscribe((user) => {
-        this.user = user;
-      }));
-
-    this.snotifyService.success('Example body content', {
-      timeout: 2000,
-      showProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true
-    });
+      .subscribe((user) => this.user = user));
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  logout(){
+  logout() {
     this.auth.logOut();
   }
 }

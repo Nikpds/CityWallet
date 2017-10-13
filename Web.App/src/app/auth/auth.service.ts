@@ -7,6 +7,7 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { User } from '../appModel';
 
 import { environment } from '../../environments/environment';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -37,13 +38,14 @@ export class AuthService {
     }
   }
 
-  private initUserData() {
-    const token = localStorage.getItem('token');
-    const tokeninfo = this.jwtHelper.decodeToken(token);
-    this.user = new User();
-    this.user.id = tokeninfo.Id;
-    this.user.name = tokeninfo.Name;
-    this.user.lastname = tokeninfo.Lastname;
+  private initUserData(_token?: any) {
+    const token = _token ? _token : localStorage.getItem('token');
+    const tokeninfo = this.parseJwt(token);
+    var _user = new User
+    _user.id = tokeninfo.Id
+    _user.name = tokeninfo.Name;
+    _user.lastname = tokeninfo.Lastname;
+    this.user = _user;
   }
 
   get authenticated() {
@@ -58,13 +60,10 @@ export class AuthService {
 
     return this.http.post(this.authUrl, body, options)
       .map((response: Response) => {
-        console.log(response);
         const token = response.json().token;
-        const user = response.json().dbUser
-        console.log(user);
         if (token) {
           localStorage.setItem('token', token);
-          this.initUserData();
+          this.initUserData(token);
           return true;
         } else {
           return false;
@@ -80,6 +79,13 @@ export class AuthService {
     this.user = null;
     this.router.navigate(['/login']);
   }
+
+
+  parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  };
 
   private encodeParams(params: any): string {
     let body: string = "";
@@ -99,7 +105,7 @@ export class AuthService {
     header.append('Content-Type', 'application/json');
     header.append('Accept', 'application/json');
 
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('token');
     if (token) {
       header.append('Authorization', 'Bearer ' + token);
       return Observable.of(header);
