@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Debt, User } from '../../appModel';
@@ -14,7 +14,7 @@ import { SnotifyService } from 'ng-snotify';
   templateUrl: './debt-list.component.html',
   styleUrls: ['./debt-list.component.sass']
 })
-export class DebtListComponent implements OnInit {
+export class DebtListComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   user: User;
 
@@ -31,7 +31,12 @@ export class DebtListComponent implements OnInit {
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
+      
     this.getDebts();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   getDebts() {

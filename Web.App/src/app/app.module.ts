@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 import { AuthGuard } from './auth/auth.guard';
 import { DebtModule } from './debt/debt.module';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
@@ -31,6 +32,7 @@ const routes: Route[] = [
     BrowserModule,
     DebtModule,
     FormsModule,
+    UserModule,
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,

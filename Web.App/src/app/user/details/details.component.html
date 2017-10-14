@@ -1,0 +1,72 @@
+<div class="container">
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <div>
+              <p class="title">
+                {{user.lastname}} {{user.name}}</p>
+              <p class="heading">
+                <i class="fa fa-envelope" title="email"></i> {{user.email}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="level-right is-hidden-mobile">
+          <div class="level-item">
+            <figure class="image is-128x128">
+              <img src="../../../assets/profile.png" />
+            </figure>
+          </div>
+        </div>
+      </nav>
+      <hr>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Λογαριασμοι</p>
+            <p class="title">3,456</p>
+            <p>
+              <a class="button is-info is-xs is-outlined" [routerLink]="['/debts']">Εμφάνιση</a>
+            </p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Διακανονισμοι</p>
+            <p class="title">123</p>
+            <p>
+              <a class="button is-info is-xs is-outlined">Εμφάνιση</a>
+            </p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Πληρωμες</p>
+            <p class="title">456K</p>
+            <p>
+              <a class="button is-info is-xs is-outlined">Εμφάνιση</a>
+            </p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Κατι</p>
+            <p class="title">789</p>
+            <p>
+              <a class="button is-info is-xs is-outlined">Εμφάνιση</a>
+            </p>
+          </div>
+        </div>
+      </nav>
+      <hr>
+      <div class="has-text-centered">
+        <p class="subtitle is-4">Προσώπικά Στοιχεία</p>
+        <p><span class="subtitle has-text-info is-6">Κινητό:</span>&nbsp;&nbsp; {{user.mobile}}</p>
+        <p><span class="subtitle has-text-info is-6">Α.Φ.Μ:</span>&nbsp;&nbsp; {{user.vat}}</p>
+        <p><span class="subtitle has-text-info is-6">Διεύθυνση:</span>&nbsp;&nbsp; {{user.address?.street}}</p>
+        <p><span class="subtitle has-text-info is-6">Δήμος:</span>&nbsp;&nbsp; {{user.address?.county}}</p>
+      </div>
+    </div>
+  </section>
+</div>
