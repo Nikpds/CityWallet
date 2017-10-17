@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class LoaderService {
 
     private openJobs = 0;
-    private _selector = 'conloader';
+    private _selector = 'loader-wrapper';
     private _element: HTMLElement;
 
     constructor() {

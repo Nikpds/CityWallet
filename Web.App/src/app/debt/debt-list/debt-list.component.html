@@ -1,45 +1,45 @@
 <div class="container">
-  <section class="hero is-dark is-small">
+  <section class="hero  is-small">
     <div class="hero-body">
 
-      <h1 class="title">
+      <h1 class="title has-text-white">
         Λογαριασμοί
       </h1>
-      <h2 class="subtitle">
+      <h2 class="subtitle has-text-white">
         Άμεση και γρήγορη πληρωμή των Λογαριασμών σας!
       </h2>
       <div class="columns is-marginless is-multiline">
         <div class="column is-top-paddingless is-12 is-clearfix">
           <span class="is-pulled-right">
             <p class="is-grouped">
-              <button class="button is-info" [disabled]="true">Πληρωμή</button>
-              <button class="button is-warning">Διακανονισμός</button>
+              <button class="button is-info is-outlined is-small" [disabled]="debtsForPay.length == 0" [routerLink]="['payment']">Πληρωμή</button>
+              <button class="button is-warning is-outlined is-small" [disabled]="debtsForPay.length == 0">Διακανονισμός</button>
             </p>
           </span>
         </div>
         <div class="column is-12">
-          <table class="table is-fullwidth is-striped">
+          <table class="table is-fullwidth is-striped is-transparent">
             <thead>
               <tr>
-                <th>ΑΑ</th>
+                <th class="is-hidden-mobile">ΑΑ</th>
                 <th>Υπηρεσία</th>
                 <th>Ποσό</th>
                 <th>Λήξη</th>
-                <th class="selecteBill">Επιλογή</th>
+                <th class="selecteBill is-hidden-mobile">Επιλογή</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let d of debts;let i = index">
-                <td>{{i + 1}}</td>
+                <td class="is-hidden-mobile">{{i + 1}}</td>
                 <td>{{d.description}}</td>
-                <td>{{d.amount}}</td>
+                <td>{{d.amount}} &euro;</td>
                 <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
-                <td>
+                <td class="is-hidden-mobile">
                   <div class="field">
                     <div class="control">
                       <div class="b-checkbox is-warning">
-                        <input id="checkbox+{{i}}" class="styled" type="checkbox">
-                        <label for="checkbox+{{i}}">
+                        <input id="checkbox+{{i}}" class="styled" type="checkbox" >
+                        <label for="checkbox+{{i}}" (click)="addRemoveDebt(i,d.id)">
                         </label>
                       </div>
                     </div>

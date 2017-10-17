@@ -30,10 +30,10 @@ const routes: Route[] = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     DebtModule,
     FormsModule,
     UserModule,
-    BrowserAnimationsModule,
     CoreModule,
     SharedModule,
     HttpModule,

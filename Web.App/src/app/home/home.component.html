@@ -1,96 +1,119 @@
-<div class="container">
-  <section class="hero  is-primary field">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          Primary bold title
-        </h1>
-        <h2 class="subtitle">
-          Primary bold subtitle
-        </h2>
-      </div>
-    </div>
-  </section>
-  <div class="columns is-marginless is-multiline is-mobile">
-    <div class="column is-12-mobile is-two-quarter-tablet is-half-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
-      <div class="box bck-primary" [routerLink]="['/debts']">
-        <article class="media">
-          <div class="media-left">
-            <i class="fa fa-file-text fa-4x"></i>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p class="has-text-centered">
-                <span class="title is-5 has-text-white">Λογαριασμοί</span>
-                <br>
-                <span class="title is-2 has-text-white">6</span>
-                <br>
-                <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-              </p>
+<section class="hero">
+  <figure class="image img-height">
+    <img src="../../assets/home-bck.jpg">
+    <div class="image-filter"> </div>
+  </figure>
+  <div class="hero-body is-paddingless">
+    <div class="container">
+      <div class="columns is-marginless">
+        <div class="column is-4">
+          <nav class="panel">
+            <p class="title is-5">
+              <i class="fa fa-newspaper-o"></i> Νέα
+            </p>
+            <a class="panel-block">
+              bulma
+            </a>
+            <a class="panel-block">
+              marksheet
+            </a>
+            <a class="panel-block">
+              minireset.css
+            </a>
+          </nav>
+        </div>
+        <div class="column is-8">
+          <div class="box">
+            <p class="title is-3">
+              Ηλεκτρονικές Υπηρεσίες
+            </p>
+            <hr>
+            <div class="box bck-primary" [routerLink]="['/debts']">
+              <article class="media">
+                <div class="media-left">
+                  <i class="fa fa-file-text fa-4x"></i>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p class="">
+                      <span class="title is-5 has-text-white">Λογαριασμοί</span>
+                      <br>
+                      <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="media-right">
+                  <span class="title is-2 has-text-white">2</span>
+                </div>
+              </article>
+            </div>
+            <div class="box bck-dark" [routerLink]="['/debts']">
+              <article class="media">
+                <div class="media-left">
+                  <i class="fa fa-handshake-o fa-4x"></i>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p class="">
+                      <span class="title is-5 has-text-white">Διακανονισμοί</span>
+                      <br>
+                      <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="media-right">
+                  <span class="title is-2 has-text-white">0</span>
+                </div>
+              </article>
+            </div>
+            <div class="box bck-primary" [routerLink]="['/debts']">
+              <article class="media">
+                <div class="media-left">
+                  <i class="fa fa-file-text fa-4x"></i>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p class="">
+                      <span class="title is-5 has-text-white">Λογαριασμοί</span>
+                      <br>
+                      <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="media-right">
+                  <span class="title is-2 has-text-white">6</span>
+                </div>
+              </article>
+            </div>
+            <div class="box bck-dark" [routerLink]="['/debts']">
+              <article class="media">
+                <div class="media-left">
+                  <i class="fa fa-credit-card fa-4x"></i>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p class="">
+                      <span class="title is-5 has-text-white">Πληρωμές</span>
+                      <br>
+                      <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
+                    </p>
+                  </div>
+                </div>
+                <div class="media-right">
+                  <span class="title is-2 has-text-white">6</span>
+                </div>
+              </article>
             </div>
           </div>
-        </article>
-      </div>
-    </div>
-    <div class="column is-12-mobile is-two-quarter-tablet is-half-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
-      <div class="box bck-warning">
-        <article class="media">
-          <div class="media-left">
-            <i class="fa fa-file-text fa-4x"></i>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p class="has-text-centered">
-                <span class="title is-5 has-text-white">Διακανονισμοί</span>
-                <br>
-                <span class="title is-2 has-text-white">6</span>
-                <br>
-                <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-              </p>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-    <div class="column is-12-mobile is-two-quarter-tablet is-half-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
-      <div class="box bck-dark">
-        <article class="media">
-          <div class="media-left">
-            <i class="fa fa-file-text fa-4x"></i>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p class="has-text-centered">
-                <span class="title is-5 has-text-white">Υπηρεσίες</span>
-                <br>
-                <span class="title is-2 has-text-white">6</span>
-                <br>
-                <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-              </p>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-    <div class="column is-12-mobile is-two-quarter-tablet is-half-desktop is-one-quarter-widescreen is-one-quarter-fullhd">
-      <div class="box bck-success">
-        <article class="media">
-          <div class="media-left">
-            <i class="fa fa-credit-card fa-4x"></i>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p class="has-text-centered">
-                <span class="title is-5 has-text-white">Πληρωμές</span>
-                <br>
-                <span class="title is-2 has-text-white">6</span>
-                <br>
-                <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-              </p>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+
+    </div>
+  </div>
+</section>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
 using SqlContext;
-using Models;
 using ApiManager;
-using System.Threading.Tasks;
 
 namespace Testing
 {
@@ -16,7 +11,7 @@ namespace Testing
         {
             var builder = new DbContextOptionsBuilder<DataContext>();
 
-            builder.UseSqlServer("");
+            builder.UseSqlServer("Server=DESKTOP-L9O20VR;Database=qualco4;Integrated Security=true;");
 
             var _db = new UnitOfWork(new DataContext(builder.Options));
             var users = UserManager.InsertUsers();

@@ -1,0 +1,64 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="steps">
+        <div class="step-item" [ngClass]="{'is-active': step >= 0,'is-completed': step > 0 }">
+          <div class="step-marker">
+            <span class="icon">
+              <i class="fa fa-check"></i>
+            </span>
+          </div>
+          <div class="step-details has-text-white">
+            <p class="step-title">Λογαριασμοί</p>
+            <p>Επιβεβαίωση Λογαριασμών</p>
+          </div>
+        </div>
+        <div class="step-item" [ngClass]="{'is-active': step >= 1,'is-completed': step > 1 }">
+          <div class="step-marker">
+            <span class="icon">
+              <i class="fa fa-credit-card"></i>
+            </span>
+          </div>
+          <div class="step-details has-text-white">
+            <p class="step-title">Χρέωση</p>
+            <p>Εισαγωγή πιστωτικής κάρτας.</p>
+          </div>
+        </div>
+        <div class="step-item" [ngClass]="{'is-active': step >= 2,'is-completed': step > 2 }">
+          <div class="step-marker">
+            <span class="icon">
+              <i class="fa fa-flag-checkered"></i>
+            </span>
+          </div>
+          <div class="step-details has-text-white">
+            <p class="step-title">Ολοκλήρωση</p>
+            <p>Επιβεβαίωση στοιχείων και ολοκλήρωση.</p>
+          </div>
+        </div>
+      </div>
+    
+
+      <div class="columns is-marginless is-multiline">
+        <div class="column is-12">
+          <app-debts-to-pay [debts]="debtsForPay" *ngIf="step == 0"></app-debts-to-pay>
+          <app-credit-card [creditCard]="creditCard" *ngIf="step == 1"></app-credit-card>
+          <app-payment-overview [creditCard]="creditCard" *ngIf="step == 2"></app-payment-overview>
+        </div>
+        <div class="column is-12">
+          <div class="field is-grouped is-pulled-right">
+            <p class="control">
+              <a class="button is-default" (click)="previousStep()">
+                Προηγουμενο
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-primary" (click)="nextStep()">
+                Επομενο
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

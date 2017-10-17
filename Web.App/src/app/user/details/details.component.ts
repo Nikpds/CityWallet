@@ -21,7 +21,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
     this.userService.getUser(this.user.id).subscribe(res => {

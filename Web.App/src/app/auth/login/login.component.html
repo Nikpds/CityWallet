@@ -2,32 +2,35 @@
   <div class="bck-color">
     <div class="columns is-marginless is-multiline">
       <div class="column  is-4-desktop is-offset-7-desktop is-offset-0-tablet is-12-tablet">
-        <article class="vcenter message is-primary">
-          <div class="message-header">
-            <div class="title is-white is-3 has-text-centered">Σύνδεση</div>
-          </div>
-          <div class="message-body">
+        <div class="card vcenter" [@glow]="effect">
+          <div class="card-content">
+            <p class="title has-text-white">
+              Pay & Go
+            </p>
             <div class="field">
-              <label class="label">Όνομα Χρήστη</label>
+              <span class="subtitle is-6 has-text-white">
+                Όνομα Χρήστη
+              </span>
               <div class="control">
-                <input class="input" [(ngModel)]="username" type="text" placeholder="username">
+                <input class="input" [(ngModel)]="username" type="text" >
               </div>
             </div>
             <div class="field">
-              <label class="label">Κωδικός</label>
+              <span class="subtitle is-6 has-text-white">
+                Κωδικός
+              </span>
               <div class="control">
-                <input class="input" (keyup.enter)="login()" [(ngModel)]="password" type="password" placeholder="password">
+                <input class="input" (keyup.enter)="login()" [(ngModel)]="password" type="password" >
               </div>
+            </div>
+            <div class="field">
+              <a class="is-link is-primary has-text-white">Ξεχάσατε τον κωδικό σας ?</a>
             </div>
             <div class="field is-clearfix">
-              <p class="control">
-                <button class="button is-pulled-right is-primary" (click)="login()">
-                  Login
-                </button>
-              </p>
+              <a class="button is-light is-pulled-right is-outlined" (click)="login()">Σύνδεση</a>
             </div>
           </div>
-        </article>
+        </div>
       </div>
     </div>
   </div>

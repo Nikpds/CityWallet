@@ -10,7 +10,7 @@ using System;
 namespace SqlContext.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20171012163133_init")]
+    [Migration("20171015203309_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,13 @@ namespace SqlContext.Migrations
 
                     b.Property<string>("Street");
 
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -43,16 +49,24 @@ namespace SqlContext.Migrations
 
                     b.Property<double>("Amount");
 
-                    b.Property<string>("BillId");
+                    b.Property<string>("BillId")
+                        .IsRequired()
+                        .HasAnnotation("unique", true);
 
                     b.Property<DateTime>("DateDue");
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("PaymentId");
+
                     b.Property<string>("UserId")
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PaymentId")
+                        .IsUnique()
+                        .HasFilter("[PaymentId] IS NOT NULL");
 
                     b.HasIndex("UserId");
 
@@ -63,6 +77,12 @@ namespace SqlContext.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BILL_ID");
+
+                    b.Property<string>("Method");
+
+                    b.Property<DateTime>("Time");
 
                     b.HasKey("Id");
 
@@ -84,42 +104,48 @@ namespace SqlContext.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AddressId");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasAnnotation("unique", true);
 
-                    b.Property<string>("Lastname");
+                    b.Property<string>("Lastname")
+                        .IsRequired();
 
                     b.Property<string>("Mobile");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
-                    b.Property<string>("Vat");
+                    b.Property<string>("Vat")
+                        .IsRequired()
+                        .HasAnnotation("unique", true);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("Models.Address", b =>
+                {
+                    b.HasOne("Models.User", "User")
+                        .WithOne("Address")
+                        .HasForeignKey("Models.Address", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Models.Debt", b =>
                 {
+                    b.HasOne("Models.Payment", "Payment")
+                        .WithOne("Debt")
+                        .HasForeignKey("Models.Debt", "PaymentId");
+
                     b.HasOne("Models.User", "User")
                         .WithMany("Debts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Models.User", b =>
-                {
-                    b.HasOne("Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
                 });
 #pragma warning restore 612, 618
         }

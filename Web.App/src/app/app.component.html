@@ -1,6 +1,6 @@
-<nav class="navbar field" *ngIf="user">
+<nav class="navbar" *ngIf="user">
   <div class="navbar-brand">
-    <a class="navbar-item " [routerLink]="['/home']">
+    <a class="navbar-item title is-4 is-marginless" [routerLink]="['/home']">
       Δημος Περιστερίου
     </a>
     <div class="navbar-burger burger" data-target="mobileMenu">
@@ -9,7 +9,7 @@
       <span></span>
     </div>
   </div>
-  <div id="mobileMenu" class="navbar-menu">
+  <div id="mobileMenu" class="mobileMenu navbar-menu">
     <div class="navbar-end">
       <a class="navbar-item" [routerLink]="['/profile']">
         {{user.lastname}} {{user.name}}
@@ -40,6 +40,8 @@
     </div>
   </div>
 </nav>
+
+
 
 <router-outlet></router-outlet>
 <ng-snotify></ng-snotify>

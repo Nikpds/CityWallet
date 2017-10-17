@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,14 +29,27 @@ namespace Models
         public UserMap(EntityTypeBuilder<User> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
-            //entityBuilder.Property(t => t.Vat)
-            //             .IsRequired()
-            //             .HasAnnotation("unique", true);
+            entityBuilder.Property(t => t.Vat)
+                         .IsRequired()
+                         .HasAnnotation("unique", true);
+            entityBuilder.Property(t => t.Name)
+                         .IsRequired();
+            entityBuilder.Property(t => t.Lastname)
+                         .IsRequired();
+            entityBuilder.Property(t => t.Password)
+                         .IsRequired();
             entityBuilder.Property(t => t.Email)
-                        .IsRequired()
-                        .HasAnnotation("unique", true);
-            entityBuilder.HasMany(x => x.Debts).WithOne(w=>w.User).IsRequired().HasForeignKey(h=>h.UserId);
-            entityBuilder.HasOne(x => x.Address);
+                         .IsRequired()
+                         .HasAnnotation("unique", true);
+            entityBuilder.HasMany(x => x.Debts)
+                         .WithOne(w => w.User)
+                         .HasForeignKey(h => h.UserId)
+                         .IsRequired();
+            entityBuilder.HasOne(x => x.Address)
+                         .WithOne(b=>b.User)
+                         .HasForeignKey<Address>(b=>b.UserId)
+                         .IsRequired()
+                         .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

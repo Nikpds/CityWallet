@@ -38,3 +38,10 @@ export class Payment {
 export class SettlementRequest {
     id: string;
 }
+
+export class CreditCard {
+    cardNumber: string;
+    owner: string;
+    cvv: string;
+    expires: Date;
+}

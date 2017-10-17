@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 import { environment } from '../../environments/environment';
 
@@ -10,6 +10,17 @@ import { AuthService } from '../auth/auth.service';
 @Injectable()
 export class DebtService implements OnInit {
   private debtUrl = environment.api + 'debt';
+
+  private debtsToPaySubject$ = new BehaviorSubject<Debt[]>(new Array<Debt>());
+  debtsToPay$ = this.debtsToPaySubject$.asObservable();
+
+  get debtsToPay(): Debt[] {
+    return this.debtsToPaySubject$.getValue();
+  }
+
+  set debtsToPay(value: Debt[]) {
+    this.debtsToPaySubject$.next(value);
+  }
 
   constructor(
     private auth: AuthService

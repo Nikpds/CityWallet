@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { SnotifyService } from 'ng-snotify';
 
 import { Debt, User } from '../../appModel';
 
 import { DebtService } from '../debt.service';
 import { LoaderService } from '../../shared/loader.service';
 import { AuthService } from '../../auth/auth.service';
-import { NotificationService } from '../../shared/notification.service'
-import { SnotifyService } from 'ng-snotify';
 
 @Component({
   selector: 'app-debt-list',
@@ -16,6 +15,7 @@ import { SnotifyService } from 'ng-snotify';
 })
 export class DebtListComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
+  debtsForPay: Array<Debt>;
   user: User;
 
   debts = new Array<Debt>();
@@ -23,15 +23,16 @@ export class DebtListComponent implements OnInit, OnDestroy {
   constructor(
     private debtService: DebtService,
     private loader: LoaderService,
-    private snotifyService: SnotifyService,
     private auth: AuthService,
-    private notify: NotificationService
+    private notify: SnotifyService
   ) { }
 
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
-      
+    this.subscriptions.push(this.debtService.debtsToPay$
+      .subscribe((res) => this.debtsForPay = res));
+
     this.getDebts();
   }
 
@@ -40,20 +41,27 @@ export class DebtListComponent implements OnInit, OnDestroy {
   }
 
   getDebts() {
-    // this.loader.show();
+    this.loader.show();
     this.debtService.getDebts(this.user.id).subscribe((res) => {
       this.debts = res;
-      console.log(res);
-      this.snotifyService.success('Example body content', {
-        timeout: 2000,
-        showProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true
-      });
-      // this.loader.hide();
+      this.loader.hide();
     }, error => {
-
-      //  this.loader.hide();
+      this.loader.hide();
     });
+  }
+
+  addRemoveDebt(i: number, id: string) {
+    var index = this.debtsForPay.findIndex(x => x.id == id);
+    if (index > -1) {
+      this.debtsForPay.splice(index, 1);
+      console.log(this.debtsForPay);
+      return;
+    }
+    this.debtsForPay.push(this.debts[i]);
+    console.log(this.debtsForPay);
+  }
+
+  isOnPayList(id: string) {
+    return this.debtsForPay.findIndex(x => x.id == id) > -1;
   }
 }
