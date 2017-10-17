@@ -1,12 +1,6 @@
 # DebtManagment
 # 2017-10-08
 
-1. Check (nickliako)
-2. Check (marilenak)
-2. Check (jpapet)
-3. Check (NikosChomenidis)
-
-
 ## Getting Started
 
 This is a project for coding School from qualco_4 development team. It is a debt managment application
