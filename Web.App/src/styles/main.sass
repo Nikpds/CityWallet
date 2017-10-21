@@ -10,6 +10,28 @@ html
 .navbar 
     border-color: $border-color
 
+.is-tiny
+    font-size: 0.7rem
+    padding: 0 5px
+    height: 2em
 
+.help
+    font-size: 0.85rem
 
+hr.is-short
+    margin: 0.7rem 0
 
+// table
+.blackTable.table,.blackTable.table thead th
+    color: black
+
+.blackTable.table thead:hover > tr th
+    background-color: rgb(4, 51, 57)
+    color: white
+
+.blackTable.table tbody tr:hover
+    background-color: rgb(4, 51, 57)
+    color: white
+
+.blackTable.table.is-striped tbody tr:nth-child(even) 
+    background-color: rgba(6, 57, 64, 0.23)

@@ -38,6 +38,13 @@ namespace SqlContext.Repos
             return result.Entity;
         }
 
+        public bool InsertMany(List<Payment> entities)
+        {
+            dbSet.AddRange(entities);
+
+            return true;
+        }
+
         public async Task<IEnumerable<Payment>> GetAll()
         {
             var result = await dbSet.ToListAsync();
@@ -54,10 +61,16 @@ namespace SqlContext.Repos
 
         public async Task<IEnumerable<Payment>> GetAll(string id)
         {
-            //var result = await dbSet.Where(x => x.UserId == id).ToListAsync();
-            var result = await dbSet.ToListAsync();
+            var result = await dbSet.Where(x => x.Bill.UserId == id).ToListAsync();
 
             return result;
+        }
+
+        public bool UpdateMany(List<Payment> entities)
+        {
+            dbSet.UpdateRange(entities);
+
+            return true;
         }
 
     }

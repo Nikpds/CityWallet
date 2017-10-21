@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SqlContext;
 using System;
@@ -26,8 +27,6 @@ namespace SqlContext.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<string>("PostalCode");
-
                     b.Property<string>("Street");
 
                     b.Property<string>("UserId")
@@ -41,35 +40,34 @@ namespace SqlContext.Migrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("Models.Debt", b =>
+            modelBuilder.Entity("Models.Bill", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("Amount");
 
-                    b.Property<string>("BillId")
+                    b.Property<string>("Bill_Id")
                         .IsRequired()
                         .HasAnnotation("unique", true);
 
                     b.Property<DateTime>("DateDue");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<string>("PaymentId");
+                    b.Property<string>("SettlementId");
 
                     b.Property<string>("UserId")
                         .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PaymentId")
-                        .IsUnique()
-                        .HasFilter("[PaymentId] IS NOT NULL");
+                    b.HasIndex("SettlementId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Debt");
+                    b.ToTable("Bill");
                 });
 
             modelBuilder.Entity("Models.Payment", b =>
@@ -77,13 +75,21 @@ namespace SqlContext.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BILL_ID");
+                    b.Property<string>("BillId")
+                        .IsRequired();
 
-                    b.Property<string>("Method");
+                    b.Property<string>("Bill_Id")
+                        .IsRequired();
 
-                    b.Property<DateTime>("Time");
+                    b.Property<string>("Method")
+                        .IsRequired();
+
+                    b.Property<DateTime>("PaidDate");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BillId")
+                        .IsUnique();
 
                     b.ToTable("Payment");
                 });
@@ -92,6 +98,14 @@ namespace SqlContext.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<double>("Downpayment");
+
+                    b.Property<int>("Installments");
+
+                    b.Property<double>("Interest");
+
+                    b.Property<DateTime>("RequestDate");
 
                     b.HasKey("Id");
 
@@ -135,15 +149,23 @@ namespace SqlContext.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Models.Debt", b =>
+            modelBuilder.Entity("Models.Bill", b =>
                 {
-                    b.HasOne("Models.Payment", "Payment")
-                        .WithOne("Debt")
-                        .HasForeignKey("Models.Debt", "PaymentId");
+                    b.HasOne("Models.Settlement", "Settlement")
+                        .WithMany("Bills")
+                        .HasForeignKey("SettlementId");
 
                     b.HasOne("Models.User", "User")
-                        .WithMany("Debts")
+                        .WithMany("Bills")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Models.Payment", b =>
+                {
+                    b.HasOne("Models.Bill", "Bill")
+                        .WithOne("Payment")
+                        .HasForeignKey("Models.Payment", "BillId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

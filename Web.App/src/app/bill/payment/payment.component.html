@@ -36,24 +36,24 @@
           </div>
         </div>
       </div>
-    
+
 
       <div class="columns is-marginless is-multiline">
         <div class="column is-12">
-          <app-debts-to-pay [debts]="debtsForPay" *ngIf="step == 0"></app-debts-to-pay>
-          <app-credit-card [creditCard]="creditCard" *ngIf="step == 1"></app-credit-card>
-          <app-payment-overview [creditCard]="creditCard" *ngIf="step == 2"></app-payment-overview>
+          <app-bill-to-pay *ngIf="step == 0"></app-bill-to-pay>
+          <app-credit-card *ngIf="step == 1"></app-credit-card>
+          <app-payment-overview (setState)="ediCreditCard($event)" *ngIf="step == 2"></app-payment-overview>
         </div>
         <div class="column is-12">
           <div class="field is-grouped is-pulled-right">
             <p class="control">
-              <a class="button is-default" (click)="previousStep()">
+              <button class="button is-default" [disabled]="step == 0" (click)="previousStep()">
                 Προηγουμενο
-              </a>
+              </button>
             </p>
             <p class="control">
-              <a class="button is-primary" (click)="nextStep()">
-                Επομενο
+              <a class="button is-primary" (click)="step != 2 ? nextStep():paybills()">
+                {{step == 2? 'Ολοκληρωση':'Επομενο'}}
               </a>
             </p>
           </div>

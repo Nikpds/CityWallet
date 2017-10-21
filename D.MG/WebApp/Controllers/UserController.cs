@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AuthProvider;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
 using System;
@@ -6,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace WebApp.Controllers
 {
-
+    [Produces("application/json")]
+    [Authorize]
     [Route("api/[controller]")]
     public class UserController : Controller
     {
@@ -18,16 +21,14 @@ namespace WebApp.Controllers
             db = u;
         }
 
-        [HttpGet("new")]
-        public async Task<IActionResult> Insert(User entity)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetbyId(string id)
         {
             try
             {
-                var result = await db.UserRepository.Insert(entity);
+                var user = await db.UserRepository.GetById(id);
 
-                db.Save();
-
-                return Ok(result);
+                return Ok(user);
             }
             catch (Exception ex)
             {
@@ -35,12 +36,13 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetbyId(string id)
+        [HttpPut("change/password")]
+        public IActionResult GetbyId(PasswordReset psw)
         {
             try
             {
-                var user = await db.UserRepository.GetById(id);
+                var changed = new User();
+                var user = db.UserRepository.Update(changed);
 
                 return Ok(user);
             }
@@ -65,22 +67,6 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            try
-            {
-                var deleted = await db.UserRepository.Delete(id);
-
-                db.Save();
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
-        }
 
     }
 }

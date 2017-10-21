@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { SnotifyService } from 'ng-snotify';
 
 import { User } from './appModel';
 
 import { AuthService } from './auth/auth.service';
+import { UserService } from './user/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,13 +16,20 @@ export class AppComponent implements OnInit {
   user: User;
 
   constructor(
-
-    private auth: AuthService
+    private userService: UserService,
+    private auth: AuthService,
+    private notify: SnotifyService
   ) { }
 
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
+
+    this.userService.getUser(this.user.id).subscribe(res => {
+      this.auth.user = res;
+    }, error => {
+      this.notify.error(error,"Σφάλμα!")
+    });
   }
 
   ngOnDestroy() {

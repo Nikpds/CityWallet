@@ -7,36 +7,56 @@ export class User {
     password: string;
     mobile: string;
     address: Address;
-    debts: Array<Debt>;
+    bills: Array<Bill>;
 
     constructor() {
-        this.debts = new Array<Debt>();
+        this.bills = new Array<Bill>();
     }
 }
 
-export class Debt {
+export class Bill {
     id: string;
     description: string;
-    billId: string;
+    bill_Id: string;
     amount: number;
+
+    paymentId: string;
+    payment: Payment;
+
     userId: string;
+    user: User;
+
+    settlementId: string;
+    settlement: Settlement;
+
     dateDue: Date;
 }
+
 export class Address {
+    id: string;
     street: string;
     county: string;
-    postalcode: string;
 }
+
 export class Settlement {
     id: string;
+    interest: number;
+    installments: number;
+    downpayment: number;
+    requestDate: Date;
+    bills: Array<Bill>;
+
+    constructor() {
+        this.bills = new Array<Bill>();
+    }
 }
 
 export class Payment {
     id: string;
-}
-
-export class SettlementRequest {
-    id: string;
+    paidDate: Date;
+    method: string;
+    bill: Bill;
+    bill_Id: string;
 }
 
 export class CreditCard {

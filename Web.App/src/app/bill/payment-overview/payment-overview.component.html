@@ -1,0 +1,73 @@
+<h1 class="title has-text-white">
+  Επιβεβαίωση και ολόκληρωση
+</h1>
+<h2 class="subtitle is-6 has-text-white">
+  Επιβεβαιώστε τα στοιχεία που δώσατε και πατήστε ολοκλήρωση.
+</h2>
+<div class="columns is-multiline">
+  <div class="column is-12">
+    <div class="box">
+      <article class="media">
+        <div class="media-left is-hidden-mobile">
+          <figure class="image is-128x128">
+            <img src="../../../assets/Credit-Cards.png" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <span class="title is-5">Στοιχεία Χρέωσης</span>
+            <hr class="is-short">
+            <p>
+              <strong>Ονοματεπώνυμo:</strong> {{creditCard.owner}}
+              <br>
+              <strong>Κάρτας:</strong> {{creditCard.cardNumber}}
+              <br>
+              <strong>CVV:</strong> {{creditCard.cvv}}
+              <br>
+              <strong>Ημ/νια Λήξης:</strong> {{creditCard.expires|date:'MM-yyyy'}}
+              <a class="button is-warning is-small is-pulled-right" (click)="editCreditCard()">επεξεργασια</a>
+            </p>
+            <span class="title is-5">Στοιχεία Πελάτη</span>
+            <hr class="is-short">
+            <p>
+              <strong>Ονοματεπώνυμo:</strong> {{use?.name}} {{user?.lastname}}
+              <br>
+              <strong>ΑΦΜ</strong> {{user?.vat}}
+              <br>
+              <strong>Διεύθυνση</strong> {{user?.cvv}}
+              <br>
+              <strong>Κινητό</strong> {{user?.mobile}}
+              <br>
+              <strong>Email</strong> {{user?.email}}   
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="column is-12">
+    <div class="box">
+      <span class="title is-5">Λογαριασμοί ({{bills.length}})</span>
+      <table class="blackTable table is-fullwidth is-striped is-transparent is-narrow">
+        <thead>
+          <tr>
+            <th class="is-hidden-mobile">ΑΑ</th>
+            <th>Υπηρεσία</th>
+            <th>Ποσό</th>
+            <th>Λήξη</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of bills;let i = index">
+            <td class="is-hidden-mobile">{{i + 1}}</td>
+            <td>{{d.description}}</td>
+            <td>{{d.amount}} &euro;</td>
+            <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
+          </tr>
+          <tr class="total-bill" *ngIf="bills.length > 0">
+            <td colspan="2" class="subtitle is-5 has-text-white">Σύνολο</td>
+            <td colspan="2" class="subtitle is-5 has-text-warning">{{billsSum()}} &euro;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

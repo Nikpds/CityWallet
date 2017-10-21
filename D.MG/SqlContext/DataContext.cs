@@ -13,7 +13,7 @@ namespace SqlContext
             base.OnModelCreating(modelBuilder);
             new UserMap(modelBuilder.Entity<User>());
             new PaymentMap(modelBuilder.Entity<Payment>());
-            new DebtMap(modelBuilder.Entity<Debt>());
+            new BillMap(modelBuilder.Entity<Bill>());
             new SettlementMap(modelBuilder.Entity<Settlement>());
         }
     }

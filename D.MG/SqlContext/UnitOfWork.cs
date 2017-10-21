@@ -13,7 +13,7 @@ namespace SqlContext
         private UserRepository userRepository;
         private PaymentRepository paymentRepository;
         private SettlementRepository settlementRepository;
-        private DebtRepository debtRepository;
+        private BillRepository debtRepository;
 
         public UnitOfWork(DataContext _context)
         {
@@ -35,9 +35,9 @@ namespace SqlContext
             get { return settlementRepository ?? new SettlementRepository(context); }
         }
 
-        public DebtRepository DebtRepository
+        public BillRepository BillRepository
         {
-            get { return debtRepository ?? new DebtRepository(context); }
+            get { return debtRepository ?? new BillRepository(context); }
         }
 
 

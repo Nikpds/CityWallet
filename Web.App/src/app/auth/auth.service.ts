@@ -110,6 +110,7 @@ export class AuthService {
       header.append('Authorization', 'Bearer ' + token);
       return Observable.of(header);
     } else {
+      this.user = null;
       return Observable.of(header);
     }
   }

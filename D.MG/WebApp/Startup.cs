@@ -19,7 +19,6 @@ namespace WebApp
             Configuration = configuration;
             var tokensKey = new Guid().ToString();
             _tokensKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokensKey));
-
             auth = new AuthenticationProvider(_tokensKey);
         }
 
@@ -54,14 +53,16 @@ namespace WebApp
                     IssuerSigningKey = _tokensKey
                 };
             });
-
+            
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+           
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

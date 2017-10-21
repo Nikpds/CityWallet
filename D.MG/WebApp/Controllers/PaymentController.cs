@@ -1,10 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ApiManager;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
     public class PaymentController : Controller
     {
         private UnitOfWork db;
@@ -13,23 +23,7 @@ namespace WebApp.Controllers
         {
             db = u;
         }
-
-        [HttpPost("")]
-        public async Task<IActionResult> GetbyId(Payment entity)
-        {
-            try
-            {
-                var result = await db.PaymentRepository.Insert(entity);
-
-                db.Save();
-
-                return Ok(result);
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
+        
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetbyId(string id)
@@ -47,12 +41,13 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
         }
-        [HttpGet("")]
-        public async Task<IActionResult> GetAll()
+
+        [HttpGet("payments/{id}")]
+        public async Task<IActionResult> GetAll(string id)
         {
             try
             {
-                var payments = await db.PaymentRepository.GetAll();
+                var payments = await db.PaymentRepository.GetAll(id);
 
                 db.Save();
 
@@ -64,35 +59,38 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        [HttpPost("paybills")]
+        public async Task<IActionResult> Insert([FromBody] List<Bill> entities)
         {
             try
             {
-                var deleted = await db.PaymentRepository.Delete(id);
+                var payments = BillManager.Payments(entities);
+                var result = db.PaymentRepository.UpdateMany(payments);
 
                 db.Save();
 
-                return Ok();
+                return Ok(result);
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
-
-        [HttpGet("payments")]
-        public async Task<IActionResult> ImportUsers()
+        [HttpPost("creditcard")]
+        public IActionResult ValidateCreditCard([FromBody] CrediCard card)
         {
             try
             {
-                return Ok();
+                Thread.Sleep(2000);  //Simulating validation of  credit card with 2 sec delay
+                return Ok(true);
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
+
+
     }
 }

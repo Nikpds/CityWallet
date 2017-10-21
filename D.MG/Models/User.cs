@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
-    public class User : EntityBase
+    public class User : BaseEntity
     {
         public User()
         {
-            Debts = new HashSet<Debt>();
+            Bills = new HashSet<Bill>();
             Address = new Address();
         }
 
@@ -21,7 +20,7 @@ namespace Models
         public string Email { get; set; }
         public Address Address { get; set; }
 
-        public virtual ICollection<Debt> Debts { get; set; }
+        public virtual ICollection<Bill> Bills { get; set; }
     }
 
     public class UserMap
@@ -41,10 +40,11 @@ namespace Models
             entityBuilder.Property(t => t.Email)
                          .IsRequired()
                          .HasAnnotation("unique", true);
-            entityBuilder.HasMany(x => x.Debts)
+            entityBuilder.HasMany(x => x.Bills)
                          .WithOne(w => w.User)
                          .HasForeignKey(h => h.UserId)
                          .IsRequired();
+          
             entityBuilder.HasOne(x => x.Address)
                          .WithOne(b=>b.User)
                          .HasForeignKey<Address>(b=>b.UserId)

@@ -1,7 +1,6 @@
 <div class="container">
   <section class="hero  is-small">
     <div class="hero-body">
-
       <h1 class="title has-text-white">
         Λογαριασμοί
       </h1>
@@ -12,8 +11,8 @@
         <div class="column is-top-paddingless is-12 is-clearfix">
           <span class="is-pulled-right">
             <p class="is-grouped">
-              <button class="button is-info is-outlined is-small" [disabled]="debtsForPay.length == 0" [routerLink]="['payment']">Πληρωμή</button>
-              <button class="button is-warning is-outlined is-small" [disabled]="debtsForPay.length == 0">Διακανονισμός</button>
+              <button class="button is-info is-outlined is-small" [disabled]="billsForPay.length == 0" [routerLink]="['payment']">Πληρωμή</button>
+              <button class="button is-warning is-outlined is-small" [disabled]="billsForPay.length == 0">Διακανονισμός</button>
             </p>
           </span>
         </div>
@@ -24,24 +23,24 @@
                 <th class="is-hidden-mobile">ΑΑ</th>
                 <th>Υπηρεσία</th>
                 <th>Ποσό</th>
-                <th>Λήξη</th>
-                <th class="selecteBill is-hidden-mobile">Επιλογή</th>
+                <th class="is-hidden-mobile">Λήξη</th>
+                <th class="selecteBill">Επιλογή</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let d of debts;let i = index">
+              <tr *ngFor="let d of bills;let i = index">
                 <td class="is-hidden-mobile">{{i + 1}}</td>
                 <td>{{d.description}}</td>
                 <td>{{d.amount}} &euro;</td>
-                <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
                 <td class="is-hidden-mobile">
+                  <span [ngClass]="{'has-text-danger':checkFallDue(d.dateDue)}">{{d.dateDue|date:'dd-MM-yyyy'}} </span>
+                  <span *ngIf="checkFallDue(d.dateDue)">&nbsp; (Ληξιπρόθεσμο)</span>
+                </td>
+                <td >
                   <div class="field">
                     <div class="control">
-                      <div class="b-checkbox is-warning">
-                        <input id="checkbox+{{i}}" class="styled" type="checkbox" >
-                        <label for="checkbox+{{i}}" (click)="addRemoveDebt(i,d.id)">
-                        </label>
-                      </div>
+                     <a class="button is-default is-xs" (click)="addRemovebill(i,d.id)"><i class="fa" 
+                      [ngClass]="{'has-text-white': !isOnPayList(d.id),'has-text-warning': isOnPayList(d.id),'fa-square': !isOnPayList(d.id), 'fa-check': isOnPayList(d.id)}"></i></a>
                     </div>
                   </div>
                 </td>

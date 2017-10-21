@@ -10,7 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { AuthGuard } from './auth/auth.guard';
-import { DebtModule } from './debt/debt.module';
+import { BillModule } from './bill/bill.module';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 import { AppComponent } from './app.component';
@@ -31,7 +31,7 @@ const routes: Route[] = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    DebtModule,
+    BillModule,
     FormsModule,
     UserModule,
     CoreModule,

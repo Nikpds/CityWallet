@@ -3,12 +3,16 @@ using System;
 
 namespace Models
 {
-    public class Payment : EntityBase
+    public class Payment : BaseEntity
     {
-        public string BILL_ID { get; set; }
-        public DateTime Time { get; set; }
+        public string Bill_Id { get; set; }
+
+        public DateTime PaidDate { get; set; }
+
         public string Method { get; set; }
-        public Debt Debt { get; set; }
+
+        public string BillId { get; set; }
+        public virtual Bill Bill { get; set; }
     }
 
     public class PaymentMap
@@ -16,13 +20,10 @@ namespace Models
         public PaymentMap(EntityTypeBuilder<Payment> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
-            entityBuilder.Property(t => t.BILL_ID)
+            entityBuilder.Property(t => t.Bill_Id)
                          .IsRequired();
             entityBuilder.Property(t => t.Method)
                          .IsRequired();
-            entityBuilder.HasOne(x => x.Debt)
-                         .WithOne(b => b.Payment)
-                         .HasForeignKey<Debt>(b => b.PaymentId); ;
         }
     }
 }

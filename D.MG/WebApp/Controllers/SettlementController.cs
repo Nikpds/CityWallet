@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
 using System.Threading.Tasks;
@@ -6,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace WebApp.Controllers
 {
+    [Produces("application/json")]
+    [Authorize]
     public class SettlementController : Controller
     {
         private UnitOfWork db;
