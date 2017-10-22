@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SqlContext;
 using ApiManager;
+using System.IO;
+using Microsoft.Extensions.Configuration;
+using Models;
 
 namespace Testing
 {
@@ -9,17 +12,27 @@ namespace Testing
 
         static void Main(string[] args)
         {
+
+            string path = Directory.GetCurrentDirectory().Replace("Testing", "WebApp");
+
             var builder = new DbContextOptionsBuilder<DataContext>();
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+              .SetBasePath(@path)
+              .AddJsonFile("appsettings.json")
+              .Build();
 
-            builder.UseSqlServer("Server=DESKTOP-PHEK9II;Database=qualco4;Integrated Security=true;");
+            var connection = configuration["ConnectionStrings:DefaultConnection"];
 
-            var _db = new UnitOfWork(new DataContext(builder.Options));
+            builder.UseSqlServer(connection);
+
+            var _db = new DataContext(builder.Options);
             var users = UserManager.InsertUsers();
 
             var count = users.Count;
-
-            _db.UserRepository.InsertMany(users);
-            _db.Save();
+            DbSet<User> dbSet;
+            dbSet = _db.Set<User>();
+            dbSet.AddRange(users);
+            _db.SaveChanges();
 
         }
     }

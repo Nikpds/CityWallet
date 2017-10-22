@@ -8,20 +8,13 @@ using System.Threading.Tasks;
 
 namespace SqlContext.Repos
 {
-    public class PaymentRepository : IRepository<Payment>
+    public class PaymentRepository : IPaymentRepository
     {
         private DbSet<Payment> dbSet;
 
         public PaymentRepository(DataContext context)
         {
             dbSet = context.Set<Payment>();
-        }
-
-        public async Task<bool> Delete(string id)
-        {
-            var entity = await dbSet.FindAsync(id);
-            dbSet.Remove(entity);
-            return true;
         }
 
         public async Task<Payment> GetById(string id)
@@ -52,13 +45,6 @@ namespace SqlContext.Repos
             return result;
         }
 
-        public Payment Update(Payment entity)
-        {
-            var result = dbSet.Update(entity);
-
-            return result.Entity;
-        }
-
         public async Task<IEnumerable<Payment>> GetAll(string id)
         {
             var result = await dbSet.Where(x => x.Bill.UserId == id).ToListAsync();
@@ -73,5 +59,9 @@ namespace SqlContext.Repos
             return true;
         }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

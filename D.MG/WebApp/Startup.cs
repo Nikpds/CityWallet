@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using System;
+using SqlContext.Repos;
 
 namespace WebApp
 {
@@ -31,7 +32,13 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddTransient<UnitOfWork>();
+            
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBillRepository, BillRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<ISettlementRepository, SettlementRepository>();
+
             services.AddTransient<IAuthenticationProvider, AuthenticationProvider>();
             services.AddSingleton<IAuthenticationProvider>(p => auth);
 
@@ -53,16 +60,16 @@ namespace WebApp
                     IssuerSigningKey = _tokensKey
                 };
             });
-            
+
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-           
+
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
-            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

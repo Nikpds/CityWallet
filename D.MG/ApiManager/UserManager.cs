@@ -1,20 +1,28 @@
 ﻿using Models;
+using SqlContext.Repos;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace ApiManager
 {
     public class UserManager
     {
+        private IUserRepository _repo;
+
+        public UserManager(IUserRepository userRepo)
+        {
+            _repo = userRepo;
+        }
+
         public static List<User> InsertUsers()
         {
             var users = new List<User>();
             string[] headers;
             string[] fields;
             int counter = 0;
-            var fileStream = File.ReadAllLines(@"C:\Users\Nickos\Source\github\DebtManagment\assets\CitizenDebts_1M_3.txt");
+            var fileStream = File.ReadAllLines(@"D:\git\DebtManagment\assets\CitizenDebts_1M_3.txt");
 
             var firstline = fileStream[0];
             headers = firstline.Split(";");
@@ -68,6 +76,20 @@ namespace ApiManager
         {
             var dateformat = date.Substring(0, 4) + "-" + date.Substring(4, 2) + "-" + date.Substring(6, 2);
             return DateTime.Parse(dateformat);
+        }
+
+        public async Task<User> GetUser(string id)
+        {
+            var user = await _repo.GetById(id);
+           
+            return user;
+        }
+
+        public async Task<User> GetByUsername(string username)
+        {
+            var user = await _repo.GetByUsername(username);
+
+            return user;
         }
     }
 }

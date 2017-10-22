@@ -115,6 +115,22 @@ namespace SqlContext.Migrations
                     b.ToTable("Settlement");
                 });
 
+            modelBuilder.Entity("Models.SettlementType", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("Downpayment");
+
+                    b.Property<int>("Installments");
+
+                    b.Property<double>("Interest");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SettlementType");
+                });
+
             modelBuilder.Entity("Models.User", b =>
                 {
                     b.Property<string>("Id")

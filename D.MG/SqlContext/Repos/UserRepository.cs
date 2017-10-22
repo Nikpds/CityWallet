@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace SqlContext.Repos
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IUserRepository
     {
         private DbSet<User> dbSet;
-
+        private DataContext ctx;
         public UserRepository(DataContext context)
         {
+            ctx = context;
             dbSet = context.Set<User>();
         }
 
@@ -23,41 +24,18 @@ namespace SqlContext.Repos
             return entity;
         }
 
-        public async Task<bool> Delete(string id)
-        {
-            var entity = await dbSet.FindAsync(id);
-
-            dbSet.Remove(entity);
-
-            return true;
-        }
-
         public async Task<User> GetById(string id)
         {
-            var entity = await dbSet.SingleOrDefaultAsync(s=>s.Id == id);
+            var entity = await dbSet.SingleOrDefaultAsync(s => s.Id == id);
 
             return entity;
-        }
-
-        public async Task<User> Insert(User entity)
-        {
-            var user = await dbSet.AddAsync(entity);
-
-            return user.Entity;
         }
 
         public bool InsertMany(List<User> entities)
         {
             dbSet.AddRange(entities);
-
+            
             return true;
-        }
-
-        public async Task<IEnumerable<User>> GetAll()
-        {
-            var users = await dbSet.ToListAsync();
-
-            return users;
         }
 
         public User Update(User entity)
@@ -67,10 +45,14 @@ namespace SqlContext.Repos
             return user.Entity;
         }
 
-        public Task<IEnumerable<User>> GetAll(string id)
+        public void Dispose()
         {
-            throw new NotImplementedException();
+            ctx.Dispose();
         }
-        
+
+        public void Save()
+        {
+            ctx.SaveChangesAsync();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SqlContext;
+using SqlContext.Repos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,11 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class BillController : Controller
     {
-        private UnitOfWork db;
+        private IBillRepository _repo;
 
-        public BillController(UnitOfWork u)
+        public BillController(IBillRepository repo)
         {
-            db = u;
+            _repo = repo;
         }
 
         [HttpGet("bills/{id}")]
@@ -26,7 +27,8 @@ namespace WebApp.Controllers
         {
             try
             {
-                var bills = await db.BillRepository.GetAll(id);
+                var bills = await _repo.GetAll(id);
+                
 
                 return Ok(bills);
             }

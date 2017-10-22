@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
+using SqlContext.Repos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,11 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class PaymentController : Controller
     {
-        private UnitOfWork db;
+        private IPaymentRepository _repo;
 
-        public PaymentController(UnitOfWork u)
+        public PaymentController(IPaymentRepository repo)
         {
-            db = u;
+            _repo = repo;
         }
 
         [HttpGet("{id}")]
@@ -29,11 +30,8 @@ namespace WebApp.Controllers
         {
             try
             {
-                var payment = await db.PaymentRepository.GetById(id);
 
-                db.Save();
-
-                return Ok(payment);
+                return Ok();
             }
             catch
             {
@@ -46,11 +44,9 @@ namespace WebApp.Controllers
         {
             try
             {
-                var payments = await db.PaymentRepository.GetAll(id);
 
-                db.Save();
 
-                return Ok(payments);
+                return Ok();
             }
             catch
             {

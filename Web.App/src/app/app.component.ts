@@ -23,11 +23,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
-      .subscribe((user) => {
-        this.user = user;
-        this.getUser();
-      }));
-    this.getUser();
+      .subscribe((user) => this.user = user));
+    //this.getUser();
   }
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

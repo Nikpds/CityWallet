@@ -88,6 +88,8 @@ namespace SqlContext
             settlementBuilder.HasMany(x => x.Bills)
                              .WithOne(w => w.Settlement)
                              .HasForeignKey(h => h.SettlementId);
+
+            var settlementTypeBuilder = modelBuilder.Entity<SettlementType>();
         }
     }
 }

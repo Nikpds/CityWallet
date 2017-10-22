@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
+using SqlContext.Repos;
+using System;
 using System.Threading.Tasks;
 
 
@@ -11,11 +13,11 @@ namespace WebApp.Controllers
     [Authorize]
     public class SettlementController : Controller
     {
-        private UnitOfWork db;
+        private ISettlementRepository _repo;
 
-        public SettlementController(UnitOfWork u)
+        public SettlementController(ISettlementRepository repo)
         {
-            db = u;
+            _repo = repo;
         }
 
         [HttpPost("")]
@@ -23,13 +25,13 @@ namespace WebApp.Controllers
         {
             try
             {
-                var result = await db.SettlementRepository.Insert(entity);
+                //var result = await db.SettlementRepository.Insert(entity);
 
-                db.Save();
+                //db.Save();
 
-                return Ok(result);
+                return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
@@ -40,13 +42,13 @@ namespace WebApp.Controllers
         {
             try
             {
-                var settlement = await db.SettlementRepository.GetById(id);
+                //var settlement = await db.SettlementRepository.GetById(id);
 
-                db.Save();
+                //db.Save();
 
-                return Ok(settlement);
+                return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
@@ -56,13 +58,13 @@ namespace WebApp.Controllers
         {
             try
             {
-                var settlements = await db.SettlementRepository.GetAll();
+                //var settlements = await db.SettlementRepository.GetAll();
 
-                db.Save();
+                //db.Save();
 
-                return Ok(settlements);
+                return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
@@ -73,18 +75,14 @@ namespace WebApp.Controllers
         {
             try
             {
-                var deleted = await db.SettlementRepository.Delete(id);
-
-                db.Save();
-
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }
         }
-        
+
         [HttpGet("settlements")]
         public async Task<IActionResult> ImportUsers()
         {
@@ -92,7 +90,7 @@ namespace WebApp.Controllers
             {
                 return Ok();
             }
-            catch
+            catch (Exception ex)
             {
                 return BadRequest();
             }

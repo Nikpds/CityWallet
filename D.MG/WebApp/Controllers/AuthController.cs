@@ -1,8 +1,10 @@
-﻿using AuthProvider;
+﻿using ApiManager;
+using AuthProvider;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using SqlContext;
+using SqlContext.Repos;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,13 +17,14 @@ namespace WebApp.Controllers
     [Route("[controller]/[action]")]
     public class AuthController : Controller
     {
-        private UnitOfWork _db;
+        private IUserRepository _userRepo;
         private readonly IConfiguration _config;
         private readonly SymmetricSecurityKey _key;
 
-        public AuthController(UnitOfWork db, IConfiguration config, IAuthenticationProvider auth)
+        public AuthController(IUserRepository userRepo, 
+            IConfiguration config, IAuthenticationProvider auth)
         {
-            _db = db;
+            _userRepo = userRepo;
             _config = config;
             _key = auth.sigingKey;
         }
@@ -31,7 +34,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var dbUser = await _db.UserRepository.GetByUsername(model.Username);
+                var dbUser = await _userRepo.GetByUsername(model.Username);
 
                 if (dbUser != null && PasswordHasher.VerifyHashedPassword(dbUser.Password, model.Password))
                 {
@@ -56,7 +59,8 @@ namespace WebApp.Controllers
                     return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
 
                 }
-                else{
+                else
+                {
                     return Ok();
                 }
 

@@ -1,8 +1,10 @@
-﻿using AuthProvider;
+﻿using ApiManager;
+using AuthProvider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
+using SqlContext.Repos;
 using System;
 using System.Threading.Tasks;
 
@@ -13,12 +15,13 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
+        private UserManager _manager;
+        private IUserRepository _repo;
 
-        private UnitOfWork db;
-
-        public UserController(UnitOfWork u)
+        public UserController(UserManager mng, IUserRepository repo)
         {
-            db = u;
+            _manager = mng;
+            _repo = repo;
         }
 
         [HttpGet("{id}")]
@@ -26,8 +29,7 @@ namespace WebApp.Controllers
         {
             try
             {
-                var user = await db.UserRepository.GetById(id);
-
+                var user = await _manager.GetUser(id);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -37,29 +39,14 @@ namespace WebApp.Controllers
         }
 
         [HttpPut("change/password")]
-        public IActionResult GetbyId(PasswordReset psw)
+        public IActionResult ChangePassword(PasswordReset psw)
         {
             try
             {
-                var changed = new User();
-                var user = db.UserRepository.Update(changed);
+                //var changed = new User();
+                //var user = db.UserRepository.Update(changed);
 
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
-        }
-
-        [HttpGet("all")]
-        public async Task<IActionResult> GetAll()
-        {
-            try
-            {
-                var users = await db.UserRepository.GetAll();
-
-                return Ok(users);
+                return Ok();
             }
             catch (Exception ex)
             {

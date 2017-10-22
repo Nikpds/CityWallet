@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace SqlContext
 {
@@ -11,9 +9,11 @@ namespace SqlContext
     {
         public DataContext CreateDbContext(string[] args)
         {
+            string path = Directory.GetCurrentDirectory().Replace("SqlContext", "WebApp");
+
             var builder = new DbContextOptionsBuilder<DataContext>();
             IConfigurationRoot configuration = new ConfigurationBuilder()
-              .SetBasePath(@"C:\Users\Nickos\Source\github\DebtManagment\D.MG\WebApp\")
+              .SetBasePath(@path)
               .AddJsonFile("appsettings.json")
               .Build();
 

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace SqlContext.Repos
 {
-   public class SettlementRepository:IRepository<Settlement>
+    public class SettlementRepository : ISettlementRepository
     {
         private DbSet<Settlement> dbSet;
-        
+
         public SettlementRepository(DataContext context)
         {
             dbSet = context.Set<Settlement>();
@@ -38,19 +38,12 @@ namespace SqlContext.Repos
 
             return result.Entity;
         }
-        
+
         public async Task<IEnumerable<Settlement>> GetAll()
         {
             var result = await dbSet.ToListAsync();
 
             return result;
-        }
-
-        public Settlement Update(Settlement entity)
-        {
-            var result = dbSet.Update(entity);
-
-            return result.Entity;
         }
 
         public async Task<IEnumerable<Settlement>> GetAll(string id)
@@ -59,6 +52,11 @@ namespace SqlContext.Repos
             var result = await dbSet.ToListAsync();
 
             return result;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
