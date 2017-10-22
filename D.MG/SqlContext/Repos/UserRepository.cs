@@ -34,7 +34,7 @@ namespace SqlContext.Repos
 
         public async Task<User> GetById(string id)
         {
-            var entity = await dbSet.FindAsync(id);
+            var entity = await dbSet.Include(x=>x.Address).SingleOrDefaultAsync(s=>s.Id == id);
 
             return entity;
         }

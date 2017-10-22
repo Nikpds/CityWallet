@@ -44,7 +44,6 @@ namespace Models
                          .WithOne(w => w.User)
                          .HasForeignKey(h => h.UserId)
                          .IsRequired();
-          
             entityBuilder.HasOne(x => x.Address)
                          .WithOne(b=>b.User)
                          .HasForeignKey<Address>(b=>b.UserId)

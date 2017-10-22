@@ -41,8 +41,8 @@ export class AuthService {
   private initUserData(_token?: any) {
     const token = _token ? _token : localStorage.getItem('token');
     const tokeninfo = this.parseJwt(token);
-    var _user = new User
-    _user.id = tokeninfo.Id
+    const _user = new User();
+    _user.id = tokeninfo.Id;
     _user.name = tokeninfo.Name;
     _user.lastname = tokeninfo.Lastname;
     this.user = _user;
@@ -54,7 +54,7 @@ export class AuthService {
 
   public login(username: string, password: string): Observable<boolean> {
 
-    const body: any = { "Username": username, "Password": password };
+    const body: any = { 'Username': username, 'Password': password };
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
@@ -75,25 +75,25 @@ export class AuthService {
   }
 
   public logOut() {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     this.user = null;
     this.router.navigate(['/login']);
   }
 
 
   parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(window.atob(base64));
-  };
+  }
 
   private encodeParams(params: any): string {
-    let body: string = "";
-    for (const key in params) {
+    let body = '';
+    for (let key in params) {
       if (body.length) {
-        body += "&";
+        body += '&';
       }
-      body += key + "=";
+      body += key + '=';
       body += encodeURIComponent(params[key]);
     }
     return body;
@@ -115,11 +115,11 @@ export class AuthService {
     }
   }
 
-  //Rest API HTTP methods
+  // Rest API HTTP methods
   public get(url: string): Observable<any> {
     return this.authJsonHeaders().flatMap(res => {
       return this.http.get(url, { headers: res })
-        .map(res => res)
+        .map(result => result)
         .catch(err => this.handleError(err));
     });
   }
@@ -127,7 +127,7 @@ export class AuthService {
   public post(url: string, data: any): Observable<any> {
     return this.authJsonHeaders().flatMap(res => {
       return this.http.post(url, data, { headers: res })
-        .map(res => res)
+        .map(result => result)
         .catch(err => this.handleError(err));
     });
   }
@@ -135,7 +135,7 @@ export class AuthService {
   public put(url: string, data: any): Observable<any> {
     return this.authJsonHeaders().flatMap(res => {
       return this.http.put(url, data, { headers: res })
-        .map(res => res)
+        .map(result => result)
         .catch(err => this.handleError(err));
     });
   }
@@ -143,13 +143,13 @@ export class AuthService {
   public delete(url: string): Observable<any> {
     return this.authJsonHeaders().flatMap(res => {
       return this.http.delete(url, { headers: res })
-        .map(res => res)
+        .map(result => result)
         .catch(err => this.handleError(err));
     });
   }
 
   private handleError(error: Response) {
-    if (error.status == 401) {
+    if (error.status === 401) {
       this.router.navigateByUrl('/login');
       return Observable.throw(error.statusText);
     } else {

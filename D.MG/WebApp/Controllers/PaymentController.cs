@@ -23,7 +23,6 @@ namespace WebApp.Controllers
         {
             db = u;
         }
-        
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetbyId(string id)
@@ -64,12 +63,12 @@ namespace WebApp.Controllers
         {
             try
             {
-                var payments = BillManager.Payments(entities);
-                var result = db.PaymentRepository.UpdateMany(payments);
+                //var payments = BillManager.Payments(entities);
+                //var result = db.PaymentRepository.UpdateMany(payments);
 
-                db.Save();
+                //db.Save();
 
-                return Ok(result);
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -78,7 +77,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost("creditcard")]
-        public IActionResult ValidateCreditCard([FromBody] CrediCard card)
+        public IActionResult ValidateCreditCard([FromBody] CreditCard card)
         {
             try
             {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { SnotifyService } from 'ng-snotify';
 
@@ -11,7 +11,7 @@ import { UserService } from './user/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   user: User;
 
@@ -23,20 +23,27 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
-      .subscribe((user) => this.user = user));
+      .subscribe((user) => {
+        this.user = user;
+        if (this.user && this.user.id) {
+          this.getUser();
+        }
+      }));
 
-    this.userService.getUser(this.user.id).subscribe(res => {
-      this.auth.user = res;
-    }, error => {
-      this.notify.error(error,"Σφάλμα!")
-    });
   }
-
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   logout() {
     this.auth.logOut();
+  }
+
+  getUser() {
+    this.userService.getUser(this.user.id).subscribe(res => {
+      this.auth.user = res;
+    }, error => {
+      this.notify.error(error, 'Σφάλμα!');
+    });
   }
 }

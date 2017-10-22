@@ -21,57 +21,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
   step = 0;
   creditCard = new CreditCard();
 
-  constructor(
-    private billService: BillService,
-    private loader: LoaderService,
-    private auth: AuthService,
-    private notify: SnotifyService
-  ) { }
-
-
-  previousStep() {
-    this.step = this.step == 0 ? this.step : this.step - 1;
-  }
-
-  nextStep() {
-    this.step = this.step == 2 ? this.step : this.step + 1;
-  }
-
-  ediCreditCard(step: number) {
-    this.step = step;
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  ngOnInit() {
-    this.subscriptions.push(this.auth.user$
-      .subscribe((user) => this.user = user));
-    this.subscriptions.push(this.billService.billsToPay$
-      .subscribe((res) => this.billsForPay = res));
-  }
-
-  paybills() {
-    this.billService.validateCreditCard().subscribe(res => {
-      this.notify.async('This will resolve with success', this.successAction);
-    }, error => {
-
-    });
-
-  }
-
-  payBills() {
-    this.loader.show();
-    this.billService.paybills().subscribe(res => {
-      this.notify.success("Αδυναμία Εισαγωγής")
-      this.loader.hide();
-    }, error => {
-      this.notify.error("Αδυναμία Εισαγωγής")
-      this.loader.hide();
-    });
-  }
-
   successAction = Observable.create(observer => {
     setTimeout(() => {
       observer.next({
@@ -92,6 +41,59 @@ export class PaymentComponent implements OnInit, OnDestroy {
       observer.complete();
     }, 5000);
   });
+
+  constructor(
+    private billService: BillService,
+    private loader: LoaderService,
+    private auth: AuthService,
+    private notify: SnotifyService
+  ) { }
+
+
+  previousStep() {
+    this.step = this.step === 0 ? this.step : this.step - 1;
+  }
+
+  nextStep() {
+    this.step = this.step === 2 ? this.step : this.step + 1;
+  }
+
+  ediCreditCard(step: number) {
+    this.step = step;
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  ngOnInit() {
+    this.subscriptions.push(this.auth.user$
+      .subscribe((user) => this.user = user));
+    this.subscriptions.push(this.billService.billsToPay$
+      .subscribe((res) => this.billsForPay = res));
+  }
+
+  // paybills() {
+  //   this.billService.validateCreditCard().subscribe(res => {
+  //     this.notify.async('This will resolve with success', this.successAction);
+  //   }, error => {
+
+  //   });
+
+  // }
+
+  payBills() {
+    this.loader.show();
+    this.billService.paybills().subscribe(res => {
+      this.notify.success('Αδυναμία Εισαγωγής');
+      this.loader.hide();
+    }, error => {
+      this.notify.error('Αδυναμία Εισαγωγής');
+      this.loader.hide();
+    });
+  }
+
+
 }
 
 
