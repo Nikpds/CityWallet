@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SqlContext.Repos
@@ -17,36 +16,55 @@ namespace SqlContext.Repos
             dbSet = context.Set<Bill>();
         }
 
-        public Task<bool> Delete(string id)
+        public async Task<bool> Delete(string id)
         {
-            throw new NotImplementedException();
+            var entity = await dbSet.FindAsync(id);
+
+            dbSet.Remove(entity);
+
+            return true;
         }
 
-        public Task<IEnumerable<Bill>> GetAll()
+        public async Task<Bill> GetById(string id)
         {
-            throw new NotImplementedException();
+            var entity = await dbSet.FindAsync(id);
+
+            return entity;
         }
 
-        public async Task<IEnumerable<Bill>> GetAll(string id)
+        public async Task<Bill> Insert(Bill entity)
         {
-            var bills = await dbSet.Where(x => x.UserId == id).ToListAsync();
+            var result = await dbSet.AddAsync(entity);
 
-            return bills;
+            return result.Entity;
         }
 
-        public Task<Bill> GetById(string id)
+        public bool UpdateMany(List<Bill> entities)
         {
-            throw new NotImplementedException();
+            dbSet.UpdateRange(entities);
+
+            return true;
         }
 
-        public Task<Bill> Insert(Bill entity)
+        public async Task<IEnumerable<Bill>> GetAll(string userId)
         {
-            throw new NotImplementedException();
+            var result = await dbSet.Where(x=>x.UserId==userId).ToListAsync();
+
+            return result;
         }
 
         public Bill Update(Bill entity)
         {
-            throw new NotImplementedException();
+            var result = dbSet.Update(entity);
+
+            return result.Entity;
+        }
+
+        public async Task<IEnumerable<Bill>> GetAll()
+        {
+            var result =await dbSet.ToListAsync();
+
+            return result;
         }
     }
 }
