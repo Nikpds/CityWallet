@@ -22,7 +22,6 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "angular2-jwt": "^0.2.3",
-    "bootstrap": "^4.0.0-alpha.6",
     "bulma": "^0.5.3",
     "bulmaswatch": "^0.5.1",
     "cool-checkboxes-for-bulma.io": "^1.1.0",

@@ -25,11 +25,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => {
         this.user = user;
-        if (this.user && this.user.id) {
-          this.getUser();
-        }
+        this.getUser();
       }));
-
+    this.getUser();
   }
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
@@ -40,10 +38,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   getUser() {
-    this.userService.getUser(this.user.id).subscribe(res => {
-      this.auth.user = res;
-    }, error => {
-      this.notify.error(error, 'Σφάλμα!');
-    });
+    if (this.user && this.user.id) {
+      this.userService.getUser(this.user.id).subscribe(res => {
+        this.auth.user = res;
+      }, error => {
+        this.notify.error(error, 'Σφάλμα!');
+      });
+    }
   }
 }
