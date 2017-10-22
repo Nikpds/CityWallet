@@ -14,18 +14,5 @@ namespace Models
         public string BillId { get; set; }
         public virtual Bill Bill { get; set; }
     }
-
-    public class PaymentMap
-    {
-        public PaymentMap(EntityTypeBuilder<Payment> entityBuilder)
-        {
-            entityBuilder.HasKey(t => t.Id);
-            entityBuilder.Property(t => t.Bill_Id)
-                         .IsRequired()
-                         .HasAnnotation("unique",true);
-            entityBuilder.Property(t => t.Method)
-                         .IsRequired();
-            
-        }
-    }
+    
 }

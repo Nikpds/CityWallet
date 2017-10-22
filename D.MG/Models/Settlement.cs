@@ -18,24 +18,4 @@ namespace Models
             Bills = new HashSet<Bill>();
         }
     }
-
-    public class SettlementMap
-    {
-        public SettlementMap(EntityTypeBuilder<Settlement> entityBuilder)
-        {
-            entityBuilder.HasKey(t => t.Id);
-            entityBuilder.Property(t => t.Interest)
-                         .IsRequired();
-            entityBuilder.Property(t => t.Installments)
-                         .IsRequired();
-            entityBuilder.Property(t => t.Downpayment)
-                         .IsRequired();
-            entityBuilder.Property(t => t.RequestDate)
-                         .IsRequired();
-            entityBuilder.HasMany(x => x.Bills)
-                         .WithOne(w => w.Settlement)
-                         .HasForeignKey(h => h.SettlementId);
-        }
-
-    }
 }

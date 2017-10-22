@@ -12,10 +12,82 @@ namespace SqlContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            new UserMap(modelBuilder.Entity<User>());
-            new PaymentMap(modelBuilder.Entity<Payment>());
-            new BillMap(modelBuilder.Entity<Bill>());
-            new SettlementMap(modelBuilder.Entity<Settlement>());
+
+            var userBuilder = modelBuilder.Entity<User>();
+
+            userBuilder.HasKey(t => t.Id);
+            userBuilder.Property(t => t.Vat)
+                       .IsRequired()
+                       .HasAnnotation("unique", true);
+            userBuilder.Property(t => t.Name)
+                       .IsRequired();
+            userBuilder.Property(t => t.Lastname)
+                       .IsRequired();
+            userBuilder.Property(t => t.Password)
+                       .IsRequired();
+            userBuilder.Property(t => t.Email)
+                       .IsRequired()
+                       .HasAnnotation("unique", true);
+            userBuilder.HasMany(x => x.Bills)
+                       .WithOne(w => w.User)
+                       .HasForeignKey(h => h.UserId)
+                       .IsRequired();
+            userBuilder.HasOne(x => x.Address)
+                       .WithOne(b => b.User)
+                       .HasForeignKey<Address>(b => b.UserId)
+                       .IsRequired()
+                       .OnDelete(DeleteBehavior.Cascade);
+
+            var billBuilder = modelBuilder.Entity<Bill>();
+
+            billBuilder.HasKey(t => t.Id);
+            billBuilder.Property(t => t.Bill_Id)
+                        .IsRequired()
+                        .HasAnnotation("unique", true);
+            billBuilder.Property(t => t.Amount)
+                       .IsRequired();
+            billBuilder.Property(t => t.DateDue)
+                       .IsRequired();
+            billBuilder.Property(t => t.Description)
+                       .IsRequired();
+            billBuilder.HasOne(x => x.Payment)
+                       .WithOne(b => b.Bill)
+                       .HasForeignKey<Payment>(b => b.BillId)
+                       .IsRequired()
+                       .OnDelete(DeleteBehavior.Cascade);
+
+
+            var paymentBuilder = modelBuilder.Entity<Payment>();
+
+            paymentBuilder.HasKey(t => t.Id);
+            paymentBuilder.Property(t => t.Bill_Id)
+                          .IsRequired()
+                          .HasAnnotation("unique", true);
+            paymentBuilder.Property(t => t.Method)
+                          .IsRequired();
+
+
+            var addressBuilder = modelBuilder.Entity<Address>();
+
+            addressBuilder.Property(x => x.Street)
+                          .IsRequired();
+            addressBuilder.Property(x => x.Country)
+                          .IsRequired();
+
+            var settlementBuilder = modelBuilder.Entity<Settlement>();
+
+            settlementBuilder.HasKey(t => t.Id);
+            settlementBuilder.Property(t => t.Interest)
+                             .IsRequired();
+            settlementBuilder.Property(t => t.Installments)
+                             .IsRequired();
+            settlementBuilder.Property(t => t.Downpayment)
+                             .IsRequired();
+            settlementBuilder.Property(t => t.RequestDate)
+                             .IsRequired();
+            settlementBuilder.HasMany(x => x.Bills)
+                             .WithOne(w => w.Settlement)
+                             .HasForeignKey(h => h.SettlementId);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace ApiManager
             {
                 for (var j = 1; j < fileStream.Length; j++)
                 {
-                    counter++;
+
                     User user = new User();
                     Bill debt = new Bill();
                     user.Password = AuthProvider.PasswordHasher.HashPassword("123456");
@@ -39,11 +39,11 @@ namespace ApiManager
                     debt.DateDue = ConvertDate(fields[10]);
                     debt.Bill_Id = fields[7];
 
-                    var userIndex = users.FindIndex(x => x.Vat == user.Vat);
-                    Console.WriteLine(counter);
-                    if (userIndex != -1)
+                    var exists = users.FindIndex(x => x.Vat == user.Vat);
+
+                    if (exists > -1)
                     {
-                        users[userIndex].Bills.Add(debt);
+                        users[exists].Bills.Add(debt);
                     }
                     else
                     {
@@ -66,7 +66,7 @@ namespace ApiManager
 
         private static DateTime ConvertDate(string date)
         {
-            var dateformat = date.Substring(0,4) + "-" + date.Substring(4, 2) + "-" + date.Substring(6, 2);
+            var dateformat = date.Substring(0, 4) + "-" + date.Substring(4, 2) + "-" + date.Substring(6, 2);
             return DateTime.Parse(dateformat);
         }
     }

@@ -22,28 +22,5 @@ namespace Models
         public DateTime DateDue { get; set; }
     }
 
-    public class BillMap
-    {
-        public BillMap(EntityTypeBuilder<Bill> entityBuilder)
-        {
-            entityBuilder.HasKey(t => t.Id);
-            entityBuilder.Property(t => t.Bill_Id)
-                         .IsRequired()
-                         .HasAnnotation("unique", true);
-            entityBuilder.Property(t => t.Amount)
-                         .IsRequired();
-            entityBuilder.Property(t => t.DateDue)
-                         .IsRequired();
-            entityBuilder.Property(t => t.Description)
-                         .IsRequired();
-            entityBuilder.HasOne(x => x.Payment)
-                         .WithOne(b => b.Bill)
-                         .HasForeignKey<Payment>(b => b.BillId)
-                         .IsRequired()
-                         .OnDelete(DeleteBehavior.Cascade);
-
-        }
-    }
-
 }
 
