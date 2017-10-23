@@ -56,6 +56,7 @@ export class Payment {
     paidDate: Date;
     method: string;
     bill: Bill;
+    billId: string;
     bill_Id: string;
 }
 

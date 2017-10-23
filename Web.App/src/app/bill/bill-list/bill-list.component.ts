@@ -47,7 +47,7 @@ export class BillListComponent implements OnInit, OnDestroy {
       this.billsForPay.push(res[0]);
       this.billsForPay.push(res[1]);
       this.billsForPay.push(res[2]);
-      console.log(this.billsForPay);
+      console.log(res);
       this.loader.hide();
     }, error => {
       this.loader.hide();

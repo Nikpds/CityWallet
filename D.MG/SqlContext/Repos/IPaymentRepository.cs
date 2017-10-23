@@ -16,6 +16,6 @@ namespace SqlContext.Repos
 
         Task<IEnumerable<Payment>> GetAll();
 
-        Task<IEnumerable<Payment>> GetAll(string id);
+        Task<IEnumerable<Payment>> GetUserPayments(string id);
     }
 }

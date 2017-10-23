@@ -11,10 +11,12 @@ namespace SqlContext.Repos
     public class PaymentRepository : IPaymentRepository
     {
         private DbSet<Payment> dbSet;
+        private DataContext ctx;
 
         public PaymentRepository(DataContext context)
         {
-            dbSet = context.Set<Payment>();
+            ctx = context;
+            dbSet = ctx.Set<Payment>();
         }
 
         public async Task<Payment> GetById(string id)
@@ -34,6 +36,7 @@ namespace SqlContext.Repos
         public bool InsertMany(List<Payment> entities)
         {
             dbSet.AddRange(entities);
+            ctx.SaveChanges();
 
             return true;
         }
@@ -45,7 +48,7 @@ namespace SqlContext.Repos
             return result;
         }
 
-        public async Task<IEnumerable<Payment>> GetAll(string id)
+        public async Task<IEnumerable<Payment>> GetUserPayments(string id)
         {
             var result = await dbSet.Where(x => x.Bill.UserId == id).ToListAsync();
 
@@ -61,7 +64,7 @@ namespace SqlContext.Repos
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            ctx.Dispose();
         }
     }
 }

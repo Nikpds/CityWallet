@@ -11,8 +11,8 @@ using System;
 namespace SqlContext.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20171022164511_init")]
-    partial class init
+    [Migration("20171023193042_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,7 +26,7 @@ namespace SqlContext.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Country")
+                    b.Property<string>("County")
                         .IsRequired();
 
                     b.Property<string>("Street")

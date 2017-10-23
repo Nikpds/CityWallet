@@ -26,7 +26,7 @@ namespace Testing
             builder.UseSqlServer(connection);
 
             var _db = new DataContext(builder.Options);
-            var users = UserManager.InsertUsers();
+            var users = UserService.InsertUsers();
 
             var count = users.Count;
             DbSet<User> dbSet;

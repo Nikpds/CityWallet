@@ -25,7 +25,7 @@ namespace SqlContext.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Country")
+                    b.Property<string>("County")
                         .IsRequired();
 
                     b.Property<string>("Street")

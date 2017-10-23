@@ -15,25 +15,25 @@ namespace SqlContext
 
             var userBuilder = modelBuilder.Entity<User>();
 
-            userBuilder.HasKey(t => t.Id);
-            userBuilder.Property(t => t.Vat)
+            userBuilder.HasKey(x => x.Id);
+            userBuilder.Property(x => x.Vat)
                        .IsRequired()
                        .HasAnnotation("unique", true);
-            userBuilder.Property(t => t.Name)
+            userBuilder.Property(x => x.Name)
                        .IsRequired();
-            userBuilder.Property(t => t.Lastname)
+            userBuilder.Property(x => x.Lastname)
                        .IsRequired();
-            userBuilder.Property(t => t.Password)
+            userBuilder.Property(x => x.Password)
                        .IsRequired();
-            userBuilder.Property(t => t.Email)
+            userBuilder.Property(x => x.Email)
                        .IsRequired()
                        .HasAnnotation("unique", true);
             userBuilder.HasMany(x => x.Bills)
-                       .WithOne(w => w.User)
-                       .HasForeignKey(h => h.UserId)
+                       .WithOne(x => x.User)
+                       .HasForeignKey(x => x.UserId)
                        .IsRequired();
             userBuilder.HasOne(x => x.Address)
-                       .WithOne(b => b.User)
+                       .WithOne(u => u.User)
                        .HasForeignKey<Address>(b => b.UserId)
                        .IsRequired()
                        .OnDelete(DeleteBehavior.Cascade);
@@ -42,8 +42,8 @@ namespace SqlContext
 
             billBuilder.HasKey(t => t.Id);
             billBuilder.Property(t => t.Bill_Id)
-                        .IsRequired()
-                        .HasAnnotation("unique", true);
+                       .IsRequired()
+                       .HasAnnotation("unique", true);
             billBuilder.Property(t => t.Amount)
                        .IsRequired();
             billBuilder.Property(t => t.DateDue)
@@ -71,7 +71,7 @@ namespace SqlContext
 
             addressBuilder.Property(x => x.Street)
                           .IsRequired();
-            addressBuilder.Property(x => x.Country)
+            addressBuilder.Property(x => x.County)
                           .IsRequired();
 
             var settlementBuilder = modelBuilder.Entity<Settlement>();

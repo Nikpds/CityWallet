@@ -54,9 +54,15 @@ export class BillService implements OnInit {
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
-  validateCreditCard(){
+  validateCreditCard() {
     return this.auth.post(this.payUrl + "/creditcard", this.creditCard)
-    .map((res: Response) => res.json())
-    .catch((error: string) => Observable.throw(error || 'Server error'))
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
+
+  getPayments(id: string) {
+    return this.auth.get(this.payUrl + "/payments/" + id)
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using SqlContext.Repos;
+using ApiManager;
 
 namespace WebApp
 {
@@ -21,6 +22,7 @@ namespace WebApp
             var tokensKey = new Guid().ToString();
             _tokensKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokensKey));
             auth = new AuthenticationProvider(_tokensKey);
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -32,8 +34,9 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            
 
+            services.AddScoped<BillService>();
+            services.AddScoped<UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBillRepository, BillRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
@@ -61,12 +64,13 @@ namespace WebApp
                 };
             });
 
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(
+                 options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
 

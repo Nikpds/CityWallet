@@ -11,7 +11,7 @@ namespace SqlContext.Repos
 
         bool UpdateMany(List<Bill> entities);
 
-        Task<IEnumerable<Bill>> GetAll(string userId);
+        Task<IEnumerable<Bill>> GetUnpaidBills(string userId);
 
         Bill Update(Bill entity);
     }

@@ -14,7 +14,7 @@ namespace SqlContext.Repos
         public UserRepository(DataContext context)
         {
             ctx = context;
-            dbSet = context.Set<User>();
+            dbSet = ctx.Set<User>();
         }
 
         public async Task<User> GetByUsername(string username)
@@ -26,7 +26,7 @@ namespace SqlContext.Repos
 
         public async Task<User> GetById(string id)
         {
-            var entity = await dbSet.SingleOrDefaultAsync(s => s.Id == id);
+            var entity = await dbSet.Include(x => x.Address).SingleOrDefaultAsync(s => s.Id == id);
 
             return entity;
         }
@@ -34,7 +34,7 @@ namespace SqlContext.Repos
         public bool InsertMany(List<User> entities)
         {
             dbSet.AddRange(entities);
-            
+
             return true;
         }
 

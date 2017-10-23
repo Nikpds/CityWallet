@@ -2,8 +2,6 @@
 using AuthProvider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models;
-using SqlContext;
 using SqlContext.Repos;
 using System;
 using System.Threading.Tasks;
@@ -15,13 +13,11 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private UserManager _manager;
-        private IUserRepository _repo;
-
-        public UserController(UserManager mng, IUserRepository repo)
+        private readonly UserService _srv;
+       
+        public UserController(UserService srv)
         {
-            _manager = mng;
-            _repo = repo;
+            _srv = srv;
         }
 
         [HttpGet("{id}")]
@@ -29,7 +25,7 @@ namespace WebApp.Controllers
         {
             try
             {
-                var user = await _manager.GetUser(id);
+                var user = await _srv.GetUser(id);
                 return Ok(user);
             }
             catch (Exception ex)

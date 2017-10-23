@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ApiManager;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SqlContext;
 using SqlContext.Repos;
@@ -15,11 +16,11 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class BillController : Controller
     {
-        private IBillRepository _repo;
+        private readonly BillService _srv;
 
-        public BillController(IBillRepository repo)
+        public BillController(BillService srv)
         {
-            _repo = repo;
+            _srv = srv;
         }
 
         [HttpGet("bills/{id}")]
@@ -27,9 +28,13 @@ namespace WebApp.Controllers
         {
             try
             {
-                var bills = await _repo.GetAll(id);
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
                 
-
+                var bills = await _srv.GetUnpaidBills(id);
+                
                 return Ok(bills);
             }
             catch (Exception ex)

@@ -32,9 +32,9 @@ namespace SqlContext.Repos
             return true;
         }
 
-        public async Task<IEnumerable<Bill>> GetAll(string userId)
+        public async Task<IEnumerable<Bill>> GetUnpaidBills(string userId)
         {
-            var result = await dbSet.Where(x => x.UserId == userId).ToListAsync();
+            var result = await dbSet.Where(x => x.UserId == userId && x.Payment == null).ToListAsync();
 
             return result;
         }
