@@ -1,7 +1,7 @@
-<h1 class="title has-text-white">
+<h1 class="title ">
   Λογαριασμοί
 </h1>
-<h2 class="subtitle is-6 has-text-white">
+<h2 class="subtitle is-6 ">
   Επιλέξατε {{bills.length}} {{bills.length == 1 ? 'λογαριαμό': 'λογαριασμους'}} για πληρωμή!
 </h2>
 <table class="table is-fullwidth is-striped is-transparent">
@@ -25,7 +25,7 @@
       </td>
     </tr>
     <tr class="total-bill" *ngIf="bills.length > 0">
-      <td colspan="2" class="subtitle is-5 has-text-white">Σύνολο</td>
+      <td colspan="2" class="subtitle is-5 ">Σύνολο</td>
       <td colspan="3" class="subtitle is-5 has-text-warning">{{billsSum()}} &euro;</td>
     </tr>
   </tbody>

@@ -19,6 +19,7 @@ export class BillListComponent implements OnInit, OnDestroy {
   user: User;
   temp = true;
   bills = new Array<Bill>();
+  billType = 0;
 
   constructor(
     private billService: BillService,
@@ -44,18 +45,10 @@ export class BillListComponent implements OnInit, OnDestroy {
     this.loader.show();
     this.billService.getbills(this.user.id).subscribe((res) => {
       this.bills = res;
-      this.billsForPay.push(res[0]);
-      this.billsForPay.push(res[1]);
-      this.billsForPay.push(res[2]);
-      console.log(res);
       this.loader.hide();
     }, error => {
       this.loader.hide();
     });
-  }
-
-  isSelectedbill(id: string) {
-    return this.billsForPay.findIndex(x => x.id == id) > -1;
   }
 
   addRemovebill(i: number, id: string) {
@@ -75,4 +68,6 @@ export class BillListComponent implements OnInit, OnDestroy {
     var dueDate = new Date(d);
     return new Date() > dueDate;
   }
+
+  
 }

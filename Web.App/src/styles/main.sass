@@ -4,11 +4,20 @@ html,body
     height: 100%
     overflow: auto
 
-html
-   background: radial-gradient(circle farthest-corner at center, rgb(8, 70, 78) 0%, rgb(0, 27, 31) 100%)
+.image-background
+   //background: radial-gradient(circle farthest-corner at center, rgb(8, 70, 78) 0%, rgb(0, 27, 31) 100%)
+   background-image: url('../assets/city.jpg')
+   filter: blur(0px)
+   height: 100%
+   width: 100%
+   position: absolute
+   z-index: -1
 
-.navbar 
-    border-color: $border-color
+.overlay2
+   height: 100%
+   width: 100%
+   background: rgba(0, 0, 0, 0.58)
+   position: absolute
 
 .is-tiny
     font-size: 0.7rem

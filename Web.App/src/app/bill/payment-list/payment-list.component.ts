@@ -26,7 +26,7 @@ export class PaymentListComponent implements OnInit {
 
   getPayments() {
     this.loader.show();
-    this.billService.getPayments('0f050542-ae0e-47d9-a198-8c3501eac38a').subscribe(res => {
+    this.billService.getPayments('049e9411-244d-4570-910a-686b47fe99ad').subscribe(res => {
       this.payments = res;
       console.log(res);
       this.loader.hide();

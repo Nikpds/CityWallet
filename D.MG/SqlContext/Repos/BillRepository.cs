@@ -46,6 +46,19 @@ namespace SqlContext.Repos
             return result.Entity;
         }
 
+        public async Task<IEnumerable<Bill>> GetBillsOnSettlement(string userId)
+        {
+            var result = await dbSet.Include(i => i.Settlement).Where(x => x.UserId == userId && x.Settlement != null).ToListAsync();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<Bill>> GetPaidBills(string userId)
+        {
+            var result = await dbSet.Include(i => i.Payment).Where(x => x.UserId == userId && x.Payment != null).ToListAsync();
+
+            return result;
+        }
 
         public void Dispose()
         {

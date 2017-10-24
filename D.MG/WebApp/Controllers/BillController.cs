@@ -1,12 +1,12 @@
 ﻿using ApiManager;
+using AuthProvider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SqlContext;
-using SqlContext.Repos;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
@@ -17,24 +17,69 @@ namespace WebApp.Controllers
     public class BillController : Controller
     {
         private readonly BillService _srv;
-
         public BillController(BillService srv)
         {
             _srv = srv;
         }
 
-        [HttpGet("bills/{id}")]
-        public async Task<IActionResult> GetAll(string id)
+        [HttpGet("bills")]
+        public async Task<IActionResult> GetUnpaidBills()
         {
             try
             {
+                var id = User.GetUserId();
+
                 if (id == null || string.IsNullOrEmpty(id))
                 {
                     return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
                 }
-                
+
                 var bills = await _srv.GetUnpaidBills(id);
-                
+
+                return Ok(bills);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("bills/paid")]
+        public async Task<IActionResult> GetPaidBills()
+        {
+            try
+            {
+                var id = User.GetUserId();
+
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
+
+                var bills = await _srv.GetPaidBills(id);
+
+                return Ok(bills);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("bills/onsettlement")]
+        public async Task<IActionResult> GetBillsOnSettlement()
+        {
+            try
+            {
+                var id = User.GetUserId();
+
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
+
+                var bills = await _srv.GetBillsOnSettlement(id);
+
                 return Ok(bills);
             }
             catch (Exception ex)

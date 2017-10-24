@@ -22,7 +22,7 @@ namespace ApiManager
             string[] headers;
             string[] fields;
             int counter = 0;
-            var fileStream = File.ReadAllLines(@"D:\git\DebtManagment\assets\CitizenDebts_1M_3.txt");
+            var fileStream = File.ReadAllLines(@"C:\git\DebtManagment\assets\CitizenDebts_1M_3.txt");
 
             var firstline = fileStream[0];
             headers = firstline.Split(";");

@@ -50,7 +50,7 @@ namespace SqlContext.Repos
 
         public async Task<IEnumerable<Payment>> GetUserPayments(string id)
         {
-            var result = await dbSet.Where(x => x.Bill.UserId == id).ToListAsync();
+            var result = await dbSet.Include(i=>i.Bill).Where(x => x.Bill.UserId == id).ToListAsync();
 
             return result;
         }

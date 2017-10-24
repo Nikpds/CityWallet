@@ -63,5 +63,16 @@ namespace ApiManager
         {
             return await _pays.GetUserPayments(id);
         }
+
+        public async Task<IEnumerable<Bill>> GetPaidBills(string id)
+        {
+            return await _bills.GetPaidBills(id);
+        }
+
+        public async Task<IEnumerable<Bill>> GetBillsOnSettlement(string id)
+        {
+            return await _bills.GetBillsOnSettlement(id);
+        }
+
     }
 }
