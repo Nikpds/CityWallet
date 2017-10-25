@@ -9,7 +9,7 @@ import { LoaderService } from '../../shared/loader.service';
 @Component({
   selector: 'app-payment-list',
   templateUrl: './payment-list.component.html',
-  styleUrls: ['./payment-list.component.sass']
+  styleUrls: ['./payment-list.component.sass'] 
 })
 export class PaymentListComponent implements OnInit {
   payments = new Array<Payment>();
@@ -26,7 +26,7 @@ export class PaymentListComponent implements OnInit {
 
   getPayments() {
     this.loader.show();
-    this.billService.getPayments('049e9411-244d-4570-910a-686b47fe99ad').subscribe(res => {
+    this.billService.getPayments().subscribe(res => {
       this.payments = res;
       console.log(res);
       this.loader.hide();

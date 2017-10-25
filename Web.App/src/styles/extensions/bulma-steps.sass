@@ -1,8 +1,8 @@
-$steps-maker-default-color: $grey-light !default
-$steps-marker-default-border: .2em solid #fff !default
-$steps-default-color: $grey-lighter !default
+$steps-maker-default-color: $white !default
+$steps-marker-default-border: .2em solid $grey-light !default
+$steps-default-color: $white !default
 $steps-completed-color: $success !default
-$steps-active-color: $success !default
+$steps-active-color: $primary !default
 $steps-divider-height: .2em !default
 
 =steps-size($size)
@@ -82,7 +82,7 @@ $steps-divider-height: .2em !default
       font-weight: $weight-bold
       justify-content: center
       background: $steps-maker-default-color
-      color: $white
+      color: $primary
       border: $steps-marker-default-border
       z-index: 1
       transition: all 0s ease
@@ -90,6 +90,7 @@ $steps-divider-height: .2em !default
 
     .step-details
       text-align: center
+      color: white
 
     // Override marker color per step
     @each $name, $pair in $colors

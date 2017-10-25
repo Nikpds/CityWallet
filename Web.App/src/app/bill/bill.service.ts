@@ -42,8 +42,14 @@ export class BillService implements OnInit {
 
   }
 
-  getbills(id: string): Observable<Array<Bill>> {
-    return this.auth.get(this.billUrl + "/bills/" + id)
+  getbills(): Observable<Array<Bill>> {
+    return this.auth.get(this.billUrl + "/bills")
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
+
+  getPaidBills() {
+    return this.auth.get(this.billUrl + "/bills/paid")
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
@@ -60,8 +66,8 @@ export class BillService implements OnInit {
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
-  getPayments(id: string) {
-    return this.auth.get(this.payUrl + "/payments/" + id)
+  getPayments() {
+    return this.auth.get(this.payUrl + "/payments")
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }

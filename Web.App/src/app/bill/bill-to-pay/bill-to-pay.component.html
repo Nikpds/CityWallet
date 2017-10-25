@@ -1,32 +1,36 @@
-<h1 class="title ">
+<h1 class="title has-text-white">
   Λογαριασμοί
 </h1>
-<h2 class="subtitle is-6 ">
+<h2 class="subtitle is-6 has-text-white">
   Επιλέξατε {{bills.length}} {{bills.length == 1 ? 'λογαριαμό': 'λογαριασμους'}} για πληρωμή!
 </h2>
-<table class="table is-fullwidth is-striped is-transparent">
-  <thead>
-    <tr>
-      <th class="is-hidden-mobile">ΑΑ</th>
-      <th>Υπηρεσία</th>
-      <th>Ποσό</th>
-      <th>Λήξη</th>
-      <th>Επιλογή</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let d of bills;let i = index">
-      <td class="is-hidden-mobile">{{i + 1}}</td>
-      <td>{{d.description}}</td>
-      <td>{{d.amount}} &euro;</td>
-      <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
-      <td>
-        <a class="button is-danger is-small" (click)="removebillFromPay(i)">αφαιρεση</a>
-      </td>
-    </tr>
-    <tr class="total-bill" *ngIf="bills.length > 0">
-      <td colspan="2" class="subtitle is-5 ">Σύνολο</td>
-      <td colspan="3" class="subtitle is-5 has-text-warning">{{billsSum()}} &euro;</td>
-    </tr>
-  </tbody>
-</table>
+<div class="card">
+  <div class="card-content">
+    <table class="table is-fullwidth is-striped is-transparent">
+      <thead>
+        <tr>
+          <th class="is-hidden-mobile">ΑΑ</th>
+          <th>Υπηρεσία</th>
+          <th>Ποσό</th>
+          <th>Λήξη</th>
+          <th>Επιλογή</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of bills;let i = index">
+          <td class="is-hidden-mobile">{{i + 1}}</td>
+          <td>{{d.description}}</td>
+          <td>{{d.amount}} &euro;</td>
+          <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
+          <td>
+            <a class="button is-danger is-small" (click)="removebillFromPay(i)">αφαιρεση</a>
+          </td>
+        </tr>
+        <tr class="total-bill" *ngIf="bills.length > 0">
+          <td colspan="2" class="subtitle is-5 ">Σύνολο</td>
+          <td colspan="3" class="subtitle is-5 has-text-warning">{{billsSum()}} &euro;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

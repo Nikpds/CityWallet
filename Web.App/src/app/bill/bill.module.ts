@@ -15,6 +15,9 @@ import { PaymentOverviewComponent } from './payment-overview/payment-overview.co
 
 import { BillService } from './bill.service';
 import { AuthGuard } from '../auth/auth.guard';
+import { BillsUnpaidComponent } from './bill-list/bills-unpaid/bills-unpaid.component';
+import { BillsPaidComponent } from './bill-list/bills-paid/bills-paid.component';
+import { BillsSettledComponent } from './bill-list/bills-settled/bills-settled.component';
 
 const routes: Route[] = [
   { path: 'bills', component: BillListComponent, canActivate: [AuthGuard] },
@@ -37,7 +40,10 @@ const routes: Route[] = [
     PaymentComponent,
     PaymentListComponent,
     CreditCardComponent,
-    PaymentOverviewComponent
+    PaymentOverviewComponent,
+    BillsUnpaidComponent,
+    BillsPaidComponent,
+    BillsSettledComponent
   ], providers: [
     BillService
   ]

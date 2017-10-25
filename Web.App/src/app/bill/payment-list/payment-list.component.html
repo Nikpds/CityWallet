@@ -1,22 +1,42 @@
-<table class="table is-fullwidth is-striped is-transparent">
-  <thead>
-    <tr>
-      <th class="is-hidden-mobile">ΑΑ</th>
-      <th>Υπηρεσία</th>
-      <th>Ποσό</th>
-      <th class="is-hidden-mobile">Λήξη</th>
-      <th class="selecteBill">Επιλογή</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let d of payments;let i = index">
-      <td class="is-hidden-mobile">{{i + 1}}</td>
-      <td>{{d.paidDate|date:'dd-MM-yyyy'}}</td>
-      <td>{{d.amount}} &euro;</td>
-      <td class="is-hidden-mobile">
-      
-      <td >
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <section class="is-small">
+    <div class="hero-body">
+      <h1 class="title has-text-white">
+        Πληρωμές
+      </h1>
+      <h2 class="subtitle has-text-white">
+        Οι σημερινές πληρωμές σας.
+      </h2>
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="card">
+            <div class="card-content">
+              <table class="table is-fullwidth is-striped ">
+                <thead>
+                  <tr>
+                    <th class="is-hidden-mobile">ΑΑ</th>
+                    <th>Λογαριασμός</th>
+                    <th>Ωρα</th>
+                    <th>Ποσό</th>
+                    <th>Μέθοδος</th>
+                    <th class="selecteBill">Επιλογή</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let d of payments;let i = index">
+                    <td class="is-hidden-mobile">{{i + 1}}</td>
+                    <td>{{d.bill.description}}</td>
+                    <td>{{d.paidDate|date:'HH:mm'}}</td>
+                    <td>{{d.bill.amount}} &euro;</td>
+                    <td>{{d.method}}</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

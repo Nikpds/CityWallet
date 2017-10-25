@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Bill, User } from '../../appModel';
+import { Router } from '@angular/router'
 
 import { BillService } from '../bill.service';
 @Component({
@@ -13,12 +14,17 @@ export class BillToPayComponent implements OnInit, OnDestroy {
   bills: Array<Bill>;
 
   constructor(
-    private billService: BillService
+    private billService: BillService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.subscriptions.push(this.billService.billsToPay$
       .subscribe((res) => this.bills = res));
+
+    if (this.bills.length == 0) {
+     // this.router.navigate(['/bills']);
+    }
   }
 
   billsSum() {
@@ -27,6 +33,9 @@ export class BillToPayComponent implements OnInit, OnDestroy {
 
   removebillFromPay(i: number) {
     this.bills.splice(i, 1);
+    if (this.bills.length == 0) {
+      this.router.navigate(['/bills']);
+    }
   }
 
   ngOnDestroy() {

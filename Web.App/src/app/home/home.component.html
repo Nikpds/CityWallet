@@ -1,26 +1,53 @@
+<div class="container">
+  <section class="hero is-light">
+    <div class="hero-body">
+     
+      <h1 class="title">
+        Hero title
+      </h1>
+      <h2 class="subtitle">
+        Hero subtitle
+      </h2>
+    </div>
+    <!-- <figure class="image is-96x96">
+      <img src="../../assets/services.png">
+    </figure> -->
+  </section>
+</div>
 <section class="hero">
-  <!-- <figure class="image img-height">
-    <img src="../../assets/home-bck.jpg">
-    <div class="image-filter"> </div>
-  </figure> -->
   <div class="hero-body is-paddingless">
     <div class="container">
       <div class="columns is-marginless">
         <div class="column is-4">
-          <nav class="panel">
-            <p class="title is-5">
-              <i class="fa fa-newspaper-o"></i> Νέα
-            </p>
-            <a class="panel-block">
-              bulma
-            </a>
-            <a class="panel-block">
-              marksheet
-            </a>
-            <a class="panel-block">
-              minireset.css
-            </a>
-          </nav>
+          <div class="box">
+            <div class="media-content">
+              <div class="content">
+                <p class="title is-5">
+                  Μενού
+                </p>
+                <ol class="has-text-black">
+                  <li>
+                    <a>Όροι χρήσης</a>
+                  </li>
+                  <li>
+                    <a>Συχνές Ερωτήσεις</a>
+                  </li>
+                  <li>
+                    <a>Επικοινωνία</a>
+                  </li>
+                  <li>
+                    <a>#######</a>
+                  </li>
+                  <li>
+                    <a>#######</a>
+                  </li>
+                  <li>
+                    <a>#######</a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="column is-8">
           <div class="box">
@@ -43,7 +70,7 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  <span class="title is-2 has-text-white">2</span>
+                  <span class="title is-2 has-text-white">{{counters.bills}}</span>
                 </div>
               </article>
             </div>
@@ -62,11 +89,11 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  <span class="title is-2 has-text-white">0</span>
+                  <span class="title is-2 has-text-white">{{counters.settlements}}</span>
                 </div>
               </article>
             </div>
-            <div class="box bck-primary" [routerLink]="['/bills']">
+            <div class="box bck-primary" [routerLink]="['/payments']">
               <article class="media">
                 <div class="media-left">
                   <i class="fa fa-credit-card fa-4x"></i>
@@ -81,20 +108,13 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  <span class="title is-2 has-text-white">6</span>
+                  <span class="title is-2 has-text-white">{{counters.payments}}</span>
                 </div>
               </article>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-
     </div>
   </div>
 </section>

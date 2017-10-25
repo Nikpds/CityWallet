@@ -1,0 +1,43 @@
+<div class="is-clearfix field">
+  <div class="is-pulled-right">
+    <p class="is-grouped">
+      <button class="button is-primary" [disabled]="billsForPay.length == 0" [routerLink]="['payment']">Πληρωμή</button>
+      <button class="button is-warning" [disabled]="billsForPay.length == 0">Διακανονισμός</button>
+    </p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <table class="table is-fullwidth is-striped">
+      <thead>
+        <tr>
+          <th class="is-hidden-mobile">ΑΑ</th>
+          <th>Υπηρεσία</th>
+          <th>Ποσό</th>
+          <th class="is-hidden-mobile">Λήξη</th>
+          <th class="selecteBill">Επιλογή</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of bills;let i = index">
+          <td class="is-hidden-mobile">{{i + 1}}</td>
+          <td>{{d.description}}</td>
+          <td>{{d.amount}} &euro;</td>
+          <td class="is-hidden-mobile">
+            <span [ngClass]="{'has-text-danger':checkFallDue(d.dateDue)}">{{d.dateDue|date:'dd-MM-yyyy'}} </span>
+            <span *ngIf="checkFallDue(d.dateDue)">&nbsp; (Ληξιπρόθεσμο)</span>
+          </td>
+          <td>
+            <div class="field">
+              <div class="control">
+                <a class="button is-default is-xs" (click)="addRemovebill(i,d.id)">
+                  <i class="fa" [ngClass]="{'has-text-white': !isOnPayList(d.id),'has-text-warning': isOnPayList(d.id),'fa-square': !isOnPayList(d.id), 'fa-check': isOnPayList(d.id)}"></i>
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

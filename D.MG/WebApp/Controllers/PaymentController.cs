@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
-using SqlContext.Repos;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using WebApp.Models;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
@@ -28,6 +28,8 @@ namespace WebApp.Controllers
         {
             try
             {
+                var id = User.GetUserId();
+
                 if (entities.Count == 0)
                 {
                     return BadRequest("Δεν βρέθηκαν λογαριασμοί για πληρωμή");
@@ -57,11 +59,13 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpGet("payments/{id}")]
-        public async Task<IActionResult> GetUserPayments(string id)
+        [HttpGet("payments")]
+        public async Task<IActionResult> GetUserPayments()
         {
             try
             {
+                var id = User.GetUserId();
+
                 if (id == null || string.IsNullOrEmpty(id))
                 {
                     return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");

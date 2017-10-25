@@ -1,4 +1,4 @@
-<nav class="navbar is-info" *ngIf="user">
+<nav class="navbar" *ngIf="user">
   <div class="navbar-brand">
     <a class="navbar-item title is-4 is-marginless" [routerLink]="['/home']">
       Δημος Περιστερίου
@@ -19,16 +19,16 @@
           Menu
         </a>
         <div class="navbar-dropdown is-right is-boxed">
-          <a class="navbar-item " [routerLink]="['/bills']">
+          <a class="navbar-item " [routerLink]="['/payments']">
             Πληρωμές
           </a>
-          <a class="navbar-item">
+          <a class="navbar-item" [routerLink]="['/bills']">
             Λογαριασμοί
           </a>
-          <a class="navbar-item">
+          <a class="navbar-item" [routerLink]="['/settlements']">
             Διακανονισμοί
           </a>
-          <a class="navbar-item">
+          <a class="navbar-item" [routerLink]="['/profile']">
             Προφίλ
           </a>
           <hr class="navbar-divider">
@@ -42,6 +42,10 @@
 </nav>
 
 
-
 <router-outlet></router-outlet>
 <ng-snotify></ng-snotify>
+<div class="madeBy">
+  <a href="https://bulma.io">
+    <img src="../assets/made-with-bulma--white.png" alt="Made with Bulma" width="156" height="32">
+  </a>
+</div>

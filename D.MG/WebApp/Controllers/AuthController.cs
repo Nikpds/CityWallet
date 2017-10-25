@@ -17,14 +17,12 @@ namespace WebApp.Controllers
     [Route("[controller]/[action]")]
     public class AuthController : Controller
     {
-        private IUserRepository _userRepo;
         private readonly IConfiguration _config;
         private readonly SymmetricSecurityKey _key;
-
-        public AuthController(IUserRepository userRepo, 
-            IConfiguration config, IAuthenticationProvider auth)
+        private readonly UserService _srv;
+        public AuthController(UserService srv, IConfiguration config, IAuthenticationProvider auth)
         {
-            _userRepo = userRepo;
+            _srv = srv;
             _config = config;
             _key = auth.sigingKey;
         }
@@ -34,7 +32,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var dbUser = await _userRepo.GetByUsername(model.Username);
+                var dbUser = await _srv.GetByUsername(model.Username);
 
                 if (dbUser != null && PasswordHasher.VerifyHashedPassword(dbUser.Password, model.Password))
                 {
@@ -43,7 +41,7 @@ namespace WebApp.Controllers
                     claims.Add(new Claim("Id", dbUser.Id));
                     claims.Add(new Claim("Name", dbUser.Name));
                     claims.Add(new Claim("Lastname", dbUser.Lastname));
-                    
+
 
                     var key = _key;
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

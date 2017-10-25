@@ -14,25 +14,15 @@ namespace Testing
         {
 
             string path = Directory.GetCurrentDirectory().Replace("Testing", "WebApp");
-
             var builder = new DbContextOptionsBuilder<DataContext>();
             IConfigurationRoot configuration = new ConfigurationBuilder()
               .SetBasePath(@path)
               .AddJsonFile("appsettings.json")
               .Build();
-
             var connection = configuration["ConnectionStrings:DefaultConnection"];
-
             builder.UseSqlServer(connection);
-
             var _db = new DataContext(builder.Options);
-            var users = UserService.InsertUsers();
-
-            var count = users.Count;
-            DbSet<User> dbSet;
-            dbSet = _db.Set<User>();
-            dbSet.AddRange(users);
-            _db.SaveChanges();
+            var users = new UserService(_db);
 
         }
     }

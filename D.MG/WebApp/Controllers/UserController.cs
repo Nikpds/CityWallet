@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SqlContext.Repos;
 using System;
 using System.Threading.Tasks;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
@@ -20,11 +21,13 @@ namespace WebApp.Controllers
             _srv = srv;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetbyId(string id)
+        [HttpGet("user")]
+        public async Task<IActionResult> GetbyId()
         {
             try
             {
+                var id = User.GetUserId();
+
                 var user = await _srv.GetUser(id);
                 return Ok(user);
             }
@@ -50,6 +53,22 @@ namespace WebApp.Controllers
             }
         }
 
+        [HttpGet("counters")]
+        public async Task<IActionResult> GetUserCounters()
+        {
+            try
+            {
+                var id = User.GetUserId();
+
+                var counters = await _srv.GetUserCounters(id);
+
+                return Ok(counters);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
 
     }
 }

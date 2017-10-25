@@ -66,3 +66,9 @@ export class CreditCard {
     cvv: string;
     expires: Date;
 }
+
+export class Counter {
+    bills:number;
+    payments:number;
+    settlements:number;
+}

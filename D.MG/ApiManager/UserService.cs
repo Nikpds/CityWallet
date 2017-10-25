@@ -1,22 +1,28 @@
-﻿using Models;
+﻿using ApiManager.Models;
+using Microsoft.EntityFrameworkCore;
+using Models;
+using SqlContext;
 using SqlContext.Repos;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ApiManager
 {
     public class UserService
     {
-        private IUserRepository _repo;
+        private DbSet<User> _dbSet;
+        private DataContext _ctx;
 
-        public UserService(IUserRepository repo)
+        public UserService(DataContext ctx)
         {
-            _repo = repo;
+            _dbSet = ctx.Set<User>();
+            _ctx = ctx;
         }
 
-        public static List<User> InsertUsers()
+        public List<User> InsertUsers()
         {
             var users = new List<User>();
             string[] headers;
@@ -60,14 +66,15 @@ namespace ApiManager
                     }
 
                 }
-
+                _dbSet.AddRange(users);
+                _ctx.SaveChanges();
+                _ctx.Dispose();
             }
             catch (Exception ex)
             {
                 var error = counter;
                 var _ex = ex;
             }
-
 
             return users;
         }
@@ -80,16 +87,29 @@ namespace ApiManager
 
         public async Task<User> GetUser(string id)
         {
-            var user = await _repo.GetById(id);
-           
+            var user = await _dbSet.Include(x => x.Address).SingleOrDefaultAsync(s => s.Id == id);
+
             return user;
         }
 
         public async Task<User> GetByUsername(string username)
         {
-            var user = await _repo.GetByUsername(username);
+            var user = await _dbSet.FirstOrDefaultAsync(x => x.Vat == username);
 
             return user;
         }
+
+        public async Task<Counter> GetUserCounters(string userId)
+        {
+            var counter = new Counter
+            {
+                Bills = await _ctx.Set<Bill>().Where(x => x.UserId == userId).CountAsync(),
+                Payments = await _ctx.Set<Payment>().Include(i => i.Bill).Where(x => x.Bill.UserId == userId).CountAsync(),
+                Settlements = await _ctx.Set<Bill>().Where(x => x.UserId == userId && x.SettlementId != null).CountAsync()
+            };
+
+            return counter;
+        }
+
     }
 }

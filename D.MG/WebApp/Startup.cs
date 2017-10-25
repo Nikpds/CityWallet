@@ -37,7 +37,6 @@ namespace WebApp
 
             services.AddScoped<BillService>();
             services.AddScoped<UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBillRepository, BillRepository>();
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<ISettlementRepository, SettlementRepository>();
