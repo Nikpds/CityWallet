@@ -11,7 +11,7 @@ using System;
 namespace SqlContext.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20171024045504_init")]
+    [Migration("20171026093406_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,6 +28,8 @@ namespace SqlContext.Migrations
 
                     b.Property<string>("County")
                         .IsRequired();
+
+                    b.Property<DateTime>("LastUpdate");
 
                     b.Property<string>("Street")
                         .IsRequired();
@@ -59,6 +61,8 @@ namespace SqlContext.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
+                    b.Property<DateTime>("LastUpdate");
+
                     b.Property<string>("SettlementId");
 
                     b.Property<string>("UserId")
@@ -85,6 +89,8 @@ namespace SqlContext.Migrations
                         .IsRequired()
                         .HasAnnotation("unique", true);
 
+                    b.Property<DateTime>("LastUpdate");
+
                     b.Property<string>("Method")
                         .IsRequired();
 
@@ -109,6 +115,8 @@ namespace SqlContext.Migrations
 
                     b.Property<double>("Interest");
 
+                    b.Property<DateTime>("LastUpdate");
+
                     b.Property<DateTime>("RequestDate");
 
                     b.HasKey("Id");
@@ -127,6 +135,8 @@ namespace SqlContext.Migrations
 
                     b.Property<double>("Interest");
 
+                    b.Property<DateTime>("LastUpdate");
+
                     b.HasKey("Id");
 
                     b.ToTable("SettlementType");
@@ -141,6 +151,8 @@ namespace SqlContext.Migrations
                         .IsRequired()
                         .HasAnnotation("unique", true);
 
+                    b.Property<DateTime>("LastUpdate");
+
                     b.Property<string>("Lastname")
                         .IsRequired();
 
@@ -151,6 +163,8 @@ namespace SqlContext.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired();
+
+                    b.Property<bool>("PasswordReset");
 
                     b.Property<string>("Vat")
                         .IsRequired()

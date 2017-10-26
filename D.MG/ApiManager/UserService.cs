@@ -39,7 +39,7 @@ namespace ApiManager
 
                     User user = new User();
                     Bill debt = new Bill();
-                    user.Password = AuthProvider.PasswordHasher.HashPassword("123456");
+                    user.Password = AuthProvider.PasswordHasher.HashPassword("123");
                     fields = fileStream[j].Split(";");
                     user.Name = fields[1];
                     user.Lastname = fields[2];
@@ -48,10 +48,13 @@ namespace ApiManager
                     user.Address.County = fields[6];
                     user.Email = fields[3];
                     user.Mobile = fields[4];
+                    user.PasswordReset = false;
+                    user.LastUpdate = DateTime.Now;
                     debt.Amount = Double.Parse(fields[9]);
                     debt.Description = fields[8];
                     debt.DateDue = ConvertDate(fields[10]);
                     debt.Bill_Id = fields[7];
+                    debt.LastUpdate = DateTime.Now;
 
                     var exists = users.FindIndex(x => x.Vat == user.Vat);
 
@@ -64,7 +67,6 @@ namespace ApiManager
                         user.Bills.Add(debt);
                         users.Add(user);
                     }
-
                 }
                 _dbSet.AddRange(users);
                 _ctx.SaveChanges();

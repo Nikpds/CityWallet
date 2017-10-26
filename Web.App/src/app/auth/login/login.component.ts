@@ -17,15 +17,15 @@ import { LoaderService } from '../../shared/loader.service';
     //     animate(2000)
     //   ])
     // ]),
-    trigger('glow', [
-      state('low', style({
-        boxShadow: '0px 0px 20px 4px rgba(255, 255, 255, 0.22)'
-      })),
-      state('high', style({
-        boxShadow: '0px 0px 20px 4px rgba(255, 255, 255, 0.78)'
-      })),
-      transition('low <=> high', animate(2500))
-    ])
+    // trigger('glow', [
+    //   state('low', style({
+    //     boxShadow: '0px 0px 20px 4px rgba(255, 255, 255, 0.22)'
+    //   })),
+    //   state('high', style({
+    //     boxShadow: '0px 0px 20px 4px rgba(255, 255, 255, 0.78)'
+    //   })),
+    //   transition('low <=> high', animate(2500))
+    // ])
   ]
 })
 export class LoginComponent implements OnInit, AfterViewInit {

@@ -15,8 +15,8 @@ namespace SqlContext.Repos
 
         Bill Update(Bill entity);
 
-        Task<IEnumerable<Bill>> GetBillsOnSettlement(string id);
+        Task<IEnumerable<Bill>> GetBillsOnSettlement(string userId);
 
-        Task<IEnumerable<Bill>> GetPaidBills(string id);
+        Task<IEnumerable<Bill>> GetPaidBills(string userId);
     }
 }

@@ -21,8 +21,11 @@ namespace Testing
               .Build();
             var connection = configuration["ConnectionStrings:DefaultConnection"];
             builder.UseSqlServer(connection);
+
             var _db = new DataContext(builder.Options);
-            var users = new UserService(_db);
+            var srv = new UserService(_db);
+            var users = srv.InsertUsers();
+
 
         }
     }

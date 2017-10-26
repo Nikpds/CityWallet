@@ -16,6 +16,7 @@ namespace SqlContext.Migrations
                     Downpayment = table.Column<double>(type: "float", nullable: false),
                     Installments = table.Column<int>(type: "int", nullable: false),
                     Interest = table.Column<double>(type: "float", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -30,7 +31,8 @@ namespace SqlContext.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Downpayment = table.Column<double>(type: "float", nullable: false),
                     Installments = table.Column<int>(type: "int", nullable: false),
-                    Interest = table.Column<double>(type: "float", nullable: false)
+                    Interest = table.Column<double>(type: "float", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,10 +45,12 @@ namespace SqlContext.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Mobile = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PasswordReset = table.Column<bool>(type: "bit", nullable: false),
                     Vat = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -60,6 +64,7 @@ namespace SqlContext.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     County = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -83,6 +88,7 @@ namespace SqlContext.Migrations
                     Bill_Id = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateDue = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SettlementId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -110,6 +116,7 @@ namespace SqlContext.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     BillId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Bill_Id = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Method = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PaidDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
