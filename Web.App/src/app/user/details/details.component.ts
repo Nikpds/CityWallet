@@ -15,7 +15,6 @@ import { UserService } from '../user.service';
 export class DetailsComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   user = new User();
-  counters = new Counter();
 
   constructor(
     private auth: AuthService,
@@ -27,10 +26,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
-
-    this.subscriptions.push(this.userService.counters$
-      .subscribe((counters) => this.counters = counters));
-
+      
     if (this.user && !this.user.email) {
       this.getUser();
     }

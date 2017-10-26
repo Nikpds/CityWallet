@@ -16,7 +16,6 @@ import { UserService } from '../user/user.service';
 export class HomeComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   user = new User();
-  counters = new Counter();
   constructor(
     private auth: AuthService,
     private loader: LoaderService,
@@ -28,9 +27,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
 
-    this.subscriptions.push(this.userService.counters$
-      .subscribe((counters) => this.counters = counters));
-      
     this.getUser();
   }
   ngOnDestroy() {
@@ -41,10 +37,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loader.show();
     this.userService.getUser().subscribe(res => {
       this.auth.user = res;
+      console.log(res);
       this.loader.hide();
     }, error => {
       this.notify.error(error, 'Σφάλμα ανάκτησης στοιχείων Χρήστη!');
       this.loader.hide();
     });
   }
+
+
 }

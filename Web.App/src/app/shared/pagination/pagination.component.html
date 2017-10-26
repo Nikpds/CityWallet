@@ -1,0 +1,31 @@
+<nav class="pagination is-centered" role="navigation" aria-label="pagination" *ngIf="config?.data?.length > 0">
+  <a class="pagination-previous has-text-primary" (click)="firstPage()">
+    <span class="icon is-small">
+      <i class="fa fa-fast-backward"></i>
+    </span>
+    &nbsp; Πρώτη
+  </a>
+  <a class="pagination-previous has-text-primary" (click)="previousPage()">
+    <span class="icon is-small">
+      <i class="fa fa-step-backward"></i>
+    </span>
+    Προηγούμενη
+  </a>
+  <a class="pagination-next has-text-primary" (click)="nextPage()">
+    Επόμενη
+    <span class="icon is-small">
+      <i class="fa fa-step-forward"></i>
+    </span>
+  </a>
+  <a class="pagination-next has-text-primary" (click)="lastPage()">
+    Τελευταία &nbsp;
+    <span class="icon is-small">
+      <i class="fa fa-fast-forward"></i>
+    </span>
+  </a>
+  <ul class="pagination-list">
+    <li *ngFor="let page of config.pages">
+      <a class="pagination-link has-text-primary" [ngClass]="{'is-current': config.currentPage == page}" (click)="setPage(page)">{{page}}</a>
+    </li>
+  </ul>
+</nav>

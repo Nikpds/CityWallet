@@ -8,6 +8,7 @@ import { CustomFormsModule } from 'ng2-validation'
 
 import { BillListComponent } from './bill-list/bill-list.component';
 import { PaymentComponent } from './payment/payment.component';
+import { SharedModule } from '../shared/shared.module';
 import { PaymentListComponent } from './payment-list/payment-list.component';
 import { BillToPayComponent } from './bill-to-pay/bill-to-pay.component';
 import { CreditCardComponent } from './credit-card/credit-card.component';
@@ -32,6 +33,7 @@ const routes: Route[] = [
     HttpModule,
     FormsModule,
     CustomFormsModule,
+    SharedModule,
     ReactiveFormsModule
   ],
   declarations: [

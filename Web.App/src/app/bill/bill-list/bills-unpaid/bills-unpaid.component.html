@@ -8,7 +8,7 @@
 </div>
 <div class="card">
   <div class="card-content">
-    <table class="table is-fullwidth is-striped">
+    <table class="table is-fullwidth is-striped" *ngIf="bills.length > 0">
       <thead>
         <tr>
           <th class="is-hidden-mobile">ΑΑ</th>
@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let d of bills;let i = index">
+        <tr *ngFor="let i = index;let d of bills | paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
           <td class="is-hidden-mobile">{{i + 1}}</td>
           <td>{{d.description}}</td>
           <td>{{d.amount}} &euro;</td>
@@ -30,7 +30,7 @@
           <td>
             <div class="field">
               <div class="control">
-                <a class="button is-default is-xs" (click)="addRemovebill(i,d.id)">
+                <a class="button is-default is-xs" (click)="addRemovebill(d.id)">
                   <i class="fa" [ngClass]="{'has-text-white': !isOnPayList(d.id),'has-text-warning': isOnPayList(d.id),'fa-square': !isOnPayList(d.id), 'fa-check': isOnPayList(d.id)}"></i>
                 </a>
               </div>
@@ -39,5 +39,7 @@
         </tr>
       </tbody>
     </table>
+    <app-pagination *ngIf="bills.length > 0"  [config]="config" [data]="bills"></app-pagination>
+
   </div>
 </div>

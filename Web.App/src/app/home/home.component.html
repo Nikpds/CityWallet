@@ -1,7 +1,9 @@
 <section class="hero is-light">
-  <div class="hero-body">
+  <div class="hero-body is-paddingless">
     <div class="container">
-        <img class="" src="../../assets/services.png" alt="Made with Bulma">
+      <div>
+        <img class="imagebulma is-pulled-right" src="../../assets/services.png" alt="Made with Bulma">
+      </div>
     </div>
   </div>
 </section>
@@ -62,7 +64,7 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  <span class="title is-2 has-text-white">{{counters.bills}}</span>
+                  <span class="title is-2 has-text-white">{{user.counters.bills}}</span>
                 </div>
               </article>
             </div>
@@ -81,7 +83,7 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  <span class="title is-2 has-text-white">{{counters.settlements}}</span>
+                  <span class="title is-2 has-text-white">{{user.counters.settlements}}</span>
                 </div>
               </article>
             </div>
@@ -100,7 +102,7 @@
                   </div>
                 </div>
                 <div class="media-right">
-                  <span class="title is-2 has-text-white">{{counters.payments}}</span>
+                  <span class="title is-2 has-text-white">{{user.counters.payments}}</span>
                 </div>
               </article>
             </div>
@@ -121,24 +123,24 @@
       <h2 class="subtitle is-marginless">
         Made by
       </h2>
-      <div class="columns">
+      <div class="columns has-text-centered">
         <div class="column amargin">
-          <img src="../../assets/html5-logo.png" alt="Made with Bulma">
+          <img class="imagebulma" (click)="null" src="../../assets/html5-logo.png" alt="Made with Bulma">
         </div>
         <div class="column amargin">
-          <img  src="../../assets/dotnet.png" alt="Made with Bulma">
+          <img class="imagebulma" src="../../assets/dotnet.png" alt="Made with Bulma">
         </div>
         <div class="column amargin">
-          <img src="../../assets/made-with-bulma--dark.png" alt="Made with Bulma">
+          <img class="imagebulma" src="../../assets/made-with-bulma--dark.png" alt="Made with Bulma">
         </div>
         <div class="column amargin">
-          <img  src="../../assets/MadeWithAngular.png" alt="Made with Bulma">
+          <img class="imagebulma" src="../../assets/MadeWithAngular.png" alt="Made with Bulma">
         </div>
       </div>
     </div>
   </div>
 </section>
-<section class="hero is-medium">
+<section class="hero is-large">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">

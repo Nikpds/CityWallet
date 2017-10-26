@@ -28,7 +28,7 @@ namespace ApiManager
             string[] headers;
             string[] fields;
             int counter = 0;
-            var fileStream = File.ReadAllLines(@"C:\git\DebtManagment\assets\CitizenDebts_1M_3.txt");
+            var fileStream = File.ReadAllLines(@"D:\git\DebtManagment\assets\CitizenDebts_1M_3.txt");
 
             var firstline = fileStream[0];
             headers = firstline.Split(";");
@@ -87,11 +87,21 @@ namespace ApiManager
             return DateTime.Parse(dateformat);
         }
 
-        public async Task<User> GetUser(string id)
+        public async Task<UserDto> GetUser(string userId)
         {
-            var user = await _dbSet.Include(x => x.Address).SingleOrDefaultAsync(s => s.Id == id);
+            var user = await _dbSet.Include(x => x.Address).SingleOrDefaultAsync(s => s.Id == userId);
+            var counter = new Counter
+            {
+                Bills = await _ctx.Set<Bill>().Where(x => x.UserId == userId).CountAsync(),
+                Payments = await _ctx.Set<Payment>().Include(i => i.Bill).Where(x => x.Bill.UserId == userId).CountAsync(),
+                Settlements = await _ctx.Set<Bill>().Where(x => x.UserId == userId && x.SettlementId != null).CountAsync()
+            };
 
-            return user;
+            var userDto = new UserDto(user)
+            {
+                Counters = counter
+            };
+            return userDto;
         }
 
         public async Task<User> GetByUsername(string username)

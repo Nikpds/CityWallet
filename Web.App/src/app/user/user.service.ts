@@ -9,18 +9,7 @@ import { AuthService } from '../auth/auth.service';
 @Injectable()
 export class UserService {
   private userUrl = environment.api + 'user';
-
-  private countersSubject$ = new BehaviorSubject<Counter>(new Counter());
-  counters$ = this.countersSubject$.asObservable();
-
-  get counters(): Counter {
-    return this.countersSubject$.getValue();
-  }
-
-  set counters(value: Counter) {
-    this.countersSubject$.next(value);
-  }
-
+  
   constructor(
     private auth: AuthService
   ) { }

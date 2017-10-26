@@ -42,7 +42,6 @@ export class AuthService {
     const token = _token ? _token : localStorage.getItem('token');
     const tokeninfo = this.parseJwt(token);
     const _user = new User();
-    _user.id = tokeninfo.Id;
     _user.name = tokeninfo.Name;
     _user.lastname = tokeninfo.Lastname;
     this.user = _user;

@@ -1,16 +1,16 @@
 export class User {
-    id: string;
     name: string;
     lastname: string;
     vat: string;
     email: string;
-    password: string;
     mobile: string;
     address: Address;
     bills: Array<Bill>;
+    counters: Counter;
 
     constructor() {
         this.bills = new Array<Bill>();
+        this.counters = new Counter();
     }
 }
 
@@ -68,7 +68,20 @@ export class CreditCard {
 }
 
 export class Counter {
-    bills:number;
-    payments:number;
-    settlements:number;
+    bills = 0;
+    payments = 0;
+    settlements = 0;
+}
+
+export class Config {
+    currentPage: number;
+    pageSize: number;
+    orderBy: string;
+    descending: boolean;
+    totalCount: number;
+    totalPages: number;
+    data = new Array();
+    searchFilter: string;
+    pages: number[];
+
 }
