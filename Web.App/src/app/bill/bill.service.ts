@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 
 import { environment } from '../../environments/environment';
 
-import { Bill, User, CreditCard } from '../appModel';
+import { Bill, User, CreditCard, Settlement, Payment, SettlementType } from '../appModel';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -11,6 +11,7 @@ import { AuthService } from '../auth/auth.service';
 export class BillService implements OnInit {
   private billUrl = environment.api + 'bill';
   private payUrl = environment.api + 'payment';
+  private settleUrl = environment.api + 'settlement';
 
   private billsToPaySubject$ = new BehaviorSubject<Bill[]>(new Array<Bill>());
   billsToPay$ = this.billsToPaySubject$.asObservable();
@@ -38,36 +39,46 @@ export class BillService implements OnInit {
     private auth: AuthService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-  }
-
-  getbills(): Observable<Array<Bill>> {
+  getUnPaidBills(): Observable<Array<Bill>> {
     return this.auth.get(this.billUrl + "/bills")
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
-  getPaidBills() {
+  getPaidBills(): Observable<Array<Bill>> {
     return this.auth.get(this.billUrl + "/bills/paid")
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
-  paybills() {
+  paybills(): Observable<Array<Bill>> {
     return this.auth.post(this.payUrl + "/paybills", this.billsToPay)
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
-  validateCreditCard() {
+  validateCreditCard(): Observable<boolean> {
     return this.auth.post(this.payUrl + "/creditcard", this.creditCard)
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
-  getPayments() {
+  getPayments(): Observable<Array<Payment>> {
     return this.auth.get(this.payUrl + "/payments")
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
+
+  getSettlementTypes(): Observable<Array<SettlementType>> {
+    return this.auth.get(this.settleUrl + "/types")
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
+
+  sumbitSettletment(settlement: Settlement): Observable<Settlement> {
+    return this.auth.post(this.settleUrl, settlement)
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }

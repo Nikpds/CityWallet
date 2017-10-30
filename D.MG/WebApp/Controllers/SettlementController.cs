@@ -1,35 +1,35 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ApiManager;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using SqlContext;
 using SqlContext.Repos;
 using System;
 using System.Threading.Tasks;
-
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
     [Produces("application/json")]
     [Authorize]
+    [Route("api/[controller]")]
     public class SettlementController : Controller
     {
-        private ISettlementRepository _repo;
+        private readonly SettlementService _srv;
 
-        public SettlementController(ISettlementRepository repo)
+        public SettlementController(SettlementService srv)
         {
-            _repo = repo;
+            _srv = srv;
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> GetbyId(Settlement entity)
+        public async Task<IActionResult> InsertSettlement([FromBody] Settlement settle)
         {
             try
             {
-                //var result = await db.SettlementRepository.Insert(entity);
+                var settlement = await _srv.InsertSettlement(settle);
 
-                //db.Save();
-
-                return Ok();
+                return Ok(settlement);
             }
             catch (Exception ex)
             {
@@ -42,27 +42,31 @@ namespace WebApp.Controllers
         {
             try
             {
-                //var settlement = await db.SettlementRepository.GetById(id);
+                var settlement = await _srv.GetUserSettlements(id);
 
-                //db.Save();
-
-                return Ok();
+                return Ok(settlement);
             }
             catch (Exception ex)
             {
                 return BadRequest();
             }
         }
-        [HttpGet("")]
+
+        [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
             try
             {
-                //var settlements = await db.SettlementRepository.GetAll();
+                var id = User.GetUserId();
 
-                //db.Save();
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
 
-                return Ok();
+                var settlements = await _srv.GetUserSettlements(id);
+
+                return Ok(settlements);
             }
             catch (Exception ex)
             {
@@ -75,7 +79,9 @@ namespace WebApp.Controllers
         {
             try
             {
-                return Ok();
+                var canceled = _srv.CancelSettlement(id);
+
+                return Ok(canceled);
             }
             catch (Exception ex)
             {
@@ -83,18 +89,21 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpGet("settlements")]
-        public async Task<IActionResult> ImportUsers()
+        [HttpGet("types")]
+        public async Task<IActionResult> GetSettlementTypes()
         {
             try
             {
-                return Ok();
+                var types = await _srv.GetSettlementTypes();
+
+                return Ok(types);
             }
             catch (Exception ex)
             {
                 return BadRequest();
             }
         }
+
 
     }
 }

@@ -19,11 +19,13 @@ import { AuthGuard } from '../auth/auth.guard';
 import { BillsUnpaidComponent } from './bill-list/bills-unpaid/bills-unpaid.component';
 import { BillsPaidComponent } from './bill-list/bills-paid/bills-paid.component';
 import { BillsSettledComponent } from './bill-list/bills-settled/bills-settled.component';
+import { SettlementComponent } from './settlement/settlement.component';
 
 const routes: Route[] = [
   { path: 'bills', component: BillListComponent, canActivate: [AuthGuard] },
   { path: 'bills/payment', component: PaymentComponent, canActivate: [AuthGuard] },
-  { path: 'payments', component: PaymentListComponent, canActivate: [AuthGuard] }
+  { path: 'payments', component: PaymentListComponent, canActivate: [AuthGuard] },
+  { path: 'bills/settlement', component: SettlementComponent, canActivate: [AuthGuard] }
 ]
 
 @NgModule({
@@ -45,7 +47,8 @@ const routes: Route[] = [
     PaymentOverviewComponent,
     BillsUnpaidComponent,
     BillsPaidComponent,
-    BillsSettledComponent
+    BillsSettledComponent,
+    SettlementComponent
   ], providers: [
     BillService
   ]

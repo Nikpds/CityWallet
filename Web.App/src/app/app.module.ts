@@ -5,7 +5,6 @@ import { RouterModule, Route } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
@@ -22,6 +21,7 @@ const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: "login", component: LoginComponent }
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,6 @@ const routes: Route[] = [
     BillModule,
     FormsModule,
     UserModule,
-    CoreModule,
     SharedModule,
     HttpModule,
     AuthModule,

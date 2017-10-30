@@ -1,0 +1,108 @@
+<div class="container">
+  <section class="is-small">
+    <div class="hero-body">
+      <nav class="breadcrumb is-large is-marginless" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <a (click)="goHome()">
+              <span class="icon">
+                <i class="fa fa-home"></i>
+              </span>
+              <span>Αρχική</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/bills']">
+              <span class="icon">
+                <i class="fa fa-file-text"></i>
+              </span>
+              <span>Λογαριασμοί</span>
+            </a>
+          </li>
+          <li class="is-active">
+            <a>
+              <span class="icon">
+                <i class="fa fa-handshake-o"></i>
+              </span>
+              <span>Νέος Διακανονισμός</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <h2 class="subtitle is-6 has-text-white">
+        Επιλέξατε {{bills.length}} {{bills.length == 1 ? 'λογαριαμό': 'λογαριασμους'}} για διακανονισμό!
+      </h2>
+      <div class="columns is-multiline is-marginless">
+        <div class="column is-6">
+          <div class="card">
+            <div class="card-content">
+              <span class="subtitle is-3"> Επιλογή διακανονισμού.</span>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Είδος</label>
+                </div>
+                <div class="field-body">
+                  <div class="field is-narrow">
+                    <div class="control">
+                      <div class="select is-fullwidth">
+                        <select (change)="createMaxInstallments($event.target.value)">
+                          <option *ngFor="let t of settlementTypes" value="{{t.installments}}">{{'Προκαταβολή ' + t.downpayment + '%' + ' Επιτόκιο ' + t.interest}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field-label is-normal">
+                    <label class="label">Δόσεις</label>
+                  </div>
+                  <div class="field">
+                    <p class="control">
+                      <span class="select">
+                        <select [(ngModel)]="settlement.installments">
+                          <option *ngFor="let i of installments" [value]="i">{{i}}</option>
+                        </select>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="is-clearfix">
+                <a class="button is-info is-small is-pulled-right">Υπολογισμός</a>
+                <a class="button is-info is-small is-pulled-right" (click)="submitSettlement()">Υποβολή</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="card">
+            <div class="card-content">
+              <span class="subtitle is-3"> Λογαριασμοί προς διακανονισμό.</span>
+              <table class="table is-fullwidth is-striped is-transparent">
+                <thead>
+                  <tr>
+                    <th class="is-hidden-mobile">ΑΑ</th>
+                    <th>Υπηρεσία</th>
+                    <th>Ποσό</th>
+                    <th>Λήξη</th>
+                    <th>Επιλογή</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let d of bills;let i = index">
+                    <td class="is-hidden-mobile">{{i + 1}}</td>
+                    <td>{{d.description}}</td>
+                    <td>{{d.amount}} &euro;</td>
+                    <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
+                    <td>
+                      <a class="button is-danger is-small" (click)="removebillFromPay(i)">Aφαίρεση</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>

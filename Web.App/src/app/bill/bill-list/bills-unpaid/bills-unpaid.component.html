@@ -2,7 +2,7 @@
   <div class="is-pulled-right">
     <p class="is-grouped">
       <button class="button is-primary" [disabled]="billsForPay.length == 0" [routerLink]="['payment']">Πληρωμή</button>
-      <button class="button is-warning" [disabled]="billsForPay.length == 0">Διακανονισμός</button>
+      <button class="button is-warning" [disabled]="billsForPay.length == 0" [routerLink]="['settlement']">Διακανονισμός</button>
     </p>
   </div>
 </div>
@@ -39,7 +39,7 @@
         </tr>
       </tbody>
     </table>
-    <app-pagination *ngIf="bills.length > 0"  [config]="config" [data]="bills"></app-pagination>
+    <app-pagination *ngIf="bills.length > 0" [config]="config" [data]="bills"></app-pagination>
 
   </div>
 </div>

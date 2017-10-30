@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using System;
 using SqlContext.Repos;
 using ApiManager;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace WebApp
 {
@@ -22,7 +23,7 @@ namespace WebApp
             var tokensKey = new Guid().ToString();
             _tokensKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokensKey));
             auth = new AuthenticationProvider(_tokensKey);
-            
+
         }
 
         public IConfiguration Configuration { get; }
@@ -36,10 +37,10 @@ namespace WebApp
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddScoped<BillService>();
+            services.AddScoped<PaymentService>();
             services.AddScoped<UserService>();
-            services.AddScoped<IBillRepository, BillRepository>();
-            services.AddScoped<IPaymentRepository, PaymentRepository>();
-            services.AddScoped<ISettlementRepository, SettlementRepository>();
+            services.AddScoped<SettlementService>();
+
 
             services.AddTransient<IAuthenticationProvider, AuthenticationProvider>();
             services.AddSingleton<IAuthenticationProvider>(p => auth);
@@ -63,6 +64,11 @@ namespace WebApp
                 };
             });
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+            });
+
             services.AddMvc().AddJsonOptions(
                  options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
@@ -72,6 +78,14 @@ namespace WebApp
         {
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             if (env.IsDevelopment())
             {

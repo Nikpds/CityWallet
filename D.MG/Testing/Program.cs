@@ -24,7 +24,9 @@ namespace Testing
 
             var _db = new DataContext(builder.Options);
             var srv = new UserService(_db);
-            var users = srv.InsertUsers();
+            var srv1 = new SettlementService(_db);
+            srv1.CreateSettlementTypes();
+           // var users = srv.InsertUsers();
 
 
         }

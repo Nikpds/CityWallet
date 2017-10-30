@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router'
 import { Subscription } from 'rxjs/Subscription';
 import { Bill, User } from '../../appModel';
-import { Router } from '@angular/router'
 
 import { BillService } from '../bill.service';
 @Component({
@@ -23,7 +23,7 @@ export class BillToPayComponent implements OnInit, OnDestroy {
       .subscribe((res) => this.bills = res));
 
     if (this.bills.length == 0) {
-     // this.router.navigate(['/bills']);
+     this.router.navigate(['/bills']);
     }
   }
 

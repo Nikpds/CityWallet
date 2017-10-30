@@ -16,9 +16,9 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class PaymentController : Controller
     {
-        private readonly BillService _srv;
+        private readonly PaymentService _srv;
 
-        public PaymentController(BillService srv)
+        public PaymentController(PaymentService srv)
         {
             _srv = srv;
         }

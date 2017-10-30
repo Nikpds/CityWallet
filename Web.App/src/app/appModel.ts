@@ -83,5 +83,11 @@ export class Config {
     data = new Array();
     searchFilter: string;
     pages: number[];
+}
 
+export class SettlementType {
+    id: string;
+    downpayment: number;
+    installments: number;
+    interest: number;
 }

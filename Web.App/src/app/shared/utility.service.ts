@@ -14,7 +14,7 @@ export class UtilityService {
 
   parseEnum(_enum): Array<any> {
     let map: { id: number; name: string }[] = [];
-    for (var n in _enum) {
+    for (let n in _enum) {
       if (typeof _enum[n] === 'number') {
         map.push({ id: <any>_enum[n], name: n });
       }
@@ -23,7 +23,7 @@ export class UtilityService {
   }
 
   parseEnumName(type, value): string {
-    for (var n in type) {
+    for (let n in type) {
       if (type[n] === value) {
         return n;
       }
@@ -32,8 +32,8 @@ export class UtilityService {
   }
 
   getYears() {
-    var current = new Date().getFullYear();
-    for (var i = 0; i < 10; i++) {
+    let current = new Date().getFullYear();
+    for (let i = 0; i < 10; i++) {
       this.years.push(current + i);
     }
   }

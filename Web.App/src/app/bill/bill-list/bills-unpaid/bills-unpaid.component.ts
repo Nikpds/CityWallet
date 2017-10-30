@@ -39,7 +39,7 @@ export class BillsUnpaidComponent implements OnInit {
 
   getUnPaidBills() {
     this.loader.show();
-    this.billService.getbills().subscribe((res) => {
+    this.billService.getUnPaidBills().subscribe((res) => {
       this.bills = res;
       this.initConfig(res);
       this.loader.hide();
@@ -49,8 +49,8 @@ export class BillsUnpaidComponent implements OnInit {
   }
 
   addRemovebill(id: string) {
-    var i = this.bills.findIndex(x => x.id == id);
-    var index = this.billsForPay.findIndex(x => x.id == id);
+    let i = this.bills.findIndex(x => x.id == id);
+    let index = this.billsForPay.findIndex(x => x.id == id);
     if (index > -1) {
       this.billsForPay.splice(index, 1);
       return;
@@ -63,7 +63,7 @@ export class BillsUnpaidComponent implements OnInit {
   }
 
   checkFallDue(d: Date) {
-    var dueDate = new Date(d);
+    let dueDate = new Date(d);
     return new Date() > dueDate;
   }
 
@@ -77,7 +77,7 @@ export class BillsUnpaidComponent implements OnInit {
   }
 
   getTotalPages(length: number, size: number) {
-    var pageSize = Math.floor(length / size);
+    let pageSize = Math.floor(length / size);
     if (pageSize != length / size) {
       return pageSize + 1
     }
