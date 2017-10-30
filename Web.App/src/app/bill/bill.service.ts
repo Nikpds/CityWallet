@@ -52,6 +52,11 @@ export class BillService implements OnInit {
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
+  getSettledBills(): Observable<Array<Bill>> {
+    return this.auth.get(this.billUrl + "/bills/onsettlement")
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
 
   paybills(): Observable<Array<Bill>> {
     return this.auth.post(this.payUrl + "/paybills", this.billsToPay)
@@ -82,4 +87,17 @@ export class BillService implements OnInit {
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
+
+  getSettlements(): Observable<Array<Settlement>> {
+    return this.auth.get(this.settleUrl + "/all")
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
+
+  cancelSettlementRequest(id: string) {
+    return this.auth.delete(this.settleUrl + "/" + id)
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
+
 }

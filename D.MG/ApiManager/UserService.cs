@@ -94,7 +94,7 @@ namespace ApiManager
             {
                 Bills = await _ctx.Set<Bill>().Where(x => x.UserId == userId).CountAsync(),
                 Payments = await _ctx.Set<Payment>().Include(i => i.Bill).Where(x => x.Bill.UserId == userId).CountAsync(),
-                Settlements = await _ctx.Set<Bill>().Where(x => x.UserId == userId && x.SettlementId != null).CountAsync()
+                Settlements = await _ctx.Set<Settlement>().Where(x => x.Bills.Any(a => a.UserId == userId)).CountAsync()
             };
 
             var userDto = new UserDto(user)

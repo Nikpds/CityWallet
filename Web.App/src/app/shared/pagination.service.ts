@@ -27,7 +27,6 @@ export class PaginationService {
 
     let pages = Array.from(Array(endPage + 1).keys());
     pages.splice(0, startPage);
-    console.log(pages);
     return pages;
 
   }

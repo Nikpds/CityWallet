@@ -36,7 +36,6 @@ export class BillsPaidComponent implements OnInit {
     this.loader.show();
     this.billService.getPaidBills().subscribe((res) => {
       this.bills = res;
-      console.log(res);
       this.loader.hide();
     }, error => {
       this.loader.hide();

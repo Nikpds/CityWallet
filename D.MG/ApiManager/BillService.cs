@@ -23,7 +23,7 @@ namespace ApiManager
 
         public async Task<IEnumerable<Bill>> GetUnpaidBills(string userId)
         {
-            return await _dbSet.Where(x => x.UserId == userId && x.Payment == null).ToListAsync();
+            return await _dbSet.Where(x => x.UserId == userId && x.Payment == null && x.SettlementId == null).ToListAsync();
         }
 
         public async Task<IEnumerable<Bill>> GetPaidBills(string userId)

@@ -14,15 +14,18 @@ namespace ApiManager
         private DbSet<Settlement> _dbSet;
         private DataContext _ctx;
 
-        public SettlementService(DataContext ctx, BillService billSrv)
+        public SettlementService(DataContext ctx)
         {
             _dbSet = ctx.Set<Settlement>();
             _ctx = ctx;
         }
 
+
         public async Task<Settlement> InsertSettlement(Settlement settle)
         {
             var bills = settle.Bills.ToList();
+            settle.LastUpdate = DateTime.Now;
+            settle.RequestDate = DateTime.Now;
             settle.Bills = new List<Bill>();
 
             _dbSet.Add(settle);
@@ -36,9 +39,13 @@ namespace ApiManager
             return settle;
         }
 
-        public bool CancelSettlement(string id)
+        public async Task<Boolean> CancelSettlement(string id)
         {
-            var settlement = _dbSet.Find(id);
+            var settlement = await _dbSet.Include(i => i.Bills).FirstAsync(x => x.Id == id);
+
+            var bills = settlement.Bills.ToList();
+
+            bills.ForEach(x => x.SettlementId = null);
 
             var deleted = _dbSet.Remove(settlement);
 
@@ -49,7 +56,7 @@ namespace ApiManager
 
         public async Task<ICollection<Settlement>> GetUserSettlements(string userId)
         {
-            var settlements = await _dbSet.Where(w => w.Bills.Any(b => b.UserId == userId)).ToArrayAsync();
+            var settlements = await _dbSet.Include(i=> i.Bills).Where(w => w.Bills.Any(b => b.UserId == userId)).ToArrayAsync();
 
             return settlements;
         }

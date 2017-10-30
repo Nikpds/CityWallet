@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loader.show();
     this.userService.getUser().subscribe(res => {
       this.auth.user = res;
-      console.log(res);
       this.loader.hide();
     }, error => {
       this.notify.error(error, 'Σφάλμα ανάκτησης στοιχείων Χρήστη!');

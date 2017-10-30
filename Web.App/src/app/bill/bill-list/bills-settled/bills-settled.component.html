@@ -1,3 +1,36 @@
-<p>
-  bills-settled works!
-</p>
+<div class="is-clearfix field">
+  <div class="is-pulled-right">
+    <p class="is-grouped">
+
+    </p>
+  </div>
+</div>
+<div class="card">
+  <div class="card-content">
+    <table class="table is-fullwidth is-striped" *ngIf="bills.length > 0">
+      <thead>
+        <tr>
+          <th class="is-hidden-mobile">ΑΑ</th>
+          <th>Υπηρεσία</th>
+          <th>Ποσό</th>
+          <th class="is-hidden-mobile">Λήξη</th>
+          <th>Ενέργεις</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i = index;let d of bills | paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
+          <td class="is-hidden-mobile">{{i + 1}}</td>
+          <td>{{d.description}}</td>
+          <td>{{d.amount}} &euro;</td>
+          <td class="is-hidden-mobile">
+            <span [ngClass]="{'has-text-danger':checkFallDue(d.dateDue)}">{{d.dateDue|date:'dd-MM-yyyy'}} </span>
+            <span *ngIf="checkFallDue(d.dateDue)">&nbsp; (Ληξιπρόθεσμο)</span>
+          </td>
+          <td>
+              <a class="button is-primary is-small" (click)="null">Λεπτομέρεις</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
