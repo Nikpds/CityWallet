@@ -1,35 +1,52 @@
-  <div class="bck-color">
-    <div class="columns is-marginless is-multiline">
-      <div class="column  is-3-desktop is-offset-8-desktop is-offset-0-tablet is-12-tablet">
-        <div class="card vcenter" >
-          <div class="card-content">
-            <p class="title ">
-              Pay & Go
-            </p>
-            <div class="field">
-              <span class="subtitle is-6 ">
-                Όνομα Χρήστη
-              </span>
-              <div class="control">
-                <input class="input" [(ngModel)]="username" type="text" >
-              </div>
+<div class="bck-color">
+  <div class="columns is-marginless is-multiline">
+    <div class="column is-12">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <i class="fa fa-globe"></i>&nbsp; {{'App.Lang'|translate:lang}}
+          </a>
+          <div class="navbar-dropdown is-right is-boxed">
+            <a class="navbar-item" (click)="selectLocale('el', 'GR');">
+              {{'Common.Greek'|translate:lang}}
+            </a>
+            <a class="navbar-item" (click)="selectLocale('en', 'UK');">
+              {{'Common.English'|translate:lang}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column  is-3-desktop is-offset-8-desktop is-offset-0-tablet is-12-tablet">
+      <div class="card vcenter">
+        <div class="card-content">
+          <p class="title ">
+            {{'App.Title'|translate:lang}}
+          </p>
+          <div class="field">
+            <span class="subtitle is-6 ">
+              {{'Login.Username'|translate:lang}}
+            </span>
+            <div class="control">
+              <input class="input" [(ngModel)]="username" type="text">
             </div>
-            <div class="field">
-              <span class="subtitle is-6 ">
-                Κωδικός
-              </span>
-              <div class="control">
-                <input class="input" (keyup.enter)="login()" [(ngModel)]="password" type="password" >
-              </div>
+          </div>
+          <div class="field">
+            <span class="subtitle is-6 ">
+              {{'Login.Password'|translate:lang}}
+            </span>
+            <div class="control">
+              <input class="input" (keyup.enter)="login()" [(ngModel)]="password" type="password">
             </div>
-            <div class="field">
-              <a class="is-link is-primary ">Ξεχάσατε τον κωδικό σας ?</a>
-            </div>
-            <div class="field is-clearfix">
-              <a class="button is-dark is-pulled-right" (click)="login()">Σύνδεση</a>
-            </div>
+          </div>
+          <div class="field">
+            <a class="is-link is-primary "> {{'Login.ForgotPassword'|translate:lang}}</a>
+          </div>
+          <div class="field is-clearfix">
+            <a class="button is-dark is-pulled-right" (click)="login()"> {{'Login.Login'|translate:lang}}</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

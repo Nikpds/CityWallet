@@ -10,11 +10,11 @@
     <table class="table is-fullwidth is-striped" *ngIf="bills.length > 0">
       <thead>
         <tr>
-          <th class="is-hidden-mobile">ΑΑ</th>
-          <th>Υπηρεσία</th>
-          <th>Ποσό</th>
-          <th class="is-hidden-mobile">Λήξη</th>
-          <th>Ενέργεις</th>
+          <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
+          <th>{{'Bills.Service'|translate:lang}}</th>
+          <th>{{'Bills.Debt'|translate:lang}}</th>
+          <th class="is-hidden-mobile">{{'Bills.DueDate'|translate:lang}}</th>
+          <th>{{'Common.Select'|translate:lang}}</th>
         </tr>
       </thead>
       <tbody>
@@ -24,10 +24,10 @@
           <td>{{d.amount}} &euro;</td>
           <td class="is-hidden-mobile">
             <span [ngClass]="{'has-text-danger':checkFallDue(d.dateDue)}">{{d.dateDue|date:'dd-MM-yyyy'}} </span>
-            <span *ngIf="checkFallDue(d.dateDue)">&nbsp; (Ληξιπρόθεσμο)</span>
+            <span *ngIf="checkFallDue(d.dateDue)">&nbsp;({{'Bills.OverDue'|translate:lang}})</span>
           </td>
           <td>
-              <a class="button is-primary is-small" (click)="null">Λεπτομέρεις</a>
+            <a class="button is-primary is-small" (click)="null">{{'Common.DetailsBtn'|translate:lang}}</a>
           </td>
         </tr>
       </tbody>

@@ -1,0 +1,59 @@
+﻿{
+  "App": {
+    "Title": "eBills",
+    "Home": "Home",
+    "Lang": "En"
+  },
+  "Home": {
+    "Bills": "Bills",
+    "Settlements": "Settlements",
+    "Payments": "Payments",
+    "MadeBy": "Made By",
+    "Profile": "Profile",
+    "Logout": "Logout",
+    "Services": "Online Services"
+  },
+  "Common": {
+    "Menu": "Menu",
+    "Greek": "Greek",
+    "English": "English",
+    "Show": "Show",
+    "Print": "Print",
+    "Select": "Select",
+    "PayBtn": "Pay",
+    "SettlementBtn": "Request Settlement",
+    "DetailsBtn": "Details"
+  },
+  "User": {
+    "Details": "Account Details",
+    "Mobile": "Mobile",
+    "Vat": "VAT",
+    "Address": "Address",
+    "County": "County"
+  },
+  "Login": {
+    "Username": "Username",
+    "Password": "Password",
+    "ForgotPassword": "Forgot your password?",
+    "Login": "Login"
+  },
+  "Pagination": {
+    "First": "First",
+    "Last": "Last",
+    "Next": "Next",
+    "Previous": "Previous"
+  },
+  "Bills": {
+    "BillsSubtitle": "Pay and Overview your Bills !",
+    "Unpaid": "Unpaid",
+    "Paid": "Paid",
+    "OnSettlement": "On Settlement",
+    "AA": "#",
+    "Service": "Service",
+    "Debt": "Debt",
+    "DueDate": "Due Date",
+    "PayDate": "Paid Date",
+    "Method": "Method",
+    "OverDue": "Overdue"
+  }
+}

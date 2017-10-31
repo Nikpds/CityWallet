@@ -1,8 +1,8 @@
 <div class="is-clearfix field">
   <div class="is-pulled-right">
     <p class="is-grouped">
-      <button class="button is-primary" [disabled]="billsForPay.length == 0" [routerLink]="['payment']">Πληρωμή</button>
-      <button class="button is-warning" [disabled]="billsForPay.length == 0" [routerLink]="['settlement']">Διακανονισμός</button>
+      <button class="button is-primary" [disabled]="billsForPay.length == 0" [routerLink]="['payment']">{{'Common.PayBtn'|translate:lang}}</button>
+      <button class="button is-warning" [disabled]="billsForPay.length == 0" [routerLink]="['settlement']">{{'Common.SettlementBtn'|translate:lang}}</button>
     </p>
   </div>
 </div>
@@ -11,11 +11,11 @@
     <table class="table is-fullwidth is-striped" *ngIf="bills.length > 0">
       <thead>
         <tr>
-          <th class="is-hidden-mobile">ΑΑ</th>
-          <th>Υπηρεσία</th>
-          <th>Ποσό</th>
-          <th class="is-hidden-mobile">Λήξη</th>
-          <th class="selecteBill">Επιλογή</th>
+          <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
+          <th>{{'Bills.Service'|translate:lang}}</th>
+          <th>{{'Bills.Debt'|translate:lang}}</th>
+          <th class="is-hidden-mobile">{{'Bills.DueDate'|translate:lang}}</th>
+          <th class="selecteBill">{{'Common.Select'|translate:lang}}</th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +25,7 @@
           <td>{{d.amount}} &euro;</td>
           <td class="is-hidden-mobile">
             <span [ngClass]="{'has-text-danger':checkFallDue(d.dateDue)}">{{d.dateDue|date:'dd-MM-yyyy'}} </span>
-            <span *ngIf="checkFallDue(d.dateDue)">&nbsp; (Ληξιπρόθεσμο)</span>
+            <span *ngIf="checkFallDue(d.dateDue)">&nbsp; ({{'Bills.OverDue'|translate:lang}})</span>
           </td>
           <td>
             <div class="field">

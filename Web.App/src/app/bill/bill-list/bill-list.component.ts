@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SnotifyService } from 'ng-snotify';
+import { Language } from 'angular-l10n';
 
 import { Bill, User } from '../../appModel';
 
@@ -13,6 +14,7 @@ import { LoaderService } from '../../shared/loader.service';
 })
 export class BillListComponent implements OnInit {
   billType = 0;
+  @Language() lang;
 
   constructor(
     private billService: BillService,

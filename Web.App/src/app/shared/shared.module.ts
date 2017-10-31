@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TranslationModule, LocalizationModule, LocaleValidationModule, LocaleService, TranslationService } from 'angular-l10n';
+
 
 import { PaginationComponent } from './pagination/pagination.component';
 
@@ -12,6 +14,9 @@ import { PaginationService } from './pagination.service';
   imports: [
     CommonModule,
     NgxPaginationModule,
+    TranslationModule.forRoot(),
+    LocalizationModule.forRoot(),
+    LocaleValidationModule.forRoot()
   ],
   declarations: [
     PaginationComponent
@@ -23,9 +28,23 @@ import { PaginationService } from './pagination.service';
   ],
   exports: [
     NgxPaginationModule,
-    PaginationComponent
+    PaginationComponent,
+    TranslationModule,
+    LocalizationModule,
+    LocaleValidationModule
    
   ]
 
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(public locale: LocaleService, public translation: TranslationService) {
+    this.locale.addConfiguration()
+      .addLanguages(['en', 'el'])
+      .defineLanguage('el');
+
+    this.translation.addConfiguration()
+      .addProvider('./assets/locale-');
+
+    this.translation.init();
+  }
+ }

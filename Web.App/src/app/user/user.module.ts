@@ -4,9 +4,10 @@ import { RouterModule, Route } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { DetailsComponent } from './details/details.component';
+import { SharedModule } from '../shared/shared.module';
 
 import { AuthGuard } from '../auth/auth.guard';
-import { UserService} from './user.service';
+import { UserService } from './user.service';
 const routes: Route[] = [
   { path: 'profile', component: DetailsComponent, canActivate: [AuthGuard] }
 ]
@@ -16,6 +17,7 @@ const routes: Route[] = [
     CommonModule,
     RouterModule.forChild(routes),
     HttpModule,
+    SharedModule
   ],
   declarations: [
     DetailsComponent

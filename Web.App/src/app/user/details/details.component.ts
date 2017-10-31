@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { SnotifyService } from 'ng-snotify';
+import { Language } from 'angular-l10n';
 
 import { User, Counter } from '../../appModel';
 
@@ -14,6 +15,7 @@ import { UserService } from '../user.service';
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
+  @Language() lang;
   user = new User();
 
   constructor(

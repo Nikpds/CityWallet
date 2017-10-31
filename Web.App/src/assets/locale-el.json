@@ -1,0 +1,59 @@
+﻿{
+  "App": {
+    "Title": "eBills",
+    "Home": "Αρχική",
+    "Lang": "Ελ"
+  },
+  "Home": {
+    "Bills": "Λογαριασμοί",
+    "Settlements": "Διακανονισμοί",
+    "Payments": "Πληρωμές",
+    "MadeBy": "Σχεδιασμός",
+    "Profile": "Προφίλ",
+    "Logout": "Αποσύνδεση",
+    "Services": "Ηλεκτρονικές Υπηρεσίες"
+  },
+  "Common": {
+    "Menu": "Μενού",
+    "Greek": "Ελληνικά",
+    "English": "English",
+    "Show": "Εμφάνιση",
+    "Print": "Εκτύπωση",
+    "Select": "Επιλογή",
+    "PayBtn": "Πληρωμή",
+    "SettlementBtn": "Διακανονισμός",
+    "DetailsBtn": "Λεπτομέρειες"
+  },
+  "User": {
+    "Details": "Προσωπικά Στοιχεία",
+    "Mobile": "Κινητό",
+    "Vat": "Α.Φ.Μ",
+    "Address": "Διεύθυνση",
+    "County": "Δήμος"
+  },
+  "Login": {
+    "Username": "Όνομα Χρήστη",
+    "Password": "Κωδικός",
+    "ForgotPassword": "Ξεχάσατε τον κωδικό σας ;",
+    "Login": "Σύνδεση"
+  },
+  "Pagination": {
+    "First": "Πρώτη",
+    "Last": "Τελευταία",
+    "Next": "Επόμενη",
+    "Previous": "Προηγούμενη"
+  },
+  "Bills": {
+    "BillsSubtitle": "  Άμεση πληρωμή των Λογαριασμών σας !",
+    "Unpaid": "Ανεξόφλητοι",
+    "Paid": "Εξοφλημένοι",
+    "OnSettlement": "Σε διακανονισμό",
+    "AA": "ΑΑ",
+    "Service": "Υπηρεσία",
+    "Debt": "Ποσό",
+    "DueDate": "Λήξη",
+    "PayDate": "Ημ/νια Πληρωμής",
+    "Method": "Μέθοδος",
+    "OverDue": "Ληξιπρόθεσμο"
+  }
+}

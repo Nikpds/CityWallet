@@ -2,10 +2,10 @@
   <section class="is-small">
     <div class="hero-body">
       <h1 class="title has-text-white">
-        Λογαριασμοί
+        {{'Home.Bills'|translate:lang}}
       </h1>
       <h2 class="subtitle has-text-white">
-        Άμεση και γρήγορη πληρωμή των Λογαριασμών σας!
+        {{'Bills.BillsSubtitle'|translate:lang}}
       </h2>
       <div class="columns is-marginless is-multiline">
         <div class="column is-12">
@@ -16,7 +16,7 @@
                   <span class="icon is-small">
                     <i class="fa fa-file-text"></i>
                   </span>
-                  <span>Ανεξόφλητοι</span>
+                  <span> {{'Bills.Unpaid'|translate:lang}}</span>
                 </a>
               </li>
               <li [ngClass]="{'is-active':billType == 1}">
@@ -24,7 +24,7 @@
                   <span class="icon is-small">
                     <i class="fa fa-credit-card"></i>
                   </span>
-                  <span>Εξοφλημένοι</span>
+                  <span> {{'Bills.Paid'|translate:lang}}</span>
                 </a>
               </li>
               <li [ngClass]="{'is-active':billType == 2}">
@@ -32,7 +32,7 @@
                   <span class="icon is-small">
                     <i class="fa fa-handshake-o"></i>
                   </span>
-                  <span>Σε διακανονισμό</span>
+                  <span> {{'Bills.OnSettlement'|translate:lang}}</span>
                 </a>
               </li>
             </ul>

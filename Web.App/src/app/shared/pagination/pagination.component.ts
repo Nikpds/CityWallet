@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Language } from 'angular-l10n';
 
 import { Config } from '../../appModel';
 
@@ -10,12 +11,13 @@ import { Config } from '../../appModel';
 export class PaginationComponent implements OnInit {
   @Input() config = new Config();
   @Input() data = new Array();
-
+  @Language() lang;
+  
   constructor(
   ) { }
 
   ngOnInit() {
-  
+
   }
 
   nextPage() {

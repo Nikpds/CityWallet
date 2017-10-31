@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^4.4.6",
     "@angular/platform-browser-dynamic": "^4.4.6",
     "@angular/router": "^4.4.6",
+    "angular-l10n": "^3.5.1",
     "angular2-jwt": "^0.2.3",
     "bulma": "^0.5.3",
     "bulmaswatch": "^0.5.2",

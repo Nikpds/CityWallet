@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { SnotifyService } from 'ng-snotify';
+import { Language, LocaleService } from 'angular-l10n';
 
 import { AuthService } from '../auth.service';
 import { LoaderService } from '../../shared/loader.service';
@@ -31,6 +32,7 @@ import { LoaderService } from '../../shared/loader.service';
 export class LoginComponent implements OnInit, AfterViewInit {
   username: string;
   password: string;
+  @Language() lang;
 
   gloweffect = false;
   effect = 'low';
@@ -39,7 +41,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private authService: AuthService,
     private loader: LoaderService,
     private router: Router,
-    private notify: SnotifyService
+    private notify: SnotifyService,
+    public locale: LocaleService,
   ) {
     this.notify.config.toast.timeout = 5000;
     this.notify.config.toast.pauseOnHover = true;
@@ -82,5 +85,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.gloweffect = !this.gloweffect;
     this.effect = this.gloweffect ? 'low' : 'high';
   }
+
+  selectLocale(language: string, country: string): void {
+    this.locale.setDefaultLocale(language, country);
+  }
+
 
 }

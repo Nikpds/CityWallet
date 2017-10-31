@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { SnotifyService } from 'ng-snotify';
 import { PaginationInstance } from '../../../../../node_modules/ngx-pagination';
+import { Language } from 'angular-l10n';
 
 import { Bill, User, Config } from '../../../appModel';
 
@@ -18,6 +19,8 @@ export class BillsUnpaidComponent implements OnInit {
   bills = new Array<Bill>();
   billsForPay: Array<Bill>;
   config = new Config();
+  @Language() lang;
+  
   constructor(
     private billService: BillService,
     private loader: LoaderService,
