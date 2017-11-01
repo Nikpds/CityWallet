@@ -17,7 +17,7 @@ namespace ApiManager.Models
         public string Vat { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
-        public bool PasswordReset { get; set; }
+        public bool FirstLogin { get; set; }
         public Counter Counters { get; set; }
         public string County { get; set; }
         public string Address { get; set; }
@@ -31,7 +31,7 @@ namespace ApiManager.Models
             Vat = user.Vat;
             Mobile = user.Mobile;
             Email = user.Email;
-            PasswordReset = user.PasswordReset;
+            FirstLogin = user.FirstLogin;
             County = user.Address.County;
             Address = user.Address.Street;
             Bills = user.Bills;

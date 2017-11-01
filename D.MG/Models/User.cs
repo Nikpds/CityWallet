@@ -16,7 +16,7 @@ namespace Models
         public string Password { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
-        public bool PasswordReset { get; set; }
+        public bool FirstLogin { get; set; }
         public string VerificationToken { get; set; }
 
         public virtual Address Address { get; set; }

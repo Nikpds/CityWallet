@@ -150,6 +150,8 @@ namespace SqlContext.Migrations
                         .IsRequired()
                         .HasAnnotation("unique", true);
 
+                    b.Property<bool>("FirstLogin");
+
                     b.Property<DateTime>("LastUpdate");
 
                     b.Property<string>("Lastname")
@@ -162,8 +164,6 @@ namespace SqlContext.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired();
-
-                    b.Property<bool>("PasswordReset");
 
                     b.Property<string>("Vat")
                         .IsRequired()

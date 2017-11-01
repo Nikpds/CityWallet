@@ -30,7 +30,7 @@ export class ResetPasswordComponent implements OnInit {
   reserPassword() {
     if (!this.email) { return; }
     this.loader.show();
-    this.service.resetPassword(this.email).subscribe(res => {
+    this.service.requestResetPassword(this.email).subscribe(res => {
       this.loader.hide();
       this.notify.success("Check your email.");
     }, error => {

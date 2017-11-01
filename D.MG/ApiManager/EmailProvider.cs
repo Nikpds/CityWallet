@@ -40,7 +40,7 @@ namespace ApiManager
                 string ToAddress = user.Email;
                 string ToAdressTitle = name;
                 string Subject = "EasyPay Reset Password Request";
-                string BodyContent = string.Format("Hello {0}. Please follow this link in order to reset your account password. {1}resetpwd?token={2}",
+                string BodyContent = string.Format("Hello {0}. Please follow this link in order to reset your account password. {1}changepwd?token={2}",
                     name, _options.ClientUri, user.VerificationToken);
 
                 var mimeMessage = new MimeMessage();

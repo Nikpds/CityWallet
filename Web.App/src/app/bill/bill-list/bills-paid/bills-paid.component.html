@@ -1,11 +1,11 @@
-<div class="is-clearfix field">
+<div class="is-clearfix field" *ngIf="bills.length > 0">
   <div class="is-pulled-right ">
     <p class="is-grouped">
       <button class="button is-primary" [disabled]="!selectedBill" [routerLink]="['payment']"> {{'Common.Print'|translate:lang}}</button>
     </p>
   </div>
 </div>
-<div class="card">
+<div class="card" *ngIf="bills.length > 0">
   <div class="card-content">
     <table class="table is-fullwidth is-striped">
       <thead>

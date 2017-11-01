@@ -49,6 +49,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    if (this.authService.authenticated) {
+      this.router.navigate(['/home']);
+    }
   }
 
   ngAfterViewInit() {

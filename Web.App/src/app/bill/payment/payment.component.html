@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero is-transparent">
   <div class="hero-body">
     <div class="container">
       <div class="steps">
@@ -9,7 +9,7 @@
             </span>
           </div>
           <div class="step-details">
-            <p class="step-title">Λογαριασμοί</p>
+            <a class="step-title" (click)="step = 0">Λογαριασμοί</a>
             <p>Επιβεβαίωση Λογαριασμών</p>
           </div>
         </div>
@@ -20,7 +20,7 @@
             </span>
           </div>
           <div class="step-details ">
-            <p class="step-title">Χρέωση</p>
+            <a class="step-title" (click)="step = 1">Χρέωση</a>
             <p>Εισαγωγή πιστωτικής κάρτας.</p>
           </div>
         </div>
@@ -30,8 +30,8 @@
               <i class="fa fa-flag-checkered"></i>
             </span>
           </div>
-          <div class="step-details ">
-            <p class="step-title">Ολοκλήρωση</p>
+          <div class="step-details">
+            <a class="step-title" (click)="step = 2">Ολοκλήρωση</a>
             <p>Επιβεβαίωση στοιχείων και ολοκλήρωση.</p>
           </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="column is-12">
           <div class="field is-grouped is-pulled-right">
             <p class="control">
-              <button class="button is-default" [disabled]="step == 0" (click)="previousStep()">
+              <button class="button is-default" *ngIf="step != 0" (click)="previousStep()">
                 Προηγουμενο
               </button>
             </p>

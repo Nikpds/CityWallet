@@ -37,7 +37,7 @@ namespace ApiManager
             string[] headers;
             string[] fields;
             int counter = 0;
-            var fileStream = File.ReadAllLines(@"C:\git\DebtManagment\assets\CitizenDebts_1M_3.txt");
+            var fileStream = File.ReadAllLines(@"D:\git\DebtManagment\assets\CitizenDebts_1M_3.txt");
 
             var firstline = fileStream[0];
             headers = firstline.Split(";");
@@ -57,7 +57,7 @@ namespace ApiManager
                     user.Address.County = fields[6];
                     user.Email = fields[3];
                     user.Mobile = fields[4];
-                    user.PasswordReset = false;
+                    user.FirstLogin = true;
                     user.LastUpdate = DateTime.Now;
                     debt.Amount = Double.Parse(fields[9]);
                     debt.Description = fields[8];
@@ -159,11 +159,18 @@ namespace ApiManager
         {
             user.Password = PasswordHasher.HashPassword(pwd.NewPassword);
 
+            user.VerificationToken = null;
+
             _dbSet.Update(user);
 
             _ctx.SaveChanges();
 
             return user;
+        }
+
+        public async Task<User> GetByVerification(string token)
+        {
+            return await _dbSet.FirstOrDefaultAsync(x => x.VerificationToken == token);
         }
 
     }

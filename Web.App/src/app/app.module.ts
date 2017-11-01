@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from './shared/shared.module';
@@ -40,6 +41,7 @@ const routes: Route[] = [
     BillModule,
     FormsModule,
     UserModule,
+    ReactiveFormsModule,
     SharedModule,
     HttpModule,
     AuthModule,

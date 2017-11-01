@@ -26,13 +26,19 @@ export class UserService {
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
-  resetPassword(email: string): Observable<boolean> {
+  requestResetPassword(email: string): Observable<boolean> {
     return this.auth.get(this.userUrl + '/requestpasswordreset/' + email)
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
   changePassword(pwd: PasswordReset): Observable<boolean> {
+    return this.auth.put(this.userUrl + '/change/password', pwd)
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
+
+  resetPassword(pwd: PasswordReset): Observable<boolean> {
     return this.auth.put(this.userUrl + '/reset/password', pwd)
       .map((res: Response) => res.json())
       .catch((error: string) => Observable.throw(error || 'Server error'))

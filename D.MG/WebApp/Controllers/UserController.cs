@@ -56,16 +56,16 @@ namespace WebApp.Controllers
 
                     if (validated)
                     {
-                        return BadRequest();
+                        _srv.ChangePassword(user, pwd);
                     }
                     else
                     {
-                        _srv.ChangePassword(user, pwd);
+                        return BadRequest("Λάθος Κωδικός");
                     }
 
                 }
 
-                return Ok(true);
+                return Ok("ok");
             }
             catch (Exception ex)
             {
@@ -74,23 +74,23 @@ namespace WebApp.Controllers
         }
         [AllowAnonymous]
         [HttpPut("reset/password")]
-        public IActionResult ResetPassword([FromBody] PasswordReset psw)
+        public async Task<IActionResult> ResetPassword([FromBody] PasswordReset psw)
         {
             try
             {
 
-                //var user =  _srv.GetByUsername(email);
+                var user = await _srv.GetByVerification(psw.VerificationToken);
 
-                //if (user == null)
-                //{
-                //    return NotFound("User does not exist.");
-                //}
-                //else
-                //{
-                //    _srv.SendResetPwdEmail(user);
-                //}
+                if (user == null)
+                {
+                    return NotFound("The link has expired");
+                }
+                else
+                {
+                    _srv.ChangePassword(user,psw);
+                }
 
-                return Ok();
+                return Ok("ok");
             }
             catch (Exception ex)
             {

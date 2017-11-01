@@ -1,18 +1,9 @@
-@import "../../styles/_variables.sass"
+@import "../../../node_modules/bulmaswatch/darkly/_variables.scss"
 
 
 @media screen and (min-width: 1280px)
     img
         height: 310px
-
-.panel
-    padding: 20px
-    background: white
-    border-radius: 5px
-
-.panel-block
-    border-bottom: 1px solid $primary
-    color: $primary
 
 .image-filter
     position: absolute
@@ -33,9 +24,9 @@
         background-color:  darken($green, 10%)
 
 .bck-dark    
-    background-color: $dark
+    background-color: $grey
     &:hover
-        background-color:  darken($dark, 10%)
+        background-color:  darken($grey, 10%)
 
 .bck-warning    
     background-color: $yellow
@@ -56,3 +47,15 @@
 .imagebulma
     width: 192px
     height: auto
+
+.footer-image
+    background-image: url('../../assets/rsz_footer.jpg')
+    background-size: cover
+    padding: 0
+
+.footer-overlay
+    background-color: rgba(0, 0, 0, 0.28)
+    width: 100%
+    height: auto
+    padding: 3rem 1.5rem 6rem
+    
