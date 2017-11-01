@@ -36,6 +36,9 @@ namespace WebApp
         {
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
+            services.Configure<SmtpOptions>(Configuration.GetSection("SMTP"));
+            services.AddTransient<IEmailProvider, EmailProvider>();
+
             services.AddScoped<BillService>();
             services.AddScoped<PaymentService>();
             services.AddScoped<UserService>();

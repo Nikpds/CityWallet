@@ -11,7 +11,7 @@ using System;
 namespace SqlContext.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20171026134735_init")]
+    [Migration("20171101074636_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,6 +169,8 @@ namespace SqlContext.Migrations
                     b.Property<string>("Vat")
                         .IsRequired()
                         .HasAnnotation("unique", true);
+
+                    b.Property<string>("VerificationToken");
 
                     b.HasKey("Id");
 

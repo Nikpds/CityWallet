@@ -16,12 +16,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 const routes: Route[] = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: "login", component: LoginComponent},
-  { path: "forgotpassword", component: ResetPasswordComponent }
+  { path: "login", component: LoginComponent },
+  { path: "forgotpassword", component: ResetPasswordComponent },
+  { path: "changepwd", component: ChangePasswordComponent }
 ];
 
 @NgModule({
@@ -29,7 +31,8 @@ const routes: Route[] = [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 ﻿using ApiManager.Models;
+using AuthProvider;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using SqlContext;
@@ -15,6 +16,14 @@ namespace ApiManager
     {
         private DbSet<User> _dbSet;
         private DataContext _ctx;
+        private IEmailProvider _smtp;
+
+        public UserService(DataContext ctx, IEmailProvider smtp)
+        {
+            _dbSet = ctx.Set<User>();
+            _ctx = ctx;
+            _smtp = smtp;
+        }
 
         public UserService(DataContext ctx)
         {
@@ -87,7 +96,7 @@ namespace ApiManager
             return DateTime.Parse(dateformat);
         }
 
-        public async Task<UserDto> GetUser(string userId)
+        public async Task<UserDto> GetUserWithCounters(string userId, bool toDto = true)
         {
             var user = await _dbSet.Include(x => x.Address).SingleOrDefaultAsync(s => s.Id == userId);
             var counter = new Counter
@@ -102,6 +111,13 @@ namespace ApiManager
                 Counters = counter
             };
             return userDto;
+        }
+
+        public async Task<User> GetUser(string userId)
+        {
+            var user = await _dbSet.SingleOrDefaultAsync(s => s.Id == userId);
+
+            return user;
         }
 
         public async Task<User> GetByUsername(string username)
@@ -121,6 +137,33 @@ namespace ApiManager
             };
 
             return counter;
+        }
+
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await _dbSet.FirstOrDefaultAsync(x => x.Email == email);
+        }
+
+        public void SendResetPwdEmail(User user)
+        {
+            user.VerificationToken = (Guid.NewGuid()).ToString();
+
+            _dbSet.Update(user);
+
+            _ctx.SaveChanges();
+
+            _smtp.SendResetPwdEmail(user);
+        }
+
+        public User ChangePassword(User user, PasswordReset pwd)
+        {
+            user.Password = PasswordHasher.HashPassword(pwd.NewPassword);
+
+            _dbSet.Update(user);
+
+            _ctx.SaveChanges();
+
+            return user;
         }
 
     }

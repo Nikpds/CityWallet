@@ -26,7 +26,7 @@ namespace Testing
             var srv = new UserService(_db);
             var srv1 = new SettlementService(_db);
             srv1.CreateSettlementTypes();
-           // var users = srv.InsertUsers();
+            var users = srv.InsertUsers();
 
 
         }

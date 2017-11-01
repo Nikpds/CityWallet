@@ -51,7 +51,8 @@ namespace SqlContext.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PasswordReset = table.Column<bool>(type: "bit", nullable: false),
-                    Vat = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Vat = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VerificationToken = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

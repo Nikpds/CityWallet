@@ -29,14 +29,21 @@
     "Mobile": "Mobile",
     "Vat": "VAT",
     "Address": "Address",
-    "County": "County"
+    "County": "County",
+    "ChangePwd":"Change Password"
   },
   "Login": {
     "Username": "Username",
     "Password": "Password",
     "ForgotPassword": "Forgot your password?",
     "Login": "Login",
-    "ResetPswText": "Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code, you will be able to choose a new password for your account"
+    "ResetPswText": "Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code, you will be able to choose a new password for your account",
+    "Cancel": "Cancel",
+    "Send": "Send",
+    "OldPsw": "Old Password",
+    "ReTypeNewPsw": "Retype New Password",
+    "NewPsw": "New Password",
+    "Change": "Change"
   },
   "Pagination": {
     "First": "First",

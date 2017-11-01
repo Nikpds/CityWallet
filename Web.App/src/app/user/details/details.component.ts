@@ -17,7 +17,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   @Language() lang;
   user = new User();
-
+  
   constructor(
     private auth: AuthService,
     private userService: UserService,

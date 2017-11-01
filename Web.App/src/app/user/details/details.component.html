@@ -1,11 +1,16 @@
 <div class="container">
   <section class="hero">
     <div class="hero-body">
-      <div>
-        <p class="title is-2 has-text-white">
-          {{user.lastname}} {{user.name}}</p>
-        <p class="subtitle is-5 has-text-white">
-          <i class="fa fa-envelope " title="email"></i> {{user.email}}</p>
+      <div class="columns is-gapless">
+        <div class="column">
+          <p class="title is-2 has-text-white">
+            {{user.lastname}} {{user.name}}</p>
+          <p class="subtitle is-5 has-text-white">
+            <i class="fa fa-envelope " title="email"></i> {{user.email}}</p>
+        </div>
+        <div class="column is-narrow">
+          <a class="button is-primary" [routerLink]="['/changepwd']">{{'User.ChangePwd'|translate:lang}}</a>
+        </div>
       </div>
 
       <hr>

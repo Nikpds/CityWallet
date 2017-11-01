@@ -15,7 +15,7 @@ namespace WebApp.Controllers
     public class UserController : Controller
     {
         private readonly UserService _srv;
-       
+
         public UserController(UserService srv)
         {
             _srv = srv;
@@ -28,7 +28,7 @@ namespace WebApp.Controllers
             {
                 var id = User.GetUserId();
 
-                var user = await _srv.GetUser(id);
+                var user = await _srv.GetUserWithCounters(id);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -38,12 +38,57 @@ namespace WebApp.Controllers
         }
 
         [HttpPut("change/password")]
-        public IActionResult ChangePassword(PasswordReset psw)
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordReset pwd)
         {
             try
             {
-                //var changed = new User();
-                //var user = db.UserRepository.Update(changed);
+                var id = User.GetUserId();
+
+                var user = await _srv.GetUser(id);
+
+                if (user == null)
+                {
+                    return NotFound("User does not exist.");
+                }
+                else
+                {
+                    var validated = PasswordHasher.VerifyHashedPassword(user.Password, pwd.OldPassword);
+
+                    if (validated)
+                    {
+                        return BadRequest();
+                    }
+                    else
+                    {
+                        _srv.ChangePassword(user, pwd);
+                    }
+
+                }
+
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [AllowAnonymous]
+        [HttpPut("reset/password")]
+        public IActionResult ResetPassword([FromBody] PasswordReset psw)
+        {
+            try
+            {
+
+                //var user =  _srv.GetByUsername(email);
+
+                //if (user == null)
+                //{
+                //    return NotFound("User does not exist.");
+                //}
+                //else
+                //{
+                //    _srv.SendResetPwdEmail(user);
+                //}
 
                 return Ok();
             }
@@ -63,6 +108,30 @@ namespace WebApp.Controllers
                 var counters = await _srv.GetUserCounters(id);
 
                 return Ok(counters);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        [AllowAnonymous]
+        [HttpGet("requestpasswordreset/{email}")]
+        public async Task<IActionResult> RequestPasswordReset(string email)
+        {
+            try
+            {
+                var user = await _srv.GetUserByEmail(email);
+
+                if (user == null)
+                {
+                    return NotFound("User does not exist.");
+                }
+                else
+                {
+                    _srv.SendResetPwdEmail(user);
+                }
+
+                return Ok();
             }
             catch (Exception ex)
             {

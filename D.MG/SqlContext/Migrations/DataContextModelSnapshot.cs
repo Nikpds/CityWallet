@@ -169,6 +169,8 @@ namespace SqlContext.Migrations
                         .IsRequired()
                         .HasAnnotation("unique", true);
 
+                    b.Property<string>("VerificationToken");
+
                     b.HasKey("Id");
 
                     b.ToTable("User");

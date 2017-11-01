@@ -91,3 +91,11 @@ export class SettlementType {
     installments: number;
     interest: number;
 }
+
+export class PasswordReset {
+    username: string;
+    oldPassword: string;
+    newPassword: string;
+    verificationToken: string;
+
+}
