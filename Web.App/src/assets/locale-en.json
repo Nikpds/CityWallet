@@ -35,7 +35,8 @@
     "Username": "Username",
     "Password": "Password",
     "ForgotPassword": "Forgot your password?",
-    "Login": "Login"
+    "Login": "Login",
+    "ResetPswText": "Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code, you will be able to choose a new password for your account"
   },
   "Pagination": {
     "First": "First",

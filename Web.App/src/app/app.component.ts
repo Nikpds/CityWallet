@@ -14,16 +14,17 @@ export class AppComponent implements OnInit, OnDestroy {
   @Language() lang: string;
   private subscriptions = new Array<Subscription>();
   user: User;
-
+  showNavbar = true;
   constructor(
     public locale: LocaleService,
-    private auth: AuthService
+    private auth: AuthService,
   ) { }
 
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
-  }
+    }
+    
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

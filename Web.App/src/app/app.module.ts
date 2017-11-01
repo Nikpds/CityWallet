@@ -15,18 +15,21 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 const routes: Route[] = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: "login", component: LoginComponent }
+  { path: "login", component: LoginComponent},
+  { path: "forgotpassword", component: ResetPasswordComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

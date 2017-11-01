@@ -149,6 +149,7 @@ export class AuthService {
 
   private handleError(error: Response) {
     if (error.status === 401) {
+      this.user = null;
       this.router.navigateByUrl('/login');
       return Observable.throw(error.statusText);
     } else {
