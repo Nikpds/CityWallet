@@ -16,6 +16,7 @@ export class SettlementComponent implements OnInit {
   private subscriptions = new Array<Subscription>();
   settlementTypes = new Array<SettlementType>();
   bills: Array<Bill>;
+  settlementType: number
   installments = [];
   settlement = new Settlement();
 
@@ -32,7 +33,7 @@ export class SettlementComponent implements OnInit {
       .subscribe((res) => this.bills = res));
 
     if (this.bills.length == 0) {
-      this.router.navigate(['/bills']);
+      // this.router.navigate(['/bills']);
     }
   }
   ngOnDestroy() {
@@ -48,7 +49,8 @@ export class SettlementComponent implements OnInit {
     this.loader.show();
     this.billService.getSettlementTypes().subscribe(res => {
       this.settlementTypes = res;
-      this.createMaxInstallments(this.settlementTypes[0].installments);
+      this.settlementType = 0;
+      this.createMaxInstallments();
       this.loader.hide();
     }, error => {
       this.loader.hide();
@@ -56,7 +58,9 @@ export class SettlementComponent implements OnInit {
     })
   }
 
-  createMaxInstallments(maxInstallments: number) {
+  createMaxInstallments() {
+    console.log(this.settlementType);
+    var maxInstallments = this.settlementTypes[this.settlementType].installments;
     this.installments = [];
     this.settlement.installments = maxInstallments;
     let maxloop = maxInstallments / 3;
@@ -80,5 +84,14 @@ export class SettlementComponent implements OnInit {
       this.loader.hide();
       this.notify.error("Σφάλμα καταχώρησης διακανονισμού.");
     });
+  }
+
+  calculateSettlement() {
+    this.settlement.downpayment = this.downPayment(this.settlementType);
+    console.log(this.settlement.downpayment);
+  }
+
+  downPayment(index) {
+    return (this.bills.reduce(function (a, b) { return a + b.amount }, 0)) * (this.settlementTypes[index].downpayment / 100);
   }
 }

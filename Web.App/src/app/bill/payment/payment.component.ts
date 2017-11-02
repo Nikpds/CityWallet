@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router'
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { SnotifyService } from 'ng-snotify';
 
@@ -46,7 +47,8 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private billService: BillService,
     private loader: LoaderService,
     private auth: AuthService,
-    private notify: SnotifyService
+    private notify: SnotifyService,
+    private router: Router
   ) { }
 
 
@@ -85,10 +87,12 @@ export class PaymentComponent implements OnInit, OnDestroy {
   payBills() {
     this.loader.show();
     this.billService.paybills().subscribe(res => {
-      this.notify.success('Αδυναμία Εισαγωγής');
+      this.notify.success('Η συναλλαγή ολοκληρώθηκε');
+      this.router.navigate(['/payments']);
+      this.billsForPay = new Array<Bill>();
       this.loader.hide();
     }, error => {
-      this.notify.error('Αδυναμία Εισαγωγής');
+      this.notify.error('Αδυναμία Πληρωμής');
       this.loader.hide();
     });
   }

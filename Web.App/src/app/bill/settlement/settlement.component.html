@@ -19,8 +19,8 @@
               <span>Λογαριασμοί</span>
             </a>
           </li>
-          <li class="is-active">
-            <a>
+          <li>
+            <a class="is-active">
               <span class="icon">
                 <i class="fa fa-handshake-o"></i>
               </span>
@@ -36,7 +36,8 @@
         <div class="column is-6">
           <div class="card">
             <div class="card-content">
-              <span class="subtitle is-3"> Επιλογή διακανονισμού.</span>
+              <div class="subtitle is-3"> Επιλογή διακανονισμού.</div>
+              <label class="label">Επιλέξτε το είδος και τους αριθμούς των δόσεων.</label>
               <div class="field is-horizontal">
                 <div class="field-label is-normal">
                   <label class="label">Είδος</label>
@@ -45,18 +46,22 @@
                   <div class="field is-narrow">
                     <div class="control">
                       <div class="select is-fullwidth">
-                        <select (change)="createMaxInstallments($event.target.value)">
-                          <option *ngFor="let t of settlementTypes" value="{{t.installments}}">{{'Προκαταβολή ' + t.downpayment + '%' + ' Επιτόκιο ' + t.interest}}</option>
+                        <select [(ngModel)]="settlementType" (change)="createMaxInstallments()">
+                          <option *ngFor="let t of settlementTypes;let i = index" value="{{i}}">{{'Προκαταβολή ' + t.downpayment + '%' + ' Επιτόκιο ' + t.interest}}</option>
                         </select>
                       </div>
                     </div>
                   </div>
-                  <div class="field-label is-normal">
-                    <label class="label">Δόσεις</label>
-                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label">Δόσεις</label>
+                </div>
+                <div class="field-body">
                   <div class="field">
                     <p class="control">
-                      <span class="select">
+                      <span class="select ">
                         <select [(ngModel)]="settlement.installments">
                           <option *ngFor="let i of installments" [value]="i">{{i}}</option>
                         </select>
@@ -65,9 +70,17 @@
                   </div>
                 </div>
               </div>
-              <div class="is-clearfix">
-                <a class="button is-info is-small is-pulled-right">Υπολογισμός</a>
-                <a class="button is-info is-small is-pulled-right" (click)="submitSettlement()">Υποβολή</a>
+              <div class="field is-grouped is-grouped-right">
+                <p class="control">
+                  <a class="button is-info" (click)="calculateSettlement()">
+                    Υπολογισμός
+                  </a>
+                </p>
+                <p class="control">
+                  <a class="button is-success" (click)="submitSettlement()">
+                    Υποβολή
+                  </a>
+                </p>
               </div>
             </div>
           </div>

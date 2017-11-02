@@ -1,6 +1,6 @@
-<div class="container">
-  <section class="hero">
-    <div class="hero-body">
+<section class="hero is-transparent">
+  <div class="hero-body">
+    <div class="container">
       <div class="columns is-gapless">
         <div class="column">
           <p class="title is-2 has-text-white">
@@ -20,7 +20,7 @@
             <p class="heading has-text-white">{{'Home.Bills'|translate:lang}}</p>
             <p class="title has-text-white">{{user.counters.bills}}</p>
             <p>
-              <a class="button is-info is-small is-outlined margin-top-10" [routerLink]="['/bills']">{{'Common.Show'|translate:lang}}</a>
+              <a class="button is-info is-small  margin-top-10" [routerLink]="['/bills']">{{'Common.Show'|translate:lang}}</a>
             </p>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <p class="heading has-text-white">{{'Home.Settlements'|translate:lang}}</p>
             <p class="title has-text-white">{{user.counters.settlements}}</p>
             <p>
-              <a class="button is-info is-small is-outlined margin-top-10" [routerLink]="['/settlements']">{{'Common.Show'|translate:lang}}</a>
+              <a class="button is-info is-small  margin-top-10" [routerLink]="['/settlements']">{{'Common.Show'|translate:lang}}</a>
             </p>
           </div>
         </div>
@@ -38,7 +38,7 @@
             <p class="heading has-text-white">{{'Home.Payments'|translate:lang}}</p>
             <p class="title has-text-white">{{user.counters.payments}}</p>
             <p>
-              <a class="button is-info is-small is-outlined margin-top-10" [routerLink]="['/payments']">{{'Common.Show'|translate:lang}}</a>
+              <a class="button is-info is-small  margin-top-10" [routerLink]="['/payments']">{{'Common.Show'|translate:lang}}</a>
             </p>
           </div>
         </div>
@@ -47,7 +47,7 @@
             <p class="heading has-text-white">Κατι</p>
             <p class="title has-text-white">??</p>
             <p>
-              <a class="button is-info is-small is-outlined margin-top-10">{{'Common.Show'|translate:lang}}</a>
+              <a class="button is-info is-small  margin-top-10">{{'Common.Show'|translate:lang}}</a>
             </p>
           </div>
         </div>
@@ -65,5 +65,5 @@
           <span class="subtitle has-text-info is-5">{{'User.County'|translate:lang}}:</span>&nbsp;&nbsp; {{user.county}}</p>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
