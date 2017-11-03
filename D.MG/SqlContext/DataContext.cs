@@ -78,8 +78,6 @@ namespace SqlContext
             var settlementBuilder = modelBuilder.Entity<Settlement>();
 
             settlementBuilder.HasKey(t => t.Id);
-            settlementBuilder.Property(t => t.Interest)
-                             .IsRequired();
             settlementBuilder.Property(t => t.Installments)
                              .IsRequired();
             settlementBuilder.Property(t => t.Downpayment)
@@ -91,6 +89,11 @@ namespace SqlContext
                              .HasForeignKey(h => h.SettlementId);
 
             var settlementTypeBuilder = modelBuilder.Entity<SettlementType>();
+
+            settlementTypeBuilder.HasMany(x => x.Settlements)
+                                 .WithOne(x => x.SettlementType)
+                                 .HasForeignKey(x => x.SettlementTypeId)
+                                 .IsRequired();
         }
     }
 }

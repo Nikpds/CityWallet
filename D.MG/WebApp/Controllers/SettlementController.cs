@@ -1,4 +1,5 @@
 ﻿using ApiManager;
+using ApiManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -23,7 +24,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> InsertSettlement([FromBody] Settlement settle)
+        public async Task<IActionResult> InsertSettlement([FromBody] SettlementDto settle)
         {
             try
             {

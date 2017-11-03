@@ -16,7 +16,7 @@ export class SettlementComponent implements OnInit {
   private subscriptions = new Array<Subscription>();
   settlementTypes = new Array<SettlementType>();
   bills: Array<Bill>;
-  settlementType: number
+  sType: number
   installments = [];
   settlement = new Settlement();
 
@@ -49,7 +49,7 @@ export class SettlementComponent implements OnInit {
     this.loader.show();
     this.billService.getSettlementTypes().subscribe(res => {
       this.settlementTypes = res;
-      this.settlementType = 0;
+      this.sType = 0;
       this.createMaxInstallments();
       this.loader.hide();
     }, error => {
@@ -59,8 +59,7 @@ export class SettlementComponent implements OnInit {
   }
 
   createMaxInstallments() {
-    console.log(this.settlementType);
-    var maxInstallments = this.settlementTypes[this.settlementType].installments;
+    var maxInstallments = this.settlementTypes[this.sType].installments;
     this.installments = [];
     this.settlement.installments = maxInstallments;
     let maxloop = maxInstallments / 3;
@@ -74,8 +73,7 @@ export class SettlementComponent implements OnInit {
   submitSettlement() {
     this.loader.show();
     this.settlement.bills = this.bills;
-    this.settlement.downpayment = 500;
-    this.settlement.interest = 10;
+    this.settlement.settlementType.id = this.settlementTypes[this.sType].id;
     this.billService.sumbitSettletment(this.settlement).subscribe(res => {
       this.settlement = res;
       this.loader.hide();
@@ -87,11 +85,34 @@ export class SettlementComponent implements OnInit {
   }
 
   calculateSettlement() {
-    this.settlement.downpayment = this.downPayment(this.settlementType);
-    console.log(this.settlement.downpayment);
+    this.settlement.settlementType = new SettlementType();
+    this.settlement.downpayment = this.downPayment(this.sType);
+    this.settlement.subTotal = this.getSubTotal();
+    this.settlement.monthlyFee = +(this.settlement.subTotal / this.settlement.installments).toFixed(2);
+    this.settlement.settlementType.interest = this.settlementTypes[this.sType].interest;
+  }
+
+  removebillFromPay(i: number) {
+    this.bills.splice(i, 1);
+    if (this.bills.length == 0) {
+      this.router.navigate(['/bills']);
+    }
+    this.calculateSettlement();
   }
 
   downPayment(index) {
-    return (this.bills.reduce(function (a, b) { return a + b.amount }, 0)) * (this.settlementTypes[index].downpayment / 100);
+    return this.getTotal(this.bills) * (this.settlementTypes[index].downpayment / 100);
+  }
+
+  getTotal(bills: Bill[]) {
+    return +(bills.reduce(function (a, b) { return a + b.amount }, 0)).toFixed(2);
+  }
+
+  clearSettlement() {
+    this.settlement.settlementType = null;
+  }
+
+  getSubTotal() {
+    return ((this.getTotal(this.bills) - this.settlement.downpayment) * (this.settlementTypes[this.sType].interest / 100)) + (this.getTotal(this.bills) - this.settlement.downpayment);
   }
 }

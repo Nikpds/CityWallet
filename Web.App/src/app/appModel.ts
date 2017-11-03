@@ -40,12 +40,14 @@ export class Address {
 
 export class Settlement {
     id: string;
-    interest: number;
+    settlementType: SettlementType
+    monthlyFee: number;
+    subTotal: number;
     installments: number;
     downpayment: number;
     requestDate: Date;
     bills: Array<Bill>;
-
+    
     constructor() {
         this.bills = new Array<Bill>();
     }
@@ -99,3 +101,4 @@ export class PasswordReset {
     verificationToken: string;
 
 }
+

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ApiManager.Models;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using SqlContext;
 using System;
@@ -21,22 +22,28 @@ namespace ApiManager
         }
 
 
-        public async Task<Settlement> InsertSettlement(Settlement settle)
+        public async Task<SettlementDto> InsertSettlement(SettlementDto settle)
         {
-            var bills = settle.Bills.ToList();
-            settle.LastUpdate = DateTime.Now;
-            settle.RequestDate = DateTime.Now;
+            var sType = await _ctx.Set<SettlementType>().FirstOrDefaultAsync(f => f.Id == settle.SettlementType.Id);
+            settle.SettlementType = sType;
+
+            var settlement = new SettlementDto().ToDomainModel(settle);
+            var bills = settlement.Bills.ToList();
+
+            settlement.Downpayment = settlement.Bills.Sum(s => s.Amount) * (settlement.SettlementType.Downpayment / 100);
+            settlement.LastUpdate = DateTime.Now;
+            settlement.RequestDate = DateTime.Now;
             settle.Bills = new List<Bill>();
 
-            _dbSet.Add(settle);
+            _dbSet.Add(settlement);
 
-            bills.ForEach(x => x.SettlementId = settle.Id);
+            bills.ForEach(x => x.SettlementId = settlement.Id);
 
             _ctx.Set<Bill>().UpdateRange(bills);
 
             await _ctx.SaveChangesAsync();
 
-            return settle;
+            return new SettlementDto(settlement);
         }
 
         public async Task<Boolean> CancelSettlement(string id)
@@ -54,18 +61,19 @@ namespace ApiManager
             return true;
         }
 
-        public async Task<ICollection<Settlement>> GetUserSettlements(string userId)
+        public async Task<IEnumerable<SettlementDto>> GetUserSettlements(string userId)
         {
-            var settlements = await _dbSet.Include(i=> i.Bills).Where(w => w.Bills.Any(b => b.UserId == userId)).ToArrayAsync();
+            var settlements = await _dbSet.Include(i => i.Bills).Where(w => w.Bills.Any(b => b.UserId == userId)).ToArrayAsync();
+            var dtos = settlements.Select(s => new SettlementDto(s));
 
-            return settlements;
+            return dtos;
         }
 
-        public async Task<Settlement> GetUserSettlement(string id)
+        public async Task<SettlementDto> GetUserSettlement(string id)
         {
             var settlement = await _dbSet.FindAsync(id);
 
-            return settlement;
+            return new SettlementDto(settlement);
         }
 
 

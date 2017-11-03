@@ -35,7 +35,7 @@
       <div class="columns is-multiline is-marginless">
         <div class="column is-6">
           <div class="card">
-            <div class="card-content">
+            <div class="card-content is-clearfix">
               <div class="subtitle is-3"> Επιλογή διακανονισμού.</div>
               <label class="label">Επιλέξτε το είδος και τους αριθμούς των δόσεων.</label>
               <div class="field is-horizontal">
@@ -46,7 +46,7 @@
                   <div class="field is-narrow">
                     <div class="control">
                       <div class="select is-fullwidth">
-                        <select [(ngModel)]="settlementType" (change)="createMaxInstallments()">
+                        <select [(ngModel)]="sType" (change)="createMaxInstallments()">
                           <option *ngFor="let t of settlementTypes;let i = index" value="{{i}}">{{'Προκαταβολή ' + t.downpayment + '%' + ' Επιτόκιο ' + t.interest}}</option>
                         </select>
                       </div>
@@ -70,17 +70,46 @@
                   </div>
                 </div>
               </div>
-              <div class="field is-grouped is-grouped-right">
-                <p class="control">
+              <div class="field is-clearfix">
+                <p class="control  is-pulled-right">
                   <a class="button is-info" (click)="calculateSettlement()">
                     Υπολογισμός
                   </a>
                 </p>
-                <p class="control">
-                  <a class="button is-success" (click)="submitSettlement()">
-                    Υποβολή
-                  </a>
-                </p>
+              </div>
+              <div *ngIf="settlement.settlementType">
+                Λεπτομέρειες Επιλεγμένου διακανονισμού
+                <hr class="is-short">
+                <table class="table">
+                  <tr>
+                    <td>Προκαταβολή:</td>
+                    <td> {{settlement.downpayment}} &euro;</td>
+                  </tr>
+                  <tr>
+                    <td>Υπόλοιπο:</td>
+                    <td> {{settlement.subTotal}} &euro;</td>
+                  </tr>
+                  <tr>
+                    <td>Μηνιαία Δόση:</td>
+                    <td> {{settlement.monthlyFee}} &euro;</td>
+                  </tr>
+                  <tr>
+                    <td>Tόκος:</td>
+                    <td> {{settlement.settlementType.interest}}</td>
+                  </tr>
+                </table>
+                <div class="field is-grouped is-grouped-right">
+                  <p class="control">
+                    <a class="button is-default" (click)="clearSettlement()">
+                      Καθαρισμός
+                    </a>
+                  </p>
+                  <p class="control">
+                      <a class="button is-success" (click)="submitSettlement()">
+                        Υποβολή
+                      </a>
+                    </p>
+                </div>
               </div>
             </div>
           </div>

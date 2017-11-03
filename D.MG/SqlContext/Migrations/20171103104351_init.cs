@@ -9,22 +9,6 @@ namespace SqlContext.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Settlement",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Downpayment = table.Column<double>(type: "float", nullable: false),
-                    Installments = table.Column<int>(type: "int", nullable: false),
-                    Interest = table.Column<double>(type: "float", nullable: false),
-                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Settlement", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SettlementType",
                 columns: table => new
                 {
@@ -57,6 +41,28 @@ namespace SqlContext.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Settlement",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Downpayment = table.Column<double>(type: "float", nullable: false),
+                    Installments = table.Column<int>(type: "int", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SettlementTypeId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Settlement", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Settlement_SettlementType_SettlementTypeId",
+                        column: x => x.SettlementTypeId,
+                        principalTable: "SettlementType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +159,11 @@ namespace SqlContext.Migrations
                 table: "Payment",
                 column: "BillId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Settlement_SettlementTypeId",
+                table: "Settlement",
+                column: "SettlementTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -164,9 +175,6 @@ namespace SqlContext.Migrations
                 name: "Payment");
 
             migrationBuilder.DropTable(
-                name: "SettlementType");
-
-            migrationBuilder.DropTable(
                 name: "Bill");
 
             migrationBuilder.DropTable(
@@ -174,6 +182,9 @@ namespace SqlContext.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "SettlementType");
         }
     }
 }

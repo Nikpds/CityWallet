@@ -112,13 +112,16 @@ namespace SqlContext.Migrations
 
                     b.Property<int>("Installments");
 
-                    b.Property<double>("Interest");
-
                     b.Property<DateTime>("LastUpdate");
 
                     b.Property<DateTime>("RequestDate");
 
+                    b.Property<string>("SettlementTypeId")
+                        .IsRequired();
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SettlementTypeId");
 
                     b.ToTable("Settlement");
                 });
@@ -201,6 +204,14 @@ namespace SqlContext.Migrations
                     b.HasOne("Models.Bill", "Bill")
                         .WithOne("Payment")
                         .HasForeignKey("Models.Payment", "BillId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Models.Settlement", b =>
+                {
+                    b.HasOne("Models.SettlementType", "SettlementType")
+                        .WithMany("Settlements")
+                        .HasForeignKey("SettlementTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
