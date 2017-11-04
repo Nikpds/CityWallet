@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs/Subscription';
 import { SnotifyService } from 'ng-snotify';
+import { Language } from 'angular-l10n';
 
 import { Bill, SettlementType, Settlement } from '../../appModel';
 
@@ -13,6 +14,7 @@ import { LoaderService } from '../../shared/loader.service';
   styleUrls: ['./settlement.component.sass']
 })
 export class SettlementComponent implements OnInit {
+  @Language() lang;
   private subscriptions = new Array<Subscription>();
   settlementTypes = new Array<SettlementType>();
   bills: Array<Bill>;
@@ -87,7 +89,7 @@ export class SettlementComponent implements OnInit {
   calculateSettlement() {
     this.settlement.settlementType = new SettlementType();
     this.settlement.downpayment = this.downPayment(this.sType);
-    this.settlement.subTotal = this.getSubTotal();
+    this.settlement.subTotal = +this.getSubTotal().toFixed(2);
     this.settlement.monthlyFee = +(this.settlement.subTotal / this.settlement.installments).toFixed(2);
     this.settlement.settlementType.interest = this.settlementTypes[this.sType].interest;
   }
@@ -101,11 +103,11 @@ export class SettlementComponent implements OnInit {
   }
 
   downPayment(index) {
-    return this.getTotal(this.bills) * (this.settlementTypes[index].downpayment / 100);
+    return +(this.getTotal(this.bills) * (this.settlementTypes[index].downpayment / 100)).toFixed(2);
   }
 
   getTotal(bills: Bill[]) {
-    return +(bills.reduce(function (a, b) { return a + b.amount }, 0)).toFixed(2);
+    return (bills.reduce(function (a, b) { return a + b.amount }, 0));
   }
 
   clearSettlement() {

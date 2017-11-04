@@ -36,7 +36,7 @@ namespace ApiManager
             }
             _dbSet.AddRange(payments);
 
-            _ctx.SaveChangesAsync();
+            _ctx.SaveChanges();
 
             return payments;
         }

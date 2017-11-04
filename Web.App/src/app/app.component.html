@@ -32,21 +32,21 @@
           {{'Common.Menu'|translate:lang}}
         </a>
         <div class="navbar-dropdown is-right is-boxed">
-          <a class="navbar-item " [routerLink]="['/payments']">
-            {{'Home.Payments'|translate:lang}}
-          </a>
           <a class="navbar-item" [routerLink]="['/bills']">
             {{'Home.Bills'|translate:lang}}
           </a>
           <a class="navbar-item" [routerLink]="['/settlements']">
             {{'Home.Settlements'|translate:lang}}
           </a>
+          <a class="navbar-item " [routerLink]="['/payments']">
+            {{'Home.Payments'|translate:lang}}
+          </a>
           <a class="navbar-item" [routerLink]="['/profile']">
             {{'Home.Profile'|translate:lang}}
           </a>
           <hr class="navbar-divider">
           <div class="navbar-item">
-            <a class="has-text-white" (click)="logout()"> {{'Home.Logout'|translate:lang}}</a>
+            <a (click)="logout()"> {{'Home.Logout'|translate:lang}}</a>
           </div>
         </div>
       </div>

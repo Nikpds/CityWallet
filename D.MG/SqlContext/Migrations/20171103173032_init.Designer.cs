@@ -11,7 +11,7 @@ using System;
 namespace SqlContext.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20171103104351_init")]
+    [Migration("20171103173032_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

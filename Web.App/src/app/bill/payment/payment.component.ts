@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router'
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { SnotifyService } from 'ng-snotify';
+import { Language } from 'angular-l10n';
 
 import { Bill, User, CreditCard } from '../../appModel';
 
@@ -16,6 +17,7 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./payment.component.sass']
 })
 export class PaymentComponent implements OnInit, OnDestroy {
+  @Language() lang: string;
   private subscriptions = new Array<Subscription>();
   billsForPay: Array<Bill>;
   user: User;
@@ -87,10 +89,10 @@ export class PaymentComponent implements OnInit, OnDestroy {
   payBills() {
     this.loader.show();
     this.billService.paybills().subscribe(res => {
+      this.billService.billsToPay = new Array<Bill>();
+      this.loader.hide();
       this.notify.success('Η συναλλαγή ολοκληρώθηκε');
       this.router.navigate(['/payments']);
-      this.billsForPay = new Array<Bill>();
-      this.loader.hide();
     }, error => {
       this.notify.error('Αδυναμία Πληρωμής');
       this.loader.hide();

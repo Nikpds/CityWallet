@@ -7,10 +7,10 @@
             <i class="fa fa-globe"></i>&nbsp; {{'App.Lang'|translate:lang}}
           </a>
           <div class="navbar-dropdown is-right is-boxed">
-            <a class="navbar-item" (click)="selectLocale('el', 'GR');">
+            <a class="navbar-item has-text-black" (click)="selectLocale('el', 'GR');">
               {{'Common.Greek'|translate:lang}}
             </a>
-            <a class="navbar-item" (click)="selectLocale('en', 'UK');">
+            <a class="navbar-item has-text-black" (click)="selectLocale('en', 'UK');">
               {{'Common.English'|translate:lang}}
             </a>
           </div>
@@ -43,7 +43,7 @@
             <a class="is-link is-primary" [routerLink]="['/forgotpassword']"> {{'Login.ForgotPassword'|translate:lang}}</a>
           </div>
           <div class="field is-clearfix">
-            <a class="button is-dark is-pulled-right" (click)="login()"> {{'Login.Login'|translate:lang}}</a>
+            <a class="button is-primary is-pulled-right" (click)="login()"> {{'Login.Login'|translate:lang}}</a>
           </div>
         </div>
       </div>

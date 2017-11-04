@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { CustomValidators } from 'ng2-validation';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Language } from 'angular-l10n';
 
 import { CreditCard } from '../../appModel';
 
@@ -14,6 +15,7 @@ import { BillService } from '../bill.service';
 })
 export class CreditCardComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
+  @Language() lang: string;
   
   creditCard = new CreditCard();
   creditCardForm: FormGroup;

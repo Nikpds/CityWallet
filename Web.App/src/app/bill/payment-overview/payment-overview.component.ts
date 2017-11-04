@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Language } from 'angular-l10n';
 
 import { CreditCard, Bill, User } from '../../appModel';
 
@@ -13,6 +14,7 @@ import { AuthService } from '../../auth/auth.service';
 export class PaymentOverviewComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   @Output() setState: EventEmitter<number> = new EventEmitter();
+  @Language() lang: string;
 
   bills: Array<Bill>;
   user: User;
@@ -44,7 +46,7 @@ export class PaymentOverviewComponent implements OnInit, OnDestroy {
   }
 
   billsSum() {
-    return this.bills.reduce(function (a, b) { return a + b.amount }, 0);
+    return (this.bills.reduce(function (a, b) { return a + b.amount }, 0)).toFixed(2);
   }
 
 }

@@ -32,6 +32,7 @@ $steps-divider-height: .2em !default
       .step-title
         font-size: $size * 1.2
         font-weight: $weight-semibold
+        color: lighten($primary,10)
 
 
 .steps
@@ -58,7 +59,7 @@ $steps-divider-height: .2em !default
       background: linear-gradient(to left, $steps-default-color 50%, $steps-active-color 50%)
       background-size: 200% 100%
       background-position: right bottom
-      transition: all 1.5s ease
+      transition: all 0.6s ease
       .step-marker
         color: $white
     &.is-active
@@ -86,7 +87,7 @@ $steps-divider-height: .2em !default
       border: $steps-marker-default-border
       z-index: 1
       transition: all 0s ease
-      transition-delay: 1s
+      transition-delay: 0.6s
 
     .step-details
       text-align: center

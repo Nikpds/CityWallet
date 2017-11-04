@@ -2,18 +2,18 @@
   Λογαριασμοί
 </h1>
 <h2 class="subtitle is-6 has-text-white">
-  Επιλέξατε {{bills.length}} {{bills.length == 1 ? 'λογαριαμό': 'λογαριασμους'}} για πληρωμή!
+  {{'Settlements.SubTitle1'|translate:lang}} {{bills.length}} {{'Bills.Subtitle'|translate:lang}}
 </h2>
 <div class="card">
   <div class="card-content">
     <table class="table is-fullwidth is-striped is-transparent">
       <thead>
         <tr>
-          <th class="is-hidden-mobile">ΑΑ</th>
-          <th>Υπηρεσία</th>
-          <th>Ποσό</th>
-          <th>Λήξη</th>
-          <th>Επιλογή</th>
+          <th class="is-hidden-mobile"> {{'Bills.AA'|translate:lang}} </th>
+          <th> {{'Bills.Service'|translate:lang}} </th>
+          <th> {{'Bills.Paid'|translate:lang}} </th>
+          <th> {{'Bills.DueDate'|translate:lang}} </th>
+          <th> {{'Common.Actions'|translate:lang}} </th>
         </tr>
       </thead>
       <tbody>
@@ -23,11 +23,11 @@
           <td>{{d.amount}} &euro;</td>
           <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
           <td>
-            <a class="button is-danger is-small" (click)="removebillFromPay(i)">αφαιρεση</a>
+            <a class="button is-danger is-small" (click)="removebillFromPay(i)"> {{'Common.RemoveBtn'|translate:lang}} </a>
           </td>
         </tr>
         <tr class="total-bill" *ngIf="bills.length > 0">
-          <td colspan="2" class="subtitle is-5 ">Σύνολο</td>
+          <td colspan="2" class="subtitle is-5 "> {{'Bills.Total'|translate:lang}} </td>
           <td colspan="3" class="subtitle is-5 has-text-warning">{{billsSum()}} &euro;</td>
         </tr>
       </tbody>

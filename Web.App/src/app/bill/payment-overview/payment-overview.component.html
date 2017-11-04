@@ -2,7 +2,7 @@
   Επιβεβαίωση και ολόκληρωση
 </h1>
 <h2 class="subtitle is-6 has-text-white">
-  Επιβεβαιώστε τα στοιχεία που δώσατε και πατήστε ολοκλήρωση.
+    {{'CreditCard.CompleteSubtitle'|translate:lang}}
 </h2>
 <div class="columns is-multiline">
   <div class="column is-12">
@@ -15,30 +15,28 @@
         </div>
         <div class="media-content">
           <div class="content">
-            <span class="title is-5">Στοιχεία Χρέωσης</span>
+            <span class="title is-5">{{'CreditCard.ChargeInfo'|translate:lang}}</span>
             <hr class="is-short">
             <p>
-              <strong>Ονοματεπώνυμo:</strong> {{creditCard.owner}}
+              <strong> {{'CreditCard.Name'|translate:lang}}:</strong> {{creditCard.owner}}
               <br>
-              <strong>Κάρτας:</strong> {{creditCard.cardNumber}}
+              <strong> {{'CreditCard.Number'|translate:lang}}:</strong> {{creditCard.cardNumber}}
               <br>
-              <strong>CVV:</strong> {{creditCard.cvv}}
+              <strong> {{'CreditCard.CVV'|translate:lang}}:</strong> {{creditCard.cvv}}
               <br>
-              <strong>Ημ/νια Λήξης:</strong> {{creditCard.expires|date:'MM-yyyy'}}
-              <a class="button is-warning is-small is-pulled-right" (click)="editCreditCard()">επεξεργασια</a>
+              <strong>{{'CreditCard.Ends'|translate:lang}}:</strong> {{creditCard.expires|date:'MM-yyyy'}}
+              <a class="button is-warning is-small is-pulled-right" (click)="editCreditCard()"> {{'Common.EditBtn'|translate:lang}}</a>
             </p>
-            <span class="title is-5">Στοιχεία Πελάτη</span>
+            <span class="title is-5">{{'CreditCard.ClientInfo'|translate:lang}}</span>
             <hr class="is-short">
             <p>
-              <strong>Ονοματεπώνυμo:</strong> {{use?.name}} {{user?.lastname}}
+              <strong>{{'CreditCard.FullName'|translate:lang}}:</strong> {{use?.name}} {{user?.lastname}}
               <br>
-              <strong>ΑΦΜ</strong> {{user?.vat}}
+              <strong>{{'User.Vat'|translate:lang}}</strong> {{user?.vat}}
               <br>
-              <strong>Διεύθυνση</strong> {{user?.address}}
+              <strong>{{'User.Address'|translate:lang}}</strong> {{user?.address}}
               <br>
-              <strong>Κινητό</strong> {{user?.mobile}}
-              <br>
-              <strong>Email</strong> {{user?.email}}   
+              <strong>{{'User.Mobile'|translate:lang}}</strong> {{user?.mobile}}
             </p>
           </div>
         </div>
@@ -47,14 +45,14 @@
   </div>
   <div class="column is-12">
     <div class="box">
-      <span class="title is-5">Λογαριασμοί ({{bills.length}})</span>
+      <span class="title is-5">{{'Home.Bills'|translate:lang}} ({{bills.length}})</span>
       <table class="blackTable table is-fullwidth is-striped is-transparent is-narrow">
         <thead>
           <tr>
-            <th class="is-hidden-mobile">ΑΑ</th>
-            <th>Υπηρεσία</th>
-            <th>Ποσό</th>
-            <th>Λήξη</th>
+            <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
+            <th>{{'Bills.Service'|translate:lang}}</th>
+            <th>{{'Bills.Paid'|translate:lang}}</th>
+            <th>{{'Bills.DueDate'|translate:lang}}</th>
         </thead>
         <tbody>
           <tr *ngFor="let d of bills;let i = index">
@@ -64,7 +62,7 @@
             <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
           </tr>
           <tr class="total-bill" *ngIf="bills.length > 0">
-            <td colspan="2" class="subtitle is-5 ">Σύνολο</td>
+            <td colspan="2" class="subtitle is-5 ">{{'Bills.Total'|translate:lang}}</td>
             <td colspan="2" class="subtitle is-5 has-text-warning">{{billsSum()}} &euro;</td>
           </tr>
         </tbody>

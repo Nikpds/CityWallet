@@ -29,18 +29,18 @@
           </li>
         </ul>
       </nav>
-      <h2 class="subtitle is-6 has-text-white">
-        Επιλέξατε {{bills.length}} {{bills.length == 1 ? 'λογαριαμό': 'λογαριασμους'}} για διακανονισμό!
+      <h2 class="subtitle is-5 has-text-white">
+          {{'Settlements.SubTitle1'|translate:lang}} {{bills.length}}  {{'Settlements.SubTitle2'|translate:lang}}
       </h2>
       <div class="columns is-multiline is-marginless">
         <div class="column is-6">
           <div class="card">
             <div class="card-content is-clearfix">
-              <div class="subtitle is-3"> Επιλογή διακανονισμού.</div>
-              <label class="label">Επιλέξτε το είδος και τους αριθμούς των δόσεων.</label>
+              <div class="subtitle is-3"> {{'Settlements.SelectSettlement'|translate:lang}}</div>
+              <label class="label"> {{'Settlements.SelectDetails'|translate:lang}}</label>
               <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                  <label class="label">Είδος</label>
+                  <label class="label"> {{'Settlements.Type'|translate:lang}}</label>
                 </div>
                 <div class="field-body">
                   <div class="field is-narrow">
@@ -56,7 +56,7 @@
               </div>
               <div class="field is-horizontal">
                 <div class="field-label is-normal">
-                  <label class="label">Δόσεις</label>
+                  <label class="label"> {{'Settlements.Installments'|translate:lang}}</label>
                 </div>
                 <div class="field-body">
                   <div class="field">
@@ -73,42 +73,42 @@
               <div class="field is-clearfix">
                 <p class="control  is-pulled-right">
                   <a class="button is-info" (click)="calculateSettlement()">
-                    Υπολογισμός
+                    {{'Common.CalculateBtn'|translate:lang}}
                   </a>
                 </p>
               </div>
               <div *ngIf="settlement.settlementType">
-                Λεπτομέρειες Επιλεγμένου διακανονισμού
+                  {{'Settlements.SettlementDetails'|translate:lang}}
                 <hr class="is-short">
-                <table class="table">
+                <table class="table is-fullwidth">
                   <tr>
-                    <td>Προκαταβολή:</td>
+                    <td> {{'Settlements.Downpayment'|translate:lang}}:</td>
                     <td> {{settlement.downpayment}} &euro;</td>
                   </tr>
                   <tr>
-                    <td>Υπόλοιπο:</td>
+                    <td> {{'Settlements.SubTotal'|translate:lang}}:</td>
                     <td> {{settlement.subTotal}} &euro;</td>
                   </tr>
                   <tr>
-                    <td>Μηνιαία Δόση:</td>
+                    <td> {{'Settlements.MonthlyFee'|translate:lang}}:</td>
                     <td> {{settlement.monthlyFee}} &euro;</td>
                   </tr>
                   <tr>
-                    <td>Tόκος:</td>
+                    <td> {{'Settlements.Interest'|translate:lang}}:</td>
                     <td> {{settlement.settlementType.interest}}</td>
                   </tr>
                 </table>
                 <div class="field is-grouped is-grouped-right">
                   <p class="control">
                     <a class="button is-default" (click)="clearSettlement()">
-                      Καθαρισμός
+                      {{'Common.ClearBtn'|translate:lang}}
                     </a>
                   </p>
                   <p class="control">
-                      <a class="button is-success" (click)="submitSettlement()">
-                        Υποβολή
-                      </a>
-                    </p>
+                    <a class="button is-primary" (click)="submitSettlement()">
+                      {{'Common.SubmitBtn'|translate:lang}}
+                    </a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -117,15 +117,15 @@
         <div class="column is-6">
           <div class="card">
             <div class="card-content">
-              <span class="subtitle is-3"> Λογαριασμοί προς διακανονισμό.</span>
+              <span class="subtitle is-3">  {{'Settlements.BillForSettle'|translate:lang}}</span>
               <table class="table is-fullwidth is-striped is-transparent">
                 <thead>
                   <tr>
-                    <th class="is-hidden-mobile">ΑΑ</th>
-                    <th>Υπηρεσία</th>
-                    <th>Ποσό</th>
-                    <th>Λήξη</th>
-                    <th>Επιλογή</th>
+                    <th class="is-hidden-mobile"> {{'Bills.AA'|translate:lang}}</th>
+                    <th>{{'Bills.Service'|translate:lang}}</th>
+                    <th>{{'Bills.Paid'|translate:lang}}</th>
+                    <th>{{'Bills.DueDate'|translate:lang}}</th>
+                    <th>{{'Common.Select'|translate:lang}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -135,7 +135,7 @@
                     <td>{{d.amount}} &euro;</td>
                     <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
                     <td>
-                      <a class="button is-danger is-small" (click)="removebillFromPay(i)">Aφαίρεση</a>
+                      <a class="button is-danger is-small" (click)="removebillFromPay(i)">{{'Common.RemoveBtn'|translate:lang}}</a>
                     </td>
                   </tr>
                 </tbody>

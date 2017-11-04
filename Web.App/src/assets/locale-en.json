@@ -22,7 +22,13 @@
     "Select": "Select",
     "PayBtn": "Pay",
     "SettlementBtn": "Request Settlement",
-    "DetailsBtn": "Details"
+    "DetailsBtn": "Details",
+    "CalculateBtn": "Calculate",
+    "ClearBtn": "Clear",
+    "SubmitBtn": "Sumbit",
+    "RemoveBtn": "Remove",
+    "Actions": "Actions",
+    "EditBtn": "Edit"
   },
   "User": {
     "Details": "Account Details",
@@ -30,7 +36,7 @@
     "Vat": "VAT",
     "Address": "Address",
     "County": "County",
-    "ChangePwd":"Change Password"
+    "ChangePwd": "Change Password"
   },
   "Login": {
     "Username": "Username",
@@ -62,6 +68,38 @@
     "DueDate": "Due Date",
     "PayDate": "Paid Date",
     "Method": "Method",
-    "OverDue": "Overdue"
+    "OverDue": "Overdue",
+    "Subtitle": "bills for payment.",
+    "Total": "Total"
+  },
+  "Settlements": {
+    "SelectSettlement": "Select Settlement.",
+    "SelectDetails": "Select type and installments.",
+    "Type": "Type",
+    "Installments": "Installments",
+    "BillForSettle": "Bill for Settlement.",
+    "SettlementDetails": "Details for selected type.",
+    "Downpayment": "Downpayment",
+    "SubTotal": "SubTotal",
+    "MonthlyFee": "Monthly Fee",
+    "Interest": "Interest",
+    "SubTitle1": "You chose",
+    "SubTitle2": "bills for Settlement."
+  },
+  "CreditCard": {
+    "Number": "Credit Card Number",
+    "Name": "Holder Name",
+    "CVV": "CVV",
+    "Ends": "Expiration Date",
+    "Complete": "Complete",
+    "ConfirmBills": "Confirm Bills",
+    "CreditCardInfo": "Credit Card Details.",
+    "CompletePayment": "Confirm payment details and sumbit.",
+    "Subtitle": "Enter your credit card info.",
+    "FullName": "FullName",
+    "CardNumber": "Αριθμός Κάρτας",
+    "CompleteSubtitle":"Confirm your given info and submit the settlement.",
+    "ChargeInfo": "Credit Card Info",
+    "ClientInfo": "Client Info"
   }
 }
