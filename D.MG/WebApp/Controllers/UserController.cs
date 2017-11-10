@@ -2,7 +2,6 @@
 using AuthProvider;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SqlContext.Repos;
 using System;
 using System.Threading.Tasks;
 using WebApp.Services;
@@ -14,9 +13,9 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly UserService _srv;
+        private readonly IUserService _srv;
 
-        public UserController(UserService srv)
+        public UserController(IUserService srv)
         {
             _srv = srv;
         }
@@ -87,7 +86,7 @@ namespace WebApp.Controllers
                 }
                 else
                 {
-                    _srv.ChangePassword(user,psw);
+                    _srv.ChangePassword(user, psw);
                 }
 
                 return Ok("ok");

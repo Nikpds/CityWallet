@@ -36,19 +36,15 @@
           </div>
         </div>
       </div>
-
-
       <div class="columns is-marginless is-multiline">
-        <div class="column is-12">
-          <app-bill-to-pay *ngIf="step == 0"></app-bill-to-pay>
-          <app-credit-card *ngIf="step == 1"></app-credit-card>
-          <app-payment-overview (setState)="ediCreditCard($event)" *ngIf="step == 2"></app-payment-overview>
-        </div>
-        <div class="column is-12">
+        <div class="column is-12 is-clearfix">
           <div class="field is-grouped is-pulled-right">
             <p class="control">
               <button class="button is-default" *ngIf="step != 0" (click)="previousStep()">
                 {{'Pagination.Previous'|translate:lang}}
+              </button>
+              <button class="button is-default" *ngIf="step == 0" (click)="cancel()">
+                {{'Common.Cancel'|translate:lang}}
               </button>
             </p>
             <p class="control">
@@ -59,6 +55,12 @@
             </p>
           </div>
         </div>
+        <div class="column is-12">
+          <app-bill-to-pay *ngIf="step == 0"></app-bill-to-pay>
+          <app-credit-card *ngIf="step == 1"></app-credit-card>
+          <app-payment-overview (setState)="ediCreditCard($event)" *ngIf="step == 2"></app-payment-overview>
+        </div>
+
       </div>
     </div>
   </div>

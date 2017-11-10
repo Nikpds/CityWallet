@@ -47,7 +47,7 @@ export class Settlement {
     downpayment: number;
     requestDate: Date;
     bills: Array<Bill>;
-    
+
     constructor() {
         this.bills = new Array<Bill>();
     }
@@ -85,6 +85,13 @@ export class Config {
     data = new Array();
     searchFilter: string;
     pages: number[];
+}
+
+export class NavigationC {
+    icon: string;
+    title: string;
+    navigateTo: Function;
+    isActive: boolean;
 }
 
 export class SettlementType {

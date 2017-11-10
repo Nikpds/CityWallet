@@ -1,8 +1,33 @@
-<div class="is-clearfix field" *ngIf="bills.length > 0">
-  <div class="is-pulled-right ">
-    <p class="is-grouped">
-      <button class="button is-info" [disabled]="!selectedBill" [routerLink]="['payment']"> {{'Common.Print'|translate:lang}}</button>
-    </p>
+<div class="is-clearfix field no-print" *ngIf="bills.length > 0">
+  <div class="field field-body is-clearfix">
+    <div class="field is-narrow">
+      <p class="control">
+        <span class="select ">
+          <select [(ngModel)]="config.pageSize">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+        </span>
+      </p>
+    </div>
+    <div class=" field has-addons is-inline-flex">
+      <div class="control">
+        <input class="input" [(ngModel)]="searchText" (keyup.enter)="Search(searchText)" type="text" placeholder="{{'Payments.SearchPlaceholder'|translate:lang}} {{'Bills.Service'|translate:lang}}">
+      </div>
+      <div class="control">
+        <a class="button is-primary search-btn" (click)="Search(searchText)">
+          {{'Payments.Search'|translate:lang}}
+        </a>
+      </div>
+    </div>
+    <div class="is-pulled-right">
+      <p class="is-grouped">
+        <button class="button is-info" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
+      </p>
+    </div>
   </div>
 </div>
 <div class="card" *ngIf="bills.length > 0">
@@ -16,28 +41,19 @@
           <th class="is-hidden-mobile">{{'Bills.DueDate'|translate:lang}}</th>
           <th>{{'Bills.PayDate'|translate:lang}}</th>
           <th class="is-hidden-mobile">{{'Bills.Method'|translate:lang}}</th>
-          <th class="selecteBill">{{'Common.Select'|translate:lang}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let d of bills;let i = index">
+        <tr *ngFor="let i = index;let d of bills| filterPipe:'description':filterText | paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage}">
           <td class="is-hidden-mobile">{{i + 1}}</td>
           <td>{{d.description}}</td>
           <td>{{d.amount}} &euro;</td>
           <td class="is-hidden-mobile">{{d.dateDue|date:'dd-MM-yyyy'}}</td>
           <td>{{d.payment.paidDate|date:'dd-MM-yyyy'}}</td>
           <td class="is-hidden-mobile">{{d.payment.method}}</td>
-          <td>
-            <div class="field">
-              <div class="control">
-                <a class="button is-default is-xs" (click)="selectBill(i)">
-                  <i class="fa" [ngClass]="{'has-text-white': !checkSelected(d.id) ,'has-text-warning': checkSelected(d.id),'fa-square': !checkSelected(d.id), 'fa-check': checkSelected(d.id)}"></i>
-                </a>
-              </div>
-            </div>
-          </td>
         </tr>
       </tbody>
     </table>
+    <app-pagination class="no-print" *ngIf="bills.length > 0" [config]="config" [data]="bills"></app-pagination>
   </div>
 </div>

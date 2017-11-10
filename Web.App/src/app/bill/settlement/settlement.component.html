@@ -1,36 +1,9 @@
 <div class="container">
   <section class="is-small">
     <div class="hero-body">
-      <nav class="breadcrumb is-large is-marginless" aria-label="breadcrumbs">
-        <ul>
-          <li>
-            <a (click)="goHome()">
-              <span class="icon">
-                <i class="fa fa-home"></i>
-              </span>
-              <span>Αρχική</span>
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/bills']">
-              <span class="icon">
-                <i class="fa fa-file-text"></i>
-              </span>
-              <span>Λογαριασμοί</span>
-            </a>
-          </li>
-          <li>
-            <a class="is-active">
-              <span class="icon">
-                <i class="fa fa-handshake-o"></i>
-              </span>
-              <span>Νέος Διακανονισμός</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <app-navigation [navigation]="navbar"></app-navigation>
       <h2 class="subtitle is-5 has-text-white">
-          {{'Settlements.SubTitle1'|translate:lang}} {{bills.length}}  {{'Settlements.SubTitle2'|translate:lang}}
+        {{'Settlements.SubTitle1'|translate:lang}} {{bills.length}} {{'Settlements.SubTitle2'|translate:lang}}
       </h2>
       <div class="columns is-multiline is-marginless">
         <div class="column is-6">
@@ -62,7 +35,7 @@
                   <div class="field">
                     <p class="control">
                       <span class="select ">
-                        <select [(ngModel)]="settlement.installments">
+                        <select [(ngModel)]="settlement.installments" (change)="reCalculate()">
                           <option *ngFor="let i of installments" [value]="i">{{i}}</option>
                         </select>
                       </span>
@@ -70,7 +43,7 @@
                   </div>
                 </div>
               </div>
-              <div class="field is-clearfix">
+              <div class="field is-clearfix" *ngIf="!settlement.settlementType">
                 <p class="control  is-pulled-right">
                   <a class="button is-info" (click)="calculateSettlement()">
                     {{'Common.CalculateBtn'|translate:lang}}
@@ -78,12 +51,12 @@
                 </p>
               </div>
               <div *ngIf="settlement.settlementType">
-                  {{'Settlements.SettlementDetails'|translate:lang}}
+                {{'Settlements.SettlementDetails'|translate:lang}}
                 <hr class="is-short">
                 <table class="table is-fullwidth">
                   <tr>
                     <td> {{'Settlements.Downpayment'|translate:lang}}:</td>
-                    <td> {{settlement.downpayment}} &euro;</td>
+                    <td> {{settlement.downpayment}} &euro; ({{settlementTypes[sType].downpayment}} %)</td>
                   </tr>
                   <tr>
                     <td> {{'Settlements.SubTotal'|translate:lang}}:</td>
@@ -91,11 +64,11 @@
                   </tr>
                   <tr>
                     <td> {{'Settlements.MonthlyFee'|translate:lang}}:</td>
-                    <td> {{settlement.monthlyFee}} &euro;</td>
+                    <td> {{settlement.monthlyFee}} &euro; x ({{settlement.installments}} {{'Settlements.Months'|translate:lang}})</td>
                   </tr>
                   <tr>
                     <td> {{'Settlements.Interest'|translate:lang}}:</td>
-                    <td> {{settlement.settlementType.interest}}</td>
+                    <td> {{settlement.settlementType.interest}} %</td>
                   </tr>
                 </table>
                 <div class="field is-grouped is-grouped-right">
@@ -117,7 +90,7 @@
         <div class="column is-6">
           <div class="card">
             <div class="card-content">
-              <span class="subtitle is-3">  {{'Settlements.BillForSettle'|translate:lang}}</span>
+              <span class="subtitle is-3"> {{'Settlements.BillForSettle'|translate:lang}}</span>
               <table class="table is-fullwidth is-striped is-transparent">
                 <thead>
                   <tr>

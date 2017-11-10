@@ -1,78 +1,60 @@
 <div class="container">
   <section class="is-small">
     <div class="hero-body">
-      <h1 class="title has-text-white">
-        Διακανονισμοί
-      </h1>
+      <app-navigation class="no-print" [navigation]="navbar"></app-navigation>
       <h2 class="subtitle has-text-white">
-        Προβολή των σημερινών διακανονισμών!
+        {{'Settlements.Subtitle'|translate:lang}}
       </h2>
       <div class="columns is-multiline">
-        <div class="column is-12" *ngFor="let s of settlements">
-          <div class="card">
-            <div class="card-content is-clearfix">
-              <div class="columns is-multiline">
-                <div class="column is-12 is-top-paddingless">
-                  <span class="">Ημ/νια: {{s.requestDate|date:'dd-MM-yyyy'}}</span>
-                  <span class="is-pulled-right">{{s.requestDate|date:'HH:mm'}}
-                    <i class="fa fa-clock-o"></i>
-                  </span>
-                </div>
-                <div class="column no-bottom-padding  is-narrow">
-                  <table class="table no-bottom-margin is-fullwidth is-narrow">
-                    <thead>
-                      <tr>
-                        <th colspan="2">Λεπτομέρειες</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Λογαριασμοί</td>
-                        <td>{{s.bills.length}}</td>
-                      </tr>
-                      <tr>
-                        <td>Πρωκαταβολή</td>
-                        <td>{{s.downpayment}}</td>
-                      </tr>
-                      <tr>
-                        <td>Δόσεις</td>
-                        <td>{{s.installments}}</td>
-                      </tr>
-                      <tr>
-                        <td>Τόκος</td>
-                        <td>{{s.interest}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="column no-bottom-padding">
-                  <table class="table no-bottom-margin is-fullwidth is-striped is-narrow">
-                    <thead>
-                      <tr>
-                        <th class="is-hidden-mobile">ΑΑ</th>
-                        <th>Υπηρεσία</th>
-                        <th>Ποσό</th>
-                        <th>Λήξη</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let b of s.bills;let i = index">
-                        <td class="is-hidden-mobile">{{i + 1}}</td>
-                        <td>{{b.description}}</td>
-                        <td>{{b.amount}} &euro;</td>
-                        <td>{{b.dateDue|date:'dd-MM-yyyy'}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="buttons">
-                <span class="is-pulled-right">
-                  <span class="button is-danger" (click)="cancelSettlementRequest(s.id)">Ακύρωση</span>
-                  <span class="button is-info">Λεπτομέρειες</span>
-                  <span class="button is-primary">Εκτύπωση</span>
+        <div class="column is-12">
+          <div class="field field-body is-clearfix no-print">
+            <div class="field">
+              <p class="control">
+                <span class="select ">
+                  <select [(ngModel)]="config.pageSize">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                  </select>
                 </span>
-              </div>
+              </p>
+            </div>
+            <a class="button is-info is-pulled-right" (click)="print()">
+              {{'Common.Print'|translate:lang}}
+            </a>
+          </div>
+          <div class="card">
+            <div class="card-content">
+              <table class="table is-fullwidth is-striped">
+                <thead>
+                  <tr>
+                    <th class="is-hidden-mobile">ΑΑ</th>
+                    <th>Ώρα</th>
+                    <th>Προκαταβολή</th>
+                    <th>Τόκος</th>
+                    <th>Δοσεις</th>
+                    <th>Λογαριασμοί</th>
+                    <th class="no-print">Ενεργειες</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i = index;let s of settlements| filterPipe: 'bill':filterText:'description'| paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
+                    <td class="is-hidden-mobile">{{i + 1}}</td>
+                    <td>{{s.requestDate|date:'HH:mm'}}</td>
+                    <td>{{s.downpayment}}&euro;</td>
+                    <td>{{s.settlementType.interest}}%</td>
+                    <td>{{s.installments}}</td>
+                    <td>{{s.bills.length}}</td>
+                    <td class="no-print">
+                      <span class="button is-danger is-small" (click)="cancelSettlementRequest(s.id)">Ακύρωση</span>
+                      <span class="button is-info is-small" (click)="goToDetails(i)">Λεπτομέρειες</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <app-pagination class="no-print" *ngIf="settlements.length > 0" [config]="config" [data]="settlements"></app-pagination>
             </div>
           </div>
         </div>
@@ -81,11 +63,69 @@
   </section>
 </div>
 
-
-
 <!-- <div class="card">
-    <div class="card-content">
-
-      
+    <div class="card-content is-clearfix">
+      <div class="columns is-multiline">
+        <div class="column is-12 is-top-paddingless">
+          <span class="">Ημ/νια: {{s.requestDate|date:'dd-MM-yyyy'}}</span>
+          <span class="is-pulled-right">{{s.requestDate|date:'HH:mm'}}
+            <i class="fa fa-clock-o"></i>
+          </span>
+        </div>
+        <div class="column no-bottom-padding  is-narrow">
+          <table class="table no-bottom-margin is-fullwidth is-narrow">
+            <thead>
+              <tr>
+                <th colspan="2">Λεπτομέρειες</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Λογαριασμοί</td>
+                <td>{{s.bills.length}}</td>
+              </tr>
+              <tr>
+                <td>Πρωκαταβολή</td>
+                <td>{{s.downpayment}}</td>
+              </tr>
+              <tr>
+                <td>Δόσεις</td>
+                <td>{{s.installments}}</td>
+              </tr>
+              <tr>
+                <td>Τόκος</td>
+                <td>{{s.interest}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="column no-bottom-padding">
+          <table class="table no-bottom-margin is-fullwidth is-striped is-narrow">
+            <thead>
+              <tr>
+                <th class="is-hidden-mobile">ΑΑ</th>
+                <th>Υπηρεσία</th>
+                <th>Ποσό</th>
+                <th>Λήξη</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let b of s.bills;let i = index">
+                <td class="is-hidden-mobile">{{i + 1}}</td>
+                <td>{{b.description}}</td>
+                <td>{{b.amount}} &euro;</td>
+                <td>{{b.dateDue|date:'dd-MM-yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="buttons">
+        <span class="is-pulled-right">
+          <span class="button is-danger" (click)="cancelSettlementRequest(s.id)">Ακύρωση</span>
+          <span class="button is-info">Λεπτομέρειες</span>
+          <span class="button is-primary">Εκτύπωση</span>
+        </span>
+      </div>
     </div>
   </div> -->

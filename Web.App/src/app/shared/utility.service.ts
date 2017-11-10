@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UtilityService {
   years = new Array<number>();
-  
+
   constructor() {
     this.getYears();
   }

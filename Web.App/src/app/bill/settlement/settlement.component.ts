@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { SnotifyService } from 'ng-snotify';
 import { Language } from 'angular-l10n';
 
-import { Bill, SettlementType, Settlement } from '../../appModel';
+import { Bill, SettlementType, Settlement, NavigationC } from '../../appModel';
 
 import { BillService } from '../bill.service';
 import { LoaderService } from '../../shared/loader.service';
@@ -18,7 +18,8 @@ export class SettlementComponent implements OnInit {
   private subscriptions = new Array<Subscription>();
   settlementTypes = new Array<SettlementType>();
   bills: Array<Bill>;
-  sType: number
+  sType: number;
+  navbar = new Array<NavigationC>();
   installments = [];
   settlement = new Settlement();
 
@@ -27,7 +28,16 @@ export class SettlementComponent implements OnInit {
     private router: Router,
     private loader: LoaderService,
     private notify: SnotifyService
-  ) { }
+  ) {
+
+    this.navbar = [{
+      icon: "fa-home", title: "App.Home", navigateTo: () => this.goHome(), isActive: false
+    }, {
+      icon: "fa-file-text", title: "Home.Bills", navigateTo: () => this.goBills(), isActive: false
+    }, {
+      icon: "fa-handshake-o", title: "Common.SettlementBtn", navigateTo: () => null, isActive: true
+    }];
+  }
 
   ngOnInit() {
     this.getSettlementTypes();
@@ -35,13 +45,17 @@ export class SettlementComponent implements OnInit {
       .subscribe((res) => this.bills = res));
 
     if (this.bills.length == 0) {
-      // this.router.navigate(['/bills']);
+      this.router.navigate(['/bills']);
     }
   }
+
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
+  goBills() {
+    this.router.navigate(['/bills']);
+  }
   goHome() {
     this.billService.billsToPay = new Array<Bill>();
     this.router.navigate(['/']);
@@ -69,7 +83,9 @@ export class SettlementComponent implements OnInit {
       this.installments.push(maxInstallments);
       maxInstallments = maxInstallments - 3;
     }
-    maxInstallments - 3;
+    if (this.settlement.settlementType) {
+      this.calculateSettlement()
+    }
   }
 
   submitSettlement() {
@@ -77,13 +93,19 @@ export class SettlementComponent implements OnInit {
     this.settlement.bills = this.bills;
     this.settlement.settlementType.id = this.settlementTypes[this.sType].id;
     this.billService.sumbitSettletment(this.settlement).subscribe(res => {
-      this.settlement = res;
       this.loader.hide();
       this.notify.success('Το αίτημα διακανονισμού καταχωρήθηκε');
+      this.router.navigate(['/settlement', res.id, 'view']);
     }, error => {
       this.loader.hide();
       this.notify.error("Σφάλμα καταχώρησης διακανονισμού.");
     });
+  }
+
+  reCalculate() {
+    if (this.settlement.settlementType) {
+      this.calculateSettlement()
+    }
   }
 
   calculateSettlement() {
@@ -99,6 +121,7 @@ export class SettlementComponent implements OnInit {
     if (this.bills.length == 0) {
       this.router.navigate(['/bills']);
     }
+    if (!this.settlement.settlementType) { return; }
     this.calculateSettlement();
   }
 

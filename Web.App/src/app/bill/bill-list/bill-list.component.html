@@ -1,10 +1,8 @@
 <div class="container">
   <section class="is-small">
     <div class="hero-body">
-      <h1 class="title has-text-white">
-        {{'Home.Bills'|translate:lang}}
-      </h1>
-      <h2 class="subtitle has-text-white">
+      <app-navigation class="no-print" [navigation]="navbar"></app-navigation>
+      <h2 class="subtitle is-marginless has-text-white">
         {{'Bills.BillsSubtitle'|translate:lang}}
       </h2>
       <div class="columns is-marginless is-multiline">

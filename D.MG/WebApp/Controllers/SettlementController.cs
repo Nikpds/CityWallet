@@ -16,9 +16,9 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class SettlementController : Controller
     {
-        private readonly SettlementService _srv;
+        private readonly ISettlementService _srv;
 
-        public SettlementController(SettlementService srv)
+        public SettlementController(ISettlementService srv)
         {
             _srv = srv;
         }
@@ -38,12 +38,14 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetbyId(string id)
+        [HttpGet("{settleId}")]
+        public async Task<IActionResult> GetSettlement(string settleId)
         {
             try
             {
-                var settlement = await _srv.GetUserSettlements(id);
+                var id = User.GetUserId();
+
+                var settlement = await _srv.GetUserSettlement(id,settleId);
 
                 return Ok(settlement);
             }

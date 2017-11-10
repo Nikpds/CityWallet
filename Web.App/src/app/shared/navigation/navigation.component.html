@@ -1,0 +1,40 @@
+<nav class="breadcrumb is-large is-marginless" aria-label="breadcrumbs">
+  <ul>
+    <li *ngFor="let nav of navigation">
+      <a (click)="nav.navigateTo()" [ngClass]="{'is-active': nav.isActive}">
+        <span class="icon">
+          <i class="fa {{nav.icon}}"></i>
+        </span>
+        <span>{{nav.title|translate:lang}}</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- 
+<ul>
+  <li>
+    <a (click)="goHome()">
+      <span class="icon">
+        <i class="fa fa-home"></i>
+      </span>
+      <span>Αρχική</span>
+    </a>
+  </li>
+  <li>
+    <a [routerLink]="['/bills']">
+      <span class="icon">
+        <i class="fa fa-file-text"></i>
+      </span>
+      <span>Λογαριασμοί</span>
+    </a>
+  </li>
+  <li>
+    <a class="is-active">
+      <span class="icon">
+        <i class="fa fa-handshake-o"></i>
+      </span>
+      <span>Νέος Διακανονισμός</span>
+    </a>
+  </li>
+</ul> -->

@@ -8,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace ApiManager
 {
-    public class PaymentService
+    public interface IPaymentService
     {
+        List<Payment> Payments(List<Bill> bills);
+        Task<IEnumerable<Payment>> GetPayments(string userId);
+    }
 
+    public class PaymentService: IPaymentService
+    {
         private DbSet<Payment> _dbSet;
         private DataContext _ctx;
 

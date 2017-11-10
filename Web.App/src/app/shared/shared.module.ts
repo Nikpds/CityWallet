@@ -9,7 +9,9 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { LoaderService } from './loader.service';
 import { UtilityService } from './utility.service';
 import { PaginationService } from './pagination.service';
-
+import { NavigationComponent } from './navigation/navigation.component';
+import { FilterPipe } from './filter.pipe';
+ 
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +21,9 @@ import { PaginationService } from './pagination.service';
     LocaleValidationModule.forRoot()
   ],
   declarations: [
-    PaginationComponent
+    PaginationComponent,
+    NavigationComponent,
+    FilterPipe
   ],
   providers: [
     LoaderService,
@@ -31,8 +35,9 @@ import { PaginationService } from './pagination.service';
     PaginationComponent,
     TranslationModule,
     LocalizationModule,
-    LocaleValidationModule
-   
+    LocaleValidationModule,
+    NavigationComponent,
+    FilterPipe
   ]
 
 })

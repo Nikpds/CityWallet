@@ -28,25 +28,41 @@ body
 
 hr.is-short
     margin: 0.7rem 0
-
-// table
-// .blackTable.table,.blackTable.table thead th
-//     color: black
-
-// .blackTable.table thead:hover > tr th
-//     background-color: rgb(4, 51, 57)
-//     color: white
-
-// .blackTable.table tbody tr:hover
-//     background-color: rgb(4, 51, 57)
-//     color: white
-
-// .blackTable.table.is-striped tbody tr:nth-child(even) 
-//     background-color: rgba(6, 57, 64, 0.23)
-
+    
 .amargin
     margin: auto
 
 .is-transparent
     background: transparent
+
+.search-input
+    border-top-left-radius: 3px!important
+    border-bottom-left-radius: 3px!important
+    text-shadow: 0 0 black
+
+.search-btn
+    border-top-right-radius: 3px!important
+    border-bottom-right-radius: 3px!important
+
+@media print 
+    .no-print
+        display: none !important
+    .card
+        box-shadow: none
     
+@media (max-width: 480px)
+    .card-content
+        padding: 5px
+    .hero-body
+        padding: 3rem 1rem
+    body
+        font-size: 14px
+    .tabs
+        font-size: 0.8rem
+    .pagination
+        margin: 0
+        font-size: 0.8rem
+
+@media screen and (max-width: 1023px)
+    .navbar-menu 
+         background-color: #003f46

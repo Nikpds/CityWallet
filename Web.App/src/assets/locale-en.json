@@ -1,6 +1,6 @@
 ﻿{
   "App": {
-    "Title": "eBills",
+    "Title": "City Wallet",
     "Home": "Home",
     "Lang": "En"
   },
@@ -25,6 +25,7 @@
     "DetailsBtn": "Details",
     "CalculateBtn": "Calculate",
     "ClearBtn": "Clear",
+    "Cancel": "Cancel",
     "SubmitBtn": "Sumbit",
     "RemoveBtn": "Remove",
     "Actions": "Actions",
@@ -41,6 +42,8 @@
   "Login": {
     "Username": "Username",
     "Password": "Password",
+    "Subtitle": "Pay your bills like never before",
+    "Message": "Please enter your username and password to login",
     "ForgotPassword": "Forgot your password?",
     "Login": "Login",
     "ResetPswText": "Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code, you will be able to choose a new password for your account",
@@ -58,11 +61,12 @@
     "Previous": "Previous"
   },
   "Bills": {
-    "BillsSubtitle": "Pay and Overview your Bills !",
+    "BillsSubtitle": "Overview your Bills",
     "Unpaid": "Unpaid",
     "Paid": "Paid",
     "OnSettlement": "On Settlement",
     "AA": "#",
+    "Time": "Time",
     "Service": "Service",
     "Debt": "Debt",
     "DueDate": "Due Date",
@@ -73,13 +77,15 @@
     "Total": "Total"
   },
   "Settlements": {
-    "SelectSettlement": "Select Settlement.",
-    "SelectDetails": "Select type and installments.",
+    "SelectSettlement": "Select Settlement",
+    "SelectDetails": "Select type and installments",
     "Type": "Type",
+    "Months": "months",
     "Installments": "Installments",
-    "BillForSettle": "Bill for Settlement.",
-    "SettlementDetails": "Details for selected type.",
+    "BillForSettle": "Bill for Settlement",
+    "SettlementDetails": "Details for selected type",
     "Downpayment": "Downpayment",
+    "Subtitle": "Οverview of your settlements",
     "SubTotal": "SubTotal",
     "MonthlyFee": "Monthly Fee",
     "Interest": "Interest",
@@ -98,8 +104,13 @@
     "Subtitle": "Enter your credit card info.",
     "FullName": "FullName",
     "CardNumber": "Αριθμός Κάρτας",
-    "CompleteSubtitle":"Confirm your given info and submit the settlement.",
+    "CompleteSubtitle": "Confirm your given info and submit the settlement.",
     "ChargeInfo": "Credit Card Info",
     "ClientInfo": "Client Info"
+  },
+  "Payments": {
+    "Search": "Search",
+    "Subtitle": "Your Daily payments.",
+    "SearchPlaceholder": "search by"
   }
 }

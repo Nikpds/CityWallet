@@ -18,6 +18,8 @@ export class BillsSettledComponent implements OnInit {
   bills = new Array<Bill>();
   billsForPay: Array<Bill>;
   config = new Config();
+  searchText: string;
+  filterText: string;
   @Language() lang;
 
   constructor(
@@ -35,7 +37,7 @@ export class BillsSettledComponent implements OnInit {
     this.loader.show();
     this.billService.getSettledBills().subscribe((res) => {
       this.bills = res;
-      // this.initConfig(res);
+      this.initConfig(res);;
       this.loader.hide();
     }, error => {
       this.loader.hide();
@@ -45,6 +47,31 @@ export class BillsSettledComponent implements OnInit {
   checkFallDue(d: Date) {
     let dueDate = new Date(d);
     return new Date() > dueDate;
+  }
+
+  initConfig(data: any) {
+    this.config.currentPage = 1;
+    this.config.pageSize = 10;
+    this.config.data = data;
+    this.config.totalPages = this.getTotalPages(data.length, this.config.pageSize);
+    this.config.pages = this.srv.getPages(this.config.totalPages, this.config.currentPage);
+  }
+
+  getTotalPages(length: number, size: number) {
+    let pageSize = Math.floor(length / size);
+    if (pageSize != length / size) {
+      return pageSize + 1
+    }
+    return pageSize
+  }
+
+  print() {
+    window.print();
+  }
+
+  Search(t: string) {
+    this.searchText = t.trim();
+    this.filterText = t.trim();
   }
 
 }

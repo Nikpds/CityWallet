@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApiManager\ApiManager.csproj" />
-    <ProjectReference Include="..\SqlContext\SqlContext.csproj" />
+    <ProjectReference Include="..\ApiManager\DMG.Services.csproj" />
+    <ProjectReference Include="..\SqlContext\DMG.Context.csproj" />
   </ItemGroup>
 
 </Project>

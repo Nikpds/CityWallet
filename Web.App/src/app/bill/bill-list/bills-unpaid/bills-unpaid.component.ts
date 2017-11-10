@@ -19,8 +19,10 @@ export class BillsUnpaidComponent implements OnInit {
   bills = new Array<Bill>();
   billsForPay: Array<Bill>;
   config = new Config();
+  searchText: string;
+  filterText: string;
   @Language() lang;
-  
+
   constructor(
     private billService: BillService,
     private loader: LoaderService,
@@ -39,6 +41,14 @@ export class BillsUnpaidComponent implements OnInit {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
+  print() {
+    window.print();
+  }
+
+  Search(t: string) {
+    this.searchText = t.trim();
+    this.filterText = t.trim();
+  }
 
   getUnPaidBills() {
     this.loader.show();

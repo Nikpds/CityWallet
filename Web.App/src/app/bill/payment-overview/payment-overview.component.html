@@ -1,71 +1,78 @@
-<h1 class="title has-text-white">
-  Επιβεβαίωση και ολόκληρωση
-</h1>
-<h2 class="subtitle is-6 has-text-white">
-    {{'CreditCard.CompleteSubtitle'|translate:lang}}
+<h2 class="title is-4 has-text-white">
+  {{'CreditCard.CompleteSubtitle'|translate:lang}}
 </h2>
 <div class="columns is-multiline">
   <div class="column is-12">
-    <div class="box">
-      <article class="media">
-        <div class="media-left is-hidden-mobile">
-          <figure class="image is-128x128">
-            <img src="../../../assets/Credit-Cards.png" alt="Image">
-          </figure>
-        </div>
-        <div class="media-content">
-          <div class="content">
-            <span class="title is-5">{{'CreditCard.ChargeInfo'|translate:lang}}</span>
-            <hr class="is-short">
-            <p>
-              <strong> {{'CreditCard.Name'|translate:lang}}:</strong> {{creditCard.owner}}
-              <br>
-              <strong> {{'CreditCard.Number'|translate:lang}}:</strong> {{creditCard.cardNumber}}
-              <br>
-              <strong> {{'CreditCard.CVV'|translate:lang}}:</strong> {{creditCard.cvv}}
-              <br>
-              <strong>{{'CreditCard.Ends'|translate:lang}}:</strong> {{creditCard.expires|date:'MM-yyyy'}}
-              <a class="button is-warning is-small is-pulled-right" (click)="editCreditCard()"> {{'Common.EditBtn'|translate:lang}}</a>
-            </p>
-            <span class="title is-5">{{'CreditCard.ClientInfo'|translate:lang}}</span>
-            <hr class="is-short">
-            <p>
-              <strong>{{'CreditCard.FullName'|translate:lang}}:</strong> {{use?.name}} {{user?.lastname}}
-              <br>
-              <strong>{{'User.Vat'|translate:lang}}</strong> {{user?.vat}}
-              <br>
-              <strong>{{'User.Address'|translate:lang}}</strong> {{user?.address}}
-              <br>
-              <strong>{{'User.Mobile'|translate:lang}}</strong> {{user?.mobile}}
-            </p>
+    <div class="card">
+      <div class="card-content">
+        <article class="media">
+          <div class="media-left is-hidden-mobile">
+            <figure class="image is-128x128">
+              <img src="../../../assets/Credit-Cards.png" alt="Image">
+            </figure>
           </div>
-        </div>
-      </article>
+          <div class="media-content">
+            <div class="content">
+              <span class="title is-5">{{'CreditCard.ChargeInfo'|translate:lang}}</span>
+              <hr class="is-short">
+              <p>
+                <strong> {{'CreditCard.Name'|translate:lang}}:</strong> {{creditCard.owner}}
+                <br>
+                <strong> {{'CreditCard.Number'|translate:lang}}:</strong>
+                <a class="button is-tiny is-info" (mousedown)="showNumber(false)" (mouseup)="hideNumber(false)">
+                  <i class="fa fa-eye"></i> &nbsp;&nbsp;{{convertCreditNumber(creditCard.cardNumber)}}
+                </a>
+                <br>
+                <strong> {{'CreditCard.CVV'|translate:lang}}:</strong>
+                <a class="button is-tiny is-info" (mousedown)="showNumber(true)" (mouseup)="hideNumber(true)">
+                  <i class="fa fa-eye"></i>&nbsp;&nbsp;{{converCVV(creditCard.cvv)}}
+                </a>
+                <br>
+                <strong>{{'CreditCard.Ends'|translate:lang}}:</strong> {{creditCard.expires|date:'MM-yyyy'}}
+                <a class="button is-warning is-small is-pulled-right" (click)="editCreditCard()"> {{'Common.EditBtn'|translate:lang}}</a>
+              </p>
+              <span class="title is-5">{{'CreditCard.ClientInfo'|translate:lang}}</span>
+              <hr class="is-short">
+              <p>
+                <strong>{{'CreditCard.FullName'|translate:lang}}:</strong> {{use?.name}} {{user?.lastname}}
+                <br>
+                <strong>{{'User.Vat'|translate:lang}}</strong> {{user?.vat}}
+                <br>
+                <strong>{{'User.Address'|translate:lang}}</strong> {{user?.address}}
+                <br>
+                <strong>{{'User.Mobile'|translate:lang}}</strong> {{user?.mobile}}
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
   <div class="column is-12">
-    <div class="box">
-      <span class="title is-5">{{'Home.Bills'|translate:lang}} ({{bills.length}})</span>
-      <table class="blackTable table is-fullwidth is-striped is-transparent is-narrow">
-        <thead>
-          <tr>
-            <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
-            <th>{{'Bills.Service'|translate:lang}}</th>
-            <th>{{'Bills.Paid'|translate:lang}}</th>
-            <th>{{'Bills.DueDate'|translate:lang}}</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let d of bills;let i = index">
-            <td class="is-hidden-mobile">{{i + 1}}</td>
-            <td>{{d.description}}</td>
-            <td>{{d.amount}} &euro;</td>
-            <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
-          </tr>
-          <tr class="total-bill" *ngIf="bills.length > 0">
-            <td colspan="2" class="subtitle is-5 ">{{'Bills.Total'|translate:lang}}</td>
-            <td colspan="2" class="subtitle is-5 has-text-warning">{{billsSum()}} &euro;</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="card">
+      <div class="card-content">
+        <span class="title is-5">{{'Home.Bills'|translate:lang}} ({{bills.length}})</span>
+        <table class="blackTable table is-fullwidth is-striped is-transparent is-narrow">
+          <thead>
+            <tr>
+              <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
+              <th>{{'Bills.Service'|translate:lang}}</th>
+              <th>{{'Bills.Paid'|translate:lang}}</th>
+              <th>{{'Bills.DueDate'|translate:lang}}</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of bills;let i = index">
+              <td class="is-hidden-mobile">{{i + 1}}</td>
+              <td>{{d.description}}</td>
+              <td>{{d.amount}} &euro;</td>
+              <td>{{d.dateDue|date:'dd-MM-yyyy'}}</td>
+            </tr>
+            <tr class="total-bill" *ngIf="bills.length > 0">
+              <td colspan="2" class="subtitle is-5 ">{{'Bills.Total'|translate:lang}}</td>
+              <td colspan="2" class="subtitle is-5 has-text-warning">{{billsSum()}} &euro;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>

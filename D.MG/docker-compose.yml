@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  dmg.api:
+    image: dmg.api
+    build:
+      context: ./WebApp
+      dockerfile: Dockerfile

@@ -3,13 +3,13 @@
     <a class="navbar-item title is-4 is-marginless" [routerLink]="['/home']">
       {{'App.Title'|translate:lang}}
     </a>
-    <div class="navbar-burger burger" data-target="mobileMenu">
+    <div class="navbar-burger burger" [ngClass]="{'is-active':mobileMenu}" (click)="openMenu()">
       <span></span>
       <span></span>
       <span></span>
     </div>
   </div>
-  <div id="mobileMenu" class="mobileMenu navbar-menu">
+  <div class="navbar-menu" [ngClass]="{'is-active':mobileMenu}">
     <div class="navbar-end">
       <a class="navbar-item" [routerLink]="['/profile']">
         {{user.lastname}} {{user.name}}
@@ -45,8 +45,8 @@
             {{'Home.Profile'|translate:lang}}
           </a>
           <hr class="navbar-divider">
-          <div class="navbar-item">
-            <a (click)="logout()"> {{'Home.Logout'|translate:lang}}</a>
+          <div class="navbar-item" >
+            <a (click)="logout()" [ngClass]="{'has-text-white':mobileMenu}"> {{'Home.Logout'|translate:lang}}</a>
           </div>
         </div>
       </div>

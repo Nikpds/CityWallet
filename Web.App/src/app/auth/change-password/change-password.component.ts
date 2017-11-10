@@ -65,7 +65,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   }
 
   cancel() {
-    this.isReset ? this.router.navigate(['/profile']) : this.router.navigate(['/login']);
+    this.isReset ? this.router.navigate(['/login']) : this.router.navigate(['/profile']);
   }
 
   private createForm() {

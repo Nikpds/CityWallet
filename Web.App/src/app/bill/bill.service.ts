@@ -94,6 +94,12 @@ export class BillService implements OnInit {
       .catch((error: string) => Observable.throw(error || 'Server error'))
   }
 
+  getSettlement(id: string): Observable<Settlement> {
+    return this.auth.get(this.settleUrl + "/" + id)
+      .map((res: Response) => res.json())
+      .catch((error: string) => Observable.throw(error || 'Server error'))
+  }
+
   cancelSettlementRequest(id: string) {
     return this.auth.delete(this.settleUrl + "/" + id)
       .map((res: Response) => res.json())

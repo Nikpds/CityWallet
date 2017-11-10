@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @Language() lang: string;
   private subscriptions = new Array<Subscription>();
   user: User;
-  showNavbar = true;
+  mobileMenu = false;
   constructor(
     public locale: LocaleService,
     private auth: AuthService,
@@ -23,8 +23,8 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
-    }
-    
+  }
+
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
@@ -36,6 +36,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   selectLocale(language: string, country: string): void {
     this.locale.setDefaultLocale(language, country);
+  }
+
+  openMenu() {
+    this.mobileMenu = !this.mobileMenu;
   }
 
 }

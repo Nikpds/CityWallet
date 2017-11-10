@@ -16,8 +16,9 @@ namespace WebApp.Controllers
     [Route("api/[controller]")]
     public class BillController : Controller
     {
-        private readonly BillService _srv;
-        public BillController(BillService srv)
+        private readonly IBillService _srv;
+
+        public BillController(IBillService srv)
         {
             _srv = srv;
         }

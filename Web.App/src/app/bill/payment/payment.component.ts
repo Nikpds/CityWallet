@@ -53,7 +53,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
     private router: Router
   ) { }
 
-
   previousStep() {
     this.step = this.step === 0 ? this.step : this.step - 1;
   }
@@ -68,6 +67,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  cancel() {
+    this.billService.billsToPay = [];
+    this.router.navigate(['/bills']);
   }
 
   ngOnInit() {

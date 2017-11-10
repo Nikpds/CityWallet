@@ -10,7 +10,14 @@ using System.Threading.Tasks;
 
 namespace ApiManager
 {
-    public class BillService
+    public interface IBillService
+    {
+        Task<IEnumerable<Bill>> GetUnpaidBills(string userId);
+        Task<IEnumerable<Bill>> GetPaidBills(string userId);
+        Task<IEnumerable<Bill>> GetBillsOnSettlement(string userId);
+    }
+
+    public class BillService : IBillService
     {
         private DbSet<Bill> _dbSet;
         private DataContext _ctx;

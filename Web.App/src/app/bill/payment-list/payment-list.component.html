@@ -1,38 +1,63 @@
 <div class="container">
   <section class="is-small">
     <div class="hero-body">
-      <h1 class="title has-text-white">
-        Πληρωμές
-      </h1>
+      <app-navigation class="no-print" [navigation]="navbar"></app-navigation>
       <h2 class="subtitle has-text-white">
-        Οι σημερινές πληρωμές σας.
+        {{'Payments.Subtitle'|translate:lang}}
       </h2>
       <div class="columns is-multiline">
         <div class="column is-12">
+          <div class="field field-body is-clearfix">
+            <div class="field is-narrow">
+              <p class="control">
+                <span class="select ">
+                  <select [(ngModel)]="config.pageSize">
+                    <option>5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                  </select>
+                </span>
+              </p>
+            </div>
+            <div class="no-print field has-addons is-inline-flex">
+              <div class="control">
+                <input class="input" [(ngModel)]="searchText" (keyup.enter)="Search(searchText)" type="text" placeholder="{{'Payments.SearchPlaceholder'|translate:lang}} {{'Bills.Service'|translate:lang}}">
+              </div>
+              <div class="control">
+                <a class="button is-primary search-btn" (click)="Search(searchText)">
+                  {{'Payments.Search'|translate:lang}}
+                </a>
+              </div>
+            </div>
+            <a class="no-print button is-info is-pulled-right" (click)="print()">
+              {{'Common.Print'|translate:lang}}
+            </a>
+          </div>
           <div class="card">
             <div class="card-content">
-              <table class="table is-fullwidth is-striped ">
+              <table class="table is-fullwidth is-striped">
                 <thead>
                   <tr>
-                    <th class="is-hidden-mobile">ΑΑ</th>
-                    <th>Λογαριασμός</th>
-                    <th>Ωρα</th>
-                    <th>Ποσό</th>
-                    <th>Μέθοδος</th>
-                    <th class="selecteBill">Επιλογή</th>
+                    <th class="is-hidden-mobile"> {{'Bills.AA'|translate:lang}}</th>
+                    <th> {{'Bills.Service'|translate:lang}}</th>
+                    <th> {{'Bills.Time'|translate:lang}}</th>
+                    <th> {{'Bills.Debt'|translate:lang}}</th>
+                    <th> {{'Bills.Method'|translate:lang}}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let d of payments;let i = index">
+                  <tr *ngFor="let i = index; let d of payments| filterPipe: 'bill':filterText:'description'| paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
                     <td class="is-hidden-mobile">{{i + 1}}</td>
                     <td>{{d.bill.description}}</td>
                     <td>{{d.paidDate|date:'HH:mm'}}</td>
                     <td>{{d.bill.amount}} &euro;</td>
                     <td>{{d.method}}</td>
-                    <td></td>
                   </tr>
                 </tbody>
               </table>
+              <app-pagination class="no-print" *ngIf="payments.length > 0" [config]="config" [data]="payments"></app-pagination>
             </div>
           </div>
         </div>

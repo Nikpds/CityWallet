@@ -21,13 +21,15 @@ import { BillsPaidComponent } from './bill-list/bills-paid/bills-paid.component'
 import { BillsSettledComponent } from './bill-list/bills-settled/bills-settled.component';
 import { SettlementComponent } from './settlement/settlement.component';
 import { SettlementListComponent } from './settlement-list/settlement-list.component';
+import { SettlementDetailsComponent } from './settlement-details/settlement-details.component';
 
 const routes: Route[] = [
   { path: 'bills', component: BillListComponent, canActivate: [AuthGuard] },
   { path: 'bills/payment', component: PaymentComponent, canActivate: [AuthGuard] },
   { path: 'payments', component: PaymentListComponent, canActivate: [AuthGuard] },
   { path: 'bills/settlement', component: SettlementComponent, canActivate: [AuthGuard] },
-  { path: 'settlements', component: SettlementListComponent, canActivate: [AuthGuard] }
+  { path: 'settlements', component: SettlementListComponent, canActivate: [AuthGuard] },
+  { path: 'settlement/:id/details', component: SettlementDetailsComponent, canActivate: [AuthGuard] }
 ]
 
 @NgModule({
@@ -51,7 +53,8 @@ const routes: Route[] = [
     BillsPaidComponent,
     BillsSettledComponent,
     SettlementListComponent,
-    SettlementComponent
+    SettlementComponent,
+    SettlementDetailsComponent
   ], providers: [
     BillService
   ]

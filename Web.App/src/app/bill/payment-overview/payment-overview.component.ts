@@ -15,7 +15,8 @@ export class PaymentOverviewComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   @Output() setState: EventEmitter<number> = new EventEmitter();
   @Language() lang: string;
-
+  cvvBool = false;
+  ccnBool = false;
   bills: Array<Bill>;
   user: User;
   creditCard = new CreditCard();
@@ -47,6 +48,22 @@ export class PaymentOverviewComponent implements OnInit, OnDestroy {
 
   billsSum() {
     return (this.bills.reduce(function (a, b) { return a + b.amount }, 0)).toFixed(2);
+  }
+
+  convertCreditNumber(cn: string) {
+    return this.ccnBool ? cn : "************" + cn.substr(cn.length - 4);
+  }
+
+  converCVV(cvv: string) {
+    return this.cvvBool ? cvv : "***";
+  }
+
+  showNumber(isCVV: boolean) {
+    isCVV ? this.cvvBool = true : this.ccnBool = true;
+  }
+
+  hideNumber(isCVV: boolean) {
+    isCVV ? this.cvvBool = false : this.ccnBool = false;
   }
 
 }

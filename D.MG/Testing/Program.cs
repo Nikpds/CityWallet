@@ -4,6 +4,7 @@ using ApiManager;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Models;
+using DMG.Services;
 
 namespace Testing
 {
@@ -23,10 +24,11 @@ namespace Testing
             builder.UseSqlServer(connection);
 
             var _db = new DataContext(builder.Options);
-            var srv = new UserService(_db);
+            var srv = new HangFireService(_db);
             var srv1 = new SettlementService(_db);
             srv1.CreateSettlementTypes();
-            var users = srv.InsertUsers();
+            srv.InsertNewData();
+          
 
 
         }

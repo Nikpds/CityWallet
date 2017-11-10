@@ -16,6 +16,7 @@ namespace ApiManager.Models
         public int Installments { get; set; }
         public double Downpayment { get; set; }
         public double MonthlyFee { get { return SubTotal / Installments; } }
+
         public double SubTotal
         {
             get

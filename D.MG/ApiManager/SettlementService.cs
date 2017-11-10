@@ -10,7 +10,16 @@ using System.Threading.Tasks;
 
 namespace ApiManager
 {
-    public class SettlementService
+    public interface ISettlementService
+    {
+        Task<SettlementDto> InsertSettlement(SettlementDto settle);
+        Task<Boolean> CancelSettlement(string id);
+        Task<IEnumerable<SettlementDto>> GetUserSettlements(string userId);
+        Task<SettlementDto> GetUserSettlement(string userId,string id);
+        Task<ICollection<SettlementType>> GetSettlementTypes();
+    }
+
+    public class SettlementService : ISettlementService
     {
         private DbSet<Settlement> _dbSet;
         private DataContext _ctx;
@@ -63,15 +72,15 @@ namespace ApiManager
 
         public async Task<IEnumerable<SettlementDto>> GetUserSettlements(string userId)
         {
-            var settlements = await _dbSet.Include(i => i.Bills).Where(w => w.Bills.Any(b => b.UserId == userId)).ToArrayAsync();
+            var settlements = await _dbSet.Include(i => i.Bills).Include(x=>x.SettlementType).Where(w => w.Bills.Any(b => b.UserId == userId)).ToArrayAsync();
             var dtos = settlements.Select(s => new SettlementDto(s));
 
             return dtos;
         }
 
-        public async Task<SettlementDto> GetUserSettlement(string id)
+        public async Task<SettlementDto> GetUserSettlement(string userId,string id)
         {
-            var settlement = await _dbSet.FindAsync(id);
+            var settlement = await _dbSet.Include(i=>i.Bills).SingleOrDefaultAsync(x=>x.Id == id && x.Bills.Any(a=>a.UserId == userId));
 
             return new SettlementDto(settlement);
         }
