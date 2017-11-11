@@ -46,7 +46,7 @@ namespace DMG.Services
             string[] headers;
             string[] fields;
             int counter = 0;
-            var fileStream = File.ReadAllLines(@"D:\git\DebtManagment\assets\CitizenDebts_1M_3.txt");
+            var fileStream = File.ReadAllLines(@"C:\Users\Nubi\Documents\GitHub\DebtManagment\assets\CitizenDebts_1M_3.txt");
             var psw = PasswordHasher.HashPassword("123");
             var firstline = fileStream[0];
             headers = firstline.Split(";");

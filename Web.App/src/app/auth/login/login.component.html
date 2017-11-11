@@ -1,76 +1,76 @@
 <div class="columns is-gapless is-multiline">
-  <div class="column is-7 is-hidden-mobile">
-    <div class="login-left-overlay">
-      <section class="hero ">
-        <div class="hero-body ">
-          <div class="is-clearfix">
-            <figure class="image is-256x256 is-pulled-right has-text-centered">
-              <img src="../../../assets/city logo.png">
-            </figure>
-          </div>
-          <hr>
-          <div class="has-text-right mr">
-            <p class="title is-1 has-text-white">
-              {{'App.Title'|translate:lang}}
-            </p>
-            <p class="subtitle is-4 has-text-white">
-              {{'Login.Subtitle'|translate:lang}}
-            </p>
-          </div>
+    <div class="column is-8 is-hidden-mobile">
+        <div class="login-left-overlay">
+            <section class="hero ">
+                <div class="hero-body ">
+                    <div class="is-clearfix">
+                        <figure class="image is-256x256 is-pulled-right has-text-centered">
+                            <img src="../../../assets/city logo.png">
+                        </figure>
+                    </div>
+                    <hr>
+                    <div class="has-text-right mr">
+                        <p class="title is-1 has-text-white">
+                            {{'App.Title'|translate:lang}}
+                        </p>
+                        <p class="subtitle is-4 has-text-white">
+                            {{'Login.Subtitle'|translate:lang}}
+                        </p>
+                    </div>
+                </div>
+            </section>
         </div>
-      </section>
     </div>
-  </div>
-  <div class="column is-5 is-white-background">
-    <section class="hero">
-      <div class="hero-body">
-        <div class="columns is-gapless is-centered is-mobile">
-          <div class="column is-8-desktop is-10-tablet is-10-mobile">
-            <p class="title is-2">
-              {{'Login.Login'|translate:lang}}
-            </p>
-            <p class="subtitle is-6">
-              {{'Login.Message'|translate:lang}}
-            </p>
-            <div class="field">
-              <span class="subtitle is-6 ">
+    <div class="column is-4 is-white-background">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="columns is-gapless is-centered is-mobile">
+                    <div class="column is-8-desktop is-10-tablet is-10-mobile">
+                        <p class="title is-2">
+                            {{'Login.Login'|translate:lang}}
+                        </p>
+                        <p class="subtitle is-6">
+                            {{'Login.Message'|translate:lang}}
+                        </p>
+                        <div class="field">
+                            <span class="subtitle is-6 ">
                 {{'Login.Username'|translate:lang}}
               </span>
-              <div class="control">
-                <input class="input" [(ngModel)]="username" type="text">
-              </div>
-            </div>
-            <div class="field">
-              <span class="subtitle is-6 ">
+                            <div class="control">
+                                <input class="input" [(ngModel)]="username" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <span class="subtitle is-6 ">
                 {{'Login.Password'|translate:lang}}
               </span>
-              <div class="control">
-                <input class="input" (keyup.enter)="login()" [(ngModel)]="password" type="password">
-              </div>
-            </div>
+                            <div class="control">
+                                <input class="input" (keyup.enter)="login()" [(ngModel)]="password" type="password">
+                            </div>
+                        </div>
 
-            <div class="field">
-              <a class="button btn-radius is-primary is-block" (click)="login()"> {{'Login.Login'|translate:lang}}</a>
-            </div>
+                        <div class="field">
+                            <a class="button btn-radius is-primary is-block" (click)="login()"> {{'Login.Login'|translate:lang}}</a>
+                        </div>
 
-            <div class="field">
-              <a class="is-link is-primary" [routerLink]="['/forgotpassword']"> {{'Login.ForgotPassword'|translate:lang}}</a>
-            </div>
-            <div class="field is-grouped">
-              <p class="control">
-                <a class="is-link" (click)="selectLocale('el', 'GR');">
+                        <div class="field">
+                            <a class="is-link is-primary" [routerLink]="['/forgotpassword']"> {{'Login.ForgotPassword'|translate:lang}}</a>
+                        </div>
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <a class="is-link" (click)="selectLocale('el', 'GR');">
                   {{'Common.Greek'|translate:lang}}
                 </a>
-              </p>
-              <p class="control">
-                <a class="" (click)="selectLocale('en', 'UK');">
+                            </p>
+                            <p class="control">
+                                <a class="" (click)="selectLocale('en', 'UK');">
                   {{'Common.English'|translate:lang}}
                 </a>
-              </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+        </section>
+    </div>
 </div>

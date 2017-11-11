@@ -34,7 +34,7 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=qualcoFour;Integrated Security=true"));
             services.Configure<SmtpOptions>(Configuration.GetSection("SMTP"));
             services.AddTransient<IEmailProvider, EmailProvider>();
             services.AddScoped<IBillService, BillService>();
@@ -46,7 +46,7 @@ namespace WebApp
             services.AddSingleton<IAuthenticationProvider>(p => auth);
 
             services.AddCors();
-            services.AddHangfire(x => x.UseSqlServerStorage(Configuration["ConnectionStrings:DefaultConnection"]));
+           // services.AddHangfire(x => x.UseSqlServerStorage(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddAuthentication(o =>
             {
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -75,16 +75,16 @@ namespace WebApp
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
 
-            app.UseHangfireDashboard("/hangfire", new DashboardOptions()
-            {
+            //app.UseHangfireDashboard("/hangfire", new DashboardOptions()
+            //{
 
-                StatsPollingInterval = 60000
-            });
+            //    StatsPollingInterval = 60000
+            //});
 
-            app.UseHangfireServer();
+            //app.UseHangfireServer();
 
-            RecurringJob.AddOrUpdate(() => ihsrv.DeleteDatabase(), Cron.Daily(0, 30));
-            RecurringJob.AddOrUpdate(() => ihsrv.InsertNewData(), Cron.Yearly());
+            //RecurringJob.AddOrUpdate(() => ihsrv.DeleteDatabase(), Cron.Daily(0, 30));
+            //RecurringJob.AddOrUpdate(() => ihsrv.InsertNewData(), Cron.Yearly());
 
             app.UseSwagger();
 

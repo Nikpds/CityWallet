@@ -1,8 +1,8 @@
 <div class="is-clearfix field no-print" *ngIf="bills.length > 0">
-  <div class="field field-body is-clearfix">
-    <div class="field is-narrow">
-      <p class="control">
-        <span class="select ">
+    <div class="field field-body is-clearfix">
+        <div class="field is-narrow">
+            <p class="control">
+                <span class="select ">
           <select [(ngModel)]="config.pageSize">
             <option>5</option>
             <option>10</option>
@@ -11,61 +11,61 @@
             <option>100</option>
           </select>
         </span>
-      </p>
-    </div>
-    <div class=" field has-addons is-inline-flex">
-      <div class="control">
-        <input class="input" [(ngModel)]="searchText" (keyup.enter)="Search(searchText)" type="text" placeholder="{{'Payments.SearchPlaceholder'|translate:lang}} {{'Bills.Service'|translate:lang}}">
-      </div>
-      <div class="control">
-        <a class="button is-primary search-btn" (click)="Search(searchText)">
+            </p>
+        </div>
+        <div class=" field has-addons is-inline-flex">
+            <div class="control">
+                <input class="input" [(ngModel)]="searchText" (keyup.enter)="Search(searchText)" type="text" placeholder="{{'Payments.SearchPlaceholder'|translate:lang}} {{'Bills.Service'|translate:lang}}">
+            </div>
+            <div class="control">
+                <a class="button is-primary search-btn" (click)="Search(searchText)">
           {{'Payments.Search'|translate:lang}}
         </a>
-      </div>
+            </div>
+        </div>
+        <div class="is-pulled-right">
+            <p class="is-grouped">
+                <button class="button is-info is-hidden-mobile" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
+                <button class="button is-primary" [disabled]="billsForPay.length == 0" [routerLink]="['payment']">{{'Common.PayBtn'|translate:lang}}</button>
+                <button class="button is-warning" [disabled]="billsForPay.length == 0" [routerLink]="['settlement']">{{'Common.SettlementBtn'|translate:lang}}</button>
+            </p>
+        </div>
     </div>
-    <div class="is-pulled-right">
-      <p class="is-grouped">
-        <button class="button is-info" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
-        <button class="button is-primary" [disabled]="billsForPay.length == 0" [routerLink]="['payment']">{{'Common.PayBtn'|translate:lang}}</button>
-        <button class="button is-warning" [disabled]="billsForPay.length == 0" [routerLink]="['settlement']">{{'Common.SettlementBtn'|translate:lang}}</button>
-      </p>
-    </div>
-  </div>
 </div>
 <div class="card" *ngIf="bills.length > 0">
-  <div class="card-content">
-    <table class="table is-fullwidth is-striped" *ngIf="bills.length > 0">
-      <thead>
-        <tr>
-          <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
-          <th>{{'Bills.Service'|translate:lang}}</th>
-          <th>{{'Bills.Debt'|translate:lang}}</th>
-          <th class="is-hidden-mobile">{{'Bills.DueDate'|translate:lang}}</th>
-          <th class="selecteBill no-print">{{'Common.Select'|translate:lang}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let i = index;let d of bills| filterPipe:'description':filterText | paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
-          <td class="is-hidden-mobile">{{i + 1}}</td>
-          <td>{{d.description}}</td>
-          <td>{{d.amount}} &euro;</td>
-          <td class="is-hidden-mobile">
-            <span [ngClass]="{'has-text-danger':checkFallDue(d.dateDue)}">{{d.dateDue|date:'dd-MM-yyyy'}} </span>
-            <span *ngIf="checkFallDue(d.dateDue)">&nbsp; ({{'Bills.OverDue'|translate:lang}})</span>
-          </td>
-          <td class="no-print">
-            <div class="field">
-              <div class="control">
-                <a class="button is-default is-xs" (click)="addRemovebill(d.id)">
-                  <i class="fa" [ngClass]="{'has-text-white': !isOnPayList(d.id),'has-text-warning': isOnPayList(d.id),'fa-square': !isOnPayList(d.id), 'fa-check': isOnPayList(d.id)}"></i>
-                </a>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <app-pagination class="no-print" *ngIf="bills.length > 0" [config]="config" [data]="bills"></app-pagination>
+    <div class="card-content">
+        <table class="table is-fullwidth is-striped" *ngIf="bills.length > 0">
+            <thead>
+                <tr>
+                    <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
+                    <th>{{'Bills.Service'|translate:lang}}</th>
+                    <th>{{'Bills.Debt'|translate:lang}}</th>
+                    <th class="is-hidden-mobile">{{'Bills.DueDate'|translate:lang}}</th>
+                    <th class="selecteBill no-print">{{'Common.Select'|translate:lang}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i = index;let d of bills| filterPipe:'description':filterText | paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
+                    <td class="is-hidden-mobile">{{i + 1}}</td>
+                    <td>{{d.description}}</td>
+                    <td>{{d.amount}} &euro;</td>
+                    <td class="is-hidden-mobile">
+                        <span [ngClass]="{'has-text-danger':checkFallDue(d.dateDue)}">{{d.dateDue|date:'dd-MM-yyyy'}} </span>
+                        <span *ngIf="checkFallDue(d.dateDue)">&nbsp; ({{'Bills.OverDue'|translate:lang}})</span>
+                    </td>
+                    <td class="no-print">
+                        <div class="field">
+                            <div class="control">
+                                <a class="button is-default is-xs" (click)="addRemovebill(d.id)">
+                                    <i class="fa" [ngClass]="{'has-text-white': !isOnPayList(d.id),'has-text-warning': isOnPayList(d.id),'fa-square': !isOnPayList(d.id), 'fa-check': isOnPayList(d.id)}"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <app-pagination class="no-print" *ngIf="bills.length > 0" [config]="config" [data]="bills"></app-pagination>
 
-  </div>
+    </div>
 </div>
