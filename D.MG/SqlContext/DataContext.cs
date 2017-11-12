@@ -33,7 +33,7 @@ namespace SqlContext
                        .WithOne(x => x.User)
                        .HasForeignKey(x => x.UserId)
                        .IsRequired();
-            userBuilder.HasOne(x => x.Address)
+            userBuilder.HasOne(x => x.AddressInfo)
                        .WithOne(u => u.User)
                        .HasForeignKey<Address>(b => b.UserId)
                        .IsRequired()

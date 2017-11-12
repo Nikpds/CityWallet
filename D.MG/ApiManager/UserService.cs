@@ -41,7 +41,7 @@ namespace ApiManager
 
         public async Task<UserDto> GetUserWithCounters(string userId, bool toDto = true)
         {
-            var user = await _dbSet.Include(x => x.Address).SingleOrDefaultAsync(s => s.Id == userId);
+            var user = await _dbSet.Include(x => x.AddressInfo).SingleOrDefaultAsync(s => s.Id == userId);
             var counter = new Counter
             {
                 Bills = await _ctx.Set<Bill>().Where(x => x.UserId == userId && x.Payment == null && x.SettlementId == null).CountAsync(),

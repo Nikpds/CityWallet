@@ -32,8 +32,8 @@ namespace ApiManager.Models
             Mobile = user.Mobile;
             Email = user.Email;
             FirstLogin = user.FirstLogin;
-            County = user.Address.County;
-            Address = user.Address.Street;
+            County = user.AddressInfo.County;
+            Address = user.AddressInfo.Street;
             Bills = user.Bills;
         }
     }

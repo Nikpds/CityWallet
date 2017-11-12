@@ -11,9 +11,10 @@ using System;
 namespace DMG.Context.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20171111131803_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,7 +183,7 @@ namespace DMG.Context.Migrations
             modelBuilder.Entity("Models.Address", b =>
                 {
                     b.HasOne("Models.User", "User")
-                        .WithOne("AddressInfo")
+                        .WithOne("Address")
                         .HasForeignKey("Models.Address", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -7,7 +7,7 @@ namespace Models
         public User()
         {
             Bills = new HashSet<Bill>();
-            Address = new Address();
+            AddressInfo = new Address();
         }
 
         public string Name { get; set; }
@@ -19,7 +19,7 @@ namespace Models
         public bool FirstLogin { get; set; }
         public string VerificationToken { get; set; }
 
-        public virtual Address Address { get; set; }
+        public virtual Address AddressInfo { get; set; }
 
         public virtual ICollection<Bill> Bills { get; set; }
     }
