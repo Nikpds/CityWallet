@@ -1,0 +1,27 @@
+<div class="columns amargin  is-mobile is-centered">
+    <div class="column is-three-quarters is-narrow">
+        <div class="box">
+            <div class="media-content">
+                <div class="columns is-mobile is-centered">
+                    <div class="column is-one-quarter is-narrow is-centered">
+                        <figure class="amargin image is-2by1 has-text-centered">
+                            <img src="../../../assets/FAQ.png">
+                        </figure>
+                    </div>
+                </div>
+                <ul class="faqs">
+                    <li *ngFor="let faq of faqs">
+                        <article class="media">
+                            <p class="media-left"><strong>{{faq.id}}.</strong></p>
+                            <div class="media-content">
+                                <p class="content  has-text-justified"><strong>{{faq.question}}</strong></p>
+                                <p class="content  has-text-justified">{{faq.answer}}</p>
+                                <p></p>
+                            </div>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

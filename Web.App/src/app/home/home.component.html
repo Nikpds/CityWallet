@@ -1,189 +1,189 @@
 <section class="hero is-transparent ">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-marginless">
-        <div class="column is-4">
-          <div class="box">
-            <div class="media-content">
-              <figure class="amargin image is-128x128 has-text-centered">
-                <img src="../../../assets/city logo.png">
-              </figure>
-              <div class="content">
-                <p class="title is-5">
-                  {{'Common.Menu'|translate:lang}}
-                </p>
-                <ol class="has-text-black">
-                  <li>
-                    <a>Όροι χρήσης</a>
-                  </li>
-                  <li>
-                    <a>Συχνές Ερωτήσεις</a>
-                  </li>
-                  <li>
-                    <a>Επικοινωνία</a>
-                  </li>
-                </ol>
-              </div>
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-marginless">
+                <div class="column is-4">
+                    <div class="box">
+                        <div class="media-content">
+                            <figure class="amargin image is-128x128 has-text-centered">
+                                <img src="../../../assets/city logo.png">
+                            </figure>
+                            <div class="content">
+                                <p class="title is-5">
+                                    {{'Common.Menu'|translate:lang}}
+                                </p>
+                                <ol class="has-text-black">
+                                    <li [routerLink]="['/TermsOfUse']">
+                                        <a>Όροι χρήσης</a>
+                                    </li>
+                                    <li [routerLink]="['/FAQ']">
+                                        <a>Συχνές Ερωτήσεις</a>
+                                    </li>
+                                    <li [routerLink]="['/ContactUs']">
+                                        <a>Επικοινωνία</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-8">
+                    <div class="box">
+                        <p class="title is-3">
+                            {{'Home.Services'|translate:lang}}
+                        </p>
+                        <hr>
+                        <div class="box bck-primary" [routerLink]="['/bills']">
+                            <article class="media">
+                                <div class="media-left is-hidden-mobile">
+                                    <i class="fa fa-file-text fa-4x"></i>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p class="">
+                                            <span class="title is-5 has-text-white"> {{'Home.Bills'|translate:lang}}</span>
+                                            <br>
+                                            <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <span class="title is-2 has-text-white">{{user.counters.bills}}</span>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="box bck-blue" [routerLink]="['/settlements']">
+                            <article class="media">
+                                <div class="media-left is-hidden-mobile">
+                                    <i class="fa fa-handshake-o fa-4x"></i>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p class="">
+                                            <span class="title is-5 has-text-white">{{'Home.Settlements'|translate:lang}}</span>
+                                            <br>
+                                            <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <span class="title is-2 has-text-white">{{user.counters.settlements}}</span>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="box bck-primary" [routerLink]="['/payments']">
+                            <article class="media">
+                                <div class="media-left is-hidden-mobile">
+                                    <i class="fa fa-credit-card fa-4x"></i>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p class="">
+                                            <span class="title is-5 has-text-white">{{'Home.Payments'|translate:lang}}</span>
+                                            <br>
+                                            <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <span class="title is-2 has-text-white">{{user.counters.payments}}</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="column is-8">
-          <div class="box">
-            <p class="title is-3">
-              {{'Home.Services'|translate:lang}}
-            </p>
-            <hr>
-            <div class="box bck-primary" [routerLink]="['/bills']">
-              <article class="media">
-                <div class="media-left is-hidden-mobile">
-                  <i class="fa fa-file-text fa-4x"></i>
-                </div>
-                <div class="media-content">
-                  <div class="content">
-                    <p class="">
-                      <span class="title is-5 has-text-white"> {{'Home.Bills'|translate:lang}}</span>
-                      <br>
-                      <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="media-right">
-                  <span class="title is-2 has-text-white">{{user.counters.bills}}</span>
-                </div>
-              </article>
-            </div>
-            <div class="box bck-blue" [routerLink]="['/settlements']">
-              <article class="media">
-                <div class="media-left is-hidden-mobile">
-                  <i class="fa fa-handshake-o fa-4x"></i>
-                </div>
-                <div class="media-content">
-                  <div class="content">
-                    <p class="">
-                      <span class="title is-5 has-text-white">{{'Home.Settlements'|translate:lang}}</span>
-                      <br>
-                      <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="media-right">
-                  <span class="title is-2 has-text-white">{{user.counters.settlements}}</span>
-                </div>
-              </article>
-            </div>
-            <div class="box bck-primary" [routerLink]="['/payments']">
-              <article class="media">
-                <div class="media-left is-hidden-mobile">
-                  <i class="fa fa-credit-card fa-4x"></i>
-                </div>
-                <div class="media-content">
-                  <div class="content">
-                    <p class="">
-                      <span class="title is-5 has-text-white">{{'Home.Payments'|translate:lang}}</span>
-                      <br>
-                      <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="media-right">
-                  <span class="title is-2 has-text-white">{{user.counters.payments}}</span>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 <section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-marginless">
-        <div class="column is-6" class="has-text-white">
-          <h1 class="title is-4 has-text-white">
-            The Global Debt Recovery Solution For A Global Economy
-          </h1>
-          <hr>
-          <ul>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; Pre-legal no win no fee globally
-            </li>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; No setup charges
-            </li>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; Multi-award winning
-            </li>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; Worldwide compliance
-            </li>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; Global coverage
-            </li>
-          </ul>
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-marginless">
+                <div class="column is-6" class="has-text-white">
+                    <h1 class="title is-4 has-text-white">
+                        The Global Debt Recovery Solution For A Global Economy
+                    </h1>
+                    <hr>
+                    <ul>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Pre-legal no win no fee globally
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; No setup charges
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Multi-award winning
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Worldwide compliance
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Global coverage
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 <section class="hero is-transparent ">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-marginless">
-        <div class="column is-6 is-offset-6 has-text-white">
-          <h1 class="title is-4 has-text-white">
-            The Global Debt Recovery Solution For A Global Economy
-          </h1>
-          <hr>
-          <ul class="is-pulled-right">
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; Pre-legal no win no fee globally
-            </li>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; No setup charges
-            </li>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; Multi-award winning
-            </li>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; Worldwide compliance
-            </li>
-            <li>
-              <i class="fa fa-circle"></i>&nbsp; Global coverage
-            </li>
-          </ul>
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-marginless">
+                <div class="column is-6 is-offset-6 has-text-white">
+                    <h1 class="title is-4 has-text-white">
+                        The Global Debt Recovery Solution For A Global Economy
+                    </h1>
+                    <hr>
+                    <ul class="is-pulled-right">
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Pre-legal no win no fee globally
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; No setup charges
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Multi-award winning
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Worldwide compliance
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Global coverage
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 <footer class="footer lighten">
-  <div class="container">
-    <div class="content">
-      <p class="has-text-centered has-text-black">
-        <strong class="has-text-black">D.MG</strong> by
-        <a href="https://github.com/CodingSchoolQualcoTeam4/DMG">qualco_4</a>. The source code is licensed
-        <a href="http://www.qualco.eu/">Qualco</a>. The website content is licensed
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-      </p>
-      <h2 class="subtitle is-marginless has-text-black">
-        {{'Home.MadeBy'|translate:lang}}
-      </h2>
-      <div class="columns has-text-centered">
-        <div class="column amargin">
-          <img class="imagebulma" (click)="null" src="../../assets/html5-logo.png" alt="Made with Bulma">
+    <div class="container">
+        <div class="content">
+            <p class="has-text-centered has-text-black">
+                <strong class="has-text-black">D.MG</strong> by
+                <a href="https://github.com/CodingSchoolQualcoTeam4/DMG">qualco_4</a>. The source code is licensed
+                <a href="http://www.qualco.eu/">Qualco</a>. The website content is licensed
+                <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+            </p>
+            <h2 class="subtitle is-marginless has-text-black">
+                {{'Home.MadeBy'|translate:lang}}
+            </h2>
+            <div class="columns has-text-centered">
+                <div class="column amargin">
+                    <img class="imagebulma" (click)="null" src="../../assets/html5-logo.png" alt="Made with Bulma">
+                </div>
+                <div class="column amargin">
+                    <img class="imagebulma" src="../../assets/dotnet.png" alt="Made with Bulma">
+                </div>
+                <div class="column amargin">
+                    <img class="imagebulma" src="../../assets/made-with-bulma--dark.png" alt="Made with Bulma">
+                </div>
+                <div class="column amargin">
+                    <img class="imagebulma" src="../../assets/MadeWithAngular.png" alt="Made with Bulma">
+                </div>
+            </div>
         </div>
-        <div class="column amargin">
-          <img class="imagebulma" src="../../assets/dotnet.png" alt="Made with Bulma">
-        </div>
-        <div class="column amargin">
-          <img class="imagebulma" src="../../assets/made-with-bulma--dark.png" alt="Made with Bulma">
-        </div>
-        <div class="column amargin">
-          <img class="imagebulma" src="../../assets/MadeWithAngular.png" alt="Made with Bulma">
-        </div>
-      </div>
     </div>
-  </div>
 </footer>
