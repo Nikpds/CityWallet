@@ -4,7 +4,7 @@ import { RouterModule, Route } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CustomFormsModule } from 'ng2-validation'
+import { CustomFormsModule } from 'ng2-validation';
 
 import { BillListComponent } from './bill-list/bill-list.component';
 import { PaymentComponent } from './payment/payment.component';
