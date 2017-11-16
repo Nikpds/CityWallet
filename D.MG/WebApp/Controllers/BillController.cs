@@ -10,7 +10,6 @@ using WebApp.Services;
 
 namespace WebApp.Controllers
 {
-
     [Produces("application/json")]
     [Authorize]
     [Route("api/[controller]")]
@@ -41,7 +40,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -63,7 +62,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -85,7 +84,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
     }

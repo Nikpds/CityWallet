@@ -27,12 +27,23 @@ namespace WebApp.Controllers
             {
                 var id = User.GetUserId();
 
-                var user = await _srv.GetUserWithCounters(id);
-                return Ok(user);
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
+
+                var userDto = await _srv.GetUserWithCounters(id);
+
+                if (userDto == null)
+                {
+                    return BadRequest("O χρήστης που ζητήσατε δεν υπάρχει.");
+                }
+
+                return Ok(userDto);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -43,11 +54,16 @@ namespace WebApp.Controllers
             {
                 var id = User.GetUserId();
 
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
+
                 var user = await _srv.GetUser(id);
 
                 if (user == null)
                 {
-                    return NotFound("User does not exist.");
+                    return NotFound("Ο xρήστης που ζητήσατε δεν υπάρχει.");
                 }
                 else
                 {
@@ -64,11 +80,11 @@ namespace WebApp.Controllers
 
                 }
 
-                return Ok("ok");
+                return Ok(true);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
         [AllowAnonymous]
@@ -82,18 +98,18 @@ namespace WebApp.Controllers
 
                 if (user == null)
                 {
-                    return NotFound("The link has expired");
+                    return NotFound("Ο σύνδεσμος που ζητήσατε έχει λήξη.");
                 }
                 else
                 {
                     _srv.ChangePassword(user, psw);
                 }
 
-                return Ok("ok");
+                return Ok(true);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -104,13 +120,18 @@ namespace WebApp.Controllers
             {
                 var id = User.GetUserId();
 
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
+
                 var counters = await _srv.GetUserCounters(id);
 
                 return Ok(counters);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
         [AllowAnonymous]
@@ -123,18 +144,18 @@ namespace WebApp.Controllers
 
                 if (user == null)
                 {
-                    return NotFound("User does not exist.");
+                    return NotFound("Ο xρήστης που ζητήσατε δεν υπάρχει.");
                 }
                 else
                 {
                     _srv.SendResetPwdEmail(user);
                 }
 
-                return Ok();
+                return Ok(true);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 

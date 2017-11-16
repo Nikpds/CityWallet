@@ -32,8 +32,7 @@ namespace ApiManager
             {
                 var payment = new Payment
                 {
-                    Bill_Id = bills[i].Bill_Id,
-                    Method = "Debit",
+                    Method = "Credit",
                     PaidDate = DateTime.Now,
                     BillId = bills[i].Id
                 };

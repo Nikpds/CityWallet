@@ -1,6 +1,8 @@
-﻿using AuthProvider;
+﻿using DMG.Services.Models;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using ServiceStack;
+using ServiceStack.Text;
 using SqlContext;
 using System;
 using System.Collections.Generic;
@@ -9,22 +11,24 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Z.EntityFramework.Extensions;
 
 namespace DMG.Services
 {
     public interface IHangFireService
     {
         void DeleteDatabase();
-        void InsertNewData();
+        void InsertData();
+        void ExportData();
     }
 
     public class HangFireService : IHangFireService
     {
         private DataContext _ctx;
-
         public HangFireService(DataContext ctx)
         {
             _ctx = ctx;
+            EntityFrameworkManager.ContextFactory = context => { return _ctx; };
         }
 
         public void DeleteDatabase()
@@ -42,145 +46,95 @@ namespace DMG.Services
 
         }
 
-        public void InsertNewData()
+        public void InsertData()
         {
-            var users = new List<User>();
-            var bills = new List<Bill>();
-            var uniqueUsers = new List<string>();
-            string[] headers;
-            string[] fields;
-            int counter = 0;
-            var fileStream = File.ReadAllLines(@"C:\Users\Nickos\Source\github\DebtManagment\assets\CitizenDebts_1M_3.txt");
-            var psw = PasswordHasher.HashPassword("123");
-            var firstline = fileStream[0];
-            headers = firstline.Split(";");
-            try
-            {
-                for (var j = 1; j < fileStream.Length; j++)
-                {
-                    User user = new User();
-                    Bill debt = new Bill();
-                    user.Password = psw;
-                    fields = fileStream[j].Split(";");
-                    user.Name = fields[1];
-                    user.Lastname = fields[2];
-                    user.AddressInfo.Street = fields[5];
-                    user.Vat = fields[0];
-                    user.AddressInfo.County = fields[6];
-                    user.Email = fields[3];
-                    user.Mobile = fields[4];
-                    user.FirstLogin = true;
-                    user.LastUpdate = DateTime.Now;
-                    debt.Amount = Double.Parse(fields[9]);
-                    debt.Description = fields[8];
-                    debt.DateDue = ConvertDate(fields[10]);
-                    debt.Bill_Id = fields[7];
-                    debt.LastUpdate = DateTime.Now;
+            var filepath = @"D:\git\DebtManagment\assets\CitizenDebts_3M_3.txt";
+            var dataForImport = File.ReadLines(filepath)
+                               .Skip(1)
+                               .Select(line => line.Split(';'))
+                               .ToList();
 
-                    var index = uniqueUsers.FindIndex(i => i == user.Vat);
-                    if (index > -1)
-                    {
-                        users[index].Bills.Add(debt);
-                    }
-                    else
-                    {
-                        uniqueUsers.Add(user.Vat);
-                        user.Bills.Add(debt);
-                        users.Add(user);
-                    }
-                }
-                _ctx.Set<User>().AddRange(users);
-                _ctx.SaveChanges();
-                _ctx.Dispose();
-            }
-            catch (Exception ex)
-            {
-                var error = counter;
-                var _ex = ex;
-            }
-        }
-
-
-        public void InsertDataFromCounty()
-        {
-            var users = new List<User>();
-            var fileStream = File.ReadAllLines(@"C:\Users\Nickos\Source\github\DebtManagment\assets\CitizenDebts_3M_3.txt");
-
-            var listToImport = File.ReadLines(@"C:\Users\Nickos\Source\github\DebtManagment\assets\CitizenDebts_3M_3.txt").Skip(1)
-                          .Select(line => line.Split(';'))
-                          .ToList();
-
-            var distinctusers = (from item in listToImport
-                                 group item by item[0] into groups
+            var distinctUsers = (from data in dataForImport
+                                 group data by data[0] into groups
                                  select groups.First()).ToList();
 
-            var usersInDb = _ctx.Set<User>().ToList();
-            string[] headers;
-            string[] fields;
-            var psw = PasswordHasher.HashPassword("123");
-            var firstline = fileStream[0];
-            headers = firstline.Split(";");
+            var dbUsers = _ctx.Set<User>().ToList();
             try
             {
-                Console.WriteLine($"{DateTime.Now}   Number of Users in db: {usersInDb.Count().ToString()} Number of Users in file: {distinctusers.Count().ToString()}");
-                var userlist = (from ca in distinctusers
+                Console.WriteLine($"{DateTime.Now}   Number of Users in db: {dbUsers.Count().ToString()} Number of Users in file: {distinctUsers.Count().ToString()}");
+                var userlist = (from user in distinctUsers
                                 select new User
                                 {
-                                    Vat = ca[0],
-                                    Name = ca[1],
-                                    Lastname = ca[2],
-                                    Email = ca[3],
-                                    Password = "123",
-                                    Mobile = ca[4],
-                                    AddressInfo = new Address { County = ca[5], Street = ca[6] },
+                                    Vat = user[0],
+                                    Name = user[1],
+                                    Lastname = user[2],
+                                    Email = user[3],
+                                    Password = Sha256_hash("123"),//in production must be replaced with RandomString(6)
+                                    Mobile = user[4],
+                                    AddressInfo = new Address { County = user[5], Street = user[6] },
                                     FirstLogin = false,
                                     LastUpdate = DateTime.Now
                                 }).ToList();
+
                 Console.WriteLine($"{DateTime.Now}   userlist finished");
+
                 var usersToInsert = (from u in userlist
-                                     join _u in usersInDb on u.Vat equals _u.Vat into toInsert
+                                     join _u in dbUsers on u.Vat equals _u.Vat into toInsert
                                      from _user in toInsert.DefaultIfEmpty()
                                      where _user == null
                                      select new User
                                      {
+                                         Id = Guid.NewGuid().ToString(),
                                          Vat = u.Vat,
                                          Name = u.Name,
                                          Lastname = u.Lastname,
                                          Email = u.Email,
-                                         Password = Sha256_hash("123"),
+                                         Password = u.Password,
                                          Mobile = u.Mobile,
                                          AddressInfo = u.AddressInfo,
-                                         FirstLogin = false,
+                                         FirstLogin = u.FirstLogin,
                                          LastUpdate = u.LastUpdate
                                      }).ToList();
-                Console.WriteLine($"{DateTime.Now}   usertoInsert finished");
+                Console.WriteLine($"{DateTime.Now}   usertoInsert finished, Starts removing");
 
-                foreach (var item in usersToInsert)
+                usersToInsert.RemoveAll(x => x.Vat == null);
+
+                Console.WriteLine($"{DateTime.Now}   removing corrupted users finished");
+
+                if (usersToInsert.Count > 0)
                 {
-                    _ctx.Set<User>().Add(item);
+                    _ctx.BulkInsert(usersToInsert);
+                    Console.WriteLine($"{DateTime.Now}   all users finished bulk insert where finished");
+                    Console.WriteLine($"{DateTime.Now}   Start Saving...");
+                    _ctx.SaveChanges();
+                    Console.WriteLine($"{DateTime.Now}   Saving finished");
                 }
-                Console.WriteLine($"{DateTime.Now}   all adds where finished");
-                // _ctx.Set<User>().AddRange(usersToInsert);
 
+                var dbUsersNew = _ctx.Set<User>().ToList();
+
+                var billsforuser = (from item in dataForImport
+                                    join ff in dbUsersNew on item[0] equals ff.Vat
+                                    select new { item, ff.Id }).ToList();
+
+                var allbills = (from bill in billsforuser
+                                select new Bill
+                                {
+                                    Id = Guid.NewGuid().ToString(),
+                                    Bill_Id = bill.item[7],
+                                    Description = bill.item[8],
+                                    Amount = decimal.Parse(bill.item[9].Replace(',', '.'), CultureInfo.InvariantCulture.NumberFormat),
+                                    DateDue = DateTime.ParseExact(bill.item[10], "yyyyMMdd", CultureInfo.InvariantCulture),
+                                    UserId = bill.Id,
+                                    LastUpdate = DateTime.Now
+                                }).ToList();
+
+                Console.WriteLine($"{DateTime.Now}   all bills finished bulk insert starts.. bills to insert: " + allbills.Count);
+                allbills.RemoveAll(x => x.Bill_Id == null || x.Id == null);
+
+                Console.WriteLine($"{DateTime.Now}   removing corrupted bills finished");
+                _ctx.BulkInsert(allbills);
+                Console.WriteLine($"{DateTime.Now}   Start Saving...");
                 _ctx.SaveChanges();
-                //var usersInDb2 = _ctx.Set<User>().ToList();
-                //var billsforuser = (from item in listToImport
-                //                    join ff in usersInDb2 on item[0] equals ff.Vat
-                //                    select new { item, ff.Id }).ToList();
-
-                //var allbills = (from bill in billsforuser
-                //                select new Bill
-                //                {
-                //                    Bill_Id = bill.item[7],
-                //                    Description = bill.item[8],
-                //                    Amount = float.Parse(bill.item[9].Replace(',', '.'), CultureInfo.InvariantCulture.NumberFormat),
-                //                    DateDue = DateTime.ParseExact(bill.item[10], "yyyyMMdd", CultureInfo.InvariantCulture),
-                //                    UserId = bill.Id
-                //                }).ToList();
-
-                //_ctx.Set<Bill>().AddRange(allbills.Take(200000));
-                //_ctx.SaveChanges();
-
 
             }
             catch (Exception ex)
@@ -188,6 +142,7 @@ namespace DMG.Services
 
             }
         }
+
         private static DateTime ConvertDate(string date)
         {
             var dateformat = date.Substring(0, 4) + "-" + date.Substring(4, 2) + "-" + date.Substring(6, 2);
@@ -197,7 +152,6 @@ namespace DMG.Services
         public static String Sha256_hash(string value)
         {
             StringBuilder Sb = new StringBuilder();
-
             using (var hash = SHA256.Create())
             {
                 Encoding enc = Encoding.UTF8;
@@ -208,6 +162,69 @@ namespace DMG.Services
             }
 
             return Sb.ToString();
+        }
+
+        private static Random random = new Random();
+
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public void ExportData()
+        {
+            var exportPath = @"C:\Users\Nperperidis\";
+            CsvConfig.ItemSeperatorString = ";";
+            var payments = _ctx.Set<Payment>().Include(i => i.Bill).ToList();
+            var settlements = _ctx.Set<Settlement>().Include(x => x.SettlementType).Include(i => i.Bills).ThenInclude(u => u.User).ToList();
+
+            var d = DateTime.Now.AddDays(-1);
+            var filename = d.Year + "" + d.Month + d.Day;
+            var paymentsForExport = (from pay in payments
+                                     select new PaymentExport
+                                     {
+                                         BILL_ID = pay.Bill.Bill_Id,
+                                         TIME = pay.PaidDate.ToUniversalTime(),
+                                         AMOUNT = pay.Bill.Amount,
+                                         METHOD = pay.Method
+                                     }).ToList();
+
+            var settlementsForExport = (from s in settlements
+                                        select new SettlementExport
+                                        {
+                                            VAT = s.Bills.FirstOrDefault().User.Vat,
+                                            BILLS = ConvertBills(s.Bills.ToList()),
+                                            DOWNPAYMENT = s.Downpayment,
+                                            INSTALLMENTS = s.Installments,
+                                            TIME = s.RequestDate,
+                                            INTEREST = s.SettlementType.Interest
+
+                                        }).ToList();
+
+            var paymentsTxt = CsvSerializer.SerializeToCsv(paymentsForExport);
+            var settlementsTxt = CsvSerializer.SerializeToCsv(settlementsForExport);
+
+            File.AppendAllText(exportPath + "PAYMENTS_" + filename + ".txt", paymentsTxt);
+            File.AppendAllText(exportPath + "SETTLEMENTS_" + filename + ".txt", settlementsTxt);
+
+
+        }
+
+        private static string ConvertBills(List<Bill> bills)
+        {
+            var billIdString = "";
+            var users = bills.FirstOrDefault();
+            for (var i = 0; i < bills.Count; i++)
+            {
+                billIdString = billIdString + bills[i].Bill_Id;
+                if (i != bills.Count - 1)
+                {
+                    billIdString = billIdString + ",";
+                }
+            }
+            return billIdString;
         }
     }
 }

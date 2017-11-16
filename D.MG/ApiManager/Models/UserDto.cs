@@ -7,11 +7,9 @@ namespace ApiManager.Models
 {
     public class UserDto
     {
-
         public UserDto()
         {
         }
-
         public string Name { get; set; }
         public string Lastname { get; set; }
         public string Vat { get; set; }

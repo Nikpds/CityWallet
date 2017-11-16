@@ -4,8 +4,6 @@ namespace Models
 {
     public class Payment : BaseEntity
     {
-        public string Bill_Id { get; set; }
-
         public DateTime PaidDate { get; set; }
 
         public string Method { get; set; }

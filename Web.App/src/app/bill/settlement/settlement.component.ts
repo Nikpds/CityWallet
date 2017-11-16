@@ -95,7 +95,7 @@ export class SettlementComponent implements OnInit {
     this.billService.sumbitSettletment(this.settlement).subscribe(res => {
       this.loader.hide();
       this.notify.success('Το αίτημα διακανονισμού καταχωρήθηκε');
-      this.router.navigate(['/settlement', res.id, 'view']);
+      this.router.navigate(['/settlement', res.id, 'details']);
     }, error => {
       this.loader.hide();
       this.notify.error("Σφάλμα καταχώρησης διακανονισμού.");
@@ -135,6 +135,7 @@ export class SettlementComponent implements OnInit {
 
   clearSettlement() {
     this.settlement.settlementType = null;
+    this.settlement.title = null;
   }
 
   getSubTotal() {

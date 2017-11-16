@@ -3,14 +3,14 @@
         <div class="field is-narrow">
             <p class="control">
                 <span class="select ">
-          <select [(ngModel)]="config.pageSize">
-            <option>5</option>
-            <option>10</option>
-            <option>20</option>
-            <option>50</option>
-            <option>100</option>
-          </select>
-        </span>
+                    <select [(ngModel)]="config.pageSize">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>20</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                </span>
             </p>
         </div>
         <div class=" field has-addons is-inline-flex">
@@ -19,13 +19,15 @@
             </div>
             <div class="control">
                 <a class="button is-primary search-btn" (click)="Search(searchText)">
-          {{'Payments.Search'|translate:lang}}
-        </a>
+                    {{'Payments.Search'|translate:lang}}
+                </a>
             </div>
+            <span class="control mleft is-hidden-mobile">
+                    <button class="button is-info" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
+                  </span>
         </div>
         <div class="is-pulled-right">
             <p class="is-grouped">
-                <button class="button is-info is-hidden-mobile" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
                 <button class="button is-primary" [disabled]="billsForPay.length == 0" [routerLink]="['payment']">{{'Common.PayBtn'|translate:lang}}</button>
                 <button class="button is-warning" [disabled]="billsForPay.length == 0" [routerLink]="['settlement']">{{'Common.SettlementBtn'|translate:lang}}</button>
             </p>

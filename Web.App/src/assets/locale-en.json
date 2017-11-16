@@ -11,7 +11,9 @@
     "MadeBy": "Made By",
     "Profile": "Profile",
     "Logout": "Logout",
-    "Services": "Online Services"
+    "Services": "Online Services",
+    "License": "The website content is licensed ",
+    "CC":"CC Creator Report 4.0 International"
   },
   "Common": {
     "Menu": "Menu",
@@ -29,7 +31,8 @@
     "SubmitBtn": "Sumbit",
     "RemoveBtn": "Remove",
     "Actions": "Actions",
-    "EditBtn": "Edit"
+    "EditBtn": "Edit",
+    "Required": "Required field"
   },
   "User": {
     "Details": "Account Details",
@@ -80,6 +83,7 @@
     "SelectSettlement": "Select Settlement",
     "SelectDetails": "Select type and installments",
     "Type": "Type",
+    "Title": "Settlement Title",
     "Months": "months",
     "Installments": "Installments",
     "BillForSettle": "Bill for Settlement",
@@ -89,6 +93,7 @@
     "SubTotal": "SubTotal",
     "MonthlyFee": "Monthly Fee",
     "Interest": "Interest",
+    "RequestDate": "Time",
     "SubTitle1": "You chose",
     "SubTitle2": "bills for Settlement."
   },

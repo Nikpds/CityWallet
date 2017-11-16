@@ -49,7 +49,7 @@ namespace DMG.Context.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("Amount");
+                    b.Property<decimal>("Amount");
 
                     b.Property<string>("Bill_Id")
                         .IsRequired()
@@ -84,10 +84,6 @@ namespace DMG.Context.Migrations
                     b.Property<string>("BillId")
                         .IsRequired();
 
-                    b.Property<string>("Bill_Id")
-                        .IsRequired()
-                        .HasAnnotation("unique", true);
-
                     b.Property<DateTime>("LastUpdate");
 
                     b.Property<string>("Method")
@@ -108,7 +104,7 @@ namespace DMG.Context.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("Downpayment");
+                    b.Property<decimal>("Downpayment");
 
                     b.Property<int>("Installments");
 
@@ -118,6 +114,8 @@ namespace DMG.Context.Migrations
 
                     b.Property<string>("SettlementTypeId")
                         .IsRequired();
+
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -131,11 +129,11 @@ namespace DMG.Context.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<double>("Downpayment");
+                    b.Property<decimal>("Downpayment");
 
                     b.Property<int>("Installments");
 
-                    b.Property<double>("Interest");
+                    b.Property<decimal>("Interest");
 
                     b.Property<DateTime>("LastUpdate");
 

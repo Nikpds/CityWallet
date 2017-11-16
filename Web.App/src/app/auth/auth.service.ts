@@ -59,6 +59,7 @@ export class AuthService {
 
     return this.http.post(this.authUrl, body, options)
       .map((response: Response) => {
+        var firstLogin = response.json();
         const token = response.json().token;
         if (token) {
           localStorage.setItem('token', token);

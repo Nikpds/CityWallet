@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { AuthGuard } from './auth/auth.guard';
 import { BillModule } from './bill/bill.module';
+import { ContentModule } from './content/content.module';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+
+
+
+
 
 const routes: Route[] = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -39,6 +44,7 @@ const routes: Route[] = [
     BrowserModule,
     BrowserAnimationsModule,
     BillModule,
+    ContentModule,
     FormsModule,
     UserModule,
     ReactiveFormsModule,

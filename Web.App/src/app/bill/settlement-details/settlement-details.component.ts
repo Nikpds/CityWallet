@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Route, ActivatedRoute, Params } from '@angular/router'
+import { Language } from 'angular-l10n';
 
 import { Settlement } from '../../appModel';
 import { BillService } from '../bill.service';
@@ -10,8 +11,9 @@ import { BillService } from '../bill.service';
   styleUrls: ['./settlement-details.component.sass']
 })
 export class SettlementDetailsComponent implements OnInit {
+  @Language() lang;
   private subscriptions = new Array<Subscription>();
-
+  settlement :Settlement;
   constructor(
     private activeRoute: ActivatedRoute,
     private billService: BillService
@@ -23,11 +25,15 @@ export class SettlementDetailsComponent implements OnInit {
       if (id) {
         this.billService.getSettlement(id).subscribe(res => {
           console.log(res);
+          this.settlement = res;
         }, error => {
 
         });
       }
     });
+  }
 
+  print() {
+    window.print();
   }
 }

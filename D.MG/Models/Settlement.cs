@@ -5,8 +5,9 @@ namespace Models
 {
     public class Settlement : BaseEntity
     {
+        public string Title { get; set; }
         public int Installments { get; set; }
-        public double Downpayment { get; set; }
+        public decimal Downpayment { get; set; }
         public DateTime RequestDate { get; set; }
 
         public string SettlementTypeId { get; set; }

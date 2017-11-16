@@ -2,9 +2,6 @@
 using ApiManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models;
-using SqlContext;
-using SqlContext.Repos;
 using System;
 using System.Threading.Tasks;
 using WebApp.Services;
@@ -28,13 +25,27 @@ namespace WebApp.Controllers
         {
             try
             {
+                if (settle.Bills.Count == 0)
+                {
+                    return BadRequest("Δεν έχετε επιλέξει λογαριασμούς.");
+                }
+                if (String.IsNullOrEmpty(settle.SettlementType.Id))
+                {
+                    return BadRequest("Δεν έχετε επιλέξει τύπο διακανονισμού.");
+                }
+
                 var settlement = await _srv.InsertSettlement(settle);
+
+                if (settlement == null)
+                {
+                    return BadRequest("Δεν ήταν δυνατή η ολοκλήρωση του διακανονισμού.");
+                }
 
                 return Ok(settlement);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -45,13 +56,23 @@ namespace WebApp.Controllers
             {
                 var id = User.GetUserId();
 
-                var settlement = await _srv.GetUserSettlement(id,settleId);
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
+
+                var settlement = await _srv.GetUserSettlement(id, settleId);
+
+                if (settlement == null)
+                {
+                    return NotFound("O Διακανονισμός που ζητήσατε δεν βρέθηκε.");
+                }
 
                 return Ok(settlement);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -73,22 +94,34 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        [HttpDelete("{settleId}")]
+        public async Task<IActionResult> Delete(string settleId)
         {
             try
             {
-                var canceled = _srv.CancelSettlement(id);
+                var id = User.GetUserId();
+
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
+
+                var canceled = await _srv.CancelSettlement(settleId,id);
+
+                if (!canceled)
+                {
+                    return NotFound("O Διακανονισμός που ζητήσατε δεν βρέθηκε.");
+                }
 
                 return Ok(canceled);
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -103,7 +136,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 

@@ -1,3 +1,78 @@
-<p>
-  settlement-details works!
-</p>
+<div class="container">
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <div class="card" *ngIf="settlement">
+            <header class="card-header">
+              <p class="card-header-title">
+                {{settlement.title}}
+              </p>
+              <a class="card-header-icon no-print" aria-label="more options">
+                <button class="button is-info is-hidden-mobile is-small" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="columns is-gapless">
+                <div class="column is-3">
+                  <table class="table is-marginless">
+                    <tbody>
+                      <tr>
+                        <th>{{'Settlements.Downpayment'|translate:lang}}:</th>
+                        <td>{{settlement.downpayment}}&euro;</td>
+                      </tr>
+                      <tr>
+                        <th>{{'Settlements.Installments'|translate:lang}}:</th>
+                        <td>{{settlement.installments}}</td>
+                      </tr>
+                      <tr>
+                          <th>{{'Settlements.SubTotal'|translate:lang}}:</th>
+                          <td>{{settlement.subTotal}}&euro;</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="column is-6">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th>{{'Settlements.MonthlyFee'|translate:lang}}:</th>
+                        <td>{{settlement.monthlyFee}}&euro;</td>
+                      </tr>
+                      <tr>
+                        <th>{{'Settlements.Interest'|translate:lang}}:</th>
+                        <td>{{settlement?.settlementType?.interest}}%</td>
+                      </tr>
+                      <tr>
+                          <th>{{'Settlements.RequestDate'|translate:lang}}:</th>
+                          <td>{{settlement.requestDate|date:'HH:mm'}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <table class="table is-fullwidth is-striped">
+                <thead>
+                  <tr>
+                    <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
+                    <th>{{'Bills.Service'|translate:lang}}</th>
+                    <th>{{'Bills.Debt'|translate:lang}}</th>
+                    <th class="is-hidden-mobile">{{'Bills.DueDate'|translate:lang}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let i = index;let d of settlement.bills">
+                    <td class="is-hidden-mobile">{{i + 1}}</td>
+                    <td>{{d.description}}</td>
+                    <td>{{d.amount}} &euro;</td>
+                    <td class="is-hidden-mobile"> {{d.dateDue|date:'dd-MM-yyyy'}} </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

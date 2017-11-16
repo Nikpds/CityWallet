@@ -31,6 +31,7 @@
                 <thead>
                   <tr>
                     <th class="is-hidden-mobile">ΑΑ</th>
+                    <th>Τίτλος</th>
                     <th>Ώρα</th>
                     <th>Προκαταβολή</th>
                     <th>Τόκος</th>
@@ -42,6 +43,7 @@
                 <tbody>
                   <tr *ngFor="let i = index;let s of settlements| filterPipe: 'bill':filterText:'description'| paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
                     <td class="is-hidden-mobile">{{i + 1}}</td>
+                    <td>{{s.title}}</td>
                     <td>{{s.requestDate|date:'HH:mm'}}</td>
                     <td>{{s.downpayment}}&euro;</td>
                     <td>{{s.settlementType.interest}}%</td>

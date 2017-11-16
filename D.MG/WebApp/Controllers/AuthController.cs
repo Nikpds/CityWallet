@@ -3,8 +3,6 @@ using AuthProvider;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using SqlContext;
-using SqlContext.Repos;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -20,6 +18,7 @@ namespace WebApp.Controllers
         private readonly IConfiguration _config;
         private readonly SymmetricSecurityKey _key;
         private readonly IUserService _srv;
+
         public AuthController(IUserService srv, IConfiguration config, IAuthenticationProvider auth)
         {
             _srv = srv;
@@ -34,6 +33,11 @@ namespace WebApp.Controllers
             {
                 var dbUser = await _srv.GetByUsername(model.Username);
 
+                //if (dbUser.FirstLogin )
+                //{
+                //    return Ok("firstlogin");
+                //}
+
                 //if (dbUser != null && PasswordHasher.VerifyHashedPassword(dbUser.Password, model.Password))
                 if (true)
                 {
@@ -42,27 +46,26 @@ namespace WebApp.Controllers
                     claims.Add(new Claim("Id", dbUser.Id));
                     claims.Add(new Claim("Name", dbUser.Name));
                     claims.Add(new Claim("Lastname", dbUser.Lastname));
-
-
+                    
                     var key = _key;
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(_config["Tokens:Issuer"],
+                    var token = new JwtSecurityToken(
+                      _config["Tokens:Issuer"],
                       _config["Tokens:Issuer"],
                       claims,
-                      expires: DateTime.Now.AddMinutes(300),
+                      expires: DateTime.Now.AddMinutes(120),
                       signingCredentials: creds);
 
                     return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
-
                 }
                 else
                 {
-                    return Ok();
+                    return BadRequest("Λάθος όνομα χρήστη ή κωδικός");
                 }
 
             }
-            return BadRequest("Could not create token");
+            return BadRequest("Σφάλμα δημιουργίας κλειδιού ασφαλείας.");
         }
     }
 }

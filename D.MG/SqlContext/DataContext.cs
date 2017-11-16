@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Z.EntityFramework.Extensions;
 
 namespace SqlContext
 {
@@ -8,7 +9,6 @@ namespace SqlContext
     {
 
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,9 +61,6 @@ namespace SqlContext
             var paymentBuilder = modelBuilder.Entity<Payment>();
 
             paymentBuilder.HasKey(t => t.Id);
-            paymentBuilder.Property(t => t.Bill_Id)
-                          .IsRequired()
-                          .HasAnnotation("unique", true);
             paymentBuilder.Property(t => t.Method)
                           .IsRequired();
 

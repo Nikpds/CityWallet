@@ -13,9 +13,9 @@ namespace ApiManager
     public interface ISettlementService
     {
         Task<SettlementDto> InsertSettlement(SettlementDto settle);
-        Task<Boolean> CancelSettlement(string id);
+        Task<Boolean> CancelSettlement(string id, string userId);
         Task<IEnumerable<SettlementDto>> GetUserSettlements(string userId);
-        Task<SettlementDto> GetUserSettlement(string userId,string id);
+        Task<SettlementDto> GetUserSettlement(string userId, string id);
         Task<ICollection<SettlementType>> GetSettlementTypes();
     }
 
@@ -50,14 +50,19 @@ namespace ApiManager
 
             _ctx.Set<Bill>().UpdateRange(bills);
 
-            await _ctx.SaveChangesAsync();
+            _ctx.SaveChanges();
 
             return new SettlementDto(settlement);
         }
 
-        public async Task<Boolean> CancelSettlement(string id)
+        public async Task<Boolean> CancelSettlement(string id, string userId)
         {
-            var settlement = await _dbSet.Include(i => i.Bills).FirstAsync(x => x.Id == id);
+            var settlement = await _dbSet.Include(i => i.Bills).SingleOrDefaultAsync(x => x.Id == id && x.Bills.Any(a => a.UserId == userId));
+
+            if (settlement == null)
+            {
+                return false;
+            }
 
             var bills = settlement.Bills.ToList();
 
@@ -72,15 +77,15 @@ namespace ApiManager
 
         public async Task<IEnumerable<SettlementDto>> GetUserSettlements(string userId)
         {
-            var settlements = await _dbSet.Include(i => i.Bills).Include(x=>x.SettlementType).Where(w => w.Bills.Any(b => b.UserId == userId)).ToArrayAsync();
+            var settlements = await _dbSet.Include(i => i.Bills).Include(x => x.SettlementType).Where(w => w.Bills.Any(b => b.UserId == userId)).ToArrayAsync();
             var dtos = settlements.Select(s => new SettlementDto(s));
 
             return dtos;
         }
 
-        public async Task<SettlementDto> GetUserSettlement(string userId,string id)
+        public async Task<SettlementDto> GetUserSettlement(string userId, string id)
         {
-            var settlement = await _dbSet.Include(i=>i.Bills).SingleOrDefaultAsync(x=>x.Id == id && x.Bills.Any(a=>a.UserId == userId));
+            var settlement = await _dbSet.Include(i => i.Bills).Include(s=>s.SettlementType).SingleOrDefaultAsync(x => x.Id == id && x.Bills.Any(a => a.UserId == userId));
 
             return new SettlementDto(settlement);
         }
@@ -90,11 +95,11 @@ namespace ApiManager
         {
             var types = new List<SettlementType>()
             {
-                new SettlementType(){ Downpayment=10,Installments=24,Interest=4.1},
-                new SettlementType(){ Downpayment=20,Installments=24,Interest=3.9},
-                new SettlementType(){ Downpayment=30,Installments=36,Interest=3.6},
-                new SettlementType(){ Downpayment=40,Installments=36,Interest=3.2},
-                new SettlementType(){ Downpayment=50,Installments=48,Interest=2.6}
+                new SettlementType(){ Downpayment=10,Installments=24,Interest=4.1m},
+                new SettlementType(){ Downpayment=20,Installments=24,Interest=3.9m},
+                new SettlementType(){ Downpayment=30,Installments=36,Interest=3.6m},
+                new SettlementType(){ Downpayment=40,Installments=36,Interest=3.2m},
+                new SettlementType(){ Downpayment=50,Installments=48,Interest=2.6m}
             };
 
             _ctx.Set<SettlementType>().AddRange(types);

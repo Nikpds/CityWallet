@@ -6,7 +6,7 @@ namespace Models
     {
         public string Description { get; set; }
         public string Bill_Id { get; set; }
-        public double Amount { get; set; }
+        public decimal Amount { get; set; }
         public DateTime DateDue { get; set; }
 
         public virtual Payment Payment { get; set; }

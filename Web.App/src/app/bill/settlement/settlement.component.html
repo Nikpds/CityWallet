@@ -71,6 +71,15 @@
                     <td> {{settlement.settlementType.interest}} %</td>
                   </tr>
                 </table>
+                <div class="field">
+                    <label class="label is-marginless"> {{'Settlements.Title'|translate:lang}}*</label>
+                    <div class="control">
+                      <input class="input" [(ngModel)]="settlement.title"  type="text">
+                      <div *ngIf="!settlement.title" class="help is-danger">
+                          *{{'Common.Required'|translate:lang}}
+                      </div>
+                    </div>
+                  </div>
                 <div class="field is-grouped is-grouped-right">
                   <p class="control">
                     <a class="button is-default" (click)="clearSettlement()">
@@ -78,9 +87,9 @@
                     </a>
                   </p>
                   <p class="control">
-                    <a class="button is-primary" (click)="submitSettlement()">
+                    <button class="button is-primary" [disabled]="!settlement.title" (click)="submitSettlement()">
                       {{'Common.SubmitBtn'|translate:lang}}
-                    </a>
+                    </button>
                   </p>
                 </div>
               </div>

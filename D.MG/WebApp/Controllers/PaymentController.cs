@@ -30,6 +30,11 @@ namespace WebApp.Controllers
             {
                 var id = User.GetUserId();
 
+                if (id == null || string.IsNullOrEmpty(id))
+                {
+                    return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
+                }
+
                 if (entities.Count == 0)
                 {
                     return BadRequest("Δεν βρέθηκαν λογαριασμοί για πληρωμή");
@@ -37,11 +42,16 @@ namespace WebApp.Controllers
 
                 var payments = _srv.Payments(entities);
 
+                if (payments.Count == 0)
+                {
+                    return BadRequest("Δεν ήταν δυνατή η ολοκλήρωση των πληρωμών.");
+                }
+
                 return Ok(payments);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -55,7 +65,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 
@@ -77,7 +87,7 @@ namespace WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest("Συγγνώμη παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπαθήστε αργότερα.");
             }
         }
 

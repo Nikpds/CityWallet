@@ -11,7 +11,7 @@ namespace ApiManager
 {
     public interface IUserService
     {
-        Task<UserDto> GetUserWithCounters(string userId, bool toDto = true);
+        Task<UserDto> GetUserWithCounters(string userId);
         Task<User> GetUser(string userId);
         Task<User> GetByUsername(string username);
         Task<Counter> GetUserCounters(string userId);
@@ -39,7 +39,7 @@ namespace ApiManager
             _ctx = ctx;
         }
 
-        public async Task<UserDto> GetUserWithCounters(string userId, bool toDto = true)
+        public async Task<UserDto> GetUserWithCounters(string userId)
         {
             var user = await _dbSet.Include(x => x.AddressInfo).SingleOrDefaultAsync(s => s.Id == userId);
             var counter = new Counter

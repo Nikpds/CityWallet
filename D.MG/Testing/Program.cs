@@ -27,8 +27,9 @@ namespace Testing
             var srv = new HangFireService(_db);
             var srv1 = new SettlementService(_db);
             //srv1.CreateSettlementTypes();
-            srv.InsertDataFromCounty();
-          
+            //srv.InsertDataFromCounty();
+            srv.ExportData();
+
 
 
         }

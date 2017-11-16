@@ -40,6 +40,7 @@ export class Address {
 
 export class Settlement {
     id: string;
+    title:string;
     settlementType: SettlementType
     monthlyFee: number;
     subTotal: number;
@@ -109,3 +110,8 @@ export class PasswordReset {
 
 }
 
+export class Faq {
+    id: string;
+    question: string;
+    answer: string;
+  }
