@@ -3,7 +3,6 @@ using SqlContext;
 using ApiManager;
 using System.IO;
 using Microsoft.Extensions.Configuration;
-using Models;
 using DMG.Services;
 
 namespace Testing
@@ -27,8 +26,8 @@ namespace Testing
             var srv = new HangFireService(_db);
             var srv1 = new SettlementService(_db);
             //srv1.CreateSettlementTypes();
-            //srv.InsertDataFromCounty();
-            srv.ExportData();
+            srv.InsertData();
+            //srv.ExportData();
 
 
 

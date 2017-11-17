@@ -1,4 +1,5 @@
-﻿using DMG.Services.Models;
+﻿using AuthProvider;
+using DMG.Services.Models;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using ServiceStack;
@@ -48,20 +49,20 @@ namespace DMG.Services
 
         public void InsertData()
         {
-            var filepath = @"D:\git\DebtManagment\assets\CitizenDebts_3M_3.txt";
-            var dataForImport = File.ReadLines(filepath)
-                               .Skip(1)
-                               .Select(line => line.Split(';'))
-                               .ToList();
-
-            var distinctUsers = (from data in dataForImport
-                                 group data by data[0] into groups
-                                 select groups.First()).ToList();
-
-            var dbUsers = _ctx.Set<User>().ToList();
             try
             {
-                Console.WriteLine($"{DateTime.Now}   Number of Users in db: {dbUsers.Count().ToString()} Number of Users in file: {distinctUsers.Count().ToString()}");
+                var filepath = @"D:\git\DebtManagment\assets\CitizenDebts_3M_3.txt";
+                var dataForImport = File.ReadLines(filepath)
+                                   .Skip(1)
+                                   .Select(line => line.Split(';'))
+                                   .ToList();
+
+                var distinctUsers = (from data in dataForImport
+                                     group data by data[0] into groups
+                                     select groups.First()).ToList();
+
+                var dbUsers = _ctx.Set<User>().ToList();
+
                 var userlist = (from user in distinctUsers
                                 select new User
                                 {
@@ -69,14 +70,12 @@ namespace DMG.Services
                                     Name = user[1],
                                     Lastname = user[2],
                                     Email = user[3],
-                                    Password = Sha256_hash("123"),//in production must be replaced with RandomString(6)
+                                    Password = RandomString(6),
                                     Mobile = user[4],
                                     AddressInfo = new Address { County = user[5], Street = user[6] },
-                                    FirstLogin = false,
+                                    FirstLogin = true,
                                     LastUpdate = DateTime.Now
                                 }).ToList();
-
-                Console.WriteLine($"{DateTime.Now}   userlist finished");
 
                 var usersToInsert = (from u in userlist
                                      join _u in dbUsers on u.Vat equals _u.Vat into toInsert
@@ -95,19 +94,28 @@ namespace DMG.Services
                                          FirstLogin = u.FirstLogin,
                                          LastUpdate = u.LastUpdate
                                      }).ToList();
-                Console.WriteLine($"{DateTime.Now}   usertoInsert finished, Starts removing");
+
+                var address = (from _addr in usersToInsert
+                               select new Address
+                               {
+                                   County = _addr.AddressInfo.County,
+                                   Street = _addr.AddressInfo.Street,
+                                   UserId = _addr.Id
+                               }).ToList();
+
+                for (var i = 0; i < address.Count; i++)
+                {
+                    address[i].Id = (i+1).ToString();
+                }
 
                 usersToInsert.RemoveAll(x => x.Vat == null);
-
-                Console.WriteLine($"{DateTime.Now}   removing corrupted users finished");
 
                 if (usersToInsert.Count > 0)
                 {
                     _ctx.BulkInsert(usersToInsert);
-                    Console.WriteLine($"{DateTime.Now}   all users finished bulk insert where finished");
-                    Console.WriteLine($"{DateTime.Now}   Start Saving...");
+                    _ctx.BulkInsert(address);
                     _ctx.SaveChanges();
-                    Console.WriteLine($"{DateTime.Now}   Saving finished");
+
                 }
 
                 var dbUsersNew = _ctx.Set<User>().ToList();
@@ -128,12 +136,9 @@ namespace DMG.Services
                                     LastUpdate = DateTime.Now
                                 }).ToList();
 
-                Console.WriteLine($"{DateTime.Now}   all bills finished bulk insert starts.. bills to insert: " + allbills.Count);
                 allbills.RemoveAll(x => x.Bill_Id == null || x.Id == null);
 
-                Console.WriteLine($"{DateTime.Now}   removing corrupted bills finished");
                 _ctx.BulkInsert(allbills);
-                Console.WriteLine($"{DateTime.Now}   Start Saving...");
                 _ctx.SaveChanges();
 
             }
@@ -147,21 +152,6 @@ namespace DMG.Services
         {
             var dateformat = date.Substring(0, 4) + "-" + date.Substring(4, 2) + "-" + date.Substring(6, 2);
             return DateTime.Parse(dateformat);
-        }
-
-        public static String Sha256_hash(string value)
-        {
-            StringBuilder Sb = new StringBuilder();
-            using (var hash = SHA256.Create())
-            {
-                Encoding enc = Encoding.UTF8;
-                Byte[] result = hash.ComputeHash(enc.GetBytes(value));
-
-                foreach (Byte b in result)
-                    Sb.Append(b.ToString("x2"));
-            }
-
-            return Sb.ToString();
         }
 
         private static Random random = new Random();
@@ -208,8 +198,6 @@ namespace DMG.Services
 
             File.AppendAllText(exportPath + "PAYMENTS_" + filename + ".txt", paymentsTxt);
             File.AppendAllText(exportPath + "SETTLEMENTS_" + filename + ".txt", settlementsTxt);
-
-
         }
 
         private static string ConvertBills(List<Bill> bills)

@@ -12,7 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AuthProvider\AuthProvider.csproj" />
     <ProjectReference Include="..\Models\DMG.Models.csproj" />
-    <ProjectReference Include="..\SqlContext\DMG.Context.csproj" />
+    <ProjectReference Include="..\SqlContext\DMG.SqlContext.csproj" />
   </ItemGroup>
 
 </Project>

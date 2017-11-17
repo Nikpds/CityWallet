@@ -55,6 +55,10 @@
                 <hr class="is-short">
                 <table class="table is-fullwidth">
                   <tr>
+                    <td> {{'Bills.Total'|translate:lang}}:</td>
+                    <td> {{ getTotal(bills)}} &euro;</td>
+                  </tr>
+                  <tr>
                     <td> {{'Settlements.Downpayment'|translate:lang}}:</td>
                     <td> {{settlement.downpayment}} &euro; ({{settlementTypes[sType].downpayment}} %)</td>
                   </tr>
@@ -72,14 +76,14 @@
                   </tr>
                 </table>
                 <div class="field">
-                    <label class="label is-marginless"> {{'Settlements.Title'|translate:lang}}*</label>
-                    <div class="control">
-                      <input class="input" [(ngModel)]="settlement.title"  type="text">
-                      <div *ngIf="!settlement.title" class="help is-danger">
-                          *{{'Common.Required'|translate:lang}}
-                      </div>
+                  <label class="label is-marginless"> {{'Settlements.Title'|translate:lang}}*</label>
+                  <div class="control">
+                    <input class="input" [(ngModel)]="settlement.title" type="text">
+                    <div *ngIf="!settlement.title" class="help is-danger">
+                      *{{'Common.Required'|translate:lang}}
                     </div>
                   </div>
+                </div>
                 <div class="field is-grouped is-grouped-right">
                   <p class="control">
                     <a class="button is-default" (click)="clearSettlement()">

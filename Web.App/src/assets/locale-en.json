@@ -13,7 +13,7 @@
     "Logout": "Logout",
     "Services": "Online Services",
     "License": "The website content is licensed ",
-    "CC":"CC Creator Report 4.0 International"
+    "CC": "CC Creator Report 4.0 International"
   },
   "Common": {
     "Menu": "Menu",
@@ -32,7 +32,8 @@
     "RemoveBtn": "Remove",
     "Actions": "Actions",
     "EditBtn": "Edit",
-    "Required": "Required field"
+    "Required": "Required field",
+    "NoBills": "There are no bills to overview."
   },
   "User": {
     "Details": "Account Details",
@@ -116,6 +117,8 @@
   "Payments": {
     "Search": "Search",
     "Subtitle": "Your Daily payments.",
-    "SearchPlaceholder": "search by"
+    "SearchPlaceholder": "search by",
+    "PayMethods": "Payment Method",
+    "PaymentSteps": "Bill Payment"
   }
 }

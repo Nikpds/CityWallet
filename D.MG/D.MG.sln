@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMG.Models", "Models\DMG.Models.csproj", "{29051ACE-8F41-4806-ACE9-456EA0D705AF}"
 EndProject
@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing", "Testing\Testing.
 		{29051ACE-8F41-4806-ACE9-456EA0D705AF} = {29051ACE-8F41-4806-ACE9-456EA0D705AF}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMG.Context", "SqlContext\DMG.Context.csproj", "{7B3D1B89-8019-4D82-B4E4-1C37887B40D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMG.SqlContext", "SqlContext\DMG.SqlContext.csproj", "{7B3D1B89-8019-4D82-B4E4-1C37887B40D9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMG.Services", "ApiManager\DMG.Services.csproj", "{13D5637A-CE55-49D5-A239-540E10CB5683}"
 EndProject

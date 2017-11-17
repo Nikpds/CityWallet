@@ -1,6 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 
@@ -11,7 +14,8 @@ namespace AuthProvider
     {
         SymmetricSecurityKey sigingKey { get; }
         string GetUserId(ClaimsPrincipal user);
-        bool IsFirstLogin(ClaimsPrincipal user);
+        JwtSecurityToken CreateToken(User user, IConfiguration config);
+
     }
 
     public class AuthenticationProvider : IAuthenticationProvider
@@ -20,8 +24,31 @@ namespace AuthProvider
 
         public AuthenticationProvider(SymmetricSecurityKey _secretKey)
         {
-            this.sigingKey = _secretKey;
+            sigingKey = _secretKey;
         }
+
+        public JwtSecurityToken CreateToken(User user, IConfiguration config)
+        {
+            var claims = new List<Claim>();
+
+            claims.Add(new Claim("Id", user.Id));
+            claims.Add(new Claim("Name", user.Name));
+            claims.Add(new Claim("Lastname", user.Lastname));
+
+            var key = sigingKey;
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+              config["Tokens:Issuer"],
+              config["Tokens:Issuer"],
+              claims,
+              expires: DateTime.Now.AddMinutes(120),
+              signingCredentials: creds);
+          
+            return token;
+        }
+
+
         public string GetUserId(ClaimsPrincipal user)
         {
             var isValid = user.HasClaim(x => x.Type == "Id");
@@ -48,10 +75,5 @@ namespace AuthProvider
             }
         }
 
-        public bool IsFirstLogin(ClaimsPrincipal user)
-        {
-            return false;
-        }
-        
     }
 }

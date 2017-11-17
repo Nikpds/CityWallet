@@ -130,6 +130,7 @@ export class SettlementComponent implements OnInit {
   }
 
   getTotal(bills: Bill[]) {
+    if (!bills) { return ;}
     return (bills.reduce(function (a, b) { return a + b.amount }, 0));
   }
 

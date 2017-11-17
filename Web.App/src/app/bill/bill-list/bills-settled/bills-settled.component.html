@@ -22,11 +22,9 @@
           {{'Payments.Search'|translate:lang}}
         </a>
       </div>
-    </div>
-    <div class="is-pulled-right">
-      <p class="is-grouped">
+      <span class="control mleft is-hidden-mobile">
         <button class="button is-info" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
-      </p>
+      </span>
     </div>
   </div>
 </div>
@@ -59,4 +57,7 @@
     </table>
     <app-pagination class="no-print" *ngIf="bills.length > 0" [config]="config" [data]="bills"></app-pagination>
   </div>
+</div>
+<div class="has-text-centered has-text-white" *ngIf="bills.length == 0">
+  {{'Common.NoBills'|translate:lang}}
 </div>

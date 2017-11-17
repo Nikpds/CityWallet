@@ -33,7 +33,8 @@ export class BillsUnpaidComponent implements OnInit {
   ngOnInit() {
     this.subscriptions.push(this.billService.billsToPay$
       .subscribe((res) => this.billsForPay = res));
-
+    this.config.pageSize = 10;
+    this.config.currentPage = 1;
     this.getUnPaidBills();
   }
 
@@ -82,10 +83,11 @@ export class BillsUnpaidComponent implements OnInit {
 
 
   initConfig(data: any) {
-    this.config.currentPage = 1;
-    this.config.pageSize = 10;
     this.config.data = data;
     this.config.totalPages = this.getTotalPages(data.length, this.config.pageSize);
+    if (this.config.totalPages < this.config.currentPage) {
+      this.config.currentPage = this.config.totalPages;
+    }
     this.config.pages = this.srv.getPages(this.config.totalPages, this.config.currentPage);
   }
 
@@ -95,5 +97,9 @@ export class BillsUnpaidComponent implements OnInit {
       return pageSize + 1
     }
     return pageSize
+  }
+
+  pageSizeChanged() {
+    this.initConfig(this.bills);
   }
 }

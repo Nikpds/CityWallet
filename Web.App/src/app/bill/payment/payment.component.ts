@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { SnotifyService } from 'ng-snotify';
 import { Language } from 'angular-l10n';
 
-import { Bill, User, CreditCard } from '../../appModel';
+import { Bill, User, CreditCard, NavigationC } from '../../appModel';
 
 import { BillService } from '../bill.service';
 import { LoaderService } from '../../shared/loader.service';
@@ -23,7 +23,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   user: User;
   step = 0;
   creditCard = new CreditCard();
-
+  navbar = new Array<NavigationC>();
   successAction = Observable.create(observer => {
     setTimeout(() => {
       observer.next({
@@ -79,6 +79,22 @@ export class PaymentComponent implements OnInit, OnDestroy {
       .subscribe((user) => this.user = user));
     this.subscriptions.push(this.billService.billsToPay$
       .subscribe((res) => this.billsForPay = res));
+
+    this.navbar = [{
+      icon: "fa-home", title: "App.Home", navigateTo: () => this.goHome(), isActive: false
+    }, {
+      icon: "fa-file-text-o", title: "Home.Bills", navigateTo: () => this.goBills(), isActive: false
+    }, {
+      icon: "fa-credit-card-alt", title: "Payments.PaymentSteps", navigateTo: () => null, isActive: true
+    }];
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
+  }
+
+  goBills() {
+    this.router.navigate(['/bills'])
   }
 
   // paybills() {

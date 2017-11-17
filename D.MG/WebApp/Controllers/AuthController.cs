@@ -16,14 +16,14 @@ namespace WebApp.Controllers
     public class AuthController : Controller
     {
         private readonly IConfiguration _config;
-        private readonly SymmetricSecurityKey _key;
+        private readonly IAuthenticationProvider _auth;
         private readonly IUserService _srv;
 
         public AuthController(IUserService srv, IConfiguration config, IAuthenticationProvider auth)
         {
             _srv = srv;
             _config = config;
-            _key = auth.sigingKey;
+            _auth = auth;
         }
 
         [HttpPost]
@@ -33,38 +33,33 @@ namespace WebApp.Controllers
             {
                 var dbUser = await _srv.GetByUsername(model.Username);
 
-                //if (dbUser.FirstLogin )
-                //{
-                //    return Ok("firstlogin");
-                //}
-
-                //if (dbUser != null && PasswordHasher.VerifyHashedPassword(dbUser.Password, model.Password))
-                if (true)
+                if (dbUser.FirstLogin)
                 {
-                    var claims = new List<Claim>();
+                    if (dbUser.Password == model.Password)
+                    {
+                        var verificationToken = _srv.FirstLoginProcess(dbUser).VerificationToken;
+                        if (string.IsNullOrEmpty(verificationToken))
+                        {
+                            return Ok("firstlogin");
+                        }
+                        return BadRequest();
+                    }
+                    return BadRequest("Λάθος όνομα χρήστη ή κωδικός");
 
-                    claims.Add(new Claim("Id", dbUser.Id));
-                    claims.Add(new Claim("Name", dbUser.Name));
-                    claims.Add(new Claim("Lastname", dbUser.Lastname));
-                    
-                    var key = _key;
-                    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                }
 
-                    var token = new JwtSecurityToken(
-                      _config["Tokens:Issuer"],
-                      _config["Tokens:Issuer"],
-                      claims,
-                      expires: DateTime.Now.AddMinutes(120),
-                      signingCredentials: creds);
+                if (dbUser != null && PasswordHasher.VerifyHashedPassword(dbUser.Password, model.Password))
+                {
+                    var userToken = _auth.CreateToken(dbUser, _config);
 
-                    return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+                    return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(userToken) });
                 }
                 else
                 {
                     return BadRequest("Λάθος όνομα χρήστη ή κωδικός");
                 }
-
             }
+
             return BadRequest("Σφάλμα δημιουργίας κλειδιού ασφαλείας.");
         }
     }

@@ -3,7 +3,7 @@
         <div class="field is-narrow">
             <p class="control">
                 <span class="select ">
-                    <select [(ngModel)]="config.pageSize">
+                    <select [(ngModel)]="config.pageSize" (change)="pageSizeChanged()">
                         <option>5</option>
                         <option>10</option>
                         <option>20</option>
@@ -23,8 +23,8 @@
                 </a>
             </div>
             <span class="control mleft is-hidden-mobile">
-                    <button class="button is-info" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
-                  </span>
+                <button class="button is-info" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
+            </span>
         </div>
         <div class="is-pulled-right">
             <p class="is-grouped">
@@ -41,9 +41,9 @@
                 <tr>
                     <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
                     <th>{{'Bills.Service'|translate:lang}}</th>
-                    <th>{{'Bills.Debt'|translate:lang}}</th>
+                    <th class="width60">{{'Bills.Debt'|translate:lang}}</th>
                     <th class="is-hidden-mobile">{{'Bills.DueDate'|translate:lang}}</th>
-                    <th class="selecteBill no-print">{{'Common.Select'|translate:lang}}</th>
+                    <th class="no-print">{{'Common.Select'|translate:lang}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +68,8 @@
             </tbody>
         </table>
         <app-pagination class="no-print" *ngIf="bills.length > 0" [config]="config" [data]="bills"></app-pagination>
-
     </div>
+</div>
+<div class="has-text-centered has-text-white" *ngIf="bills.length == 0">
+    {{'Common.NoBills'|translate:lang}}
 </div>

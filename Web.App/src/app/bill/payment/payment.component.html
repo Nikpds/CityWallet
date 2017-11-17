@@ -10,7 +10,6 @@
           </div>
           <div class="step-details">
             <a class="step-title"> {{'Home.Bills'|translate:lang}}</a>
-            <p>{{'CreditCard.ConfirmBills'|translate:lang}}</p>
           </div>
         </div>
         <div class="step-item" [ngClass]="{'is-active': step >= 1,'is-completed': step > 1 }">
@@ -20,8 +19,7 @@
             </span>
           </div>
           <div class="step-details ">
-            <a class="step-title"> {{'Common.PayBtn'|translate:lang}}</a>
-            <p>{{'CreditCard.CreditCardInfo'|translate:lang}}</p>
+            <a class="step-title"> {{'Payments.PayMethods'|translate:lang}}</a>
           </div>
         </div>
         <div class="step-item" [ngClass]="{'is-active': step >= 2,'is-completed': step > 2 }">
@@ -31,14 +29,16 @@
             </span>
           </div>
           <div class="step-details">
-            <a class="step-title"> {{'CreditCard.Complete'|translate:lang}}</a>
-            <p>{{'CreditCard.CompletePayment'|translate:lang}}</p>
+            <a class="step-title"> {{'Common.PayBtn'|translate:lang}}</a>
           </div>
         </div>
       </div>
       <div class="columns is-marginless is-multiline">
-        <div class="column is-12 is-clearfix">
-          <div class="field is-grouped is-pulled-right">
+        <div class="column">
+          <app-navigation class="no-print" [navigation]="navbar"></app-navigation>
+        </div>
+        <div class="column is-narrow is-top-paddingless">
+          <span class="field is-grouped amargin">
             <p class="control">
               <button class="button is-default" *ngIf="step != 0" (click)="previousStep()">
                 {{'Pagination.Previous'|translate:lang}}
@@ -50,12 +50,12 @@
             <p class="control">
               <a class="button is-primary" (click)="step != 2 ? nextStep():payBills()">
                 <span *ngIf="step < 2">{{'Pagination.Next'|translate:lang}} </span>
-                <span *ngIf="step == 2"> {{'Common.SubmitBtn'|translate:lang}}</span>
+                <span *ngIf="step == 2"> {{'Common.PayBtn'|translate:lang}}</span>
               </a>
             </p>
-          </div>
+          </span>
         </div>
-        <div class="column is-12">
+        <div class="column is-12 is-top-paddingless">
           <app-bill-to-pay *ngIf="step == 0"></app-bill-to-pay>
           <app-credit-card *ngIf="step == 1"></app-credit-card>
           <app-payment-overview (setState)="ediCreditCard($event)" *ngIf="step == 2"></app-payment-overview>

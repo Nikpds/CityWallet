@@ -23,7 +23,9 @@ export class BillListComponent implements OnInit {
     private loader: LoaderService,
     private router: Router,
     private notify: SnotifyService
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.navbar = [{
       icon: "fa-home", title: "App.Home", navigateTo: () => this.goHome(), isActive: false
     }, {
@@ -31,10 +33,6 @@ export class BillListComponent implements OnInit {
     }];
   }
 
-  ngOnInit() {
-  }
-
-  
   goHome() {
     this.router.navigate(['/']);
   }
@@ -42,6 +40,5 @@ export class BillListComponent implements OnInit {
   changeView(t: number) {
     this.billType = t;
   }
-
 
 }

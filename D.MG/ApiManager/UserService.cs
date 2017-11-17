@@ -19,6 +19,7 @@ namespace ApiManager
         Task<User> GetUserByEmail(string email);
         void SendResetPwdEmail(User user);
         User ChangePassword(User user, PasswordReset pwd);
+        User FirstLoginProcess(User user);
     }
     public class UserService : IUserService
     {
@@ -90,6 +91,7 @@ namespace ApiManager
         public void SendResetPwdEmail(User user)
         {
             user.VerificationToken = (Guid.NewGuid()).ToString();
+            user.LastUpdate = DateTime.Now;
 
             _dbSet.Update(user);
 
@@ -101,7 +103,13 @@ namespace ApiManager
         public User ChangePassword(User user, PasswordReset pwd)
         {
             user.Password = PasswordHasher.HashPassword(pwd.NewPassword);
+            user.LastUpdate = DateTime.Now;
 
+            if (user.FirstLogin)
+            {
+                user.FirstLogin = false;
+            }
+           
             user.VerificationToken = null;
 
             _dbSet.Update(user);
@@ -116,5 +124,18 @@ namespace ApiManager
             return await _dbSet.FirstOrDefaultAsync(x => x.VerificationToken == token);
         }
 
+        public User FirstLoginProcess(User user)
+        {
+            user.VerificationToken = (Guid.NewGuid()).ToString();
+            user.LastUpdate = DateTime.Now;
+
+            _dbSet.Update(user);
+
+            _ctx.SaveChanges();
+
+            _smtp.FirstLogin(user);
+
+            return user;
+        }
     }
 }
