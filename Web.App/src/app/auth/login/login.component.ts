@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.gloweffect = !this.gloweffect;
     this.loader.show();
     this.authService.login(this.username, this.password).subscribe(res => {
-      if (res == "firstLogin") {
+      if (res == "firstlogin") {
         this.loader.hide();
         this.notify.info(this.translation.translate('Snotify.FirstLogIn'), this.translation.translate('Snotify.Info'),
           { timeout: 15000, buttons: [{ text: 'ΟΚ', action: null, bold: true }] });
