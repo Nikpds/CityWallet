@@ -93,7 +93,6 @@ namespace WebApp.Controllers
         {
             try
             {
-
                 var user = await _srv.GetByVerification(psw.VerificationToken);
 
                 if (user == null)

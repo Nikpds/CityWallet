@@ -81,7 +81,6 @@ export class BillsUnpaidComponent implements OnInit {
     return new Date() > dueDate;
   }
 
-
   initConfig(data: any) {
     this.config.data = data;
     this.config.totalPages = this.getTotalPages(data.length, this.config.pageSize);
@@ -101,5 +100,9 @@ export class BillsUnpaidComponent implements OnInit {
 
   pageSizeChanged() {
     this.initConfig(this.bills);
+  }
+
+  TotalDebt() {
+    return (this.bills.reduce(function (a, b) { return a + b.amount }, 0)).toFixed(2);
   }
 }

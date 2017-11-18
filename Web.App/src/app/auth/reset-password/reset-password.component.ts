@@ -32,7 +32,7 @@ export class ResetPasswordComponent implements OnInit {
     this.loader.show();
     this.service.requestResetPassword(this.email).subscribe(res => {
       this.loader.hide();
-      this.notify.success("Check your email.");
+      this.notify.success("","Επιτυχία");
     }, error => {
       this.loader.hide();
       this.notify.error(error);

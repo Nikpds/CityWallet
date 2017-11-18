@@ -13,17 +13,13 @@ import { AuthGuard } from './auth/auth.guard';
 import { BillModule } from './bill/bill.module';
 import { ContentModule } from './content/content.module';
 
-import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { SnotifyModule, SnotifyService, ToastDefaults, SnotifyPosition } from 'ng-snotify';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-
-
-
-
 
 const routes: Route[] = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -62,4 +58,17 @@ const routes: Route[] = [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  positions = SnotifyPosition;
+  
+  constructor(
+    private notify: SnotifyService,
+  ) {
+    this.notify.config.toast.timeout = 5000;
+    this.notify.config.toast.pauseOnHover = true;
+    this.notify.config.toast.position = this.positions.centerTop;
+    this.notify.config.toast.bodyMaxLength = 300;
+    this.notify.config.toast.titleMaxLength = 300;
+  }
+}

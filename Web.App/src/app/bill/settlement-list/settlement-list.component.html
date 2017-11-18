@@ -30,28 +30,28 @@
               <table class="table is-fullwidth is-striped">
                 <thead>
                   <tr>
-                    <th class="is-hidden-mobile">ΑΑ</th>
-                    <th>Τίτλος</th>
-                    <th>Ώρα</th>
-                    <th>Προκαταβολή</th>
-                    <th>Τόκος</th>
-                    <th>Δοσεις</th>
-                    <th>Λογαριασμοί</th>
-                    <th class="no-print">Ενεργειες</th>
+                    <th class="is-hidden-mobile">{{'Bills.AA'|translate:lang}}</th>
+                    <th> {{'Settlements.Title'|translate:lang}}</th>
+                    <th class="is-hidden-mobile"> {{'Settlements.RequestDate'|translate:lang}}</th>
+                    <th class="is-hidden-mobile"> {{'Settlements.Downpayment'|translate:lang}}</th>
+                    <th class="is-hidden-mobile"> {{'Settlements.Interest'|translate:lang}}</th>
+                    <th class="is-hidden-mobile"> {{'Settlements.Installments'|translate:lang}}</th>
+                    <th class="is-hidden-mobile"> {{'Home.Bills'|translate:lang}}</th>
+                    <th class="no-print"> {{'Common.Actions'|translate:lang}}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let i = index;let s of settlements| filterPipe: 'bill':filterText:'description'| paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
                     <td class="is-hidden-mobile">{{i + 1}}</td>
                     <td>{{s.title}}</td>
-                    <td>{{s.requestDate|date:'HH:mm'}}</td>
-                    <td>{{s.downpayment}}&euro;</td>
-                    <td>{{s.settlementType.interest}}%</td>
-                    <td>{{s.installments}}</td>
-                    <td>{{s.bills.length}}</td>
+                    <td class="is-hidden-mobile">{{s.requestDate|date:'HH:mm'}}</td>
+                    <td class="is-hidden-mobile">{{s.downpayment}}&euro;</td>
+                    <td class="is-hidden-mobile">{{s.settlementType.interest}}%</td>
+                    <td class="is-hidden-mobile">{{s.installments}}</td>
+                    <td class="is-hidden-mobile">{{s.bills.length}}</td>
                     <td class="no-print">
-                      <span class="button is-danger is-small" (click)="cancelSettlementRequest(s.id)">Ακύρωση</span>
-                      <span class="button is-info is-small" (click)="goToDetails(i)">Λεπτομέρειες</span>
+                      <span class="button is-danger is-small" (click)="cancelSettlementRequest(s.id)">{{'Common.Cancel'|translate:lang}}</span>
+                      <span class="button is-info is-small" (click)="goToDetails(i)">{{'Common.DetailsBtn'|translate:lang}}</span>
                     </td>
                   </tr>
                 </tbody>

@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   user: User;
   mobileMenu = false;
+
   constructor(
     public locale: LocaleService,
     private auth: AuthService,
@@ -24,7 +25,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.auth.user$
       .subscribe((user) => this.user = user));
   }
-
 
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

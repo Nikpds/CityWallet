@@ -66,9 +66,8 @@ export class BillsPaidComponent implements OnInit {
     }
     return pageSize
   }
-
-  // checkSelected(id: string) {
-  //   if (!this.selectedBill) { return false }
-  //   return this.selectedBill.id == id;
-  // }
+  
+  TotalDebt() {
+    return (this.bills.reduce(function (a, b) { return a + b.amount }, 0)).toFixed(2);
+  }
 }

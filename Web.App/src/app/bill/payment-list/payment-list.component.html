@@ -37,23 +37,40 @@
           </div>
           <div class="card">
             <div class="card-content">
+              <div class="field is-grouped is-grouped-multiline">
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark">{{'Home.Payments'|translate:lang}}</span>
+                    <span class="tag is-info">{{payments.length}}</span>
+                  </div>
+                </div>
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark ">{{'Payments.TotalPayments'|translate:lang}}</span>
+                    <span class="tag is-info">{{TotalDebt()}} &euro;</span>
+                  </div>
+                </div>
+              </div>
               <table class="table is-fullwidth is-striped">
                 <thead>
                   <tr>
                     <th class="is-hidden-mobile"> {{'Bills.AA'|translate:lang}}</th>
                     <th> {{'Bills.Service'|translate:lang}}</th>
-                    <th> {{'Bills.Time'|translate:lang}}</th>
                     <th> {{'Bills.Debt'|translate:lang}}</th>
                     <th> {{'Bills.Method'|translate:lang}}</th>
+                    <th class="allcenter"> {{'Bills.Time'|translate:lang}}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let i = index; let d of payments| filterPipe: 'bill':filterText:'description'| paginate: { itemsPerPage: config.pageSize, currentPage: config.currentPage }">
                     <td class="is-hidden-mobile">{{i + 1}}</td>
                     <td>{{d.bill.description}}</td>
-                    <td>{{d.paidDate|date:'HH:mm'}}</td>
                     <td>{{d.bill.amount}} &euro;</td>
                     <td>{{d.method}}</td>
+                    <td class="allcenter" *ngIf="paymentPackage(i)" [attr.rowspan]="getPackageLength(d)">
+                      {{d.paidDate|date:'HH:mm'}}
+                      <span *ngIf="getPackageLength(d) > 1"><br> {{getTotalOfPackage(d)}} &euro;</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>

@@ -25,7 +25,7 @@ namespace Testing
             var _db = new DataContext(builder.Options);
             var srv = new HangFireService(_db);
             var srv1 = new SettlementService(_db);
-            //srv1.CreateSettlementTypes();
+            srv1.CreateSettlementTypes();
             srv.InsertData();
             //srv.ExportData();
 

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router'
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { SnotifyService } from 'ng-snotify';
-import { Language } from 'angular-l10n';
+import { Language, TranslationService } from 'angular-l10n';
 
 import { Bill, User, CreditCard, NavigationC } from '../../appModel';
 
@@ -24,33 +24,14 @@ export class PaymentComponent implements OnInit, OnDestroy {
   step = 0;
   creditCard = new CreditCard();
   navbar = new Array<NavigationC>();
-  successAction = Observable.create(observer => {
-    setTimeout(() => {
-      observer.next({
-        body: 'Still loading.....',
-      });
-    }, 2000);
-
-    setTimeout(() => {
-      observer.next({
-        title: 'Success',
-        body: 'Example. Data loaded!',
-        config: {
-          closeOnClick: true,
-          timeout: 5000,
-          showProgressBar: true
-        }
-      });
-      observer.complete();
-    }, 5000);
-  });
 
   constructor(
     private billService: BillService,
     private loader: LoaderService,
     private auth: AuthService,
     private notify: SnotifyService,
-    private router: Router
+    private router: Router,
+    private translation: TranslationService
   ) { }
 
   previousStep() {
@@ -97,24 +78,15 @@ export class PaymentComponent implements OnInit, OnDestroy {
     this.router.navigate(['/bills'])
   }
 
-  // paybills() {
-  //   this.billService.validateCreditCard().subscribe(res => {
-  //     this.notify.async('This will resolve with success', this.successAction);
-  //   }, error => {
-
-  //   });
-
-  // }
-
   payBills() {
     this.loader.show();
     this.billService.paybills().subscribe(res => {
       this.billService.billsToPay = new Array<Bill>();
       this.loader.hide();
-      this.notify.success('Η συναλλαγή ολοκληρώθηκε');
+      this.notify.success(this.translation.translate('Snotify.PaymentComplete'), this.translation.translate('Snotify.Success'));
       this.router.navigate(['/payments']);
     }, error => {
-      this.notify.error('Αδυναμία Πληρωμής');
+      this.notify.error(this.translation.translate('Snotify.PaymentError'), this.translation.translate('Snotify.Error'));
       this.loader.hide();
     });
   }

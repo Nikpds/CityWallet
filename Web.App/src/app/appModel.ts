@@ -40,7 +40,7 @@ export class Address {
 
 export class Settlement {
     id: string;
-    title:string;
+    title: string;
     settlementType: SettlementType
     monthlyFee: number;
     subTotal: number;
@@ -72,8 +72,18 @@ export class CreditCard {
 
 export class Counter {
     bills = 0;
-    payments = 0;
-    settlements = 0;
+    BillsAmount = 0;
+    Paid = 0;
+    PaidAmount = 0;
+    UnPaid = 0;
+    UnPaidAmount = 0;
+    OnSettle = 0;
+    OnSettleAmount = 0;
+    Settlements = 0;
+    SettleAmount = 0;
+    Payments = 0;
+    PaymentsAmount = 0;
+
 }
 
 export class Config {
@@ -114,4 +124,4 @@ export class Faq {
     id: string;
     question: string;
     answer: string;
-  }
+}

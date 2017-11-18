@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using WebApp.Models;
@@ -83,7 +84,7 @@ namespace WebApp.Controllers
 
                 var payments = await _srv.GetPayments(id);
 
-                return Ok(payments);
+                return Ok(payments.OrderByDescending(o=>o.PaidDate));
             }
             catch (Exception ex)
             {

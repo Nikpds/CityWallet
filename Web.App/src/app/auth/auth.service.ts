@@ -51,15 +51,18 @@ export class AuthService {
     return tokenNotExpired('token');
   }
 
-  public login(username: string, password: string): Observable<boolean> {
+  public login(username: string, password: string): Observable<any> {
 
     const body: any = { 'Username': username, 'Password': password };
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.authUrl, body, options)
-      .map((response: Response) => {
-        var firstLogin = response.json();
+      .map((response: any) => {
+        var firstLogin = response._body;
+        if (firstLogin == "firstLogin") {
+          return firstLogin;
+        }
         const token = response.json().token;
         if (token) {
           localStorage.setItem('token', token);

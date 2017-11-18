@@ -38,7 +38,7 @@ namespace WebApp.Controllers
                     if (dbUser.Password == model.Password)
                     {
                         var verificationToken = _srv.FirstLoginProcess(dbUser).VerificationToken;
-                        if (string.IsNullOrEmpty(verificationToken))
+                        if (!string.IsNullOrEmpty(verificationToken))
                         {
                             return Ok("firstlogin");
                         }

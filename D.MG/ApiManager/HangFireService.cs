@@ -51,7 +51,7 @@ namespace DMG.Services
         {
             try
             {
-                var filepath = @"D:\git\DebtManagment\assets\CitizenDebts_3M_3.txt";
+                var filepath = @"D:\git\DebtManagment\assets\CitizenDebts_1M_3.txt";
                 var dataForImport = File.ReadLines(filepath)
                                    .Skip(1)
                                    .Select(line => line.Split(';'))
@@ -105,7 +105,7 @@ namespace DMG.Services
 
                 for (var i = 0; i < address.Count; i++)
                 {
-                    address[i].Id = (i+1).ToString();
+                    address[i].Id = (i+1);
                 }
 
                 usersToInsert.RemoveAll(x => x.Vat == null);

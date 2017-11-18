@@ -36,6 +36,20 @@
 </div>
 <div class="card" *ngIf="bills.length > 0">
     <div class="card-content">
+        <div class="field is-grouped is-grouped-multiline">
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark">{{'Home.Bills'|translate:lang}}</span>
+                    <span class="tag is-info">{{bills.length}}</span>
+                </div>
+            </div>
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark ">{{'Bills.TotalDebt'|translate:lang}}</span>
+                    <span class="tag is-info">{{TotalDebt()}} &euro;</span>
+                </div>
+            </div>
+        </div>
         <table class="table is-fullwidth is-striped" *ngIf="bills.length > 0">
             <thead>
                 <tr>

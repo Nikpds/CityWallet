@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Language } from 'angular-l10n';
+import { Language, TranslationService } from 'angular-l10n';
 import { ActivatedRoute, Router } from '@angular/router'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SnotifyService } from 'ng-snotify';
@@ -31,9 +31,10 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private auth: AuthService,
     private router: Router,
-    private fb: FormBuilder
-  ) { }
-
+    private fb: FormBuilder,
+    private translation: TranslationService
+  ) {
+  }
 
   ngOnInit() {
     this.subscriptions.push(this.auth.user$
@@ -146,7 +147,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     this.loader.show();
     this.service.changePassword(this.resetPwd).subscribe((res) => {
       this.loader.hide();
-      this.notify.success("Ο κωδικός σας άλλαξε");
+      this.notify.success(this.translation.translate('Snotify.PswChanged'), this.translation.translate('Snotify.Success'));
       this.router.navigate(['/profile']);
     }, (error) => {
       this.loader.hide();
@@ -158,7 +159,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     this.loader.show();
     this.service.resetPassword(this.resetPwd).subscribe((res) => {
       this.loader.hide();
-      this.notify.success("Ο κωδικός σας άλλαξε");
+      this.notify.success(this.translation.translate('Snotify.PswChanged'), this.translation.translate('Snotify.Success'));
       this.router.navigate(['/login']);
     }, (error) => {
       this.loader.hide();

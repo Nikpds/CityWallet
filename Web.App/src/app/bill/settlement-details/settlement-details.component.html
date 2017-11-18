@@ -1,54 +1,61 @@
 <div class="container">
   <section class="hero is-small">
     <div class="hero-body">
+      <app-navigation class="no-print" [navigation]="navbar"></app-navigation>
       <div class="columns is-multiline">
         <div class="column is-12">
           <div class="card" *ngIf="settlement">
-            <header class="card-header">
-              <p class="card-header-title">
-                {{settlement.title}}
-              </p>
-              <a class="card-header-icon no-print" aria-label="more options">
-                <button class="button is-info is-hidden-mobile is-small" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
-              </a>
-            </header>
             <div class="card-content">
-              <div class="columns is-gapless">
-                <div class="column is-3">
-                  <table class="table is-marginless">
-                    <tbody>
-                      <tr>
-                        <th>{{'Settlements.Downpayment'|translate:lang}}:</th>
-                        <td>{{settlement.downpayment}}&euro;</td>
-                      </tr>
-                      <tr>
-                        <th>{{'Settlements.Installments'|translate:lang}}:</th>
-                        <td>{{settlement.installments}}</td>
-                      </tr>
-                      <tr>
-                          <th>{{'Settlements.SubTotal'|translate:lang}}:</th>
-                          <td>{{settlement.subTotal}}&euro;</td>
-                        </tr>
-                    </tbody>
-                  </table>
+              <div class="field is-clearfix">
+                <span class="title is-4">
+                  {{settlement.title}}
+                </span>
+                <button class="button is-pulled-right is-info is-hidden-mobile no-print" (click)="print()"> {{'Common.Print'|translate:lang}} </button>
+              </div>
+              <div class="field is-grouped is-grouped-multiline">
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark tag-m is-normal">{{'Settlements.TotalSettle'|translate:lang}}</span>
+                    <span class="tag is-primary tag-s is-normal">{{billsSum()}}&euro;</span>
+                  </div>
                 </div>
-                <div class="column is-6">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <th>{{'Settlements.MonthlyFee'|translate:lang}}:</th>
-                        <td>{{settlement.monthlyFee}}&euro;</td>
-                      </tr>
-                      <tr>
-                        <th>{{'Settlements.Interest'|translate:lang}}:</th>
-                        <td>{{settlement?.settlementType?.interest}}%</td>
-                      </tr>
-                      <tr>
-                          <th>{{'Settlements.RequestDate'|translate:lang}}:</th>
-                          <td>{{settlement.requestDate|date:'HH:mm'}}</td>
-                        </tr>
-                    </tbody>
-                  </table>
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark tag-m is-normal">{{'Settlements.Downpayment'|translate:lang}}</span>
+                    <span class="tag is-primary tag-s is-normal">{{settlement.downpayment}}&euro;</span>
+                  </div>
+                </div>
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark tag-m is-normal">{{'Settlements.SubTotal'|translate:lang}}</span>
+                    <span class="tag is-primary tag-s is-normal">{{settlement.subTotal}}&euro;</span>
+                  </div>
+                </div>
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark tag-m is-normal">{{'Settlements.Interest'|translate:lang}}</span>
+                    <span class="tag is-primary tag-s is-normal">{{settlement?.settlementType?.interest}}%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-grouped is-grouped-multiline">
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark tag-m is-normal">{{'Settlements.MonthlyFee'|translate:lang}}</span>
+                    <span class="tag is-primary tag-s is-normal">{{settlement.monthlyFee}}&euro;</span>
+                  </div>
+                </div>
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark tag-m is-normal">{{'Settlements.Installments'|translate:lang}}</span>
+                    <span class="tag is-primary tag-s is-normal">{{settlement.installments}}</span>
+                  </div>
+                </div>
+                <div class="control">
+                  <div class="tags has-addons">
+                    <span class="tag is-dark tag-m is-normal">{{'Settlements.RequestDate'|translate:lang}}</span>
+                    <span class="tag is-primary tag-s is-normal">{{settlement.requestDate|date:'HH:mm'}}</span>
+                  </div>
                 </div>
               </div>
               <table class="table is-fullwidth is-striped">

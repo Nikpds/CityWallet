@@ -78,7 +78,8 @@
     "Method": "Method",
     "OverDue": "Overdue",
     "Subtitle": "bills for payment.",
-    "Total": "Total"
+    "Total": "Total",
+    "TotalDebt": "Total Debt"
   },
   "Settlements": {
     "SelectSettlement": "Select Settlement",
@@ -96,7 +97,8 @@
     "Interest": "Interest",
     "RequestDate": "Time",
     "SubTitle1": "You chose",
-    "SubTitle2": "bills for Settlement."
+    "SubTitle2": "bills for Settlement.",
+    "TotalSettle": "Total Settlement"
   },
   "CreditCard": {
     "Number": "Credit Card Number",
@@ -119,6 +121,20 @@
     "Subtitle": "Your Daily payments.",
     "SearchPlaceholder": "search by",
     "PayMethods": "Payment Method",
-    "PaymentSteps": "Bill Payment"
+    "PaymentSteps": "Bill Payment",
+    "TotalPayments": "Total Paid"
+  },
+  "Snotify": {
+    "Success": "Success",
+    "Error": "Error",
+    "Info": "Info",
+    "Warning": "Warning",
+    "WrongCrend": "Wrong username or password",
+    "LoggedIn": "You have logged in",
+    "LoggedOut": "You have logged out",
+    "FirstLogIn": "An email has been sent to continue your account activation",
+    "PswChanged": "Your password has changed",
+    "PaymentComplete":"Your Payment has been completed",
+    "PaymentError":"Payment failed. Try again later"
   }
 }

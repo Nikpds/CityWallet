@@ -7,7 +7,6 @@ namespace SqlContext
 {
     public class DataContext : DbContext
     {
-
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -67,6 +66,7 @@ namespace SqlContext
 
             var addressBuilder = modelBuilder.Entity<Address>();
 
+            addressBuilder.HasKey(x => x.Id);
             addressBuilder.Property(x => x.Street)
                           .IsRequired();
             addressBuilder.Property(x => x.County)
@@ -87,6 +87,7 @@ namespace SqlContext
 
             var settlementTypeBuilder = modelBuilder.Entity<SettlementType>();
 
+            settlementTypeBuilder.HasKey(x => x.Id);
             settlementTypeBuilder.HasMany(x => x.Settlements)
                                  .WithOne(x => x.SettlementType)
                                  .HasForeignKey(x => x.SettlementTypeId)

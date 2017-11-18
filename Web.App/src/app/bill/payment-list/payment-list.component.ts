@@ -80,4 +80,38 @@ export class PaymentListComponent implements OnInit {
     this.filterText = t.trim();
   }
 
+  TotalDebt() {
+    return (this.payments.reduce(function (a, b) { return a + b.bill.amount }, 0)).toFixed(2);
+  }
+
+  paymentPackage(i: number) {
+    if (i == 0) { return true; }
+    let o = new Date(this.payments[i - 1].paidDate);
+    let d = new Date(this.payments[i].paidDate);
+    if (o.getHours() == d.getHours() && o.getMinutes() == d.getMinutes()) { return false; }
+    return true;
+  }
+  getPackageLength(p: Payment) {
+    let count = 0
+    let o = new Date(p.paidDate);
+    for (let i = 0; i < this.payments.length; i++) {
+      let d = new Date(this.payments[i].paidDate);
+      if (o.getHours() == d.getHours() && o.getMinutes() == d.getMinutes()) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  getTotalOfPackage(p: Payment) {
+    let sum = 0
+    let o = new Date(p.paidDate);
+    for (let i = 0; i < this.payments.length; i++) {
+      let d = new Date(this.payments[i].paidDate);
+      if (o.getHours() == d.getHours() && o.getMinutes() == d.getMinutes()) {
+        sum= sum + this.payments[i].bill.amount;
+      }
+    }
+    return sum;
+  }
 }

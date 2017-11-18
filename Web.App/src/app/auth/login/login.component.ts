@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { SnotifyService } from 'ng-snotify';
-import { Language, LocaleService } from 'angular-l10n';
+import { Language, LocaleService, TranslationService } from 'angular-l10n';
 
 import { AuthService } from '../auth.service';
 import { LoaderService } from '../../shared/loader.service';
@@ -43,10 +43,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private router: Router,
     private notify: SnotifyService,
     public locale: LocaleService,
-  ) {
-    this.notify.config.toast.timeout = 5000;
-    this.notify.config.toast.pauseOnHover = true;
-  }
+    private translation: TranslationService
+  ) {}
 
   ngOnInit() {
     if (this.authService.authenticated) {
@@ -70,17 +68,22 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.gloweffect = !this.gloweffect;
     this.loader.show();
     this.authService.login(this.username, this.password).subscribe(res => {
-      if (res) {
+      if (res == "firstLogin") {
+        this.loader.hide();
+        this.notify.info(this.translation.translate('Snotify.FirstLogIn'), this.translation.translate('Snotify.Info'),
+          { timeout: 15000, buttons: [{ text: 'ΟΚ', action: null, bold: true }] });
+      }
+      else if (res) {
         this.loader.hide();
         this.router.navigate(['/home']);
-        this.notify.error('Συνδεθήκατε', { icon: '../../../assets/check.png' });
+        this.notify.success(this.translation.translate('Snotify.LoggedIn'), this.translation.translate('Snotify.Success'));
       } else {
         this.loader.hide();
-        this.notify.error('Λάθος όνομα χρήστη ή κωδικός!', { icon: '../../../assets/warning.png' });
+        this.notify.error(this.translation.translate('Snotify.WrongCrend'), this.translation.translate('Snotify.Error'));
       }
     }, error => {
       this.loader.hide();
-      this.notify.error('Λάθος όνομα χρήστη ή κωδικός!', { icon: '../../../assets/warning.png' });
+      this.notify.error(this.translation.translate('Snotify.WrongCrend'), this.translation.translate('Snotify.Error'));
     });
   }
 

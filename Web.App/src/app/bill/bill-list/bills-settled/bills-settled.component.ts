@@ -74,4 +74,8 @@ export class BillsSettledComponent implements OnInit {
     this.filterText = t.trim();
   }
 
+  TotalDebt() {
+    return (this.bills.reduce(function (a, b) { return a + b.amount }, 0)).toFixed(2);
+  }
+
 }

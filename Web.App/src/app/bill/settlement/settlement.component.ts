@@ -116,6 +116,12 @@ export class SettlementComponent implements OnInit {
     this.settlement.settlementType.interest = this.settlementTypes[this.sType].interest;
   }
 
+  getMonthlyFee() {
+    let r = this.settlement.settlementType.interest;
+    let n = this.settlement.settlementType.installments;
+    return this.getSubTotal() * (r * ((1 + r) ^ n) / ((1 + r) ^ n) - 1);
+  }
+
   removebillFromPay(i: number) {
     this.bills.splice(i, 1);
     if (this.bills.length == 0) {
@@ -130,7 +136,7 @@ export class SettlementComponent implements OnInit {
   }
 
   getTotal(bills: Bill[]) {
-    if (!bills) { return ;}
+    if (!bills) { return; }
     return (bills.reduce(function (a, b) { return a + b.amount }, 0));
   }
 

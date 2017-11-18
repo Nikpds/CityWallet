@@ -3,6 +3,7 @@ using ApiManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using WebApp.Services;
 
@@ -132,7 +133,7 @@ namespace WebApp.Controllers
             {
                 var types = await _srv.GetSettlementTypes();
 
-                return Ok(types);
+                return Ok(types.OrderByDescending(o=>o.Downpayment));
             }
             catch (Exception ex)
             {

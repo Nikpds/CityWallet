@@ -42,13 +42,23 @@ namespace ApiManager
 
         public async Task<UserDto> GetUserWithCounters(string userId)
         {
-            var user = await _dbSet.Include(x => x.AddressInfo).SingleOrDefaultAsync(s => s.Id == userId);
+            var user = await _dbSet.Include(x => x.AddressInfo).Include(i => i.Bills).ThenInclude(t => t.Payment).SingleOrDefaultAsync(s => s.Id == userId);
+            var bills = user.Bills;
             var counter = new Counter
             {
-                Bills = await _ctx.Set<Bill>().Where(x => x.UserId == userId && x.Payment == null && x.SettlementId == null).CountAsync(),
-                Payments = await _ctx.Set<Payment>().Include(i => i.Bill).Where(x => x.Bill.UserId == userId).CountAsync(),
-                Settlements = await _ctx.Set<Settlement>().Where(x => x.Bills.Any(a => a.UserId == userId)).CountAsync()
+                Paid = bills.Where(w => w.Payment != null).Count(),
+                PaidAmount = bills.Where(w => w.Payment != null).Sum(s => s.Amount),
+                UnPaid = bills.Where(w => w.Payment == null && w.SettlementId == null).Count(),
+                UnPaidAmount = bills.Where(w => w.Payment == null && w.SettlementId == null).Sum(s => s.Amount),
+                OnSettle = bills.Where(w => w.SettlementId != null).Count(),
+                OnSettleAmount = bills.Where(w => w.SettlementId != null).Sum(s => s.Amount),
+                Payments = bills.Where(w => w.Payment != null).Count(),
+                PaymentsAmount = bills.Where(w => w.Payment != null).Sum(s => s.Amount),
+                Settlements = await _ctx.Set<Settlement>().Where(x => x.Bills.Any(a => a.UserId == userId)).CountAsync(),
+                SettleAmount = bills.Where(w => w.SettlementId != null).Sum(s => s.Amount)
             };
+            counter.Bills = counter.Paid + counter.UnPaid + counter.OnSettle;
+            counter.BillsAmount = counter.PaidAmount + counter.UnPaidAmount + counter.OnSettleAmount;
 
             var userDto = new UserDto(user)
             {
@@ -109,7 +119,7 @@ namespace ApiManager
             {
                 user.FirstLogin = false;
             }
-           
+
             user.VerificationToken = null;
 
             _dbSet.Update(user);
