@@ -1,15 +1,16 @@
 @import "../../styles/_variables.sass"
 
-.bck-primary    
-    background-color: $primary
-    &:hover
-        background-color:  darken($primary, 10%)
+.bck-primary:hover
+    background-color:  darken($primary, 10%)
+    cursor: pointer
 
-.bck-blue    
-    background-color: $orange
-    &:hover
-        background-color:  darken($orange, 10%)
+.bck-warning:hover
+    background-color:  darken($orange, 20%)
+    cursor: pointer
 
+.bck-blue:hover
+    background-color:  darken($blue, 20%)
+    cursor: pointer
 
 .media
     -webkit-box-align: center
@@ -26,4 +27,26 @@
 .footer
     padding: 1.5rem 2rem 1rem 2rem
 
+.msgbody
+    padding: 0!important
+    border: none!important
+
+.left-border
+    border-left: 2px solid #363636
+
+.bottom
+    position: absolute
+    bottom: 0
+    width: 100%
+.valign
+    vertical-align: -webkit-baseline-middle
+
+.message-body
+    padding: 0.6em
+
+.panel .panel-block, .panel .panel-heading, .panel .panel-tabs
+    border-left-color: #07656f    
+    border-bottom: 1px solid #dbdbdb
+    border-left: 1px solid #dbdbdb
+    border-right: 1px solid #dbdbdb
     

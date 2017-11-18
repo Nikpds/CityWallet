@@ -28,258 +28,140 @@
                                     </div>
                                 </div>
                             </div>
-                            <article class="tile is-child notification is-primary">
-                                <p class="title">...tiles</p>
-                                <p class="subtitle">Bottom tile</p>
-                            </article>
+                            <div class="box tile is-child">
+                                <nav class="panel">
+                                    <p class="panel-heading">
+                                        Top 3 Expired Bills
+                                    </p>
+                                    <a class="panel-block is-active">
+                                        <span class="panel-icon">
+                                            <i class="fa fa-book"></i>
+                                        </span>
+                                        Golf
+                                    </a>
+                                    <a class="panel-block is-active">
+                                        <span class="panel-icon">
+                                            <i class="fa fa-book"></i>
+                                        </span>
+                                        Masaz 
+                                    </a>
+                                    <a class="panel-block is-active">
+                                        <span class="panel-icon">
+                                            <i class="fa fa-book"></i>
+                                        </span>
+                                        Masaz 
+                                    </a>
+                                </nav>
+                            </div>
                         </div>
                         <div class="tile is-parent is-vertical">
                             <article class="tile is-child notification is-light">
                                 <p class="title">{{'Home.Bills'|translate:lang}}</p>
                                 <div class="tags has-addons">
-                                    <span class="tag is-dark">Total</span>
-                                    <span class="tag is-primary">20</span>
-                                    <span class="tag is-grey">645.20 &euro;</span>
+                                    <span class="tag is-dark">{{'Bills.Total'|translate:lang}}</span>
+                                    <span class="tag is-primary">{{user.counters.bills}}</span>
+                                    <span class="tag is-primary left-border">{{user.counters.billsAmount}} &euro;</span>
                                 </div>
-                                <article class="message">
-                                    <div class="message-header is-block">
+                                <article class="message is-warning" [routerLink]="['/bills']">
+                                    <div class="message-header bck-warning is-block">
                                         <div class="field">
-                                            <span class="title is-4">&euro; 313.2</span>
+                                            <span class="title is-4 has-text-white">&euro; {{user.counters.unPaidAmount}}</span>
                                         </div>
                                         <div class="is-clearfix">
-                                            <strong>UnPaid
-                                                <span class="tag is-rounded is-pulled-right">5/10</span>
+                                            <strong class="has-text-white valign"> {{'Bills.Unpaid'|translate:lang}}
+                                                <span class="tag is-rounded is-pulled-right">{{user.counters.unPaid}}/{{user.counters.bills}}</span>
                                             </strong>
                                         </div>
                                     </div>
-                                    <div class="message-body">
-                                        <progress class="progress is-medium" value="15" max="50">%</progress>
+                                    <div class="message-body msgbody">
+                                        <progress class="progress is-medium is-dark" value="{{user.counters.unPaid}}" max="{{user.counters.bills}}">%</progress>
                                     </div>
                                 </article>
-                                <article class="message">
-                                    <div class="message-header is-block">
+                                <article class="message is-primary" [routerLink]="['/bills']">
+                                    <div class="message-header bck-primary is-block">
                                         <div class="field">
-                                            <span class="title is-4">&euro; 313.2</span>
+                                            <span class="title is-4">&euro; {{user.counters.paidAmount}}</span>
                                         </div>
                                         <div class="is-clearfix">
-                                            <strong>UnPaid
-                                                <span class="tag is-rounded is-pulled-right">5/10</span>
+                                            <strong class="valign"> {{'Bills.Paid'|translate:lang}}
+                                                <span class="tag is-rounded is-pulled-right">{{user.counters.paid}}/{{user.counters.bills}}</span>
                                             </strong>
                                         </div>
                                     </div>
-                                    <div class="message-body">
-                                        <progress class="progress is-medium" value="15" max="50">%</progress>
+                                    <div class="message-body msgbody">
+                                        <progress class="progress is-medium is-dark" value="{{user.counters.paid}}" max="{{user.counters.bills}}">%</progress>
                                     </div>
                                 </article>
-                                <article class="message">
-                                    <div class="message-header is-block">
+                                <article class="message is-info" [routerLink]="['/bills']">
+                                    <div class="message-header bck-blue is-block">
                                         <div class="field">
-                                            <span class="title is-4">&euro; 313.2</span>
+                                            <span class="title is-4">&euro; {{user.counters.onSettleAmount}}</span>
                                         </div>
                                         <div class="is-clearfix">
-                                            <strong>UnPaid
-                                                <span class="tag is-rounded is-pulled-right">5/10</span>
+                                            <strong class="valign"> {{'Bills.OnSettlement'|translate:lang}}
+                                                <span class="tag is-rounded is-pulled-right">{{user.counters.onSettle}}/{{user.counters.bills}}</span>
                                             </strong>
                                         </div>
                                     </div>
-                                    <div class="message-body">
-                                        <progress class="progress is-medium" value="15" max="50">%</progress>
+                                    <div class="message-body msgbody">
+                                        <progress class="progress is-medium is-dark" value="{{user.counters.onSettle}}" max="{{user.counters.bills}}">%</progress>
                                     </div>
                                 </article>
                             </article>
                         </div>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child notification is-danger">
-                            <p class="title">Wide tile</p>
-                            <p class="subtitle">Aligned with the right tile</p>
-                            <div class="content">
-                                <!-- Content -->
-                            </div>
-                        </article>
                     </div>
                 </div>
                 <div class="tile">
                     <div class="tile is-parent is-vertical">
-                        <article class="tile is-child notification is-dark">
-                            <div class="content">
-                                <p class="title">Tall tile</p>
-                                <p class="subtitle">With even more content</p>
-                                <div class="content">
-                                    <!-- Content -->
+                        <article class="tile is-child notification ">
+                            <p class="title">{{'Home.Payments'|translate:lang}}</p>
+                            <article class="message is-primary" [routerLink]="['/payments']">
+                                <div class="message-header  bck-primary is-block">
+                                    <div class="field">
+                                        <span class="title is-4 has-text-white">&euro; {{user.counters.paymentsAmount}}</span>
+                                    </div>
+                                    <div class="is-clearfix">
+                                        <strong class="has-text-white valign"> {{'Bills.Total'|translate:lang}}
+                                            <span class="tag is-rounded is-pulled-right">{{user.counters.payments}}</span>
+                                        </strong>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="message-body">
+                                    <a [routerLink]="['/payments']">Προβολή</a>
+                                    <span class="icon is-pulled-right" [routerLink]="['/payments']">
+                                        <i class="fa fa-arrow-circle-o-right"></i>
+                                    </span>
+                                </div>
+                            </article>
                         </article>
-                        <article class="tile is-child notification is-dark">
-                            <div class="content">
-                                <p class="title">Tall tile</p>
-                                <p class="subtitle">With even more content</p>
-                                <div class="content">
-                                    <!-- Content -->
+                        <article class="tile is-child notification">
+                            <p class="title">{{'Home.Settlements'|translate:lang}}</p>
+                            <article class="message is-info" [routerLink]="['/settlements']">
+                                <div class="message-header  bck-blue is-block">
+                                    <div class="field">
+                                        <span class="title is-4 has-text-white">&euro; {{user.counters.settleAmount}}</span>
+                                    </div>
+                                    <div class="is-clearfix">
+                                        <strong class="has-text-white valign"> {{'Bills.Total'|translate:lang}}
+                                            <span class="tag is-rounded is-pulled-right">{{user.counters.settlements}}</span>
+                                        </strong>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="message-body is-clearfix">
+                                    <a [routerLink]="['/payments']">Προβολή</a>
+                                    <span class="icon is-pulled-right" [routerLink]="['/payments']">
+                                        <i class="fa fa-arrow-circle-o-right"></i>
+                                    </span>
+                                </div>
+                            </article>
                         </article>
                     </div>
                 </div>
             </div>
-            <!-- <div class="columns is-marginless">
-                <div class="column is-4">
-                    <div class="box">
-                       <div class="media-content">
-                            <figure class="amargin image is-128x128 has-text-centered">
-                                <img src="../../../assets/city logo.png">
-                            </figure>
-                            <div class="content">
-                                <p class="title is-5">
-                                    {{'Common.Menu'|translate:lang}}
-                                </p>
-                                <ol class="has-text-black">
-                                    <li [routerLink]="['/TermsOfUse']">
-                                        <a>Όροι χρήσης</a>
-                                    </li>
-                                    <li [routerLink]="['/FAQ']">
-                                        <a>Συχνές Ερωτήσεις</a>
-                                    </li>
-                                    <li [routerLink]="['/ContactUs']">
-                                        <a>Επικοινωνία</a>
-                                    </li>
-                                </ol>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-                <div class="column is-8">
-                    <div class="box">
-                        <p class="title is-3">
-                            {{'Home.Services'|translate:lang}}
-                        </p>
-                        <hr>
-                        <div class="box bck-primary" [routerLink]="['/bills']">
-                            <article class="media">
-                                <div class="media-left is-hidden-mobile">
-                                    <i class="fa fa-file-text fa-4x"></i>
-                                </div>
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p class="">
-                                            <span class="title is-5 has-text-white"> {{'Home.Bills'|translate:lang}}</span>
-                                            <br>
-                                            <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="media-right">
-                                    <span class="title is-2 has-text-white">{{user.counters.bills}}</span>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="box bck-blue" [routerLink]="['/settlements']">
-                            <article class="media">
-                                <div class="media-left is-hidden-mobile">
-                                    <i class="fa fa-handshake-o fa-4x"></i>
-                                </div>
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p class="">
-                                            <span class="title is-5 has-text-white">{{'Home.Settlements'|translate:lang}}</span>
-                                            <br>
-                                            <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="media-right">
-                                    <span class="title is-2 has-text-white">{{user.counters.settlements}}</span>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="box bck-primary" [routerLink]="['/payments']">
-                            <article class="media">
-                                <div class="media-left is-hidden-mobile">
-                                    <i class="fa fa-credit-card fa-4x"></i>
-                                </div>
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p class="">
-                                            <span class="title is-5 has-text-white">{{'Home.Payments'|translate:lang}}</span>
-                                            <br>
-                                            <span class="subtitle is-6 has-text-white">Λεπτομέρειες</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="media-right">
-                                    <span class="title is-2 has-text-white">{{user.counters.payments}}</span>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </section>
-<section class="hero">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-marginless">
-                <div class="column is-6" class="has-text-white">
-                    <h1 class="title is-4 has-text-white">
-                        The Global Debt Recovery Solution For A Global Economy
-                    </h1>
-                    <hr>
-                    <ul>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; Pre-legal no win no fee globally
-                        </li>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; No setup charges
-                        </li>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; Multi-award winning
-                        </li>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; Worldwide compliance
-                        </li>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; Global coverage
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="hero is-transparent ">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-marginless">
-                <div class="column is-6 is-offset-6 has-text-white">
-                    <h1 class="title is-4 has-text-white">
-                        The Global Debt Recovery Solution For A Global Economy
-                    </h1>
-                    <hr>
-                    <ul class="is-pulled-right">
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; Pre-legal no win no fee globally
-                        </li>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; No setup charges
-                        </li>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; Multi-award winning
-                        </li>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; Worldwide compliance
-                        </li>
-                        <li>
-                            <i class="fa fa-circle"></i>&nbsp; Global coverage
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<footer class="footer lighten">
+<footer class="footer bottom">
     <div class="container">
         <div class="content">
             <div class="columns has-text-centered">
@@ -301,12 +183,12 @@
                 <a href="https://github.com/CodingSchoolQualcoTeam4/DMG">qualco_4</a>. The source code is licensed
                 <a href="http://www.qualco.eu/">Qualco</a>.
             </p>
-            <p class="has-text-centered has-text-black">
+            <!-- <p class="has-text-centered has-text-black">
                 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
                     <img alt="Άδεια Creative Commons" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
                 </a>{{'Home.License'|translate:lang}}
                 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">{{'Home.CC'|translate:lang}}</a>.
-            </p>
+            </p> -->
         </div>
     </div>
 </footer>
