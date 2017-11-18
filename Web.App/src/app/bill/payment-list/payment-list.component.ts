@@ -48,18 +48,18 @@ export class PaymentListComponent implements OnInit {
   }
 
   getTotalPages(length: number, size: number) {
-    let pageSize = Math.floor(length / size);
+    const pageSize = Math.floor(length / size);
     if (pageSize != length / size) {
-      return pageSize + 1
+      return pageSize + 1;
     }
-    return pageSize
+    return pageSize;
   }
 
   getPayments() {
     this.loader.show();
     this.billService.getPayments().subscribe(res => {
       this.payments = res;
-      this.initConfig(res);;
+      this.initConfig(res);
       this.loader.hide();
     }, error => {
       this.loader.hide();
@@ -81,22 +81,22 @@ export class PaymentListComponent implements OnInit {
   }
 
   TotalDebt() {
-    return (this.payments.reduce(function (a, b) { return a + b.bill.amount }, 0)).toFixed(2);
+    return (this.payments.reduce(function (a, b) { return a + b.bill.amount; }, 0)).toFixed(2);
   }
 
   paymentPackage(i: number) {
-    if (i == 0) { return true; }
-    let o = new Date(this.payments[i - 1].paidDate);
-    let d = new Date(this.payments[i].paidDate);
-    if (o.getHours() == d.getHours() && o.getMinutes() == d.getMinutes()) { return false; }
+    if (i === 0) { return true; }
+    const o = new Date(this.payments[i - 1].paidDate);
+    const d = new Date(this.payments[i].paidDate);
+    if (o.getHours() === d.getHours() && o.getMinutes() === d.getMinutes()) { return false; }
     return true;
   }
   getPackageLength(p: Payment) {
-    let count = 0
-    let o = new Date(p.paidDate);
+    let count = 0;
+    const o = new Date(p.paidDate);
     for (let i = 0; i < this.payments.length; i++) {
-      let d = new Date(this.payments[i].paidDate);
-      if (o.getHours() == d.getHours() && o.getMinutes() == d.getMinutes()) {
+      const d = new Date(this.payments[i].paidDate);
+      if (o.getHours() === d.getHours() && o.getMinutes() === d.getMinutes()) {
         count++;
       }
     }
@@ -104,14 +104,14 @@ export class PaymentListComponent implements OnInit {
   }
 
   getTotalOfPackage(p: Payment) {
-    let sum = 0
-    let o = new Date(p.paidDate);
+    let sum = 0;
+    const o = new Date(p.paidDate);
     for (let i = 0; i < this.payments.length; i++) {
-      let d = new Date(this.payments[i].paidDate);
-      if (o.getHours() == d.getHours() && o.getMinutes() == d.getMinutes()) {
-        sum= sum + this.payments[i].bill.amount;
+      const d = new Date(this.payments[i].paidDate);
+      if (o.getHours() === d.getHours() && o.getMinutes() === d.getMinutes()) {
+        sum = sum + this.payments[i].bill.amount;
       }
     }
-    return sum;
+    return sum.toFixed(2);
   }
 }

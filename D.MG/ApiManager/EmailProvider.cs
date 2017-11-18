@@ -40,7 +40,7 @@ namespace ApiManager
                 var name = string.Format("{0} {1}", user.Name, user.Lastname);
                 string ToAddress = user.Email;
                 string ToAdressTitle = name;
-                string Subject = "EasyPay Reset Password Request";
+                string Subject = "CityWallet Reset Password Request";
                 string BodyContent = string.Format("Hello {0}. Please follow this link in order to reset your account password. {1}changepwd?token={2}",
                     name, _options.ClientUri, user.VerificationToken);
 
@@ -76,7 +76,7 @@ namespace ApiManager
                 var name = string.Format("{0} {1}", user.Name, user.Lastname);
                 string ToAddress = user.Email;
                 string ToAdressTitle = name;
-                string Subject = "EasyPay Reset Password Request";
+                string Subject = "CityWallet Reset Password Request";
                 string BodyContent = string.Format("Καλησπέρα {0}. Παρακαλώ ακολουθήστε τον παρακάτω σύνδεσμο για να αλλάξετε τον κωδικό σας και να ενεργοποιήσετε τον λογαριασμό σας . {1}changepwd?token={2}",
                     name, _options.ClientUri, user.VerificationToken);
 

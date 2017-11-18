@@ -33,13 +33,59 @@
                                 <p class="subtitle">Bottom tile</p>
                             </article>
                         </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child notification is-info">
-                                <p class="title">Middle tile</p>
-                                <p class="subtitle">With an image</p>
-                                <figure class="image is-4by3">
-                                    <img src="https://bulma.io/images/placeholders/640x480.png">
-                                </figure>
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-light">
+                                <p class="title">{{'Home.Bills'|translate:lang}}</p>
+                                <div class="tags has-addons">
+                                    <span class="tag is-dark">Total</span>
+                                    <span class="tag is-primary">20</span>
+                                    <span class="tag is-grey">645.20 &euro;</span>
+                                </div>
+                                <article class="message">
+                                    <div class="message-header is-block">
+                                        <div class="field">
+                                            <span class="title is-4">&euro; 313.2</span>
+                                        </div>
+                                        <div class="is-clearfix">
+                                            <strong>UnPaid
+                                                <span class="tag is-rounded is-pulled-right">5/10</span>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                    <div class="message-body">
+                                        <progress class="progress is-medium" value="15" max="50">%</progress>
+                                    </div>
+                                </article>
+                                <article class="message">
+                                    <div class="message-header is-block">
+                                        <div class="field">
+                                            <span class="title is-4">&euro; 313.2</span>
+                                        </div>
+                                        <div class="is-clearfix">
+                                            <strong>UnPaid
+                                                <span class="tag is-rounded is-pulled-right">5/10</span>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                    <div class="message-body">
+                                        <progress class="progress is-medium" value="15" max="50">%</progress>
+                                    </div>
+                                </article>
+                                <article class="message">
+                                    <div class="message-header is-block">
+                                        <div class="field">
+                                            <span class="title is-4">&euro; 313.2</span>
+                                        </div>
+                                        <div class="is-clearfix">
+                                            <strong>UnPaid
+                                                <span class="tag is-rounded is-pulled-right">5/10</span>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                    <div class="message-body">
+                                        <progress class="progress is-medium" value="15" max="50">%</progress>
+                                    </div>
+                                </article>
                             </article>
                         </div>
                     </div>
@@ -53,16 +99,27 @@
                         </article>
                     </div>
                 </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child notification is-success">
-                        <div class="content">
-                            <p class="title">Tall tile</p>
-                            <p class="subtitle">With even more content</p>
+                <div class="tile">
+                    <div class="tile is-parent is-vertical">
+                        <article class="tile is-child notification is-dark">
                             <div class="content">
-                                <!-- Content -->
+                                <p class="title">Tall tile</p>
+                                <p class="subtitle">With even more content</p>
+                                <div class="content">
+                                    <!-- Content -->
+                                </div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                        <article class="tile is-child notification is-dark">
+                            <div class="content">
+                                <p class="title">Tall tile</p>
+                                <p class="subtitle">With even more content</p>
+                                <div class="content">
+                                    <!-- Content -->
+                                </div>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
             <!-- <div class="columns is-marginless">

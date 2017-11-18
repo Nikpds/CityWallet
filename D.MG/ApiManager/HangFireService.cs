@@ -36,8 +36,8 @@ namespace DMG.Services
         {
             try
             {
-                _ctx.Database.ExecuteSqlCommand("Delete From [qualco4].[dbo].[Bill]");
-                _ctx.Database.ExecuteSqlCommand("Delete From [qualco4].[dbo].[Settlement]");
+                _ctx.Database.ExecuteSqlCommand("Delete From [CityWallet].[dbo].[Bill]");
+                _ctx.Database.ExecuteSqlCommand("Delete From [CityWallet].[dbo].[Settlement]");
                 _ctx.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace DMG.Services
         {
             try
             {
-                var filepath = @"D:\git\DebtManagment\assets\CitizenDebts_1M_3.txt";
+                var filepath = @"C:\Users\Nickos\Downloads\CitizenDebts_1M_3.txt";
                 var dataForImport = File.ReadLines(filepath)
                                    .Skip(1)
                                    .Select(line => line.Split(';'))

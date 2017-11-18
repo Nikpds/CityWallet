@@ -308,3 +308,5 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
+D.MG/WebApp/appsettings.json
+D.MG/WebApp/appsettings.Development.json
