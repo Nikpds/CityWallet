@@ -135,6 +135,7 @@
     "FirstLogIn": "An email has been sent to continue your account activation",
     "PswChanged": "Your password has changed",
     "PaymentComplete":"Your Payment has been completed",
-    "PaymentError":"Payment failed. Try again later"
+    "PaymentError":"Payment failed. Try again later",
+    "ServerError": "We are sorry, something went wrong"
   }
 }

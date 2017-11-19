@@ -60,7 +60,6 @@ export class AuthService {
     return this.http.post(this.authUrl, body, options)
       .map((response: any) => {
         var firstLogin = response._body;
-        console.log(firstLogin);
         if (firstLogin == "firstlogin") {
           console.log(firstLogin);
           return firstLogin;

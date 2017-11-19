@@ -79,9 +79,9 @@ namespace WebApp
 
             app.UseHangfireServer();
 
-            RecurringJob.AddOrUpdate(() => ihsrv.ExportData(), Cron.Daily(00, 30));
-            RecurringJob.AddOrUpdate(() => ihsrv.DeleteDatabase(), Cron.Daily(01, 30));
-            RecurringJob.AddOrUpdate(() => ihsrv.InsertData(), Cron.Yearly());
+            RecurringJob.AddOrUpdate(() => ihsrv.ExportData(), Cron.Daily(00, 01));
+            RecurringJob.AddOrUpdate(() => ihsrv.DeleteDatabase(), Cron.Daily(00, 30));
+            RecurringJob.AddOrUpdate(() => ihsrv.InsertData(), Cron.Daily(02, 30));
 
             app.UseSwagger();
 
@@ -91,19 +91,7 @@ namespace WebApp
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.Use(async (context, next) =>
-            {
-                await next();
-
-                if (context.Response.StatusCode == 404
-                    && !Path.HasExtension(context.Request.Path.Value))
-                {
-                    context.Request.Path = "/index.html";
-                    await next();
-                }
-            });
-
+            
             app.UseMvc();
         }
     }

@@ -1,4 +1,5 @@
-﻿using AuthProvider;
+﻿using ApiManager;
+using AuthProvider;
 using DMG.Services.Models;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -26,8 +27,10 @@ namespace DMG.Services
     public class HangFireService : IHangFireService
     {
         private DataContext _ctx;
-        public HangFireService(DataContext ctx)
+        private IEmailProvider _smtp;
+        public HangFireService(DataContext ctx, IEmailProvider smtp)
         {
+            _smtp = smtp;
             _ctx = ctx;
             EntityFrameworkManager.ContextFactory = context => { return _ctx; };
         }
@@ -42,7 +45,7 @@ namespace DMG.Services
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
 
         }
@@ -105,7 +108,7 @@ namespace DMG.Services
 
                 for (var i = 0; i < address.Count; i++)
                 {
-                    address[i].Id = (i+1);
+                    address[i].Id = (i + 1);
                 }
 
                 usersToInsert.RemoveAll(x => x.Vat == null);
@@ -141,19 +144,16 @@ namespace DMG.Services
                 _ctx.BulkInsert(allbills);
                 _ctx.SaveChanges();
 
+                foreach (var user in usersToInsert)
+                {
+                    _smtp.NewAccount(user);
+                }
             }
             catch (Exception ex)
             {
-
+                throw ex;
             }
         }
-
-        private static DateTime ConvertDate(string date)
-        {
-            var dateformat = date.Substring(0, 4) + "-" + date.Substring(4, 2) + "-" + date.Substring(6, 2);
-            return DateTime.Parse(dateformat);
-        }
-
         private static Random random = new Random();
 
         public static string RandomString(int length)
@@ -165,39 +165,46 @@ namespace DMG.Services
 
         public void ExportData()
         {
-            var exportPath = @"C:\Users\Nperperidis\";
-            CsvConfig.ItemSeperatorString = ";";
-            var payments = _ctx.Set<Payment>().Include(i => i.Bill).ToList();
-            var settlements = _ctx.Set<Settlement>().Include(x => x.SettlementType).Include(i => i.Bills).ThenInclude(u => u.User).ToList();
+            try
+            {
+                var exportPath = @"C:\Users\Nperperidis\";
+                CsvConfig.ItemSeperatorString = ";";
+                var payments = _ctx.Set<Payment>().Include(i => i.Bill).ToList();
+                var settlements = _ctx.Set<Settlement>().Include(x => x.SettlementType).Include(i => i.Bills).ThenInclude(u => u.User).ToList();
 
-            var d = DateTime.Now.AddDays(-1);
-            var filename = d.Year + "" + d.Month + d.Day;
-            var paymentsForExport = (from pay in payments
-                                     select new PaymentExport
-                                     {
-                                         BILL_ID = pay.Bill.Bill_Id,
-                                         TIME = pay.PaidDate.ToUniversalTime(),
-                                         AMOUNT = pay.Bill.Amount,
-                                         METHOD = pay.Method
-                                     }).ToList();
+                var d = DateTime.Now.AddDays(-1);
+                var filename = d.Year + "" + d.Month + d.Day;
+                var paymentsForExport = (from pay in payments
+                                         select new PaymentExport
+                                         {
+                                             BILL_ID = pay.Bill.Bill_Id,
+                                             TIME = pay.PaidDate.ToUniversalTime(),
+                                             AMOUNT = pay.Bill.Amount,
+                                             METHOD = pay.Method
+                                         }).ToList();
 
-            var settlementsForExport = (from s in settlements
-                                        select new SettlementExport
-                                        {
-                                            VAT = s.Bills.FirstOrDefault().User.Vat,
-                                            BILLS = ConvertBills(s.Bills.ToList()),
-                                            DOWNPAYMENT = s.Downpayment,
-                                            INSTALLMENTS = s.Installments,
-                                            TIME = s.RequestDate,
-                                            INTEREST = s.SettlementType.Interest
+                var settlementsForExport = (from s in settlements
+                                            select new SettlementExport
+                                            {
+                                                VAT = s.Bills.FirstOrDefault().User.Vat,
+                                                BILLS = ConvertBills(s.Bills.ToList()),
+                                                DOWNPAYMENT = s.Downpayment,
+                                                INSTALLMENTS = s.Installments,
+                                                TIME = s.RequestDate,
+                                                INTEREST = s.SettlementType.Interest
 
-                                        }).ToList();
+                                            }).ToList();
 
-            var paymentsTxt = CsvSerializer.SerializeToCsv(paymentsForExport);
-            var settlementsTxt = CsvSerializer.SerializeToCsv(settlementsForExport);
+                var paymentsTxt = CsvSerializer.SerializeToCsv(paymentsForExport);
+                var settlementsTxt = CsvSerializer.SerializeToCsv(settlementsForExport);
 
-            File.AppendAllText(exportPath + "PAYMENTS_" + filename + ".txt", paymentsTxt);
-            File.AppendAllText(exportPath + "SETTLEMENTS_" + filename + ".txt", settlementsTxt);
+                File.AppendAllText(exportPath + "PAYMENTS_" + filename + ".txt", paymentsTxt);
+                File.AppendAllText(exportPath + "SETTLEMENTS_" + filename + ".txt", settlementsTxt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private static string ConvertBills(List<Bill> bills)
