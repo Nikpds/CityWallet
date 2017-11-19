@@ -29,27 +29,15 @@
                                 </div>
                             </div>
                             <div class="box tile is-child">
-                                <nav class="panel">
+                                <nav class="panel" *ngIf="topThree.length > 0">
                                     <p class="panel-heading">
-                                        Top 3 Expired Bills
+                                        {{'Home.TopThree'|translate:lang}}
                                     </p>
-                                    <a class="panel-block is-active">
+                                    <a class="panel-block is-clearfix" *ngFor="let b of topThree">
                                         <span class="panel-icon">
-                                            <i class="fa fa-book"></i>
+                                            <i class="fa fa-money"></i>
                                         </span>
-                                        Golf
-                                    </a>
-                                    <a class="panel-block is-active">
-                                        <span class="panel-icon">
-                                            <i class="fa fa-book"></i>
-                                        </span>
-                                        Masaz 
-                                    </a>
-                                    <a class="panel-block is-active">
-                                        <span class="panel-icon">
-                                            <i class="fa fa-book"></i>
-                                        </span>
-                                        Masaz 
+                                        {{b.description}}
                                     </a>
                                 </nav>
                             </div>
@@ -161,7 +149,38 @@
         </div>
     </div>
 </section>
-<footer class="footer bottom">
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-marginless">
+                <div class="column is-6" class="has-text-white">
+                    <h1 class="title is-4 has-text-white">
+                        The Global Debt Recovery Solution For A Global Economy
+                    </h1>
+                    <hr>
+                    <ul>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Pre-legal no win no fee globally
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; No setup charges
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Multi-award winning
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Worldwide compliance
+                        </li>
+                        <li>
+                            <i class="fa fa-circle"></i>&nbsp; Global coverage
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
     <div class="container">
         <div class="content">
             <div class="columns has-text-centered">

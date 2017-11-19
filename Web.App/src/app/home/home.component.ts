@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { SnotifyService } from 'ng-snotify';
 import { Language } from 'angular-l10n';
 
-import { User, Counter } from '../appModel';
+import { User, Counter, Bill } from '../appModel';
 
 import { AuthService } from '../auth/auth.service';
 import { LoaderService } from '../shared/loader.service';
@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscriptions = new Array<Subscription>();
   @Language() lang;
   user = new User();
+  topThree = new Array<Bill>();
   constructor(
     private auth: AuthService,
     private loader: LoaderService,
@@ -39,6 +40,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loader.show();
     this.userService.getUser().subscribe(res => {
       this.auth.user = res;
+      if (res.bills.length > 4) {
+        this.topThree = res.bills.sort(s => s.amount).slice(1, 4);
+      } else {
+        this.topThree = res.bills;
+      }
       console.log(res);
       this.loader.hide();
     }, error => {
@@ -46,5 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.loader.hide();
     });
   }
+
+
 
 }

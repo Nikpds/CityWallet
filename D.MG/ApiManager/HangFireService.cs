@@ -45,7 +45,7 @@ namespace DMG.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+               
             }
 
         }
@@ -54,7 +54,7 @@ namespace DMG.Services
         {
             try
             {
-                var filepath = @"C:\Users\Nickos\Downloads\CitizenDebts_1M_3.txt";
+                var filepath = @"C:\Users\Nickos\Downloads\qualco4\CitizenDebts_1M_3.txt";
                 var dataForImport = File.ReadLines(filepath)
                                    .Skip(1)
                                    .Select(line => line.Split(';'))
@@ -151,7 +151,7 @@ namespace DMG.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+               
             }
         }
         private static Random random = new Random();
@@ -167,7 +167,7 @@ namespace DMG.Services
         {
             try
             {
-                var exportPath = @"C:\Users\Nperperidis\";
+                var exportPath = @"C:\Users\Nickos\Downloads\qualco4\export";
                 CsvConfig.ItemSeperatorString = ";";
                 var payments = _ctx.Set<Payment>().Include(i => i.Bill).ToList();
                 var settlements = _ctx.Set<Settlement>().Include(x => x.SettlementType).Include(i => i.Bills).ThenInclude(u => u.User).ToList();
@@ -203,7 +203,7 @@ namespace DMG.Services
             }
             catch (Exception ex)
             {
-                throw ex;
+               
             }
         }
 

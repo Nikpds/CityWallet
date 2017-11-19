@@ -79,9 +79,9 @@ namespace WebApp
 
             app.UseHangfireServer();
 
-            RecurringJob.AddOrUpdate(() => ihsrv.ExportData(), Cron.Daily(00, 01));
-            RecurringJob.AddOrUpdate(() => ihsrv.DeleteDatabase(), Cron.Daily(00, 30));
-            RecurringJob.AddOrUpdate(() => ihsrv.InsertData(), Cron.Daily(02, 30));
+            //RecurringJob.AddOrUpdate(() => ihsrv.ExportData(), Cron.Daily(00, 01));
+            //RecurringJob.AddOrUpdate(() => ihsrv.DeleteDatabase(), Cron.Daily(00, 30));
+            //RecurringJob.AddOrUpdate(() => ihsrv.InsertData(), Cron.Daily(02, 30));
 
             app.UseSwagger();
 
