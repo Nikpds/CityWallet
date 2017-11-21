@@ -16,13 +16,14 @@
                                         </p>
                                         <ol class="has-text-black">
                                             <li [routerLink]="['/TermsOfUse']">
-                                                <a>Όροι χρήσης</a>
+                                                <a>{{'Home.Terms'|translate:lang}}</a>
                                             </li>
                                             <li [routerLink]="['/FAQ']">
-                                                <a>Συχνές Ερωτήσεις</a>
+                                                <a>{{'Home.Faq'|translate:lang}}</a>
                                             </li>
                                             <li [routerLink]="['/ContactUs']">
-                                                <a>Επικοινωνία</a>
+                                                <a>{{'Home.Contact'|translate:lang}}</a>
+
                                             </li>
                                         </ol>
                                     </div>
@@ -37,8 +38,14 @@
                                         <span class="panel-icon">
                                             <i class="fa fa-money"></i>
                                         </span>
-                                        {{b.description}}
+                                        {{b.description}}&nbsp;&nbsp;
+                                        <span>{{b.amount}} &euro;</span>
                                     </a>
+                                    <div class="panel-block">
+                                        <button class="button is-small is-outlined is-primary is-fullwidth" [routerLink]="['/bills']">
+                                            {{'Common.SeeAll'|translate:lang}}
+                                        </button>
+                                    </div>
                                 </nav>
                             </div>
                         </div>

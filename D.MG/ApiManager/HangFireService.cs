@@ -45,7 +45,7 @@ namespace DMG.Services
             }
             catch (Exception ex)
             {
-               
+
             }
 
         }
@@ -151,7 +151,7 @@ namespace DMG.Services
             }
             catch (Exception ex)
             {
-               
+
             }
         }
         private static Random random = new Random();
@@ -167,7 +167,7 @@ namespace DMG.Services
         {
             try
             {
-                var exportPath = @"C:\Users\Nickos\Downloads\qualco4\export";
+                var exportPath = @"C:\Users\Nickos\Downloads\qualco4\export\";
                 CsvConfig.ItemSeperatorString = ";";
                 var payments = _ctx.Set<Payment>().Include(i => i.Bill).ToList();
                 var settlements = _ctx.Set<Settlement>().Include(x => x.SettlementType).Include(i => i.Bills).ThenInclude(u => u.User).ToList();
@@ -183,6 +183,8 @@ namespace DMG.Services
                                              METHOD = pay.Method
                                          }).ToList();
 
+                settlements.RemoveAll(x => x.Bills.Count == 0);
+
                 var settlementsForExport = (from s in settlements
                                             select new SettlementExport
                                             {
@@ -195,6 +197,7 @@ namespace DMG.Services
 
                                             }).ToList();
 
+
                 var paymentsTxt = CsvSerializer.SerializeToCsv(paymentsForExport);
                 var settlementsTxt = CsvSerializer.SerializeToCsv(settlementsForExport);
 
@@ -203,7 +206,7 @@ namespace DMG.Services
             }
             catch (Exception ex)
             {
-               
+
             }
         }
 

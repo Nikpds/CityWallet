@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { SnotifyService } from 'ng-snotify';
-import { Language } from 'angular-l10n';
+import { Language, TranslationService } from 'angular-l10n';
 
 import { User, Counter, Bill } from '../appModel';
 
@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private auth: AuthService,
     private loader: LoaderService,
     private userService: UserService,
-    private notify: SnotifyService
+    private notify: SnotifyService,
+    private translation: TranslationService
   ) { }
 
   ngOnInit() {
@@ -40,15 +41,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loader.show();
     this.userService.getUser().subscribe(res => {
       this.auth.user = res;
+      const temp = res.bills.filter(s => s.payment == null && s.settlementId == null);
       if (res.bills.length > 4) {
-        this.topThree = res.bills.sort(s => s.amount).slice(1, 4);
+        this.topThree = temp.sort(function (a, b) {
+          return (a.amount < b.amount) ? 1 : ((b.amount < a.amount) ? -1 : 0);
+        }).slice(0, 3);
       } else {
         this.topThree = res.bills;
       }
       console.log(res);
       this.loader.hide();
     }, error => {
-      this.notify.error(error, 'Σφάλμα ανάκτησης στοιχείων Χρήστη!');
+      this.notify.error(this.translation.translate('Snotify.ServerError'), this.translation.translate('Snotify.Error'));
+ 
       this.loader.hide();
     });
   }

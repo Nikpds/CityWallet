@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { SnotifyService } from 'ng-snotify';
-import { Language } from 'angular-l10n';
+import { Language, TranslationService } from 'angular-l10n';
 
 import { Payment, NavigationC, Config } from '../../appModel';
 
@@ -27,7 +27,8 @@ export class PaymentListComponent implements OnInit {
     private loader: LoaderService,
     private router: Router,
     private notify: SnotifyService,
-    private srv: PaginationService
+    private srv: PaginationService,
+    private translation: TranslationService
   ) { }
 
   ngOnInit() {
@@ -49,7 +50,7 @@ export class PaymentListComponent implements OnInit {
 
   getTotalPages(length: number, size: number) {
     const pageSize = Math.floor(length / size);
-    if (pageSize != length / size) {
+    if (pageSize !== length / size) {
       return pageSize + 1;
     }
     return pageSize;
@@ -63,7 +64,7 @@ export class PaymentListComponent implements OnInit {
       this.loader.hide();
     }, error => {
       this.loader.hide();
-      this.notify.error('Αδυναμία συλλογής πληρωμών!')
+      this.notify.error(this.translation.translate('Snotify.ServerError'), this.translation.translate('Snotify.Error'));
     });
   }
 

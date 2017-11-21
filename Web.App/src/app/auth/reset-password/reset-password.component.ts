@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Language, LocaleService,TranslationService } from 'angular-l10n';
+import { Language, LocaleService, TranslationService } from 'angular-l10n';
 import { SnotifyService } from 'ng-snotify';
 
-import { LoaderService } from "../../shared/loader.service";
+import { LoaderService } from '../../shared/loader.service';
 import { UserService } from '../../user/user.service';
 @Component({
   selector: 'app-reset-password',
@@ -12,13 +12,13 @@ import { UserService } from '../../user/user.service';
 export class ResetPasswordComponent implements OnInit {
   @Language() lang;
   email: string;
-  
+
   constructor(
     public locale: LocaleService,
     private notify: SnotifyService,
     private loader: LoaderService,
     private service: UserService,
-    private translation:TranslationService
+    private translation: TranslationService
   ) { }
 
   ngOnInit() {

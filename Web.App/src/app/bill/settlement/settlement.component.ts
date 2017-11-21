@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { SnotifyService } from 'ng-snotify';
-import { Language } from 'angular-l10n';
+import { Language, TranslationService } from 'angular-l10n';
 
 import { Bill, SettlementType, Settlement, NavigationC } from '../../appModel';
 
@@ -13,7 +13,7 @@ import { LoaderService } from '../../shared/loader.service';
   templateUrl: './settlement.component.html',
   styleUrls: ['./settlement.component.sass']
 })
-export class SettlementComponent implements OnInit {
+export class SettlementComponent implements OnInit, OnDestroy {
   @Language() lang;
   private subscriptions = new Array<Subscription>();
   settlementTypes = new Array<SettlementType>();
@@ -27,7 +27,8 @@ export class SettlementComponent implements OnInit {
     private billService: BillService,
     private router: Router,
     private loader: LoaderService,
-    private notify: SnotifyService
+    private notify: SnotifyService,
+    private translation: TranslationService
   ) {
 
     this.navbar = [{
@@ -44,7 +45,7 @@ export class SettlementComponent implements OnInit {
     this.subscriptions.push(this.billService.billsToPay$
       .subscribe((res) => this.bills = res));
 
-    if (this.bills.length == 0) {
+    if (this.bills.length === 0) {
       this.router.navigate(['/bills']);
     }
   }
@@ -71,20 +72,20 @@ export class SettlementComponent implements OnInit {
     }, error => {
       this.loader.hide();
       this.notify.error(error);
-    })
+    });
   }
 
   createMaxInstallments() {
-    var maxInstallments = this.settlementTypes[this.sType].installments;
+    let maxInstallments = this.settlementTypes[this.sType].installments;
     this.installments = [];
     this.settlement.installments = maxInstallments;
-    let maxloop = maxInstallments / 3;
+    const maxloop = maxInstallments / 3;
     for (let i = 0; i < maxloop; i++) {
       this.installments.push(maxInstallments);
       maxInstallments = maxInstallments - 3;
     }
     if (this.settlement.settlementType) {
-      this.calculateSettlement()
+      this.calculateSettlement();
     }
   }
 
@@ -98,7 +99,7 @@ export class SettlementComponent implements OnInit {
       this.router.navigate(['/settlement', res.id, 'details']);
     }, error => {
       this.loader.hide();
-      this.notify.error("Σφάλμα καταχώρησης διακανονισμού.");
+      this.notify.error(this.translation.translate('Snotify.ServerError'), this.translation.translate('Snotify.Error'));
     });
   }
 
@@ -137,7 +138,7 @@ export class SettlementComponent implements OnInit {
 
   getTotal(bills: Bill[]) {
     if (!bills) { return; }
-    return (bills.reduce(function (a, b) { return a + b.amount }, 0));
+    return (bills.reduce(function (a, b) { return a + b.amount; }, 0));
   }
 
   clearSettlement() {
@@ -146,6 +147,7 @@ export class SettlementComponent implements OnInit {
   }
 
   getSubTotal() {
-    return ((this.getTotal(this.bills) - this.settlement.downpayment) * (this.settlementTypes[this.sType].interest / 100)) + (this.getTotal(this.bills) - this.settlement.downpayment);
+    return ((this.getTotal(this.bills) - this.settlement.downpayment) * (this.settlementTypes[this.sType].interest / 100))
+      + (this.getTotal(this.bills) - this.settlement.downpayment);
   }
 }

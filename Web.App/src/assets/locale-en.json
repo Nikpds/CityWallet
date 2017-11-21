@@ -14,7 +14,10 @@
     "Services": "Online Services",
     "License": "The website content is licensed ",
     "CC": "CC Creator Report 4.0 International",
-    "TopThree":"Highest Dedt"
+    "TopThree": "Highest Dedt",
+    "Terms": "Terms of Use",
+    "Faq": "FAQ",
+    "Contact": "Contact Us"
   },
   "Common": {
     "Menu": "Menu",
@@ -34,7 +37,8 @@
     "Actions": "Actions",
     "EditBtn": "Edit",
     "Required": "Required field",
-    "NoBills": "There are no bills to overview."
+    "NoBills": "There are no bills to overview.",
+    "SeeAll": "See all"
   },
   "User": {
     "Details": "Account Details",
@@ -135,8 +139,8 @@
     "LoggedOut": "You have logged out",
     "FirstLogIn": "An email has been sent to continue your account activation",
     "PswChanged": "Your password has changed",
-    "PaymentComplete":"Your Payment has been completed",
-    "PaymentError":"Payment failed. Try again later",
+    "PaymentComplete": "Your Payment has been completed",
+    "PaymentError": "Payment failed. Try again later",
     "ServerError": "We are sorry, something went wrong"
   }
 }

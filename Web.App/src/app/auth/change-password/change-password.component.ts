@@ -53,7 +53,8 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
           this.resetPwd.verificationToken = token;
         }
         else {
-          this.notify.error("You must be logged in in order to change your password.");
+          this.notify.error("You must be logged in in order to change your password.", this.translation.translate('Snotify.Error'));
+          
           this.cancel();
         }
       });
@@ -151,7 +152,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       this.router.navigate(['/profile']);
     }, (error) => {
       this.loader.hide();
-      this.notify.error(error);
+      this.notify.error(this.translation.translate('Snotify.ServerError'), this.translation.translate('Snotify.Error'));
     });
   }
 
@@ -163,7 +164,8 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       this.router.navigate(['/login']);
     }, (error) => {
       this.loader.hide();
-      this.notify.error(error);
+      this.notify.error(this.translation.translate('Snotify.ServerError'), this.translation.translate('Snotify.Error'));
+     
     });
   }
 }
