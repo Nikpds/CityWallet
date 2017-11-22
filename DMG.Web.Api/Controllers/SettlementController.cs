@@ -3,14 +3,14 @@ using ApiManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApp.Services;
 
 namespace DMG.Web.Api
 {
     [Produces("application/json")]
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     public class SettlementController : Controller
     {
@@ -19,6 +19,12 @@ namespace DMG.Web.Api
         public SettlementController(ISettlementService srv)
         {
             _srv = srv;
+        }
+
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return new string[] { "value1", "value2" };
         }
 
         [HttpPost("")]
@@ -111,7 +117,7 @@ namespace DMG.Web.Api
                     return BadRequest("Σφάλμα ταυτοποίησης χρήστη!");
                 }
 
-                var canceled = await _srv.CancelSettlement(settleId,id);
+                var canceled = await _srv.CancelSettlement(settleId, id);
 
                 if (!canceled)
                 {
@@ -133,7 +139,7 @@ namespace DMG.Web.Api
             {
                 var types = await _srv.GetSettlementTypes();
 
-                return Ok(types.OrderByDescending(o=>o.Downpayment));
+                return Ok(types.OrderByDescending(o => o.Downpayment));
             }
             catch (Exception ex)
             {

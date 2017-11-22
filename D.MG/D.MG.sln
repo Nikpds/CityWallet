@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMG.Api", "WebApp\DMG.Api.c
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{847DF83C-ADC8-4B4F-8984-CBDE89C73DFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMG.Web.Api", "..\DMG.Web.Api\DMG.Web.Api.csproj", "{AD4F052C-2C94-4EA0-BDF4-3B680391BB9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{847DF83C-ADC8-4B4F-8984-CBDE89C73DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{847DF83C-ADC8-4B4F-8984-CBDE89C73DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{847DF83C-ADC8-4B4F-8984-CBDE89C73DFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD4F052C-2C94-4EA0-BDF4-3B680391BB9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD4F052C-2C94-4EA0-BDF4-3B680391BB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD4F052C-2C94-4EA0-BDF4-3B680391BB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4F052C-2C94-4EA0-BDF4-3B680391BB9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

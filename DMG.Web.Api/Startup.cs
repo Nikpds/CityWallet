@@ -1,53 +1,44 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SqlContext;
 using Microsoft.EntityFrameworkCore;
+using ApiManager;
 using AuthProvider;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using System;
-using ApiManager;
-using Swashbuckle.AspNetCore.Swagger;
-using Hangfire;
-using DMG.Services;
-using System.IO;
+using System.Text;
 
-namespace WebApp
+namespace DMG.Web.Api
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            var tokensKey = new Guid().ToString();
-            _tokensKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokensKey));
+            _tokensKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(new Guid().ToString()));
             auth = new AuthenticationProvider(_tokensKey);
         }
 
         public readonly IConfiguration Configuration;
-        private readonly SymmetricSecurityKey _tokensKey;
         private readonly AuthenticationProvider auth;
+        private readonly SymmetricSecurityKey _tokensKey;
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.Configure<SmtpOptions>(Configuration.GetSection("SMTP"));
 
-            services.AddTransient<IEmailProvider, EmailProvider>();
-            services.AddScoped<IBillService, BillService>();
-            services.AddTransient<IHangFireService, HangFireService>();
-            services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IBillService, BillService>();
+            services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<ISettlementService, SettlementService>();
+
             services.AddTransient<IAuthenticationProvider, AuthenticationProvider>();
             services.AddSingleton<IAuthenticationProvider>(p => auth);
 
-            services.AddCors();
-            //services.AddHangfire(x => x.UseSqlServerStorage(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddAuthentication(o =>
             {
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -64,35 +55,20 @@ namespace WebApp
                 };
             });
 
-            //services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }); });
+            services.AddCors();
             services.AddMvc().AddJsonOptions(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
-        public void Configure(IApplicationBuilder app,IHostingEnvironment env,IHangFireService ihsrv)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
-
-            //app.UseHangfireDashboard("/hangfire", new DashboardOptions()
-            //{
-            //    StatsPollingInterval = 60000
-            //});
-
-            app.UseHangfireServer();
-
-            //BackgroundJob.Schedule(() => ihsrv.ExportData(), TimeSpan.FromDays(1));
-            //BackgroundJob.Schedule(() => ihsrv.DeleteDatabase(), TimeSpan.FromDays(1));
-            //BackgroundJob.Schedule(() => ihsrv.InsertData(), TimeSpan.FromDays(1));
-
-            //app.UseSwagger();
-
-            //app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             app.UseMvc();
         }
     }
