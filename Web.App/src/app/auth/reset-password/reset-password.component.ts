@@ -37,7 +37,6 @@ export class ResetPasswordComponent implements OnInit {
     }, error => {
       this.loader.hide();
       this.notify.error(this.translation.translate('Snotify.ServerError'), this.translation.translate('Snotify.Error'));
-      this.notify.error(error);
     });
 
   }

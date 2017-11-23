@@ -43,7 +43,6 @@ export class SettlementListComponent implements OnInit {
     this.billService.getSettlements().subscribe(res => {
       this.settlements = res;
       this.initConfig(res);
-      console.log(res);
       this.loader.hide();
     }, error => {
       this.loader.hide();

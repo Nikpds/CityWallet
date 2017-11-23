@@ -2,6 +2,7 @@
 using AuthProvider;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 
@@ -25,6 +26,17 @@ namespace DMG.Web.Api
         [HttpPost]
         public async Task<IActionResult> Token([FromBody] LoginViewModel model)
         {
+            //try
+            //{
+            //    var dbUser = await _srv.GetByUsername(model.Username);
+
+            //    return Ok(dbUser);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Ok(ex);
+            //}
+
             if (ModelState.IsValid)
             {
                 var dbUser = await _srv.GetByUsername(model.Username);

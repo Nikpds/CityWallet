@@ -42,18 +42,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.userService.getUser().subscribe(res => {
       this.auth.user = res;
       const temp = res.bills.filter(s => s.payment == null && s.settlementId == null);
-      if (res.bills.length > 4) {
-        this.topThree = temp.sort(function (a, b) {
+      if (res.bills.length > 3) {
+        var sorted = temp.sort(function (a, b) {
           return (a.amount < b.amount) ? 1 : ((b.amount < a.amount) ? -1 : 0);
-        }).slice(0, 3);
+        });
+        this.topThree = sorted.slice(0, 3);
       } else {
-        this.topThree = res.bills;
+        this.topThree = temp;
       }
-      console.log(res);
       this.loader.hide();
     }, error => {
       this.notify.error(this.translation.translate('Snotify.ServerError'), this.translation.translate('Snotify.Error'));
- 
+
       this.loader.hide();
     });
   }

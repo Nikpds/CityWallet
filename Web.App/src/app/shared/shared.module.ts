@@ -49,7 +49,7 @@ export class SharedModule {
       .defineLanguage('el');
 
     this.translation.addConfiguration()
-      .addProvider('./locale-');
+      .addProvider('./languages/locale-');
 
     this.translation.init();
   }

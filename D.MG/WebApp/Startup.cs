@@ -78,7 +78,7 @@ namespace WebApp
             //    StatsPollingInterval = 60000
             //});
 
-            app.UseHangfireServer();
+           // app.UseHangfireServer();
 
             //BackgroundJob.Schedule(() => ihsrv.ExportData(), TimeSpan.FromDays(1));
             //BackgroundJob.Schedule(() => ihsrv.DeleteDatabase(), TimeSpan.FromDays(1));

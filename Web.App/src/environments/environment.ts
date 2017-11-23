@@ -5,6 +5,6 @@
 
 export const environment = {
   production: true,
-  api: 'http://192.168.1.14:1234/api/',
-  auth: 'http://192.168.1.14:1234/auth/'
+  api: 'http://citywalletapp.azurewebsites.net/api/',
+  auth: 'http://citywalletapp.azurewebsites.net/auth/'
 };

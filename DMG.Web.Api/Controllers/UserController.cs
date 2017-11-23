@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DMG.Web.Api
 {
     [Produces("application/json")]
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     public class UserController : Controller
     {

@@ -9,7 +9,7 @@ namespace SqlContext
     {
         public DataContext CreateDbContext(string[] args)
         {
-            string path = Directory.GetCurrentDirectory().Replace("SqlContext", "WebApp");
+            string path = Directory.GetCurrentDirectory().Replace("DMG.SqlContext", "DMG.Web.Api");
 
             var builder = new DbContextOptionsBuilder<DataContext>();
             IConfigurationRoot configuration = new ConfigurationBuilder()

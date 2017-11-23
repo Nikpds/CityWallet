@@ -61,7 +61,6 @@ export class AuthService {
       .map((response: any) => {
         var firstLogin = response._body;
         if (firstLogin == "firstlogin") {
-          console.log(firstLogin);
           return firstLogin;
         }
         const token = response.json().token;

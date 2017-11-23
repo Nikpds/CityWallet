@@ -61,7 +61,7 @@ namespace DMG.Services
         {
             try
             {
-                var filepath = @"C:\Users\Nperperidis\Downloads\CitizenDebts_1M_3.txt";
+                var filepath = @"C:\Users\nick\Downloads\CitizenDebts_1M_3.txt";
                 var dataForImport = File.ReadLines(filepath)
                                    .Skip(1)
                                    .Select(line => line.Split(';'))
