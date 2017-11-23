@@ -23,10 +23,10 @@ namespace Testing
             builder.UseSqlServer(connection);
 
             var _db = new DataContext(builder.Options);
-            //var srv = new HangFireService(_db);
+            var srv = new HangFireService(_db);
             //var srv1 = new SettlementService(_db);
             //srv1.CreateSettlementTypes();
-            //srv.InsertData();
+            srv.InsertData();
             //srv.ExportData();
 
 

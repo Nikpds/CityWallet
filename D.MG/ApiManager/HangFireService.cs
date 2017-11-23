@@ -28,9 +28,16 @@ namespace DMG.Services
     {
         private DataContext _ctx;
         private IEmailProvider _smtp;
+
         public HangFireService(DataContext ctx, IEmailProvider smtp)
         {
             _smtp = smtp;
+            _ctx = ctx;
+            EntityFrameworkManager.ContextFactory = context => { return _ctx; };
+        }
+
+        public HangFireService(DataContext ctx)
+        {
             _ctx = ctx;
             EntityFrameworkManager.ContextFactory = context => { return _ctx; };
         }
@@ -54,7 +61,7 @@ namespace DMG.Services
         {
             try
             {
-                var filepath = @"C:\Users\Nperperidis\CitizenDebts_1M_3.txt";
+                var filepath = @"C:\Users\Nperperidis\Downloads\CitizenDebts_1M_3.txt";
                 var dataForImport = File.ReadLines(filepath)
                                    .Skip(1)
                                    .Select(line => line.Split(';'))

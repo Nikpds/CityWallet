@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using DMG.Services;
+using Hangfire;
+using System.IO;
 
 namespace DMG.Web.Api
 {
@@ -30,6 +33,10 @@ namespace DMG.Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.Configure<SmtpOptions>(Configuration.GetSection("SMTP"));
+
+            services.AddTransient<IEmailProvider, EmailProvider>();
+            services.AddTransient<IHangFireService, HangFireService>();
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBillService, BillService>();
@@ -56,19 +63,27 @@ namespace DMG.Web.Api
             });
 
             services.AddCors();
+            //services.AddHangfire(x => x.UseSqlServerStorage(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddMvc().AddJsonOptions(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IHangFireService ihsrv)
         {
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
+            //app.UseHangfireServer();
+
+            //BackgroundJob.Schedule(() => ihsrv.ExportData(), TimeSpan.FromDays(1));
+            //BackgroundJob.Schedule(() => ihsrv.DeleteDatabase(), TimeSpan.FromDays(1));
+            //BackgroundJob.Schedule(() => ihsrv.InsertData(), TimeSpan.FromDays(1));
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

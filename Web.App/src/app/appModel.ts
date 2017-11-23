@@ -4,9 +4,10 @@ export class User {
     vat: string;
     email: string;
     mobile: string;
-    address: Address;
+    address: string;
     bills: Array<Bill>;
     counters: Counter;
+    county:string
 
     constructor() {
         this.bills = new Array<Bill>();
@@ -72,17 +73,17 @@ export class CreditCard {
 
 export class Counter {
     bills = 0;
-    BillsAmount = 0;
-    Paid = 0;
-    PaidAmount = 0;
-    UnPaid = 0;
-    UnPaidAmount = 0;
-    OnSettle = 0;
-    OnSettleAmount = 0;
-    Settlements = 0;
-    SettleAmount = 0;
-    Payments = 0;
-    PaymentsAmount = 0;
+    billsAmount = 0;
+    paid = 0;
+    paidAmount = 0;
+    unPaid = 0;
+    unPaidAmount = 0;
+    onSettle = 0;
+    onSettleAmount = 0;
+    settlements = 0;
+    settleAmount = 0;
+    payments = 0;
+    paymentsAmount = 0;
 
 }
 

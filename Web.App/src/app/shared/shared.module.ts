@@ -45,10 +45,11 @@ export class SharedModule {
   constructor(public locale: LocaleService, public translation: TranslationService) {
     this.locale.addConfiguration()
       .addLanguages(['en', 'el'])
+      .setCookieExpiration(30)
       .defineLanguage('el');
 
     this.translation.addConfiguration()
-      .addProvider('./assets/locale-');
+      .addProvider('./locale-');
 
     this.translation.init();
   }
