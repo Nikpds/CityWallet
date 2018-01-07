@@ -32,10 +32,8 @@ import { LoaderService } from '../../shared/loader.service';
 export class LoginComponent implements OnInit, AfterViewInit {
   username: string;
   password: string;
-  @Language() lang;
 
-  gloweffect = false;
-  effect = 'low';
+  @Language() lang;
 
   constructor(
     private authService: AuthService,
@@ -53,19 +51,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const vm = this;
-    setInterval(function () {
-      vm.changeState();
-    }, 2500);
-  }
-
-  change() {
-    this.gloweffect = !this.gloweffect;
-    this.effect = this.gloweffect ? 'low' : 'high';
+   
   }
 
   login() {
-    this.gloweffect = !this.gloweffect;
     this.loader.show();
     this.authService.login(this.username, this.password).subscribe(res => {
       if (res == "firstlogin") {
@@ -85,11 +74,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.loader.hide();
       this.notify.error(this.translation.translate('Snotify.WrongCrend'), this.translation.translate('Snotify.Error'));
     });
-  }
-
-  changeState() {
-    this.gloweffect = !this.gloweffect;
-    this.effect = this.gloweffect ? 'low' : 'high';
   }
 
   selectLocale(language: string, country: string): void {
